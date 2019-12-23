@@ -41,7 +41,7 @@ const SignIn = (props) => {
 
   const login = (e) => {
     e.preventDefault();
-    props.setUser({name: 'Oleg'});
+    // props.setUser({name: 'Oleg'});
   };
 
   return (
