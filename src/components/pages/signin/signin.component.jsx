@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {setUser} from '../../../redux/user/user.actions';
+import {setUser, loginStart} from '../../../redux/user/user.actions';
 import {useHistory} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -38,10 +38,25 @@ const useStyles = makeStyles(theme => ({
 const SignIn = (props) => {
   const classes = useStyles();
   const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
   const login = (e) => {
     e.preventDefault();
-    // props.setUser({name: 'Oleg'});
+    props.loginStart(
+        {
+          email: email,
+          password: password,
+        },
+    );
   };
 
   return (
@@ -56,6 +71,8 @@ const SignIn = (props) => {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
+                value={email}
+                onChange={onEmailChange}
                 variant="outlined"
                 margin="normal"
                 required
@@ -67,6 +84,8 @@ const SignIn = (props) => {
                 autoFocus
             />
             <TextField
+                value={password}
+                onChange={onPasswordChange}
                 variant="outlined"
                 margin="normal"
                 required
@@ -116,6 +135,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: user => dispatch(setUser(user)),
+    loginStart: data => dispatch(loginStart(data)),
   };
 };
 
