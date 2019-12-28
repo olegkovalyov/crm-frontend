@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {setUser, loginStart} from '../../../redux/user/user.actions';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Redirect} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -11,6 +11,9 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {makeStyles} from '@material-ui/core/styles';
+import validator from 'validator';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import '../../../styles/signin.styles.css';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -40,13 +43,31 @@ const SignIn = (props) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [hasEmailError, setHasEmailError] = useState(true);
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [hasPasswordError, setHasPasswordError] = useState(true);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  const onEmailChange = (e) => {
-    setEmail(e.target.value);
+  const onEmailChange = (email) => {
+    setEmail(email);
+    if (!validator.isEmail(email)) {
+      setHasEmailError(true);
+      setEmailErrorMessage('Email is invalid');
+    } else {
+      setHasEmailError(false);
+      setEmailErrorMessage('');
+    }
   };
 
-  const onPasswordChange = (e) => {
-    setPassword(e.target.value);
+  const onPasswordChange = (password) => {
+    setPassword(password);
+    if (password.length < 6) {
+      setHasPasswordError(true);
+      setPasswordErrorMessage('Password must contain at least 6 chars ');
+    } else {
+      setHasPasswordError(false);
+      setPasswordErrorMessage('');
+    }
   };
 
   const login = (e) => {
@@ -59,76 +80,108 @@ const SignIn = (props) => {
     );
   };
 
-  return (
-      <React.Fragment>
-        <CssBaseline/>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon/>
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-                value={email}
-                onChange={onEmailChange}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-            />
-            <TextField
-                value={password}
-                onChange={onPasswordChange}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-            />
-            <Button
-                onClick={login}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link className={classes.link} variant="body2">
-                  Forgot password?
-                </Link>
+  let signInButton = props.isLoginInProcess
+      ? null
+      : <Button
+          onClick={login}
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          disabled={hasPasswordError || hasEmailError}
+          className={classes.submit}
+      >
+        Sign In
+      </Button>;
+
+  let spinner = props.isLoginInProcess
+      ? <Grid item xs justify={'center'} container>
+        <CircularProgress/>
+      </Grid>
+      : null;
+
+  let loginErrorMessage = props.loginErrorMessage
+      ? <div className={'loginErrorMessage'}>{props.loginErrorMessage}</div>
+      : null;
+
+  if (props.currentUser) {
+    return (<Redirect
+        to={{
+          pathname: '/home',
+          state: {from: '/signin'},
+        }}
+    />);
+  } else {
+    return (
+        <React.Fragment>
+          <CssBaseline/>
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon/>
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <form className={classes.form} noValidate>
+              <TextField
+                  value={email}
+                  onChange={(e) => onEmailChange(e.target.value)}
+                  error={hasEmailError && email.length > 0}
+                  helperText={emailErrorMessage}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+              />
+              <TextField
+                  value={password}
+                  onChange={(e) => onPasswordChange(e.target.value)}
+                  error={hasPasswordError && password.length > 0}
+                  helperText={passwordErrorMessage}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+              />
+              {signInButton}
+              {spinner}
+              {loginErrorMessage}
+              <Grid container>
+                <Grid item xs>
+                  <Link className={classes.link} variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link className={classes.link} onClick={(e) => {
+                    history.push('/signup');
+                  }} variant="body2">
+                    {'Don\'t have an account? Sign Up'}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link className={classes.link} onClick={(e) => {
-                  history.push('/signup');
-                }} variant="body2">
-                  {'Don\'t have an account? Sign Up'}
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-      </React.Fragment>
-  );
+            </form>
+          </div>
+        </React.Fragment>
+    );
+  }
 };
 
 const mapStateToProps = (state) => {
   return {
     currentUser: state.user.currentUser,
+    isLoginInProcess: state.user.isLoginInProcess,
+    loginErrorMessage: state.user.loginErrorMessage,
   };
 };
 

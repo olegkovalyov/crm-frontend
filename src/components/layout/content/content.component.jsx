@@ -3,15 +3,19 @@ import {Switch, Route} from 'react-router-dom';
 import SignIn from '../../pages/signin/signin.component';
 import SignUp from '../../pages/signup/signup.component';
 import Home from '../../pages/home/home.component';
+import PrivateRoute from '../../shared/private-route.component';
 import Container from '@material-ui/core/Container';
 
 const Content = (props) => {
   return (
       <Container component="main" maxWidth="xs">
         <Switch>
-          <Route exact path="/">
+          <PrivateRoute exact path="/">
             <Home/>
-          </Route>
+          </PrivateRoute>
+          <PrivateRoute exact path="/home">
+            <Home/>
+          </PrivateRoute>
           <Route exact path="/signin">
             <SignIn/>
           </Route>

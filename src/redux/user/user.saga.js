@@ -1,4 +1,4 @@
-import {takeEvery} from 'redux-saga/effects';
+import {takeEvery, put} from 'redux-saga/effects';
 import axiosInstance from '../../http/axios';
 import UserActionTypes from './user.types';
 
@@ -12,9 +12,9 @@ export function* loginStart({type, payload}) {
         password: payload.password,
       },
     });
-    console.log(data);
+    yield put({type: UserActionTypes.LOGIN_SUCCESS, payload: data});
   } catch (e) {
-    console.log(e.response.data);
+    yield put({type: UserActionTypes.LOGIN_FAILED, payload: e.response.data});
   }
 }
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/react-learn.iml" filepath="$PROJECT_DIR$/.idea/react-learn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/clever-money-react.iml" filepath="$PROJECT_DIR$/.idea/react-learn.iml" />
     </modules>
   </component>
 </project>

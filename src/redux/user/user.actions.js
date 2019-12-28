@@ -13,3 +13,16 @@ export const loginStart = (data) => {
     payload: data,
   };
 };
+
+export const loginSuccess = (data) => {
+  return {
+    type: UserActionTypes.LOGIN_SUCCESS,
+    payload: data,
+  };
+};
+
+export const loginFailed = (data) => {
+  return {
+    type: UserActionTypes.LOGIN_FAILED,
+  };
+};

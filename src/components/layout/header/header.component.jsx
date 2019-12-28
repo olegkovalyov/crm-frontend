@@ -17,7 +17,12 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    cursor: 'pointer',
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+      cursor: 'pointer',
+    },
+
   },
 }));
 
