@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
+import {logout} from '../../../redux/user/user.actions';
 
 const useStyles = makeStyles(theme => ({
   userName: {
@@ -39,6 +40,11 @@ const TopMenu = (props) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleLogout = (e) => {
+    setAnchorEl(null);
+    props.logout();
+  };
+
   const handleTopMenuClose = () => {
     setAnchorEl(null);
   };
@@ -55,7 +61,7 @@ const TopMenu = (props) => {
           onClose={handleTopMenuClose}
       >
         <MenuItem onClick={handleTopMenuClose}>Settings</MenuItem>
-        <MenuItem onClick={handleTopMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={(e) => handleLogout(e)}>Logout</MenuItem>
       </Menu>
   );
 
@@ -96,4 +102,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TopMenu);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopMenu);

@@ -31,6 +31,7 @@ const userReducer = (state = initial_state, action) => {
         isLoginInProcess: false,
         currentUser: action.payload.data.user,
         token: action.payload.data.token,
+        loginErrorMessage: null,
       };
     case UserActionTypes.LOGIN_FAILED: {
       return {
@@ -39,6 +40,14 @@ const userReducer = (state = initial_state, action) => {
         currentUser: null,
         token: null,
         loginErrorMessage: action.payload.message,
+      };
+    }
+    case UserActionTypes.LOGOUT: {
+      return {
+        ...state,
+        currentUser: null,
+        token: null,
+        loginErrorMessage: null,
       };
     }
     default:

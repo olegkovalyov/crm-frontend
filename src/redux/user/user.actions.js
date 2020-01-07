@@ -26,3 +26,9 @@ export const loginFailed = (data) => {
     type: UserActionTypes.LOGIN_FAILED,
   };
 };
+
+export const logout = () => {
+  return {
+    type: UserActionTypes.LOGOUT,
+  };
+};
