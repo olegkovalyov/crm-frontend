@@ -14,6 +14,11 @@ import {makeStyles} from '@material-ui/core/styles';
 import validator from 'validator';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import '../../../styles/signin.styles.css';
+import {
+  currentUserSelector,
+  isLoginInProgressSelector,
+  loginErrorMessageSelector,
+} from '../../../redux/user/user.selector';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -179,9 +184,9 @@ const SignIn = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.user.currentUser,
-    isLoginInProcess: state.user.isLoginInProcess,
-    loginErrorMessage: state.user.loginErrorMessage,
+    currentUser: currentUserSelector(state),
+    isLoginInProcess: isLoginInProgressSelector(state),
+    loginErrorMessage: loginErrorMessageSelector(state),
   };
 };
 

@@ -5,6 +5,7 @@ import SignUp from '../../pages/signup/signup.component';
 import Home from '../../pages/home/home.component';
 import PrivateRoute from '../../shared/private-route.component';
 import Container from '@material-ui/core/Container';
+import NotFound from '../../pages/not-found/not-found.component';
 
 const Content = (props) => {
   return (
@@ -22,6 +23,7 @@ const Content = (props) => {
           <Route exact path="/signup">
             <SignUp/>
           </Route>
+          <Route component={NotFound}/>
         </Switch>
       </Container>
   );

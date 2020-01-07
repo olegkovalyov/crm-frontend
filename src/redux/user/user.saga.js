@@ -1,6 +1,7 @@
 import {takeEvery, put} from 'redux-saga/effects';
 import axiosInstance from '../../http/axios';
 import UserActionTypes from './user.types';
+import {loginFailed, loginSuccess} from './user.actions';
 
 export function* loginStart({type, payload}) {
   try {
@@ -12,9 +13,9 @@ export function* loginStart({type, payload}) {
         password: payload.password,
       },
     });
-    yield put({type: UserActionTypes.LOGIN_SUCCESS, payload: data});
+    yield put(loginSuccess(data));
   } catch (e) {
-    yield put({type: UserActionTypes.LOGIN_FAILED, payload: e.response.data});
+    yield put(loginFailed(e.response.data));
   }
 }
 

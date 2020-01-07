@@ -1,0 +1,7 @@
+export const PlanActionTypes = {
+  FETCH_PLANS_START: 'FETCH_PLANS_START',
+  FETCH_PLANS_SUCCESS: 'FETCH_PLANS_SUCCESS',
+  FETCH_PLANS_FAILED: 'FETCH_PLANS_FAILED',
+};
+
+export default PlanActionTypes;

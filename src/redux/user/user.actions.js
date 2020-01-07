@@ -24,6 +24,7 @@ export const loginSuccess = (data) => {
 export const loginFailed = (data) => {
   return {
     type: UserActionTypes.LOGIN_FAILED,
+    payload: data,
   };
 };
 
