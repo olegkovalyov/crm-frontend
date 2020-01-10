@@ -8,10 +8,11 @@ import {logout} from '../user/user.actions';
 export function* fetchPlansStart({type, payload}) {
   try {
     const authToken = yield select(tokenSelector);
+    console.log(authToken);
     if (authToken) {
       axiosInstance.defaults.headers.get['Authorization'] = 'Bearer ' + authToken;
     } else {
-      yield put(logout);
+      yield put(logout());
     }
     const response = yield axiosInstance({
       method: 'get',

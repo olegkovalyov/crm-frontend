@@ -19,7 +19,7 @@ const App = (props) => {
   return (
       <Provider store={store}>
         <BrowserRouter>
-          <PersistGate persistor={persistor}>
+          <PersistGate persistor={persistor} loading={null}>
             <div className={classes.root}>
               <Header/>
               <Content/>

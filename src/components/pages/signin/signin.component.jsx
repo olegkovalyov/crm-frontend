@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {setUser, loginStart} from '../../../redux/user/user.actions';
+import {loginStart} from '../../../redux/user/user.actions';
 import {useHistory, Redirect} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -16,7 +16,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import '../../../styles/signin.styles.css';
 import {
   currentUserSelector,
-  isLoginInProgressSelector,
+  isLoginInProcessSelector,
   loginErrorMessageSelector,
 } from '../../../redux/user/user.selector';
 
@@ -185,14 +185,13 @@ const SignIn = (props) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: currentUserSelector(state),
-    isLoginInProcess: isLoginInProgressSelector(state),
+    isLoginInProcess: isLoginInProcessSelector(state),
     loginErrorMessage: loginErrorMessageSelector(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUser: user => dispatch(setUser(user)),
     loginStart: data => dispatch(loginStart(data)),
   };
 };

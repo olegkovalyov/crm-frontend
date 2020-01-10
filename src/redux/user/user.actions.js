@@ -1,5 +1,7 @@
 import UserActionTypes from './user.types';
 
+// Auth | Login
+
 export const setUser = (user) => {
   return {
     type: UserActionTypes.SET_USER,
@@ -31,5 +33,27 @@ export const loginFailed = (data) => {
 export const logout = () => {
   return {
     type: UserActionTypes.LOGOUT,
+  };
+};
+
+// Register
+export const registerStart = (data) => {
+  return {
+    type: UserActionTypes.REGISTER_START,
+    payload: data,
+  };
+};
+
+export const registerSuccess = (data) => {
+  return {
+    type: UserActionTypes.REGISTER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const registerFailed = (data) => {
+  return {
+    type: UserActionTypes.REGISTER_FAILED,
+    payload: data,
   };
 };

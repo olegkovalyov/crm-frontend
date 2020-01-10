@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {connect} from 'react-redux';
 import {fetchPlansStart} from '../../../redux/plan/plan.actions';
+import {getPlanErrorMessage, getPlans} from '../../../redux/plan/plan.selector';
 
 const Home = (props) => {
   const [loadedPlans, setLoadedPlans] = useState(false);
@@ -24,8 +25,8 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    plans: state.plan.plans,
-    errorMessage: state.plan.errorMessage,
+    plans: getPlans(state),
+    errorMessage: getPlanErrorMessage(state),
   };
 };
 

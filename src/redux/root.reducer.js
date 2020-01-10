@@ -7,13 +7,20 @@ import planReducer from './plan/plan.reducer';
 const persistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: [
+  blacklist: [
     'user',
+    'plan',
   ],
 };
 
+const userPersistConfig = {
+  key: 'user',
+  storage: storage,
+  whitelist: ['currentUser', 'token'],
+};
+
 const rootReducer = combineReducers({
-  user: userReducer,
+  user: persistReducer(userPersistConfig, userReducer),
   plan: planReducer,
 });
 

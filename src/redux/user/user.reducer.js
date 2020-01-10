@@ -1,11 +1,15 @@
 import UserActionTypes from './user.types';
 
 const initial_state = {
+  // Auth
   currentUser: null,
   token: null,
   tokenExpiresAt: null,
   isLoginInProcess: false,
   loginErrorMessage: null,
+  // Register
+  isRegisterInProcess: false,
+  registerErrorMessage: null,
 };
 
 const userReducer = (state = initial_state, action) => {
@@ -48,6 +52,28 @@ const userReducer = (state = initial_state, action) => {
         currentUser: null,
         token: null,
         loginErrorMessage: null,
+      };
+    }
+    case UserActionTypes.REGISTER_START: {
+      return {
+        ...state,
+        isRegisterInProcess: true,
+      };
+    }
+    case UserActionTypes.REGISTER_SUCCESS: {
+      return {
+        ...state,
+        isRegisterInProcess: false,
+        registerErrorMessage:  null,
+        currentUser: action.payload.data,
+        token: action.payload.token,
+      }
+    }
+    case UserActionTypes.REGISTER_FAILED: {
+      return {
+        ...state,
+        isRegisterInProcess: false,
+        registerErrorMessage: action.payload.message,
       };
     }
     default:
