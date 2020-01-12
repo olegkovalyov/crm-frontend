@@ -16,6 +16,6 @@ export const fetchPlansSuccess = (data) => {
 export const fetchPlansFailed = (data) => {
   return {
     type: PlanActionTypes.FETCH_PLANS_FAILED,
-    data: data,
+    payload: data,
   };
 };

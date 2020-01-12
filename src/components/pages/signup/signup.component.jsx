@@ -11,14 +11,14 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {makeStyles} from '@material-ui/core/styles';
-import {loginStart, registerStart, setUser} from '../../../redux/user/user.actions';
+import {registerStart} from '../../../redux/user/user.actions';
 import {connect} from 'react-redux';
 import validator from 'validator';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   currentUserSelector,
-  isLoginInProcessSelector, isRegisterInProcessSelector,
-  loginErrorMessageSelector, registerErrorMessageSelector,
+  isRegisterInProcessSelector,
+  registerErrorMessageSelector,
 } from '../../../redux/user/user.selector';
 
 const useStyles = makeStyles(theme => ({
@@ -73,9 +73,9 @@ const SignUp = (props) => {
 
   const onPasswordChange = (value) => {
     setPassword(value);
-    if (value.length < 6) {
+    if (value.length < 8) {
       setHasPasswordError(true);
-      setPasswordErrorMessage('Password must contain at least 6 chars ');
+      setPasswordErrorMessage('Password must contain at least 8 chars ');
     } else {
       setHasPasswordError(false);
       setPasswordErrorMessage('');

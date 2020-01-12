@@ -66,9 +66,9 @@ const SignIn = (props) => {
 
   const onPasswordChange = (password) => {
     setPassword(password);
-    if (password.length < 6) {
+    if (password.length < 8) {
       setHasPasswordError(true);
-      setPasswordErrorMessage('Password must contain at least 6 chars ');
+      setPasswordErrorMessage('Password must contain at least 8 chars ');
     } else {
       setHasPasswordError(false);
       setPasswordErrorMessage('');
