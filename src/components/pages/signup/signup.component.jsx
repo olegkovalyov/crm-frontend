@@ -52,6 +52,10 @@ const SignUp = (props) => {
   const [hasEmailError, setHasEmailError] = useState(true);
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
 
+  const [name, setName] = useState('');
+  const [hasNameError, setHasNameError] = useState(true);
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
+
   const [password, setPassword] = useState('');
   const [hasPasswordError, setHasPasswordError] = useState(true);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -68,6 +72,17 @@ const SignUp = (props) => {
     } else {
       setHasEmailError(false);
       setEmailErrorMessage('');
+    }
+  };
+
+  const onNameChange = (value) => {
+    setName(value);
+    if (value.length < 2) {
+      setHasNameError(true);
+      setNameErrorMessage('Name must contain at least 2 chars ');
+    } else {
+      setHasNameError(false);
+      setNameErrorMessage('');
     }
   };
 
@@ -99,7 +114,7 @@ const SignUp = (props) => {
     e.preventDefault();
     props.registerStart(
         {
-          name: 'Oleh Kovalov',
+          name: name,
           email: email,
           password: password,
         },
@@ -114,7 +129,11 @@ const SignUp = (props) => {
           fullWidth
           variant="contained"
           color="primary"
-          disabled={hasEmailError || hasPasswordError || hasPasswordConfirmError}
+          disabled={hasEmailError
+          || hasPasswordError
+          || hasPasswordConfirmError
+          || hasNameError
+          }
           className={classes.submit}
       >
         Sign Up
@@ -163,6 +182,19 @@ const SignUp = (props) => {
                   name="email"
                   autoComplete="email"
                   autoFocus
+              />
+              <TextField
+                  value={name}
+                  onChange={(e) => onNameChange(e.target.value)}
+                  error={hasNameError && name.length > 0}
+                  helperText={nameErrorMessage}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="name"
+                  label="Display Name"
+                  name="name"
               />
               <TextField
                   value={password}
