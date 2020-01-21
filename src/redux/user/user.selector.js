@@ -29,3 +29,23 @@ export const isRegisterInProcessSelector = (state) => {
 export const registerErrorMessageSelector = (state) => {
   return state.user.registerErrorMessage;
 };
+
+// Forgot password
+
+export const forgotPasswordStatusSelector = (state) => {
+  return state.user.forgotPasswordStatus;
+};
+
+export const forgotPasswordErrorMessageSelector = (state) => {
+  return state.user.forgotPasswordErrorMessage;
+};
+
+// Change password
+
+export const changePasswordStatusSelector = (state) => {
+  return state.user.changePasswordStatus;
+};
+
+export const changePasswordErrorMessageSelector = (state) => {
+  return state.user.changePasswordErrorMessage;
+};

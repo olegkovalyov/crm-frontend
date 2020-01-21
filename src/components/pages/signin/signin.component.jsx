@@ -163,7 +163,11 @@ const SignIn = (props) => {
               {loginErrorMessage}
               <Grid container>
                 <Grid item xs>
-                  <Link className={classes.link} variant="body2">
+                  <Link className={classes.link}
+                        onClick={(e) => {
+                          history.push('/forgot-password');
+                        }}
+                        variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>

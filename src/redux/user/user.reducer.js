@@ -1,4 +1,14 @@
 import UserActionTypes from './user.types';
+import {
+  CHANGE_PASSWORD_ERROR_STATUS,
+  CHANGE_PASSWORD_IN_PROCESS_STATUS,
+  CHANGE_PASSWORD_INITIAL_STATUS,
+  CHANGE_PASSWORD_SUCCESS_STATUS,
+  FORGOT_PASSWORD_ERROR_STATUS,
+  FORGOT_PASSWORD_IN_PROCESS_STATUS,
+  FORGOT_PASSWORD_INITIAL_STATUS,
+  FORGOT_PASSWORD_SUCCESS_STATUS,
+} from '../../constants/user';
 
 const initial_state = {
   // Auth
@@ -10,6 +20,11 @@ const initial_state = {
   // Register
   isRegisterInProcess: false,
   registerErrorMessage: null,
+  // Forgot password
+  forgotPasswordStatus: FORGOT_PASSWORD_INITIAL_STATUS,
+  forgotPasswordErrorMessage: null,
+  changePasswordStatus: CHANGE_PASSWORD_INITIAL_STATUS,
+  changePasswordErrorMessage: null,
 };
 
 const userReducer = (state = initial_state, action) => {
@@ -64,16 +79,54 @@ const userReducer = (state = initial_state, action) => {
       return {
         ...state,
         isRegisterInProcess: false,
-        registerErrorMessage:  null,
+        registerErrorMessage: null,
         currentUser: action.payload.data,
         token: action.payload.token,
-      }
+      };
     }
     case UserActionTypes.REGISTER_FAILED: {
       return {
         ...state,
         isRegisterInProcess: false,
         registerErrorMessage: action.payload.message,
+      };
+    }
+    case UserActionTypes.FORGOT_PASSWORD_START: {
+      return {
+        ...state,
+        forgotPasswordStatus: FORGOT_PASSWORD_IN_PROCESS_STATUS,
+      };
+    }
+    case UserActionTypes.FORGOT_PASSWORD_FAILED: {
+      return {
+        ...state,
+        forgotPasswordStatus: FORGOT_PASSWORD_ERROR_STATUS,
+        forgotPasswordErrorMessage: action.payload.message,
+      };
+    }
+    case UserActionTypes.FORGOT_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        forgotPasswordStatus: FORGOT_PASSWORD_SUCCESS_STATUS,
+      };
+    }
+    case UserActionTypes.CHANGE_PASSWORD_START: {
+      return {
+        ...state,
+        changePasswordStatus: CHANGE_PASSWORD_IN_PROCESS_STATUS,
+      };
+    }
+    case UserActionTypes.CHANGE_PASSWORD_FAILED: {
+      return {
+        ...state,
+        changePasswordStatus: CHANGE_PASSWORD_ERROR_STATUS,
+        changePasswordErrorMessage: action.payload.message,
+      };
+    }
+    case UserActionTypes.CHANGE_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        changePasswordStatus: CHANGE_PASSWORD_SUCCESS_STATUS,
       };
     }
     default:

@@ -57,3 +57,49 @@ export const registerFailed = (data) => {
     payload: data,
   };
 };
+
+// Forgot password
+
+export const forgotPasswordStart = (data) => {
+  return {
+    type: UserActionTypes.FORGOT_PASSWORD_START,
+    payload: data,
+  };
+};
+
+export const forgotPasswordSuccess = (data) => {
+  return {
+    type: UserActionTypes.FORGOT_PASSWORD_SUCCESS,
+    payload: data,
+  };
+};
+
+export const forgotPasswordFailed = (data) => {
+  return {
+    type: UserActionTypes.FORGOT_PASSWORD_FAILED,
+    payload: data,
+  };
+};
+
+// Change password
+
+export const changePasswordStart = (data) => {
+  return {
+    type: UserActionTypes.CHANGE_PASSWORD_START,
+    payload: data,
+  };
+};
+
+export const changePasswordSuccess = (data) => {
+  return {
+    type: UserActionTypes.CHANGE_PASSWORD_SUCCESS,
+    payload: data,
+  };
+};
+
+export const changePasswordFailed = (data) => {
+  return {
+    type: UserActionTypes.CHANGE_PASSWORD_FAILED,
+    payload: data,
+  };
+};
