@@ -1,0 +1,8 @@
+export const OPEN_LEFT_MENU = 'OPEN_LEFT_MENU';
+export const CLOSE_LEFT_MENU = 'CLOSE_LEFT_MENU';
+export const OPEN_TOP_MENU = 'OPEN_TOP_MENU';
+export const CLOSE_TOP_MENU = 'CLOSE_TOP_MENU';
+export const START_SPINNER = 'START_SPINNER';
+export const STOP_SPINNER = 'STOP_SPINNER';
+export const SET_LOGIN_FORM_ERROR = 'SET_LOGIN_FORM_ERROR';
+
