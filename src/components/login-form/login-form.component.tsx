@@ -6,29 +6,37 @@ import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
 import { useSelector, useDispatch } from 'react-redux';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import { useHistory } from 'react-router-dom';
+import Box from '@material-ui/core/Box';
+import validate from 'validate.js';
 import { useStyles } from './login-form.styles';
 import FormError from '../../elements/form-error.component';
 import FormSpinner from '../../elements/form-spinner.component';
 import FormSubmitButton from '../../elements/form-submit-button.component';
-import { validateEmail } from '../../validators/email.validator';
-import { validatePassword } from '../../validators/password.validator';
 import { loginStartAction } from '../../redux/auth/auth.actions';
 import { IRootState } from '../../redux/root.reducer';
 import { getLoginFormError, needShowSpinner } from '../../redux/ui/ui.selector';
+import { url } from '../../constants/url';
+import { Copyright } from '../../elements/copyright.component';
+import { emailConstraints, passwordConstrains, validateInput } from '../../common/inputValidator';
 
 
 const LogInForm: FC = (props): ReactElement => {
   const classes = useStyles();
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
-  const [hasEmailError, setHasEmailError] = useState(true);
+  const [hasEmailError, setHasEmailError] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
 
   const [password, setPassword] = useState('');
-  const [hasPasswordError, setHasPasswordError] = useState(true);
+  const [hasPasswordError, setHasPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
+  const [formTouched, setFormTouched] = useState(false);
 
   useEffect(() => {
     if (!hasEmailError
@@ -45,32 +53,15 @@ const LogInForm: FC = (props): ReactElement => {
 
   const isAsyncProcessRunning = useSelector((state: IRootState) => needShowSpinner(state));
   const errorMessage = useSelector((state: IRootState) => getLoginFormError(state));
+
   const onEmailChange = (value: string): void => {
-    setEmail(value);
-    if (value.length) {
-      const validationResult = validateEmail(value);
-      if (validationResult.error) {
-        setEmailErrorMessage(validationResult.message);
-        setHasEmailError(true);
-        return;
-      }
-    }
-    setEmailErrorMessage('');
-    setHasEmailError(false);
+    setFormTouched(true);
+    validateInput(value, setEmail, setEmailErrorMessage, setHasEmailError, emailConstraints);
   };
 
   const onPasswordChange = (value: string): void => {
-    setPassword(value);
-    if (value.length) {
-      const validationResult = validatePassword(value);
-      if (validationResult.error) {
-        setPasswordErrorMessage(validationResult.message);
-        setHasPasswordError(true);
-        return;
-      }
-    }
-    setPasswordErrorMessage('');
-    setHasPasswordError(false);
+    setFormTouched(true);
+    validateInput(value, setPassword, setPasswordErrorMessage, setHasPasswordError, passwordConstrains);
   };
 
   const loginAsync = (e: React.MouseEvent) => {
@@ -99,7 +90,7 @@ const LogInForm: FC = (props): ReactElement => {
             <TextField
               value={email}
               onChange={(e) => onEmailChange(e.target.value)}
-              error={hasEmailError && email.length > 0}
+              error={hasEmailError && formTouched}
               helperText={emailErrorMessage}
               variant="outlined"
               margin="normal"
@@ -114,7 +105,7 @@ const LogInForm: FC = (props): ReactElement => {
             <TextField
               value={password}
               onChange={(e) => onPasswordChange(e.target.value)}
-              error={hasPasswordError && password.length > 0}
+              error={hasPasswordError && formTouched}
               helperText={passwordErrorMessage}
               variant="outlined"
               margin="normal"
@@ -135,8 +126,18 @@ const LogInForm: FC = (props): ReactElement => {
             />
             <FormSpinner show={isAsyncProcessRunning} />
             <FormError className={classes.loginErrorMessage} message={errorMessage} />
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link className={classes.link} onClick={() => history.push(url.register)}>
+                  Don't have an account? Register
+                </Link>
+              </Grid>
+            </Grid>
           </form>
         </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
       </Container>
     </>
   );

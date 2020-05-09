@@ -11,6 +11,8 @@ import Settings from './pages/settings/settings.component';
 import { PrivateRoute } from './components/private-route/private-route.component';
 import NotFound from './pages/not-found/not-found.component';
 import LogIn from './pages/login/login.component';
+import Register from './pages/register/register.component';
+import { url } from './constants/url';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,17 +34,20 @@ const App: React.FC = (props): ReactElement => {
               classNames="page"
             >
               <Switch location={location}>
-                <PrivateRoute exact path="/">
+                <PrivateRoute exact path={url.dashboard}>
                   <Dashboard />
                 </PrivateRoute>
-                <PrivateRoute exact path="/users">
+                <PrivateRoute exact path={url.users}>
                   <Users />
                 </PrivateRoute>
-                <PrivateRoute exact path="/settings">
+                <PrivateRoute exact path={url.settings}>
                   <Settings />
                 </PrivateRoute>
-                <Route exact path="/login">
+                <Route exact path={url.login}>
                   <LogIn />
+                </Route>
+                <Route exact path={url.register}>
+                  <Register />
                 </Route>
                 <Route>
                   <NotFound />

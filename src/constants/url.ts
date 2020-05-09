@@ -1,7 +1,7 @@
 export const url = {
   // Anonymous
   login: '/login',
-  signup: '/signup',
+  register: '/register',
   // Authenticated
   dashboard: '/',
   users: '/users',
