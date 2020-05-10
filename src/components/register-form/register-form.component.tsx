@@ -25,6 +25,11 @@ import {
   validateInput,
 } from '../../common/inputValidator';
 import { passwordsEqualConstraints, validatePasswordsEquality } from '../../common/passwordsEqualValidator';
+import { loginStartAction, registerStartAction } from '../../redux/auth/auth.actions';
+import { IRootState } from '../../redux/root.reducer';
+import { getLoginFormError, getRegisterFormError, needShowSpinner } from '../../redux/ui/ui.selector';
+import FormSpinner from '../../elements/form-spinner.component';
+import FormError from '../../elements/form-error.component';
 
 
 const RegisterForm: FC = (props): ReactElement => {
@@ -54,8 +59,11 @@ const RegisterForm: FC = (props): ReactElement => {
   const [hasConfirmPasswordError, setHasConfirmPasswordError] = useState(false);
   const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = useState('');
 
-
   const [registerButtonDisabled, setRegisterButtonDisabled] = useState(true);
+
+  const isAsyncProcessRunning = useSelector((state: IRootState) => needShowSpinner(state));
+  const errorMessage = useSelector((state: IRootState) => getRegisterFormError(state));
+
 
   useEffect(() => {
     if (!hasEmailError
@@ -85,6 +93,17 @@ const RegisterForm: FC = (props): ReactElement => {
     firstName,
     lastName,
   ]);
+
+  const registerAsync = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch(registerStartAction({
+      firstName,
+      lastName,
+      email,
+      password,
+    }));
+  };
+
 
   const onFirstNameChange = (value: string): void => {
     validateInput(value, setFirstName, setFirstNameErrorMessage, setHasFirstNameError, firstNameConstrains);
@@ -213,8 +232,10 @@ const RegisterForm: FC = (props): ReactElement => {
             show={true}
             disabled={registerButtonDisabled}
             className={classes.submit}
-            onClick={() => console.log('register go')}
+            onClick={registerAsync}
           />
+          <FormSpinner show={isAsyncProcessRunning} />
+          <FormError className={classes.registerErrorMessage} message={errorMessage} />
           <Grid container justify="flex-end">
             <Grid item>
               <Link className={classes.link} onClick={() => history.push(url.login)}>

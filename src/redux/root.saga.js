@@ -1,5 +1,5 @@
 import { all, call } from 'redux-saga/effects';
-import { watchLoginStart } from './auth/auth.saga';
+import { watchLoginStart, watchRegisterStart } from './auth/auth.saga';
 /*
 import {
   watchChangePasswordStart,
@@ -13,6 +13,7 @@ import {watchFetchPlansStart} from './plan/plan.saga';
 const rootSaga = function* () {
   yield all([
     call(watchLoginStart),
+    call(watchRegisterStart),
     // call(watchLoginStart),
     // call(watchRegisterStart),
     // call(watchFetchPlansStart),

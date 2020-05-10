@@ -15,3 +15,7 @@ export const needShowSpinner = (state: IRootState) => {
 export const getLoginFormError = (state: IRootState) => {
   return state.ui.loginFormError;
 };
+
+export const getRegisterFormError = (state: IRootState) => {
+  return state.ui.registerFormError;
+};

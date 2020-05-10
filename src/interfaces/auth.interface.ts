@@ -9,7 +9,14 @@ export interface IAuthLoginRequestData {
   password: string,
 }
 
-export interface IAuthLoginResponseData {
+export interface IAuthRegisterRequestData {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+}
+
+export interface IAuthSuccessResponseData {
   currentUser: ICurrentUser | null,
   token: string | null,
 }

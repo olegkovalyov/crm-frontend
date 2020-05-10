@@ -19,6 +19,8 @@ import { IRootState } from '../../redux/root.reducer';
 import { closeTopMenu, openLeftMenu, openTopMenu } from '../../redux/ui/ui.actions';
 import { TopMenuAnonymousComponent } from '../../elements/top-menu-anonymous.component';
 import { TopMenuLoggedIn } from '../../elements/top-menu-logged-in.component';
+import { getCurrentUser } from '../../redux/auth/auth.selector';
+import { logoutAction } from '../../redux/auth/auth.actions';
 
 const Header: FC = (props): ReactElement => {
   const classes: Record<string, string> = useStyles();
@@ -30,6 +32,7 @@ const Header: FC = (props): ReactElement => {
   const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null);
 
   const isTopMenuOpen = useSelector((state: IRootState) => isOpenedTopMenuSelector(state)); // Boolean(anchorEl);
+  const currentUser = useSelector((state:IRootState) => getCurrentUser(state))!;
 
   const handleTopMenuOpen = (e: React.MouseEvent) => {
     dispatch(openTopMenu());
@@ -39,6 +42,7 @@ const Header: FC = (props): ReactElement => {
   const handleLogout = (e: React.MouseEvent) => {
     dispatch(closeTopMenu());
     setAnchorEl(null);
+    dispatch(logoutAction());
   };
 
   const handleTopMenuClose = (e: React.MouseEvent) => {
@@ -52,7 +56,7 @@ const Header: FC = (props): ReactElement => {
     handleTopMenuOpen={handleTopMenuOpen}
     anchorEl={anchorEl}
     isTopMenuOpen={isTopMenuOpen}
-    username="Oleh Kovalov"
+    username={currentUser.name}
   /> : <TopMenuAnonymousComponent />;
 
 

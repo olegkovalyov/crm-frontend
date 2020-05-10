@@ -1,5 +1,17 @@
-import { LOGIN_FAILED, LOGIN_START, LOGIN_SUCCESS, LOGOUT } from './auth.types';
-import { IAuthLoginRequestData, IAuthLoginResponseData } from '../../interfaces/auth.interface';
+import {
+  LOGIN_FAILED,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  REGISTER_FAILED,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+} from './auth.types';
+import {
+  IAuthLoginRequestData,
+  IAuthRegisterRequestData,
+  IAuthSuccessResponseData,
+} from '../../interfaces/auth.interface';
 
 
 export interface ILoginStartAction {
@@ -9,7 +21,7 @@ export interface ILoginStartAction {
 
 export interface ILoginSuccessAction {
   type: typeof LOGIN_SUCCESS,
-  payload: IAuthLoginResponseData
+  payload: IAuthSuccessResponseData
 }
 
 export interface ILoginFailedAction {
@@ -20,6 +32,20 @@ export interface ILogoutAction {
   type: typeof LOGOUT,
 }
 
+export interface IRegisterStartAction {
+  type: typeof REGISTER_START,
+  payload: IAuthRegisterRequestData,
+}
+
+export interface IRegisterSuccessAction {
+  type: typeof REGISTER_SUCCESS,
+  payload: IAuthSuccessResponseData
+}
+
+export interface IRegisterFailedAction {
+  type: typeof REGISTER_FAILED,
+}
+
 
 export const loginStartAction = (data: IAuthLoginRequestData): ILoginStartAction => {
   return {
@@ -28,7 +54,7 @@ export const loginStartAction = (data: IAuthLoginRequestData): ILoginStartAction
   };
 };
 
-export const loginSuccessAction = (data: IAuthLoginResponseData): ILoginSuccessAction => {
+export const loginSuccessAction = (data: IAuthSuccessResponseData): ILoginSuccessAction => {
   return {
     type: LOGIN_SUCCESS,
     payload: data,
@@ -47,8 +73,31 @@ export const logoutAction = (): ILogoutAction => {
   };
 };
 
+export const registerStartAction = (data: IAuthRegisterRequestData): IRegisterStartAction => {
+  return {
+    type: REGISTER_START,
+    payload: data,
+  };
+};
+
+export const registerSuccessAction = (data: IAuthSuccessResponseData): IRegisterSuccessAction => {
+  return {
+    type: REGISTER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const registerFailedAction = (): IRegisterFailedAction => {
+  return {
+    type: REGISTER_FAILED,
+  };
+};
+
 
 export type AuthActions = ILoginStartAction
   | ILoginSuccessAction
   | ILoginFailedAction
-  | ILogoutAction;
+  | ILogoutAction
+  | IRegisterStartAction
+  | IRegisterSuccessAction
+  | IRegisterFailedAction;

@@ -21,4 +21,9 @@ export const useStyles = makeStyles((theme) => ({
   link: {
     cursor: 'pointer',
   },
+  registerErrorMessage: {
+    color: 'red',
+    fontSize: '14px',
+    textAlign: 'center',
+  },
 }));

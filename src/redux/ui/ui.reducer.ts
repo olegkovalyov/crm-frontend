@@ -4,7 +4,7 @@ import {
   CLOSE_TOP_MENU,
   OPEN_LEFT_MENU,
   OPEN_TOP_MENU,
-  SET_LOGIN_FORM_ERROR,
+  SET_LOGIN_FORM_ERROR, SET_REGISTER_FORM_ERROR,
   START_SPINNER,
   STOP_SPINNER,
 } from './ui.types';
@@ -14,6 +14,7 @@ export interface IUiState {
   isOpenedTopMenu: boolean,
   showSpinner: boolean,
   loginFormError: string,
+  registerFormError: string,
 }
 
 export const uiState: IUiState = {
@@ -21,6 +22,7 @@ export const uiState: IUiState = {
   isOpenedTopMenu: false,
   showSpinner: false,
   loginFormError: '',
+  registerFormError: '',
 };
 
 export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
@@ -67,6 +69,11 @@ export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
         loginFormError: action.payload,
       };
     }
+    case SET_REGISTER_FORM_ERROR:
+      return {
+        ...state,
+        registerFormError: action.payload,
+      };
     default:
       // eslint-disable-next-line no-case-declarations
       const x: never = action;

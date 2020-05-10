@@ -3,7 +3,7 @@ import {
   CLOSE_TOP_MENU,
   OPEN_LEFT_MENU,
   OPEN_TOP_MENU,
-  SET_LOGIN_FORM_ERROR,
+  SET_LOGIN_FORM_ERROR, SET_REGISTER_FORM_ERROR,
   START_SPINNER,
   STOP_SPINNER,
 } from './ui.types';
@@ -35,6 +35,11 @@ export interface IStopSpinnerAction {
 
 export interface ISetLoginErrorMessage {
   type: typeof SET_LOGIN_FORM_ERROR,
+  payload: string
+}
+
+export interface ISetRegisterErrorMessage {
+  type: typeof SET_REGISTER_FORM_ERROR,
   payload: string
 }
 
@@ -81,10 +86,18 @@ export const setLoginErrorMessage = (message: string): ISetLoginErrorMessage => 
   };
 };
 
+export const setRegisterErrorMessage = (message: string): ISetRegisterErrorMessage => {
+  return {
+    type: SET_REGISTER_FORM_ERROR,
+    payload: message,
+  };
+};
+
 export type UiActionTypes = IOpenLeftMenuAction
   | ICloseLeftMenuAction
   | IOpenTopMenuAction
   | ICloseTopMenuAction
   | IStartSpinnerAction
   | IStopSpinnerAction
-  | ISetLoginErrorMessage;
+  | ISetLoginErrorMessage
+  | ISetRegisterErrorMessage;
