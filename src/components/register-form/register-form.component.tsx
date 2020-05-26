@@ -25,7 +25,6 @@ import {
   validateInput,
 } from '../../common/inputValidator';
 import { passwordsEqualConstraints, validatePasswordsEquality } from '../../common/passwordsEqualValidator';
-import { loginStartAction, registerStartAction } from '../../redux/auth/auth.actions';
 import { IRootState } from '../../redux/root.reducer';
 import { getLoginFormError, getRegisterFormError, needShowSpinner } from '../../redux/ui/ui.selector';
 import FormSpinner from '../../elements/form-spinner.component';
@@ -96,12 +95,14 @@ const RegisterForm: FC = (props): ReactElement => {
 
   const registerAsync = (e: React.MouseEvent) => {
     e.preventDefault();
+    /*
     dispatch(registerStartAction({
       firstName,
       lastName,
       email,
       password,
     }));
+     */
   };
 
 

@@ -56,7 +56,7 @@ const Header: FC = (props): ReactElement => {
     handleTopMenuOpen={handleTopMenuOpen}
     anchorEl={anchorEl}
     isTopMenuOpen={isTopMenuOpen}
-    username={currentUser.name}
+    username={currentUser.firstName}
   /> : <TopMenuAnonymousComponent />;
 
 

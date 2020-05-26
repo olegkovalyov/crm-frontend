@@ -1,79 +1,46 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import React, { FC, ReactElement } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
-import { useSelector, useDispatch } from 'react-redux';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
-import validate from 'validate.js';
+import { useQuery } from '@apollo/react-hooks';
 import { useStyles } from './login-form.styles';
 import FormError from '../../elements/form-error.component';
 import FormSpinner from '../../elements/form-spinner.component';
 import FormSubmitButton from '../../elements/form-submit-button.component';
-import { loginStartAction } from '../../redux/auth/auth.actions';
-import { IRootState } from '../../redux/root.reducer';
-import { getLoginFormError, needShowSpinner } from '../../redux/ui/ui.selector';
 import { url } from '../../constants/url';
 import { Copyright } from '../../elements/copyright.component';
-import { emailConstraints, passwordConstrains, validateInput } from '../../common/inputValidator';
-
+import { useLoginFormValidation } from '../../hooks/login-form-validation/login-form-validation.hook';
+import { useLoginFormRequest } from '../../hooks/login-form-request/login-form-request.hook';
 
 const LogInForm: FC = (props): ReactElement => {
   const classes = useStyles();
   const history = useHistory();
 
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [hasEmailError, setHasEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const {
+    onEmailChange,
+    onPasswordChange,
+    formTouched,
+    email,
+    hasEmailError,
+    emailErrorMessage,
+    password,
+    hasPasswordError,
+    passwordErrorMessage,
+    loginButtonDisabled,
+  } = useLoginFormValidation();
 
-  const [password, setPassword] = useState('');
-  const [hasPasswordError, setHasPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-  const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
-  const [formTouched, setFormTouched] = useState(false);
-
-  useEffect(() => {
-    if (!hasEmailError
-      && !hasPasswordError
-      && email.length
-      && password.length
-    ) {
-      setLoginButtonDisabled(false);
-    } else {
-      setLoginButtonDisabled(true);
-    }
-  }, [hasEmailError, hasPasswordError, email, password]);
-
-
-  const isAsyncProcessRunning = useSelector((state: IRootState) => needShowSpinner(state));
-  const errorMessage = useSelector((state: IRootState) => getLoginFormError(state));
-
-  const onEmailChange = (value: string): void => {
-    setFormTouched(true);
-    validateInput(value, setEmail, setEmailErrorMessage, setHasEmailError, emailConstraints);
-  };
-
-  const onPasswordChange = (value: string): void => {
-    setFormTouched(true);
-    validateInput(value, setPassword, setPasswordErrorMessage, setHasPasswordError, passwordConstrains);
-  };
-
-  const loginAsync = (e: React.MouseEvent) => {
-    e.preventDefault();
-    dispatch(loginStartAction(
-      {
-        email,
-        password,
-      },
-    ));
-  };
-
+  const {
+    loading,
+    errorMessage,
+    loginAsync,
+  } = useLoginFormRequest();
 
   return (
     <>
@@ -119,12 +86,15 @@ const LogInForm: FC = (props): ReactElement => {
             />
             <FormSubmitButton
               title="Log In"
-              show={!isAsyncProcessRunning}
+              show={!loading}
               disabled={loginButtonDisabled}
               className={classes.submit}
-              onClick={loginAsync}
+              onClick={(e) => {
+                e.preventDefault();
+                return loginAsync(email, password);
+              }}
             />
-            <FormSpinner show={isAsyncProcessRunning} />
+            <FormSpinner show={loading} />
             <FormError className={classes.loginErrorMessage} message={errorMessage} />
             <Grid container justify="flex-end">
               <Grid item>

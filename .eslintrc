@@ -39,6 +39,7 @@
         "args": "none"
       }
     ],
+    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-explicit-any": [
       "error",
       {

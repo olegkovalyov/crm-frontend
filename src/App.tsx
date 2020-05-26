@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { store, persistor } from './redux/store';
 import Dashboard from './pages/dashboard/dashboard.component';
 import Users from './pages/users/users.component';
@@ -13,6 +14,7 @@ import NotFound from './pages/not-found/not-found.component';
 import LogIn from './pages/login/login.component';
 import Register from './pages/register/register.component';
 import { url } from './constants/url';
+import { client } from './http/graphql.client';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,36 +28,38 @@ const App: React.FC = (props): ReactElement => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <div className={classes.root}>
-          <SwitchTransition>
-            <CSSTransition
-              key={location.pathname}
-              timeout={300}
-              classNames="page"
-            >
-              <Switch location={location}>
-                <PrivateRoute exact path={url.dashboard}>
-                  <Dashboard />
-                </PrivateRoute>
-                <PrivateRoute exact path={url.users}>
-                  <Users />
-                </PrivateRoute>
-                <PrivateRoute exact path={url.settings}>
-                  <Settings />
-                </PrivateRoute>
-                <Route exact path={url.login}>
-                  <LogIn />
-                </Route>
-                <Route exact path={url.register}>
-                  <Register />
-                </Route>
-                <Route>
-                  <NotFound />
-                </Route>
-              </Switch>
-            </CSSTransition>
-          </SwitchTransition>
-        </div>
+        <ApolloProvider client={client}>
+          <div className={classes.root}>
+            <SwitchTransition>
+              <CSSTransition
+                key={location.pathname}
+                timeout={300}
+                classNames="page"
+              >
+                <Switch location={location}>
+                  <PrivateRoute exact path={url.dashboard}>
+                    <Dashboard />
+                  </PrivateRoute>
+                  <PrivateRoute exact path={url.users}>
+                    <Users />
+                  </PrivateRoute>
+                  <PrivateRoute exact path={url.settings}>
+                    <Settings />
+                  </PrivateRoute>
+                  <Route exact path={url.login}>
+                    <LogIn />
+                  </Route>
+                  <Route exact path={url.register}>
+                    <Register />
+                  </Route>
+                  <Route>
+                    <NotFound />
+                  </Route>
+                </Switch>
+              </CSSTransition>
+            </SwitchTransition>
+          </div>
+        </ApolloProvider>
       </PersistGate>
     </Provider>
   );

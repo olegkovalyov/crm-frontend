@@ -24,3 +24,9 @@ export interface IAuthSuccessResponseData {
 export interface IAuthErrorResponseData {
   errorCode: number
 }
+
+// GraphQl
+export interface IGraphQlError {
+  message: string
+}
+
