@@ -3,33 +3,43 @@ import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
 import { IGraphQlError } from '../../interfaces/auth.interface';
-import { Login, LoginVariables } from '../../interfaces/generated/Login';
 import { setUserAction } from '../../redux/auth/auth.actions';
+import { Register, RegisterVariables } from '../../interfaces/generated/Register';
 
-export const useLoginFormRequest = () => {
-
+export const useRegisterFormRequest = () => {
   const dispatch = useDispatch();
-  const loginMutation = loader('./gql/mutationLogin.graphql');
+  const registerMutation = loader('./gql/mutationRegister.graphql');
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_loginAsync, { loading, data }] = useMutation<Login, LoginVariables>(loginMutation);
-
+  const [_registerAsync, { loading, data }] = useMutation<Register, RegisterVariables>(registerMutation);
 
   useEffect(() => {
     if (data) {
-      dispatch(setUserAction(data.login));
+      dispatch(setUserAction(data.register));
     }
   }, [data, dispatch]);
 
-  const loginAsync = async (email: string, password: string): Promise<void> => {
+
+  const registerAsync = async (
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    role: string,
+    licenseType: string | null,
+  ): Promise<void> => {
     try {
-      const variables: LoginVariables = {
+      const variables: RegisterVariables = {
         input: {
           email,
           password,
+          firstName,
+          lastName,
+          role,
+          licenseType,
         },
       };
-      await _loginAsync({
+      await _registerAsync({
         variables,
       });
     } catch (e) {
@@ -39,7 +49,7 @@ export const useLoginFormRequest = () => {
 
   return {
     loading,
-    loginAsync,
+    registerAsync,
     data,
     errorMessage,
   };
