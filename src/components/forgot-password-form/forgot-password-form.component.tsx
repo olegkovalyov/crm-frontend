@@ -9,37 +9,26 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
-import { useStyles } from './login-form.styles';
+import { useStyles } from './forgot-password-form.styles';
 import FormError from '../../elements/form-error.component';
 import FormSpinner from '../../elements/form-spinner.component';
 import FormSubmitButton from '../../elements/form-submit-button.component';
 import { url } from '../../constants/url';
 import { Copyright } from '../../elements/copyright.component';
-import { useLoginFormValidation } from '../../hooks/login-form-validation/login-form-validation.hook';
-import { useLoginFormRequest } from '../../hooks/login-form-request/login-form-request.hook';
+import { useForgotPasswordFormValidation } from '../../hooks/forgot-password-form-validation/forgot-password-form-validation.hook';
 
-const LogInForm: FC = (props): ReactElement => {
+const ForgotPasswordForm: FC = (props): ReactElement => {
   const classes = useStyles();
   const history = useHistory();
 
   const {
     onEmailChange,
-    onPasswordChange,
     formTouched,
     email,
     hasEmailError,
     emailErrorMessage,
-    password,
-    hasPasswordError,
-    passwordErrorMessage,
-    loginButtonDisabled,
-  } = useLoginFormValidation();
-
-  const {
-    loading,
-    errorMessage,
-    loginAsync,
-  } = useLoginFormRequest();
+    resetButtonDisabled,
+  } = useForgotPasswordFormValidation();
 
   return (
     <>
@@ -50,7 +39,7 @@ const LogInForm: FC = (props): ReactElement => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Forgot password
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -68,44 +57,22 @@ const LogInForm: FC = (props): ReactElement => {
               autoComplete="email"
               autoFocus
             />
-            <TextField
-              value={password}
-              onChange={(e) => onPasswordChange(e.target.value)}
-              error={hasPasswordError && formTouched}
-              helperText={passwordErrorMessage}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
             <FormSubmitButton
-              title="Log In"
-              show={!loading}
-              disabled={loginButtonDisabled}
+              title="Reset password"
+              show={true}
+              disabled={resetButtonDisabled}
               className={classes.submit}
               onClick={(e) => {
                 e.preventDefault();
-                return loginAsync(email, password);
+                console.log('works');
               }}
             />
-            <FormSpinner show={loading} />
-            <FormError className={classes.loginErrorMessage} message={errorMessage} />
+            <FormSpinner show={false} />
+            <FormError className={classes.forgotPasswordErrorMessage} message='' />
             <Grid container justify="flex-end">
               <Grid item>
-                <Link className={classes.link} onClick={() => history.push(url.register)}>
-                  Don't have an account? Register
-                </Link>
-              </Grid>
-            </Grid>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link className={classes.link} onClick={() => history.push(url.forgotPassword)}>
-                  Forgot password?
+                <Link className={classes.link} onClick={() => history.push(url.login)}>
+                  Back to login
                 </Link>
               </Grid>
             </Grid>
@@ -119,4 +86,4 @@ const LogInForm: FC = (props): ReactElement => {
   );
 };
 
-export default LogInForm;
+export default ForgotPasswordForm;

@@ -6,4 +6,5 @@ export const url = {
   dashboard: '/',
   users: '/users',
   settings: '/settings',
+  forgotPassword: '/forgot-password',
 };
