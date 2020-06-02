@@ -16,6 +16,7 @@ import Register from './pages/register/register.component';
 import { url } from './constants/url';
 import { client } from './http/graphql.client';
 import ForgotPassword from './pages/forgot-password/forgot-password.component';
+import ResetPassword from './pages/reset-password/reset-password.component';
 
 
 const useStyles = makeStyles(theme => ({
@@ -56,6 +57,9 @@ const App: React.FC = (props): ReactElement => {
                   </Route>
                   <Route exact path={url.forgotPassword}>
                     <ForgotPassword />
+                  </Route>
+                  <Route exact path={url.resetPassword}>
+                    <ResetPassword />
                   </Route>
                   <Route>
                     <NotFound />

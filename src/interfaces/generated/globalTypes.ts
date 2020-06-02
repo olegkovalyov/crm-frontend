@@ -16,6 +16,10 @@ export interface CreateUserInput {
   licenseType?: string | null;
 }
 
+export interface ForgotPasswordInput {
+  email: string;
+}
+
 export interface LoginInput {
   email: string;
   password: string;

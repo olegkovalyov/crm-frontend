@@ -16,6 +16,7 @@ import FormSubmitButton from '../../elements/form-submit-button.component';
 import { url } from '../../constants/url';
 import { Copyright } from '../../elements/copyright.component';
 import { useForgotPasswordFormValidation } from '../../hooks/forgot-password-form-validation/forgot-password-form-validation.hook';
+import { useForgotPasswordFormRequest } from '../../hooks/forgot-password-form-request/forgot-password-form-request.hook';
 
 const ForgotPasswordForm: FC = (props): ReactElement => {
   const classes = useStyles();
@@ -29,6 +30,30 @@ const ForgotPasswordForm: FC = (props): ReactElement => {
     emailErrorMessage,
     resetButtonDisabled,
   } = useForgotPasswordFormValidation();
+
+  const {
+    loading,
+    forgotPasswordAsync,
+    data,
+    errorMessage,
+  } = useForgotPasswordFormRequest();
+
+  if (data) {
+    return (
+      <>
+        <Container maxWidth='xs'>
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography variant="h6" component="h2">
+              Further instructions have been sent to your e-mail address.
+            </Typography>
+          </div>
+        </Container>
+      </>
+    );
+  }
 
   return (
     <>
@@ -59,16 +84,16 @@ const ForgotPasswordForm: FC = (props): ReactElement => {
             />
             <FormSubmitButton
               title="Reset password"
-              show={true}
+              show={!loading}
               disabled={resetButtonDisabled}
               className={classes.submit}
               onClick={(e) => {
                 e.preventDefault();
-                console.log('works');
+                return forgotPasswordAsync(email);
               }}
             />
-            <FormSpinner show={false} />
-            <FormError className={classes.forgotPasswordErrorMessage} message='' />
+            <FormSpinner show={loading} />
+            <FormError className={classes.forgotPasswordErrorMessage} message={errorMessage} />
             <Grid container justify="flex-end">
               <Grid item>
                 <Link className={classes.link} onClick={() => history.push(url.login)}>
