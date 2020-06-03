@@ -25,6 +25,11 @@ export interface LoginInput {
   password: string;
 }
 
+export interface ResetPasswordInput {
+  password: string;
+  token: string;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

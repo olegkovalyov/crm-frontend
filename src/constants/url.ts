@@ -7,5 +7,5 @@ export const url = {
   users: '/users',
   settings: '/settings',
   forgotPassword: '/forgot-password',
-  resetPassword: '/reset-password',
+  resetPassword: '/reset-password/:token',
 };

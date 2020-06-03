@@ -5,19 +5,21 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import { useStyles } from './reset-password-form.styles';
 import FormError from '../../elements/form-error.component';
 import FormSpinner from '../../elements/form-spinner.component';
 import FormSubmitButton from '../../elements/form-submit-button.component';
 import { Copyright } from '../../elements/copyright.component';
-import { useLoginFormRequest } from '../../hooks/login-form-request/login-form-request.hook';
 import { useResetPasswordFormValidation } from '../../hooks/reset-password-form-validation/register-form-validation.hook';
+import { useResetPasswordFormRequest } from '../../hooks/reset-password-form-request/reset-password-form-request.hook';
 
 const ResetPasswordForm: FC = (props): ReactElement => {
   const classes = useStyles();
   const history = useHistory();
+
+  const { token } = useParams();
 
   const {
     onPasswordChange,
@@ -34,9 +36,10 @@ const ResetPasswordForm: FC = (props): ReactElement => {
 
   const {
     loading,
+    resetPasswordAsync,
+    data,
     errorMessage,
-    loginAsync,
-  } = useLoginFormRequest();
+  } = useResetPasswordFormRequest();
 
   return (
     <>
@@ -80,14 +83,13 @@ const ResetPasswordForm: FC = (props): ReactElement => {
               autoComplete="current-password"
             />
             <FormSubmitButton
-              title="Log In"
+              title="Reset password"
               show={!loading}
               disabled={resetPasswordButtonDisabled}
               className={classes.submit}
               onClick={(e) => {
                 e.preventDefault();
-                console.log('works');
-                // return loginAsync(email, password);
+                return resetPasswordAsync(password, token!);
               }}
             />
             <FormSpinner show={loading} />

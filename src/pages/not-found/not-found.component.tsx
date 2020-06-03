@@ -7,8 +7,6 @@ import { Content } from '../../components/content/content.component';
 const NotFound: FC = (props): ReactElement => {
   return (
     <>
-      <Header />
-      <LeftMenu />
       <Content>
         <Typography variant="h2" component="h2">
           Not found.
