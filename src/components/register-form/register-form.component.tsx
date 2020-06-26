@@ -5,11 +5,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Checkbox from '@material-ui/core/Checkbox';
 import { useHistory } from 'react-router-dom';
 import { useStyles } from './register-form.styles';
 import FormSubmitButton from '../../elements/form-submit-button.component';
@@ -57,7 +55,6 @@ const RegisterForm: FC = (props): ReactElement => {
   const {
     loading,
     registerAsync,
-    data,
     errorMessage,
   } = useRegisterFormRequest();
 

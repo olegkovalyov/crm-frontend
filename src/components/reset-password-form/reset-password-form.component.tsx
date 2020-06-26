@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import { useStyles } from './reset-password-form.styles';
 import FormError from '../../elements/form-error.component';
@@ -17,7 +17,6 @@ import { useResetPasswordFormRequest } from '../../hooks/reset-password-form-req
 
 const ResetPasswordForm: FC = (props): ReactElement => {
   const classes = useStyles();
-  const history = useHistory();
 
   const { token } = useParams();
 
@@ -37,7 +36,6 @@ const ResetPasswordForm: FC = (props): ReactElement => {
   const {
     loading,
     resetPasswordAsync,
-    data,
     errorMessage,
   } = useResetPasswordFormRequest();
 

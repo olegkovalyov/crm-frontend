@@ -9,6 +9,7 @@ import { AccountCircle } from '@material-ui/icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useStyles } from '../components/header/header.styles';
+import { url } from '../constants/url';
 
 interface PropTypes {
   handleTopMenuOpen: (e: React.MouseEvent) => void,
@@ -34,7 +35,7 @@ export const TopMenuLoggedIn: FC<PropTypes> = (
   const history = useHistory();
 
   const handleRedirectToSettings = (e: React.MouseEvent) =>
-    history.push('/settings');
+    history.push(url.settings);
 
   return (
     <>

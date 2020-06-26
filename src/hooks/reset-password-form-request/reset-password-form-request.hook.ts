@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
+import { useDispatch } from 'react-redux';
 import { IGraphQlError } from '../../interfaces/auth.interface';
 import { ResetPassword, ResetPasswordVariables } from '../../interfaces/generated/ResetPassword';
 import { setUserAction } from '../../redux/auth/auth.actions';
-import { useDispatch } from 'react-redux';
 
 export const useResetPasswordFormRequest = () => {
 

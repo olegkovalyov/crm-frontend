@@ -3,13 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { LoginInput } from "./globalTypes";
-
 // ====================================================
-// GraphQL mutation operation: Login
+// GraphQL query operation: GetUsers
 // ====================================================
 
-export interface Login_login_user {
+export interface GetUsers_getUsers {
   __typename: "UserModel";
   id: string;
   firstName: string;
@@ -21,16 +19,6 @@ export interface Login_login_user {
   updatedAt: string;
 }
 
-export interface Login_login {
-  __typename: "AuthModel";
-  user: Login_login_user;
-  token: string;
-}
-
-export interface Login {
-  login: Login_login;
-}
-
-export interface LoginVariables {
-  input: LoginInput;
+export interface GetUsers {
+  getUsers: (GetUsers_getUsers | null)[];
 }

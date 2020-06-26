@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
@@ -18,6 +18,7 @@ export const useLoginFormRequest = () => {
   useEffect(() => {
     if (data) {
       dispatch(setUserAction(data.login));
+      localStorage.setItem('token', data.login.token);
     }
   }, [data, dispatch]);
 

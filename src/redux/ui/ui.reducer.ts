@@ -75,7 +75,7 @@ export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
         registerFormError: action.payload,
       };
     default:
-      // eslint-disable-next-line no-case-declarations
+      // eslint-disable-next-line no-case-declarations,no-unused-vars,@typescript-eslint/no-unused-vars
       const x: never = action;
   }
   return state;

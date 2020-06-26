@@ -1,0 +1,12 @@
+query GetUsers {
+    getUsers{
+        id,
+        firstName,
+        lastName,
+        email,
+        role,
+        licenseType,
+        createdAt,
+        updatedAt
+    }
+}

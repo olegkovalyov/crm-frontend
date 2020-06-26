@@ -34,6 +34,8 @@ const LeftMenu: FC = (props): ReactElement => {
 
   const logout = (e: React.MouseEvent) => {
     dispatch(logoutAction());
+    localStorage.removeItem('token');
+    history.push(url.login);
   };
   return (
     <>
