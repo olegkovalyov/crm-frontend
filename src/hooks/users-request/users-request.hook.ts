@@ -24,7 +24,15 @@ export const useGetUsersRequest = () => {
 
   useEffect(() => {
     if (data && data.getUsers) {
-      const users = data.getUsers.filter(x => x != null) as GetUsers_getUsers[];
+      let users = data.getUsers.filter(x => x != null) as GetUsers_getUsers[];
+      users = users.map(x => {
+        const user = { ...x };
+        const createdAt = new Date(parseInt(x.createdAt));
+        const updatedAt = new Date(parseInt(x.updatedAt));
+        user.createdAt = `${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`;
+        user.updatedAt = `${updatedAt.toLocaleDateString()} ${updatedAt.toLocaleTimeString()}`;
+        return user;
+      });
       dispatch(setUsers(users));
     }
   }, [data, dispatch]);

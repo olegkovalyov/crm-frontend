@@ -15,8 +15,7 @@ const UsersTable: FC = (props): ReactElement => {
 
   useEffect(() => {
     getUsersAsync();
-  }, [getUsersAsync]);
-
+  }, []);
 
   const columns = [
     { title: 'First Name', field: 'firstName' },

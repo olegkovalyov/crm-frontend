@@ -1,7 +1,10 @@
 import jwt from 'jwt-decode';
+import { useDispatch } from 'react-redux';
 import { IDecodedJwtData } from '../../interfaces/auth.interface';
+import { logoutAction } from '../../redux/auth/auth.actions';
 
 export const useIsLogged = () => {
+  const dispatch = useDispatch();
   let isLogged = false;
   const token = localStorage.getItem('token');
   if (token) {
@@ -12,6 +15,12 @@ export const useIsLogged = () => {
       isLogged = true;
     }
   }
+
+  if (!isLogged) {
+    localStorage.removeItem('token');
+    dispatch(logoutAction());
+  }
+
   return {
     isLogged,
   };

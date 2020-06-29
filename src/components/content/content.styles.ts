@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core';
 
-
 export const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
@@ -16,6 +15,10 @@ export const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+  },
+  breadcrumbs: {
+    padding: '10px',
+    marginBottom: '10px',
   },
   appBarSpacer: theme.mixins.toolbar,
 }));

@@ -63,6 +63,7 @@
     ],
     "@typescript-eslint/indent": "off",
     "react/jsx-key": "error",
+    "radix": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

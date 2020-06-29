@@ -88,7 +88,7 @@ const Header: FC = (props): ReactElement => {
               history.push('/');
             }}
           >
-            Dashboard
+            Skydive CRM
           </Typography>
           {topMenuJSX}
         </Toolbar>

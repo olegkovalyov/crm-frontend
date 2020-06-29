@@ -9,3 +9,9 @@ export const url = {
   forgotPassword: '/forgot-password',
   resetPassword: '/reset-password/:token',
 };
+
+export const breadcrumbNameMap: { [key: string]: string } = {
+  '/': 'Dashboard',
+  '/settings': 'Settings',
+  '/users': 'Users',
+};
