@@ -1,14 +1,17 @@
 import React, { FC, ReactElement, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import { useSelector } from 'react-redux';
 import { useGetUsersRequest } from '../../hooks/users-request/users-request.hook';
 import { GetUsers_getUsers } from '../../interfaces/generated/GetUsers';
 import { IRootState } from '../../redux/root.reducer';
 import { getAllUsers } from '../../redux/users/users.selector';
+import { url } from '../../constants/url';
 
 
 const UsersTable: FC = (props): ReactElement => {
 
+  const history = useHistory();
   const {
     getUsersAsync,
   } = useGetUsersRequest();
@@ -38,7 +41,9 @@ const UsersTable: FC = (props): ReactElement => {
         {
           icon: 'edit',
           tooltip: 'Edit User',
-          onClick: (event, rowData) => alert(`You clicked to edit ${(rowData as GetUsers_getUsers).firstName}`),
+          onClick: (event, rowData) => {
+            history.push(`${url.users}/${(rowData as GetUsers_getUsers).id}`);
+          },
         },
       ]}
       options={{

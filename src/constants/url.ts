@@ -5,6 +5,7 @@ export const url = {
   // Authenticated
   dashboard: '/',
   users: '/users',
+  editUser: '/users/:id',
   settings: '/settings',
   forgotPassword: '/forgot-password',
   resetPassword: '/reset-password/:token',

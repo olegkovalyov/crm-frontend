@@ -17,6 +17,7 @@ import { url } from './constants/url';
 import { client } from './http/graphql.client';
 import ForgotPassword from './pages/forgot-password/forgot-password.component';
 import ResetPassword from './pages/reset-password/reset-password.component';
+import EditUser from './pages/edit-user/edit-user.component';
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,6 +46,9 @@ const App: React.FC = (props): ReactElement => {
                   </PrivateRoute>
                   <PrivateRoute exact path={url.users}>
                     <Users />
+                  </PrivateRoute>
+                  <PrivateRoute exact path={url.editUser}>
+                    <EditUser />
                   </PrivateRoute>
                   <PrivateRoute exact path={url.settings}>
                     <Settings />
