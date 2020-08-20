@@ -1,24 +1,38 @@
 import React, { FC, ReactElement, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
-import { useSelector } from 'react-redux';
+import Alert from '@material-ui/lab/Alert';
+import { LinearProgress } from '@material-ui/core';
+import { ApolloError } from 'apollo-client';
 import { useGetUsersRequest } from '../../hooks/users-request/users-request.hook';
 import { GetUsers_getUsers } from '../../interfaces/generated/GetUsers';
-import { IRootState } from '../../redux/root.reducer';
-import { getAllUsers } from '../../redux/users/users.selector';
 import { url } from '../../constants/url';
 
 
 const UsersTable: FC = (props): ReactElement => {
 
   const history = useHistory();
-  const {
-    getUsersAsync,
-  } = useGetUsersRequest();
 
-  useEffect(() => {
-    getUsersAsync();
-  }, []);
+  const { loading, users, error, getUsersAsync } = useGetUsersRequest();
+
+  useEffect(getUsersAsync, []);
+
+  if (loading) {
+    return (
+      <>
+        <LinearProgress />
+      </>
+    );
+  }
+
+  if (error instanceof ApolloError) {
+    return (
+      <>
+        <Alert severity="error">{error.message}</Alert>
+      </>
+    );
+  }
+
 
   const columns = [
     { title: 'First Name', field: 'firstName' },
@@ -29,8 +43,6 @@ const UsersTable: FC = (props): ReactElement => {
     { title: 'Created At', field: 'createdAt' },
     { title: 'Updated At', field: 'updatedAt' },
   ];
-
-  const users = useSelector((state: IRootState) => getAllUsers(state));
 
   return (
     <MaterialTable

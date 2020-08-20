@@ -18,6 +18,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
+import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
+import { Collapse } from '@material-ui/core';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import { isOpenedLeftMenuSelector } from '../../redux/ui/ui.selector';
 import { IRootState } from '../../redux/root.reducer';
 import { closeLeftMenu } from '../../redux/ui/ui.actions';
@@ -31,12 +36,18 @@ const LeftMenu: FC = (props): ReactElement => {
   const history = useHistory();
   const isOpenedLeftMenu = useSelector((state: IRootState) => isOpenedLeftMenuSelector(state));
   const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(true);
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   const logout = (e: React.MouseEvent) => {
     dispatch(logoutAction());
     localStorage.removeItem('token');
     history.push(url.login);
   };
+
+
   return (
     <>
       <Drawer
@@ -66,15 +77,33 @@ const LeftMenu: FC = (props): ReactElement => {
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem
-              button
-              onClick={() => history.push(url.users)}
-            >
+            <ListItem button onClick={handleClick}>
               <ListItemIcon>
                 <SupervisedUserCircleIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
+              {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem
+                  button
+                  className={classes.nested}
+                  onClick={() => history.push(url.users)}
+                >
+                  <ListItemIcon>
+                    <PermContactCalendarIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Manage" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <HowToRegIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Roles" />
+                </ListItem>
+              </List>
+            </Collapse>
           </div>
         </List>
         <Divider />
