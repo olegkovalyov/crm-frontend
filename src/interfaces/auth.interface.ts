@@ -1,6 +1,13 @@
 // GraphQl
 export interface IGraphQlError {
-  message: string
+  message: string,
+  extensions: {
+    exception: {
+      response: {
+        message: string | string[],
+      }
+    }
+  }
 }
 
 export interface IDecodedJwtData {

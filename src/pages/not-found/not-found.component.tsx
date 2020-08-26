@@ -1,15 +1,37 @@
 import React, { FC, ReactElement } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Content } from '../../components/content/content.component';
+import { Link } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import HomeIcon from '@material-ui/icons/Home';
+import Grid from '@material-ui/core/Grid';
+import { url } from '../../constants/url';
+import { useStyles } from './not-found.styles';
 
 const NotFound: FC = (props): ReactElement => {
+  const history = useHistory();
+  const classes = useStyles();
+
   return (
     <>
-      <Content>
-        <Typography variant="h2" component="h2">
-          Not found.
-        </Typography>
-      </Content>
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Typography variant="h2" component="h2" align='center'>
+              Page not found
+              <Link
+                href="#"
+                onClick={(e: React.MouseEvent) => {
+                  history.push(url.dashboard);
+                }}
+              >
+                <ArrowForwardIcon style={{ fontSize: 40 }} />
+                <HomeIcon style={{ fontSize: 40 }} />
+              </Link>
+            </Typography>
+          </Grid>
+        </Grid>
+      </div>
     </>
   );
 };

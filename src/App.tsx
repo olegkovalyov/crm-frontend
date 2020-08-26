@@ -47,7 +47,10 @@ const App: React.FC = (props): ReactElement => {
                   <PrivateRoute exact path={url.users}>
                     <Users />
                   </PrivateRoute>
-                  <PrivateRoute exact path={url.editUser}>
+                  <PrivateRoute exact path={`${url.addUser}`}>
+                    <EditUser />
+                  </PrivateRoute>
+                  <PrivateRoute exact path={`${url.editUser}/:id`}>
                     <EditUser />
                   </PrivateRoute>
                   <PrivateRoute exact path={url.settings}>

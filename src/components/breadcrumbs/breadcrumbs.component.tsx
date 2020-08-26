@@ -20,7 +20,13 @@ export const SimpleBreadcrumbs = (): ReactElement => {
             {pathnames.map((value, index) => {
               const last = index === pathnames.length - 1;
               const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-              const breadCrumbTitle = breadcrumbNameMap[to];
+              let breadCrumbTitle = breadcrumbNameMap[to];
+              if (last
+                && to !== '/users/add'
+                && to.match('/users/')
+              ) {
+                breadCrumbTitle = 'Edit';
+              }
               return last ? (
                 <Typography color="textPrimary" key={to}>
                   {breadCrumbTitle}
