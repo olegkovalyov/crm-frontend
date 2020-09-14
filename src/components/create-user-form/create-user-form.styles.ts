@@ -26,8 +26,4 @@ export const useStyles = makeStyles(theme => ({
     fontSize: '14px',
     textAlign: 'center',
   },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
 }));

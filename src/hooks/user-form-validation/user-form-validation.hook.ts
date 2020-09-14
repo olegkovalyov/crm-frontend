@@ -8,6 +8,12 @@ import {
 
 export const useUserFormValidation = () => {
 
+  const setUser = (firstName: string, lastName: string, email: string): void => {
+    setFirstName(firstName);
+    setLastName(lastName);
+    setEmail(email);
+  };
+
   const [firstName, setFirstName] = useState('');
   const [hasFirstNameError, setHasFirstNameError] = useState(false);
   const [firstNameErrorMessage, setFirstNameErrorMessage] = useState('');
@@ -76,6 +82,7 @@ export const useUserFormValidation = () => {
     emailErrorMessage,
     formTouched,
     saveButtonDisabled,
+    setUser,
   };
 
 };

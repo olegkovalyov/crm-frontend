@@ -7,25 +7,20 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Redirect } from 'react-router-dom';
-import { useStyles } from './edit-user-form.styles';
+import { useStyles } from './create-user-form.styles';
 import FormSubmitButton from '../../elements/form-submit-button.component';
 import { useUserFormValidation } from '../../hooks/user-form-validation/user-form-validation.hook';
 import FormSpinner from '../../elements/form-spinner.component';
 import FormError from '../../elements/form-error.component';
-import { useGetUserRequest } from '../../hooks/get-user-request/get-user-request.hook';
-import LoadBackdrop from '../../elements/backdrop.component';
+import { useCreateUserRequest } from '../../hooks/create-user-request/create-user-request.hook';
 import { url } from '../../constants/url';
-import { licenseTypes, roles } from '../../constants/user';
 
 interface PropTypes {
-  id: string,
   children?: never,
 }
 
-const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const classes = useStyles();
-
-  const [needPopulateColumns, setNeedPopulateColumns] = useState(true);
 
   const {
     firstName,
@@ -42,8 +37,14 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     emailErrorMessage,
     formTouched,
     saveButtonDisabled,
-    setUser,
   } = useUserFormValidation();
+
+  const {
+    loading,
+    createUserAsync,
+    createUserData,
+    errorMessage,
+  } = useCreateUserRequest();
 
 
   const [licenseType, setLicenseType] = useState('A');
@@ -58,50 +59,11 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     setRole(event.target.value as string);
   };
 
-  const title = 'Edit User';
+  const title = 'Create User';
 
-  let errorMessage = '';
-
-  const { isUserLoading, userError, getUserData } = useGetUserRequest(props.id);
-
-  if (isUserLoading) {
-    return (
-      <>
-        <LoadBackdrop isOpen={true} />
-      </>
-    );
+  if (createUserData) {
+    return (<Redirect to={url.users} />);
   }
-
-  if (userError) {
-    errorMessage = userError.message;
-  }
-
-  const licenseTypeOptionsJsx = licenseTypes.map((value, index) => {
-    return <MenuItem key={value} value={value}>{value}</MenuItem>;
-  });
-
-  const rolesOptionsJsx = roles.map((value, index) => {
-    return <MenuItem key={value} value={value}>{value}</MenuItem>;
-  });
-
-  if (getUserData
-    && needPopulateColumns
-  ) {
-    const currentUser = getUserData.getUser;
-    if (currentUser !== null) {
-      setUser(currentUser.firstName, currentUser.lastName, currentUser.email);
-      setRole(currentUser.role);
-      if (currentUser.licenseType === null) {
-        setLicenseType('NONE');
-      } else {
-        setLicenseType(currentUser.licenseType);
-      }
-      setNeedPopulateColumns(false);
-    } else {
-      return (<Redirect to={url.users} />);
-    }
-  }
-
 
   return (
     <>
@@ -159,7 +121,10 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
                 onChange={handleLicenceTypeChange}
                 label="License type"
               >
-                {licenseTypeOptionsJsx}
+                <MenuItem value="A">A</MenuItem>
+                <MenuItem value="B">B</MenuItem>
+                <MenuItem value="C">C</MenuItem>
+                <MenuItem value="D">D</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -173,26 +138,32 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
                 onChange={handleRoleChange}
                 label="Role"
               >
-                {rolesOptionsJsx}
+                <MenuItem value="STUDENT">Student</MenuItem>
+                <MenuItem value="SKYDIVER">Skydiver</MenuItem>
+                <MenuItem value="INSTRUCTOR">Instructor</MenuItem>
+                <MenuItem value="PACKER">Packer</MenuItem>
+                <MenuItem value="RIGGER">Rigger</MenuItem>
+                <MenuItem value="MANIFEST">Manifest</MenuItem>
+                <MenuItem value="ADMIN">Admin</MenuItem>
               </Select>
             </FormControl>
           </Grid>
         </Grid>
         <FormSubmitButton
-          title="Save"
-          show={true}
+          title="Create"
+          show={!loading}
           disabled={saveButtonDisabled}
           className={classes.submit}
           onClick={(e) => {
             e.preventDefault();
-            // return createUserAsync(firstName, lastName, email, email, role, licenseType);
+            return createUserAsync(firstName, lastName, email, email, role, licenseType);
           }}
         />
-        <FormSpinner show={false} />
+        <FormSpinner show={loading} />
         <FormError className={classes.editUserErrorMessage} message={errorMessage} />
       </form>
     </>
   );
 };
 
-export default EditUserForm;
+export default CreateUserForm;

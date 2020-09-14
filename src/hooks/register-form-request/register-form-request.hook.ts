@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
-import { IGraphQlError } from '../../interfaces/auth.interface';
 import { setUserAction } from '../../redux/auth/auth.actions';
 import { Register, RegisterVariables } from '../../interfaces/generated/Register';
+import { useGraphQlErrorHandler } from '../grahhql-error-handler/grahpql-error-handler.hook';
 
 export const useRegisterFormRequest = () => {
   const dispatch = useDispatch();
@@ -12,6 +12,8 @@ export const useRegisterFormRequest = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [_registerAsync, { loading, data }] = useMutation<Register, RegisterVariables>(registerMutation);
+
+  const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   useEffect(() => {
     if (data) {
@@ -43,7 +45,8 @@ export const useRegisterFormRequest = () => {
         variables,
       });
     } catch (e) {
-      e.graphQLErrors.map((x: IGraphQlError) => setErrorMessage(x.message));
+      const formattedErrorMessage = getFormattedErrorMessage(e);
+      setErrorMessage(formattedErrorMessage);
     }
   };
 

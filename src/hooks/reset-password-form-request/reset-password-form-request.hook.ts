@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
 import { useDispatch } from 'react-redux';
-import { IGraphQlError } from '../../interfaces/auth.interface';
 import { ResetPassword, ResetPasswordVariables } from '../../interfaces/generated/ResetPassword';
 import { setUserAction } from '../../redux/auth/auth.actions';
+import { useGraphQlErrorHandler } from '../grahhql-error-handler/grahpql-error-handler.hook';
 
 export const useResetPasswordFormRequest = () => {
 
@@ -13,6 +13,8 @@ export const useResetPasswordFormRequest = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [_resetPasswordAsync, { loading, data }] = useMutation<ResetPassword, ResetPasswordVariables>(resetPasswordMutation);
+
+  const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   useEffect(() => {
     if (data) {
@@ -32,7 +34,8 @@ export const useResetPasswordFormRequest = () => {
         variables,
       });
     } catch (e) {
-      e.graphQLErrors.map((x: IGraphQlError) => setErrorMessage(x.message));
+      const formattedErrorMessage = getFormattedErrorMessage(e);
+      setErrorMessage(formattedErrorMessage);
     }
   };
 

@@ -6,7 +6,7 @@ export const url = {
   dashboard: '/',
   users: '/users',
   editUser: '/users',
-  addUser: '/users/add',
+  createUser: '/users/create',
   settings: '/settings',
   forgotPassword: '/forgot-password',
   resetPassword: '/reset-password/:token',
@@ -16,5 +16,5 @@ export const breadcrumbNameMap: { [key: string]: string } = {
   '/': 'Dashboard',
   '/settings': 'Settings',
   '/users': 'Users',
-  '/users/add': 'Add',
+  '/users/create': 'Create',
 };

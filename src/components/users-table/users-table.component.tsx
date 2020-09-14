@@ -56,7 +56,7 @@ const UsersTable: FC = (props): ReactElement => {
         className={classes.button}
         startIcon={<PersonAddIcon />}
         onClick={(e: React.MouseEvent) => {
-          history.push(url.addUser);
+          history.push(url.createUser);
         }}
       >
         Add

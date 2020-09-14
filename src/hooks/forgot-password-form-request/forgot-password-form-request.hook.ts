@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
-import { IGraphQlError } from '../../interfaces/auth.interface';
 import { ForgotPassword, ForgotPasswordVariables } from '../../interfaces/generated/ForgotPassword';
+import { useGraphQlErrorHandler } from '../grahhql-error-handler/grahpql-error-handler.hook';
 
 export const useForgotPasswordFormRequest = () => {
 
@@ -11,6 +11,7 @@ export const useForgotPasswordFormRequest = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [_forgotPasswordAsync, { loading, data }] = useMutation<ForgotPassword, ForgotPasswordVariables>(forgotPasswordMutation);
 
+  const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const forgotPasswordAsync = async (email: string): Promise<void> => {
     try {
@@ -23,7 +24,8 @@ export const useForgotPasswordFormRequest = () => {
         variables,
       });
     } catch (e) {
-      e.graphQLErrors.map((x: IGraphQlError) => setErrorMessage(x.message));
+      const formattedErrorMessage = getFormattedErrorMessage(e);
+      setErrorMessage(formattedErrorMessage);
     }
   };
 

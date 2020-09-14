@@ -22,7 +22,7 @@ export const SimpleBreadcrumbs = (): ReactElement => {
               const to = `/${pathnames.slice(0, index + 1).join('/')}`;
               let breadCrumbTitle = breadcrumbNameMap[to];
               if (last
-                && to !== '/users/add'
+                && to !== '/users/create'
                 && to.match('/users/')
               ) {
                 breadCrumbTitle = 'Edit';

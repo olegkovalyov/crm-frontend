@@ -38,7 +38,7 @@ export const useCreateUserRequest = () => {
   return {
     loading,
     createUserAsync,
-    data,
+    createUserData: data,
     errorMessage,
   };
 };
