@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useQuery } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
 import { GetUser, GetUserVariables } from '../../interfaces/generated/GetUser';
 
 const getUserQuery = loader('./gql/queryGetUser.graphql');
 
 export const useGetUserRequest = (id: string) => {
-  const { loading, data, error } = useQuery<GetUser, GetUserVariables>(getUserQuery,
+  const [getUser, { loading, data, error }] = useLazyQuery<GetUser, GetUserVariables>(getUserQuery,
     {
       variables: {
         input: id,
@@ -15,6 +15,7 @@ export const useGetUserRequest = (id: string) => {
   return {
     isUserLoading: loading,
     userError: error,
-    getUserData: data,
+    userData: data,
+    getUser,
   };
 };

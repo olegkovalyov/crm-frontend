@@ -18,7 +18,9 @@ const UsersTable: FC = (props): ReactElement => {
 
   const { loading, users, error, getUsersAsync } = useGetUsersRequest();
 
-  useEffect(getUsersAsync, []);
+  useEffect(() => {
+    getUsersAsync();
+  }, []);
 
   if (loading) {
     return (

@@ -50,7 +50,7 @@ const RegisterForm: FC = (props): ReactElement => {
   } = useRegisterFormValidation();
 
   const role = 'SKYDIVER';
-  const licenseType = 'A';
+  const licenseType = 'NONE';
 
   const {
     loading,

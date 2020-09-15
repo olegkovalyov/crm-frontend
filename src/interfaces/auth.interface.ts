@@ -1,15 +1,3 @@
-// GraphQl
-export interface IGraphQlError {
-  message: string,
-  extensions: {
-    exception: {
-      response: {
-        message: string | string[],
-      }
-    }
-  }
-}
-
 export interface IDecodedJwtData {
   email: string,
   firstName: string,

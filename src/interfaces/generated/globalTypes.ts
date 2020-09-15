@@ -13,7 +13,7 @@ export interface CreateUserInput {
   email: string;
   password: string;
   role: string;
-  licenseType?: string | null;
+  licenseType: string;
 }
 
 export interface ForgotPasswordInput {
@@ -28,6 +28,16 @@ export interface LoginInput {
 export interface ResetPasswordInput {
   password: string;
   token: string;
+}
+
+export interface UpdateUserInput {
+  firstName?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  password?: string | null;
+  role?: string | null;
+  licenseType?: string | null;
+  id: string;
 }
 
 //==============================================================

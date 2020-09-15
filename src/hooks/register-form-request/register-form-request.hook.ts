@@ -28,7 +28,7 @@ export const useRegisterFormRequest = () => {
     firstName: string,
     lastName: string,
     role: string,
-    licenseType: string | null,
+    licenseType: string,
   ): Promise<void> => {
     try {
       const variables: RegisterVariables = {

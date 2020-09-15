@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -16,6 +16,7 @@ import { useGetUserRequest } from '../../hooks/get-user-request/get-user-request
 import LoadBackdrop from '../../elements/backdrop.component';
 import { url } from '../../constants/url';
 import { licenseTypes, roles } from '../../constants/user';
+import { useUpdateUserRequest } from '../../hooks/update-user-request/update-user-request.hook';
 
 interface PropTypes {
   id: string,
@@ -25,7 +26,11 @@ interface PropTypes {
 const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const classes = useStyles();
 
+  let errorMessage = '';
+
   const [needPopulateColumns, setNeedPopulateColumns] = useState(true);
+  const [licenseType, setLicenseType] = useState('NONE');
+  const [role, setRole] = useState('SKYDIVER');
 
   const {
     firstName,
@@ -45,49 +50,29 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     setUser,
   } = useUserFormValidation();
 
+  const {
+    isUserLoading,
+    userError,
+    userData,
+    getUser,
+  } = useGetUserRequest(props.id);
 
-  const [licenseType, setLicenseType] = useState('A');
+  const {
+    loading,
+    updateErrorMessage,
+    updatedUserData,
+    updateUserAsync,
+  } = useUpdateUserRequest();
 
-  const [role, setRole] = useState('SKYDIVER');
+  // Loading User
+  useEffect(() => {
+    getUser();
+  }, [getUser]);
 
-  const handleLicenceTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLicenseType(event.target.value as string);
-  };
-
-  const handleRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setRole(event.target.value as string);
-  };
-
-  const title = 'Edit User';
-
-  let errorMessage = '';
-
-  const { isUserLoading, userError, getUserData } = useGetUserRequest(props.id);
-
-  if (isUserLoading) {
-    return (
-      <>
-        <LoadBackdrop isOpen={true} />
-      </>
-    );
-  }
-
-  if (userError) {
-    errorMessage = userError.message;
-  }
-
-  const licenseTypeOptionsJsx = licenseTypes.map((value, index) => {
-    return <MenuItem key={value} value={value}>{value}</MenuItem>;
-  });
-
-  const rolesOptionsJsx = roles.map((value, index) => {
-    return <MenuItem key={value} value={value}>{value}</MenuItem>;
-  });
-
-  if (getUserData
+  if (userData
     && needPopulateColumns
   ) {
-    const currentUser = getUserData.getUser;
+    const currentUser = userData.getUser;
     if (currentUser !== null) {
       setUser(currentUser.firstName, currentUser.lastName, currentUser.email);
       setRole(currentUser.role);
@@ -101,6 +86,48 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       return (<Redirect to={url.users} />);
     }
   }
+
+  if (isUserLoading) {
+    return (
+      <>
+        <LoadBackdrop isOpen={true} />
+      </>
+    );
+  }
+
+  if (userError) {
+    errorMessage = userError.message;
+  }
+  // End Loading User
+
+  // Updating User
+  if (updateErrorMessage) {
+    errorMessage = updateErrorMessage;
+  }
+
+  if (updatedUserData) {
+    return (<Redirect to={url.users} />);
+  }
+  // End Updating User
+
+
+  const handleLicenceTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setLicenseType(event.target.value as string);
+  };
+
+  const handleRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setRole(event.target.value as string);
+  };
+
+  const title = 'Edit User';
+
+  const licenseTypeOptionsJsx = licenseTypes.map((value, index) => {
+    return <MenuItem key={value} value={value}>{value}</MenuItem>;
+  });
+
+  const rolesOptionsJsx = roles.map((value, index) => {
+    return <MenuItem key={value} value={value}>{value}</MenuItem>;
+  });
 
 
   return (
@@ -185,10 +212,10 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           className={classes.submit}
           onClick={(e) => {
             e.preventDefault();
-            // return createUserAsync(firstName, lastName, email, email, role, licenseType);
+            return updateUserAsync(props.id, firstName, lastName, email, null, role, licenseType);
           }}
         />
-        <FormSpinner show={false} />
+        <FormSpinner show={loading} />
         <FormError className={classes.editUserErrorMessage} message={errorMessage} />
       </form>
     </>
