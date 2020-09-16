@@ -1,18 +1,28 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   emailConstraints,
   firstNameConstrains,
   lastNameConstrains,
   validateInput,
 } from '../../common/inputValidator';
+import { LICENSE_NONE, ROLE_SKYDIVER } from '../../constants/user';
 
 export const useUserFormValidation = () => {
 
-  const setUser = (firstName: string, lastName: string, email: string): void => {
+  const setUser = (
+    firstName: string,
+    lastName: string,
+    email: string,
+    role: string,
+    licenseType: string,
+  ): void => {
     setFirstName(firstName);
     setLastName(lastName);
     setEmail(email);
+    setRole(role);
+    setLicenseType(licenseType);
   };
+
 
   const [firstName, setFirstName] = useState('');
   const [hasFirstNameError, setHasFirstNameError] = useState(false);
@@ -29,6 +39,10 @@ export const useUserFormValidation = () => {
   const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
 
   const [formTouched, setFormTouched] = useState(false);
+
+  const [licenseType, setLicenseType] = useState(LICENSE_NONE);
+
+  const [role, setRole] = useState(ROLE_SKYDIVER);
 
   useEffect(() => {
     if (!hasEmailError
@@ -61,10 +75,19 @@ export const useUserFormValidation = () => {
     validateInput(value, setLastName, setLastNameErrorMessage, setHasLastNameError, lastNameConstrains);
   };
 
-
   const onEmailChange = (value: string): void => {
     setFormTouched(true);
     validateInput(value, setEmail, setEmailErrorMessage, setHasEmailError, emailConstraints);
+  };
+
+  const onLicenceTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setFormTouched(true);
+    setLicenseType(event.target.value as string);
+  };
+
+  const onRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setFormTouched(true);
+    setRole(event.target.value as string);
   };
 
   return {
@@ -80,6 +103,10 @@ export const useUserFormValidation = () => {
     onEmailChange,
     hasEmailError,
     emailErrorMessage,
+    licenseType,
+    onLicenceTypeChange,
+    role,
+    onRoleChange,
     formTouched,
     saveButtonDisabled,
     setUser,

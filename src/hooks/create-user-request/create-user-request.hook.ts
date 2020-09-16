@@ -4,10 +4,11 @@ import { loader } from 'graphql.macro';
 import { CreateUser, CreateUserVariables } from '../../interfaces/generated/CreateUser';
 import { useGraphQlErrorHandler } from '../grahhql-error-handler/grahpql-error-handler.hook';
 
+const createUserMutation = loader('./gql/mutationCreateUser.graphql');
+
 export const useCreateUserRequest = () => {
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
-  const createUserMutation = loader('./gql/mutationCreateUser.graphql');
 
   const [errorMessage, setErrorMessage] = useState('');
   const [_createUserAsync, { loading, data }] = useMutation<CreateUser, CreateUserVariables>(createUserMutation);

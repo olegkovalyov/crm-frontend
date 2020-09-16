@@ -23,7 +23,6 @@ export const useUpdateUserRequest = () => {
     role: string,
     licenseType: string,
   ): Promise<void> => {
-    console.log(email);
     try {
       const variables: UpdateUserVariables = {
         input: {

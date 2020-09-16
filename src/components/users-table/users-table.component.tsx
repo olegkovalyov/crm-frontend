@@ -61,7 +61,7 @@ const UsersTable: FC = (props): ReactElement => {
           history.push(url.createUser);
         }}
       >
-        Add
+        Create
       </Button>
       <MaterialTable
         title="Users"
