@@ -2,27 +2,26 @@ import { UiActionTypes } from './ui.actions';
 import {
   CLOSE_LEFT_MENU,
   CLOSE_TOP_MENU,
+  COLLAPSE_JUMPS_SUBMENU,
+  COLLAPSE_USERS_SUBMENU,
+  EXPAND_JUMPS_SUBMENU,
+  EXPAND_USERS_SUBMENU,
   OPEN_LEFT_MENU,
   OPEN_TOP_MENU,
-  SET_LOGIN_FORM_ERROR, SET_REGISTER_FORM_ERROR,
-  START_SPINNER,
-  STOP_SPINNER,
 } from './ui.types';
 
 export interface IUiState {
   isOpenedLeftMenu: boolean,
   isOpenedTopMenu: boolean,
-  showSpinner: boolean,
-  loginFormError: string,
-  registerFormError: string,
+  isExpandedUsersSubMenu: boolean,
+  isExpandedJumpsSubMenu: boolean,
 }
 
 export const uiState: IUiState = {
   isOpenedLeftMenu: true,
   isOpenedTopMenu: false,
-  showSpinner: false,
-  loginFormError: '',
-  registerFormError: '',
+  isExpandedJumpsSubMenu: false,
+  isExpandedUsersSubMenu: false,
 };
 
 export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
@@ -51,29 +50,30 @@ export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
         isOpenedTopMenu: false,
       };
     }
-    case START_SPINNER: {
+    case EXPAND_USERS_SUBMENU: {
       return {
         ...state,
-        showSpinner: true,
+        isExpandedUsersSubMenu: true,
       };
     }
-    case STOP_SPINNER: {
+    case COLLAPSE_USERS_SUBMENU: {
       return {
         ...state,
-        showSpinner: false,
+        isExpandedUsersSubMenu: false,
       };
     }
-    case SET_LOGIN_FORM_ERROR: {
+    case EXPAND_JUMPS_SUBMENU: {
       return {
         ...state,
-        loginFormError: action.payload,
+        isExpandedJumpsSubMenu: true,
       };
     }
-    case SET_REGISTER_FORM_ERROR:
+    case COLLAPSE_JUMPS_SUBMENU: {
       return {
         ...state,
-        registerFormError: action.payload,
+        isExpandedJumpsSubMenu: false,
       };
+    }
     default:
       // eslint-disable-next-line no-case-declarations,no-unused-vars,@typescript-eslint/no-unused-vars
       const x: never = action;

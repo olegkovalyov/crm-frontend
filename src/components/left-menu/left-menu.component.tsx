@@ -1,12 +1,13 @@
 // Core
 import React, { FC, ReactElement } from 'react';
 import clsx from 'clsx';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 // Components
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import HistoryIcon from '@material-ui/icons/History';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -23,29 +24,28 @@ import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
 import { Collapse } from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { isOpenedLeftMenuSelector } from '../../redux/ui/ui.selector';
-import { IRootState } from '../../redux/root.reducer';
-import { closeLeftMenu } from '../../redux/ui/ui.actions';
 import { useStyles } from './left-menu.styles';
 import { url } from '../../constants/url';
-import { logoutAction } from '../../redux/auth/auth.actions';
+import { useLeftMenu } from '../../hooks/left-menu/left-menu.hook';
 
 
 const LeftMenu: FC = (props): ReactElement => {
   const classes = useStyles();
-  const history = useHistory();
-  const isOpenedLeftMenu = useSelector((state: IRootState) => isOpenedLeftMenuSelector(state));
-  const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(true);
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
-  const logout = (e: React.MouseEvent) => {
-    dispatch(logoutAction());
-    localStorage.removeItem('token');
-    history.push(url.login);
-  };
+  const {
+    logout,
+    isOpenedLeftMenu,
+    isExpandedUsersSubmenu,
+    isExpandedJumpsSubmenu,
+    expandCollapseUsersSubMenu,
+    expandCollapseJumpsSubMenu,
+    isDashboardMenuSelected,
+    isUsersMenuSelected,
+    isJumpsMenuSelected,
+    isHistoryMenuSelected,
+    isSettingsMenuSelected,
+    closeLeftMenu,
+    history,
+  } = useLeftMenu();
 
 
   return (
@@ -58,10 +58,7 @@ const LeftMenu: FC = (props): ReactElement => {
         open={isOpenedLeftMenu}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={() => {
-            dispatch(closeLeftMenu());
-          }}
-          >
+          <IconButton onClick={closeLeftMenu}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
@@ -69,6 +66,7 @@ const LeftMenu: FC = (props): ReactElement => {
         <List>
           <div>
             <ListItem
+              selected={isDashboardMenuSelected}
               button
               onClick={() => history.push(url.dashboard)}
             >
@@ -77,16 +75,20 @@ const LeftMenu: FC = (props): ReactElement => {
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem button onClick={handleClick}>
+            <ListItem
+              button
+              onClick={expandCollapseUsersSubMenu}
+            >
               <ListItemIcon>
                 <SupervisedUserCircleIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
-              {open ? <ExpandLess /> : <ExpandMore />}
+              {isExpandedUsersSubmenu ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={isExpandedUsersSubmenu} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItem
+                  selected={isUsersMenuSelected}
                   button
                   className={classes.nested}
                   onClick={() => history.push(url.users)}
@@ -104,6 +106,39 @@ const LeftMenu: FC = (props): ReactElement => {
                 </ListItem>
               </List>
             </Collapse>
+            <ListItem button onClick={expandCollapseJumpsSubMenu}>
+              <ListItemIcon>
+                <AirplanemodeActiveIcon />
+              </ListItemIcon>
+              <ListItemText primary="Jumps" />
+              {isExpandedJumpsSubmenu ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={isExpandedJumpsSubmenu} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem
+                  selected={isJumpsMenuSelected}
+                  button
+                  className={classes.nested}
+                  onClick={() => history.push(url.jumps)}
+                >
+                  <ListItemIcon>
+                    <EventAvailableIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Manage" />
+                </ListItem>
+                <ListItem
+                  selected={isHistoryMenuSelected}
+                  button
+                  className={classes.nested}
+                  onClick={() => history.push(url.history)}
+                >
+                  <ListItemIcon>
+                    <HistoryIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="History" />
+                </ListItem>
+              </List>
+            </Collapse>
           </div>
         </List>
         <Divider />
@@ -111,6 +146,7 @@ const LeftMenu: FC = (props): ReactElement => {
           <div>
             <ListSubheader />
             <ListItem
+              selected={isSettingsMenuSelected}
               button
               onClick={() => history.push(url.settings)}
             >

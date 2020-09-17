@@ -1,11 +1,12 @@
 import {
   CLOSE_LEFT_MENU,
   CLOSE_TOP_MENU,
+  COLLAPSE_JUMPS_SUBMENU,
+  COLLAPSE_USERS_SUBMENU,
+  EXPAND_JUMPS_SUBMENU,
+  EXPAND_USERS_SUBMENU,
   OPEN_LEFT_MENU,
   OPEN_TOP_MENU,
-  SET_LOGIN_FORM_ERROR, SET_REGISTER_FORM_ERROR,
-  START_SPINNER,
-  STOP_SPINNER,
 } from './ui.types';
 
 
@@ -25,79 +26,76 @@ export interface ICloseTopMenuAction {
   type: typeof CLOSE_TOP_MENU
 }
 
-export interface IStartSpinnerAction {
-  type: typeof START_SPINNER
+export interface IExpandUsersSubMenuAction {
+  type: typeof EXPAND_USERS_SUBMENU
 }
 
-export interface IStopSpinnerAction {
-  type: typeof STOP_SPINNER
+export interface ICollapseUsersSubMenuAction {
+  type: typeof COLLAPSE_USERS_SUBMENU
 }
 
-export interface ISetLoginErrorMessage {
-  type: typeof SET_LOGIN_FORM_ERROR,
-  payload: string
+export interface IExpandJumpsSubMenuAction {
+  type: typeof EXPAND_JUMPS_SUBMENU
 }
 
-export interface ISetRegisterErrorMessage {
-  type: typeof SET_REGISTER_FORM_ERROR,
-  payload: string
+export interface ICollapseJumpsSubMenuAction {
+  type: typeof COLLAPSE_JUMPS_SUBMENU
 }
 
-export const openLeftMenu = (): IOpenLeftMenuAction => {
+export const openLeftMenuAction = (): IOpenLeftMenuAction => {
   return {
     type: OPEN_LEFT_MENU,
   };
 };
 
-export const closeLeftMenu = (): ICloseLeftMenuAction => {
+export const closeLeftMenuAction = (): ICloseLeftMenuAction => {
   return {
     type: CLOSE_LEFT_MENU,
   };
 };
 
-export const openTopMenu = (): IOpenTopMenuAction => {
+export const openTopMenuAction = (): IOpenTopMenuAction => {
   return {
     type: OPEN_TOP_MENU,
   };
 };
 
-export const closeTopMenu = (): ICloseTopMenuAction => {
+export const closeTopMenuAction = (): ICloseTopMenuAction => {
   return {
     type: CLOSE_TOP_MENU,
   };
 };
 
-export const startSpinner = (): IStartSpinnerAction => {
+export const expandUsersSubMenuAction = (): IExpandUsersSubMenuAction => {
   return {
-    type: START_SPINNER,
+    type: EXPAND_USERS_SUBMENU,
   };
 };
 
-export const stopSpinner = (): IStopSpinnerAction => {
+export const expandJumpsSubMenuAction = (): IExpandJumpsSubMenuAction => {
   return {
-    type: STOP_SPINNER,
+    type: EXPAND_JUMPS_SUBMENU,
   };
 };
 
-export const setLoginErrorMessage = (message: string): ISetLoginErrorMessage => {
+export const collapseUsersSubMenuAction = (): ICollapseUsersSubMenuAction => {
   return {
-    type: SET_LOGIN_FORM_ERROR,
-    payload: message,
+    type: COLLAPSE_USERS_SUBMENU,
   };
 };
 
-export const setRegisterErrorMessage = (message: string): ISetRegisterErrorMessage => {
+export const collapseJumpsSubMenuAction = (): ICollapseJumpsSubMenuAction => {
   return {
-    type: SET_REGISTER_FORM_ERROR,
-    payload: message,
+    type: COLLAPSE_JUMPS_SUBMENU,
   };
 };
+
 
 export type UiActionTypes = IOpenLeftMenuAction
   | ICloseLeftMenuAction
   | IOpenTopMenuAction
   | ICloseTopMenuAction
-  | IStartSpinnerAction
-  | IStopSpinnerAction
-  | ISetLoginErrorMessage
-  | ISetRegisterErrorMessage;
+  | IExpandJumpsSubMenuAction
+  | ICollapseJumpsSubMenuAction
+  | IExpandUsersSubMenuAction
+  | ICollapseUsersSubMenuAction;

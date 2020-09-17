@@ -12,7 +12,7 @@ export interface IRootState {
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['auth', 'ui'],
+  blacklist: ['auth'],
 };
 
 const authPersistConfig = {

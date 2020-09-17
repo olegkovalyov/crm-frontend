@@ -16,7 +16,7 @@ import { useStyles } from './header.styles';
 // Selectors
 import { isOpenedLeftMenuSelector, isOpenedTopMenuSelector } from '../../redux/ui/ui.selector';
 import { IRootState } from '../../redux/root.reducer';
-import { closeTopMenu, openLeftMenu, openTopMenu } from '../../redux/ui/ui.actions';
+import { closeTopMenuAction, openLeftMenuAction, openTopMenuAction } from '../../redux/ui/ui.actions';
 import { TopMenuAnonymousComponent } from '../../elements/top-menu-anonymous.component';
 import { TopMenuLoggedIn } from '../../elements/top-menu-logged-in.component';
 import { getCurrentUser } from '../../redux/auth/auth.selector';
@@ -37,20 +37,20 @@ const Header: FC = (props): ReactElement => {
   const currentUser = useSelector((state: IRootState) => getCurrentUser(state))!;
 
   const handleTopMenuOpen = (e: React.MouseEvent) => {
-    dispatch(openTopMenu());
+    dispatch(openTopMenuAction());
     setAnchorEl(e.currentTarget);
   };
 
   const handleLogout = (e: React.MouseEvent) => {
     setAnchorEl(null);
-    dispatch(closeTopMenu());
+    dispatch(closeTopMenuAction());
     dispatch(logoutAction());
     localStorage.removeItem('token');
     history.push(url.login);
   };
 
   const handleTopMenuClose = (e: React.MouseEvent) => {
-    dispatch(closeTopMenu());
+    dispatch(closeTopMenuAction());
     setAnchorEl(null);
   };
 
@@ -73,7 +73,7 @@ const Header: FC = (props): ReactElement => {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={(e: React.MouseEvent) => dispatch(openLeftMenu())}
+            onClick={(e: React.MouseEvent) => dispatch(openLeftMenuAction())}
             className={clsx(classes.menuButton, isOpenedLeftMenu && classes.menuButtonHidden)}
           >
             <MenuIcon />

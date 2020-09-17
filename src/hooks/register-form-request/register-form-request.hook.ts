@@ -18,6 +18,7 @@ export const useRegisterFormRequest = () => {
   useEffect(() => {
     if (data) {
       dispatch(setUserAction(data.register));
+      localStorage.setItem('token', data.register.token);
     }
   }, [data, dispatch]);
 

@@ -1,21 +1,17 @@
 import { IRootState } from '../root.reducer';
 
-export const isOpenedLeftMenuSelector = (state: IRootState) => {
+export const isOpenedLeftMenuSelector = (state: IRootState): boolean => {
   return state.ui.isOpenedLeftMenu;
 };
 
-export const isOpenedTopMenuSelector = (state: IRootState) => {
+export const isOpenedTopMenuSelector = (state: IRootState): boolean => {
   return state.ui.isOpenedTopMenu;
 };
 
-export const needShowSpinner = (state: IRootState) => {
-  return state.ui.showSpinner;
+export const isExpandedUsersSubMenuSelector = (state: IRootState): boolean => {
+  return state.ui.isExpandedUsersSubMenu;
 };
 
-export const getLoginFormError = (state: IRootState) => {
-  return state.ui.loginFormError;
-};
-
-export const getRegisterFormError = (state: IRootState) => {
-  return state.ui.registerFormError;
+export const isExpandedJumpsSubMenuSelector = (state: IRootState): boolean => {
+  return state.ui.isExpandedJumpsSubMenu;
 };

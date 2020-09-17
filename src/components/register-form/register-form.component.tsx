@@ -17,6 +17,7 @@ import FormSpinner from '../../elements/form-spinner.component';
 import FormError from '../../elements/form-error.component';
 import { useRegisterFormValidation } from '../../hooks/register-form-validation/register-form-validation.hook';
 import { useRegisterFormRequest } from '../../hooks/register-form-request/register-form-request.hook';
+import { LICENSE_NONE, ROLE_SKYDIVER } from '../../constants/user';
 
 
 const RegisterForm: FC = (props): ReactElement => {
@@ -49,8 +50,8 @@ const RegisterForm: FC = (props): ReactElement => {
     registerButtonDisabled,
   } = useRegisterFormValidation();
 
-  const role = 'SKYDIVER';
-  const licenseType = 'NONE';
+  const role = ROLE_SKYDIVER;
+  const licenseType = LICENSE_NONE;
 
   const {
     loading,
@@ -151,7 +152,7 @@ const RegisterForm: FC = (props): ReactElement => {
             </Grid>
           </Grid>
           <FormSubmitButton
-            title="Log In"
+            title="Sign Up"
             show={true}
             disabled={registerButtonDisabled}
             className={classes.submit}
