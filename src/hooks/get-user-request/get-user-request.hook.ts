@@ -1,4 +1,4 @@
-import { useLazyQuery, useQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { loader } from 'graphql.macro';
 import { GetUser, GetUserVariables } from '../../interfaces/generated/GetUser';
 
