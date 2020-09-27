@@ -9,7 +9,6 @@ import RegisterForm from '../../components/register-form/register-form.component
 const Register: FC = (props): ReactElement => {
   const isLogged = useSelector((state: IRootState) => getCurrentUser(state));
 
-  console.log(isLogged);
   if (isLogged) {
     return (
       <Redirect to={url.dashboard} />

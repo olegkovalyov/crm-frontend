@@ -15,8 +15,8 @@ import { Copyright } from '../../elements/copyright.component';
 import { url } from '../../constants/url';
 import FormSpinner from '../../elements/form-spinner.component';
 import FormError from '../../elements/form-error.component';
-import { useRegisterFormValidation } from '../../hooks/register-form-validation/register-form-validation.hook';
-import { useRegisterFormRequest } from '../../hooks/register-form-request/register-form-request.hook';
+import { useRegisterFormValidation } from '../../hooks/forms/register-form-validation/register-form-validation.hook';
+import { useRegisterRequest } from '../../hooks/graphql/register-request/register-request.hook';
 import { LICENSE_NONE, ROLE_SKYDIVER } from '../../constants/user';
 
 
@@ -57,7 +57,7 @@ const RegisterForm: FC = (props): ReactElement => {
     loading,
     registerAsync,
     errorMessage,
-  } = useRegisterFormRequest();
+  } = useRegisterRequest();
 
 
   return (

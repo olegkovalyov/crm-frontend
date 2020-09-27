@@ -1,19 +1,17 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useUserFormValidation } from '../../hooks/user-form-validation/user-form-validation.hook';
-import { useGetUserRequest } from '../../hooks/get-user-request/get-user-request.hook';
+import { useUserFormValidation } from '../../hooks/forms/user-form-validation/user-form-validation.hook';
+import { useGetUserRequest } from '../../hooks/graphql/get-user-request/get-user-request.hook';
 import LoadBackdrop from '../../elements/backdrop.component';
 import { url } from '../../constants/url';
-import { useUpdateUserRequest } from '../../hooks/update-user-request/update-user-request.hook';
+import { useUpdateUserRequest } from '../../hooks/graphql/update-user-request/update-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 
 interface PropTypes {
-  id: string,
-  children?: never,
+  id: string;
 }
 
 const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
-
   let errorMessage = '';
 
   const [needPopulateColumns, setNeedPopulateColumns] = useState(true);
@@ -40,38 +38,28 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     setUser,
   } = useUserFormValidation();
 
-  const {
-    isUserLoading,
-    userError,
-    userData,
-    getUser,
-  } = useGetUserRequest(props.id);
+  const { isUserLoading, userError, userData, getUser } = useGetUserRequest(props.id);
 
-  const {
-    loading,
-    updateErrorMessage,
-    updatedUserData,
-    updateUserAsync,
-  } = useUpdateUserRequest();
+  const { loading, updateErrorMessage, updatedUserData, updateUserAsync } = useUpdateUserRequest();
 
   // Loading User
   useEffect(() => {
     getUser();
   }, [getUser]);
 
-  if (userData
-    && needPopulateColumns
-  ) {
+  if (userData && needPopulateColumns) {
     const currentUser = userData.getUser;
     if (currentUser !== null) {
-      setUser(currentUser.firstName,
+      setUser(
+        currentUser.firstName,
         currentUser.lastName,
         currentUser.email,
         currentUser.role,
-        currentUser.licenseType!);
+        currentUser.licenseType!
+      );
       setNeedPopulateColumns(false);
     } else {
-      return (<Redirect to={url.users} />);
+      return <Redirect to={url.users} />;
     }
   }
 
@@ -94,15 +82,14 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   }
 
   if (updatedUserData) {
-    return (<Redirect to={url.users} />);
+    return <Redirect to={url.users} />;
   }
   // End Updating User
-
 
   return (
     <>
       <CommonUserForm
-        title='Edit'
+        title="Edit"
         firstName={firstName}
         hasFirstNameError={hasFirstNameError}
         firstNameErrorMessage={firstNameErrorMessage}
@@ -124,15 +111,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         formErrorMessage={errorMessage}
         loading={loading}
         submitFn={() => {
-          return updateUserAsync(
-            props.id,
-            firstName,
-            lastName,
-            email,
-            null,
-            role,
-            licenseType,
-          );
+          return updateUserAsync(props.id, firstName, lastName, email, null, role, licenseType);
         }}
       />
     </>

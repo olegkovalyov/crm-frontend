@@ -4,6 +4,7 @@ import LeftMenu from '../../components/left-menu/left-menu.component';
 import { Content } from '../../components/content/content.component';
 
 const Dashboard: FC = (props): ReactElement => {
+
   return (
     <>
       <Header />

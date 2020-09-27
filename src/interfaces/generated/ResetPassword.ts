@@ -23,8 +23,8 @@ export interface ResetPassword_resetPassword_user {
 
 export interface ResetPassword_resetPassword {
   __typename: "AuthModel";
-  user: ResetPassword_resetPassword_user;
-  token: string;
+  user: ResetPassword_resetPassword_user | null;
+  accessToken: string | null;
 }
 
 export interface ResetPassword {

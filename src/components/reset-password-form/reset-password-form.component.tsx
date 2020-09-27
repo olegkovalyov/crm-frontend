@@ -12,13 +12,17 @@ import FormError from '../../elements/form-error.component';
 import FormSpinner from '../../elements/form-spinner.component';
 import FormSubmitButton from '../../elements/form-submit-button.component';
 import { Copyright } from '../../elements/copyright.component';
-import { useResetPasswordFormValidation } from '../../hooks/reset-password-form-validation/register-form-validation.hook';
-import { useResetPasswordFormRequest } from '../../hooks/reset-password-form-request/reset-password-form-request.hook';
+import { useResetPasswordFormValidation } from '../../hooks/forms/reset-password-form-validation/register-form-validation.hook';
+import { useResetPasswordRequest } from '../../hooks/graphql/reset-password-request/reset-password-request.hook';
+
+interface IResetPasswordPageParams {
+  token: string,
+}
 
 const ResetPasswordForm: FC = (props): ReactElement => {
   const classes = useStyles();
 
-  const { token } = useParams();
+  const { token } = useParams<IResetPasswordPageParams>();
 
   const {
     onPasswordChange,
@@ -30,14 +34,14 @@ const ResetPasswordForm: FC = (props): ReactElement => {
     confirmPasswordErrorMessage,
     passwordErrorMessage,
     formTouched,
-    resetPasswordButtonDisabled,
+    resetPasswordButtonDisabled
   } = useResetPasswordFormValidation();
 
   const {
     loading,
     resetPasswordAsync,
-    errorMessage,
-  } = useResetPasswordFormRequest();
+    errorMessage
+  } = useResetPasswordRequest();
 
   return (
     <>

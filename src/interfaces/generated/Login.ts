@@ -23,8 +23,8 @@ export interface Login_login_user {
 
 export interface Login_login {
   __typename: "AuthModel";
-  user: Login_login_user;
-  token: string;
+  user: Login_login_user | null;
+  accessToken: string | null;
 }
 
 export interface Login {

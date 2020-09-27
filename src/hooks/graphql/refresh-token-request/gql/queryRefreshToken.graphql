@@ -1,0 +1,15 @@
+query RefreshToken {
+    refreshToken{
+        user {
+            id,
+            firstName,
+            lastName,
+            email,
+            role,
+            licenseType,
+            createdAt,
+            updatedAt,
+        },
+        accessToken,
+    }
+}

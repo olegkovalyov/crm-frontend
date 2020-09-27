@@ -15,8 +15,8 @@ import FormSpinner from '../../elements/form-spinner.component';
 import FormSubmitButton from '../../elements/form-submit-button.component';
 import { url } from '../../constants/url';
 import { Copyright } from '../../elements/copyright.component';
-import { useForgotPasswordFormValidation } from '../../hooks/forgot-password-form-validation/forgot-password-form-validation.hook';
-import { useForgotPasswordFormRequest } from '../../hooks/forgot-password-form-request/forgot-password-form-request.hook';
+import { useForgotPasswordFormValidation } from '../../hooks/forms/forgot-password-form-validation/forgot-password-form-validation.hook';
+import { useForgotPasswordRequest } from '../../hooks/graphql/forgot-password-request/forgot-password-request.hook';
 
 const ForgotPasswordForm: FC = (props): ReactElement => {
   const classes = useStyles();
@@ -36,7 +36,7 @@ const ForgotPasswordForm: FC = (props): ReactElement => {
     forgotPasswordAsync,
     data,
     errorMessage,
-  } = useForgotPasswordFormRequest();
+  } = useForgotPasswordRequest();
 
   if (data) {
     return (

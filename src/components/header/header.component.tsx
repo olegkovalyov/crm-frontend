@@ -21,20 +21,18 @@ import { TopMenuAnonymousComponent } from '../../elements/top-menu-anonymous.com
 import { TopMenuLoggedIn } from '../../elements/top-menu-logged-in.component';
 import { getCurrentUser } from '../../redux/auth/auth.selector';
 import { logoutAction } from '../../redux/auth/auth.actions';
-import { useIsLogged } from '../../hooks/is-logged/is-logged.hook';
 import { url } from '../../constants/url';
 
 const Header: FC = (props): ReactElement => {
   const classes: Record<string, string> = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isLogged } = useIsLogged();
   const isOpenedLeftMenu: boolean = useSelector((state: IRootState) => isOpenedLeftMenuSelector(state));
 
   const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null);
 
   const isTopMenuOpen = useSelector((state: IRootState) => isOpenedTopMenuSelector(state)); // Boolean(anchorEl);
-  const currentUser = useSelector((state: IRootState) => getCurrentUser(state))!;
+  const currentUser = useSelector((state: IRootState) => getCurrentUser(state));
 
   const handleTopMenuOpen = (e: React.MouseEvent) => {
     dispatch(openTopMenuAction());
@@ -45,7 +43,6 @@ const Header: FC = (props): ReactElement => {
     setAnchorEl(null);
     dispatch(closeTopMenuAction());
     dispatch(logoutAction());
-    localStorage.removeItem('token');
     history.push(url.login);
   };
 
@@ -54,7 +51,7 @@ const Header: FC = (props): ReactElement => {
     setAnchorEl(null);
   };
 
-  const topMenuJSX = isLogged ? <TopMenuLoggedIn
+  const topMenuJSX = currentUser ? <TopMenuLoggedIn
     handleLogout={handleLogout}
     handleTopMenuClose={handleTopMenuClose}
     handleTopMenuOpen={handleTopMenuOpen}

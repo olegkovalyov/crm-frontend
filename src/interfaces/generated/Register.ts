@@ -23,8 +23,8 @@ export interface Register_register_user {
 
 export interface Register_register {
   __typename: "AuthModel";
-  user: Register_register_user;
-  token: string;
+  user: Register_register_user | null;
+  accessToken: string | null;
 }
 
 export interface Register {

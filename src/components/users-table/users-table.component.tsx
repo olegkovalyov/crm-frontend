@@ -6,12 +6,12 @@ import { Button, LinearProgress } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useGetUsersRequest } from '../../hooks/users-request/users-request.hook';
+import { useGetUsersRequest } from '../../hooks/graphql/users-request/users-request.hook';
 import { GetUsers_getUsers } from '../../interfaces/generated/GetUsers';
 import { url } from '../../constants/url';
 import { useStyles } from './users-table.styles';
 import ResponsiveDialog from '../responsive-dialog/responsive-dialog.component';
-import { useDeleteUserRequest } from '../../hooks/delete-user-request/delete-user-request.hook';
+import { useDeleteUserRequest } from '../../hooks/graphql/delete-user-request/delete-user-request.hook';
 
 
 const UsersTable: FC = (props): ReactElement => {
@@ -41,10 +41,10 @@ const UsersTable: FC = (props): ReactElement => {
   const history = useHistory();
 
   const {
+    getUsersAsync,
     loading,
     users,
     error,
-    getUsersAsync,
   } = useGetUsersRequest();
 
   const {
@@ -53,7 +53,9 @@ const UsersTable: FC = (props): ReactElement => {
   } = useDeleteUserRequest();
 
   useEffect(() => {
+    // console.log('Refetch users');
     getUsersAsync();
+    // return () => console.log('Unmounted');
   }, [getUsersAsync]);
 
   if (loading) {

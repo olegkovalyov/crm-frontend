@@ -5,10 +5,14 @@ import { Login_login_user } from '../../interfaces/generated/Login';
 
 export interface IAuthState {
   currentUser: Login_login_user | null,
+  accessToken: string | null,
+  refreshTokenExists: boolean,
 }
 
 export const authState: IAuthState = {
   currentUser: null,
+  accessToken: null,
+  refreshTokenExists: false,
 };
 
 export const authReducer = (state = authState, action: AuthActions): IAuthState => {
@@ -17,11 +21,15 @@ export const authReducer = (state = authState, action: AuthActions): IAuthState 
       return {
         ...state,
         currentUser: null,
+        accessToken: null,
+        refreshTokenExists: false,
       };
     case SET_USER: {
       return {
         ...state,
         currentUser: action.payload.user,
+        accessToken: action.payload.accessToken,
+        refreshTokenExists: true,
       };
     }
     default:

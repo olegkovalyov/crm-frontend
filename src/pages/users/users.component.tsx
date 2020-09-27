@@ -5,6 +5,7 @@ import { Content } from '../../components/content/content.component';
 import UsersTable from '../../components/users-table/users-table.component';
 
 const Users: FC = (props): ReactElement => {
+
   return (
     <>
       <Header />

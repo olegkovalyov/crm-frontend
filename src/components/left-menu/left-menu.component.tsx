@@ -26,7 +26,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useStyles } from './left-menu.styles';
 import { url } from '../../constants/url';
-import { useLeftMenu } from '../../hooks/left-menu/left-menu.hook';
+import { useLeftMenu } from '../../hooks/core/left-menu/left-menu.hook';
 
 
 const LeftMenu: FC = (props): ReactElement => {

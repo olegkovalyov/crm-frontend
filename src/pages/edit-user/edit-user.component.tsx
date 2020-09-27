@@ -5,10 +5,13 @@ import LeftMenu from '../../components/left-menu/left-menu.component';
 import { Content } from '../../components/content/content.component';
 import EditUserForm from '../../components/edit-user-form/edit-user-form.component';
 
+interface IEditPageParams {
+  id: string,
+}
 
 const EditUser: FC = (props): ReactElement => {
 
-  const { id } = useParams();
+  const { id } = useParams<IEditPageParams>();
   return (
     <>
       <Header />

@@ -25,5 +25,6 @@ export const setUserAction = (data: Login_login): ISetUserAction => {
 };
 
 
+
 export type AuthActions = ISetUserAction
   | ILogoutAction;

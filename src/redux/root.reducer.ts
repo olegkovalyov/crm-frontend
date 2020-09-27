@@ -18,7 +18,7 @@ const persistConfig = {
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['currentUser', 'token'],
+  whitelist: ['currentUser', 'refreshTokenExists'],
 };
 
 const rootReducer = combineReducers({

@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useUserFormValidation } from '../../hooks/user-form-validation/user-form-validation.hook';
-import { useCreateUserRequest } from '../../hooks/create-user-request/create-user-request.hook';
+import { useUserFormValidation } from '../../hooks/forms/user-form-validation/user-form-validation.hook';
+import { useCreateUserRequest } from '../../hooks/graphql/create-user-request/create-user-request.hook';
 import { url } from '../../constants/url';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 

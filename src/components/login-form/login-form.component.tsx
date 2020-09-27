@@ -15,8 +15,8 @@ import FormSpinner from '../../elements/form-spinner.component';
 import FormSubmitButton from '../../elements/form-submit-button.component';
 import { url } from '../../constants/url';
 import { Copyright } from '../../elements/copyright.component';
-import { useLoginFormValidation } from '../../hooks/login-form-validation/login-form-validation.hook';
-import { useLoginFormRequest } from '../../hooks/login-form-request/login-form-request.hook';
+import { useLoginFormValidation } from '../../hooks/forms/login-form-validation/login-form-validation.hook';
+import { useLoginRequest } from '../../hooks/graphql/login-request/login-request.hook';
 
 const LogInForm: FC = (props): ReactElement => {
   const classes = useStyles();
@@ -39,7 +39,7 @@ const LogInForm: FC = (props): ReactElement => {
     loading,
     errorMessage,
     loginAsync,
-  } = useLoginFormRequest();
+  } = useLoginRequest();
 
   return (
     <>
