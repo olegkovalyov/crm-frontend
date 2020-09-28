@@ -8,8 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { AccountCircle } from '@material-ui/icons';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { useStyles } from '../components/header/header.styles';
-import { url } from '../constants/url';
+import { useStyles } from '../components/layout/header/header.styles';
+import { SETTINGS_URL } from '../constants/route.constants';
 
 interface PropTypes {
   handleTopMenuOpen: (e: React.MouseEvent) => void,
@@ -35,7 +35,7 @@ export const TopMenuLoggedIn: FC<PropTypes> = (
   const history = useHistory();
 
   const handleRedirectToSettings = (e: React.MouseEvent) =>
-    history.push(url.settings);
+    history.push(SETTINGS_URL);
 
   return (
     <>

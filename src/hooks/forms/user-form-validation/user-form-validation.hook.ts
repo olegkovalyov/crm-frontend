@@ -5,7 +5,7 @@ import {
   lastNameConstrains,
   validateInput,
 } from '../../../common/inputValidator';
-import { LICENSE_NONE, ROLE_SKYDIVER } from '../../../constants/user';
+import { LICENSE_NONE, ROLE_SKYDIVER } from '../../../constants/user.constants';
 
 export const useUserFormValidation = () => {
 

@@ -14,8 +14,14 @@ import {
   expandJumpsSubMenuAction,
   expandUsersSubMenuAction,
 } from '../../../redux/ui/ui.actions';
-import { url } from '../../../constants/url';
 import { useLogoutRequest } from '../../graphql/logout-request/logout-request.hook';
+import {
+  CREATE_USER_URL, DASHBOARD_URL,
+  EDIT_USER_URL, HISTORY_URL,
+  JUMPS_URL,
+  MANAGE_USERS_URL,
+  SETTINGS_URL,
+} from '../../../constants/route.constants';
 
 export const useLeftMenu = () => {
   const dispatch = useDispatch();
@@ -44,25 +50,29 @@ export const useLeftMenu = () => {
 
   useEffect(() => {
     switch (history.location.pathname) {
-      case url.users:
-      case url.createUser:
-      case url.editUser:
+      case MANAGE_USERS_URL:
+      case CREATE_USER_URL:
+      case EDIT_USER_URL:
         setUsersMenuSelected(true);
         break;
-      case url.jumps:
+      case JUMPS_URL:
         setJumpsMenuSelected(true);
         break;
-      case url.settings:
+      case SETTINGS_URL:
         setSettingsMenuSelected(true);
         break;
-      case url.history:
+      case HISTORY_URL:
         setHistoryMenuSelected(true);
         break;
-      case url.dashboard:
+      case DASHBOARD_URL:
         setDashboardMenuSelected(true);
         break;
       default:
         break;
+    }
+
+    if (history.location.pathname.includes(EDIT_USER_URL.substring(0, EDIT_USER_URL.length - 3))) {
+      setUsersMenuSelected(true);
     }
   }, [history.location.pathname]);
 

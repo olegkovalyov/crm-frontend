@@ -5,7 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ApolloProvider } from '@apollo/client';
 import { store, persistor } from './redux/store';
 import { client } from './http/graphql.client';
-import Root from './components/root/root.component';
+import { routes } from './routes';
+import AppRouter from './components/core/app-router/app-router.component';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +21,7 @@ const App: React.FC = (props): ReactElement => {
       <PersistGate persistor={persistor} loading={null}>
         <ApolloProvider client={client}>
           <div className={classes.root}>
-            <Root />
+            <AppRouter routes={routes} />
           </div>
         </ApolloProvider>
       </PersistGate>

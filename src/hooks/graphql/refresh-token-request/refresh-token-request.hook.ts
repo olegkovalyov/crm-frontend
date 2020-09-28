@@ -11,15 +11,20 @@ import { store } from '../../../redux/store';
 const refreshTokenQuery = loader('./gql/queryRefreshToken.graphql');
 
 export const useRefreshTokenRequest = () => {
-  const { timeFromLastUpdate } = useIsAuthenticated();
+  const { timeFromLastUpdate, isAuthenticated } = useIsAuthenticated();
   const refreshTokenExists = useSelector((state: IRootState) => doesRefreshTokenExists(state));
 
+  /*
+   We refresh access token only if refresh token exists and
+   1) User has access token but there past some time from last update and we need to renew access token
+   2) User has no access token
+ */
   const refreshAccessToken = () => {
     if (refreshTokenExists
       && (timeFromLastUpdate > 20
-        || timeFromLastUpdate === 0)
+        || (!isAuthenticated
+          && timeFromLastUpdate === 0))
     ) {
-      console.log('Refreshing token');
       client.query<RefreshToken, null>({
         query: refreshTokenQuery,
         fetchPolicy: 'network-only',
