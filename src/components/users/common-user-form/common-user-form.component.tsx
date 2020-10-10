@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -6,12 +6,19 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { Checkbox, FormControlLabel, FormLabel } from '@material-ui/core';
 import { useStyles } from './common-user-form.styles';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
 
-import { licenseTypes, roles } from '../../../constants/user.constants';
+import {
+  licenseTypes,
+  RolesType,
+  USER_STATUS_ACTIVE,
+  userRoles,
+  UserStatusType,
+} from '../../../constants/user.constants';
 
 interface PropTypes {
   children?: never,
@@ -30,14 +37,17 @@ interface PropTypes {
   onEmailChange: (value: string) => void,
   licenseType: string,
   onLicenseTypeChange: (event: React.ChangeEvent<{ value: unknown }>) => void,
-  role: string,
-  onRoleChange: (event: React.ChangeEvent<{ value: unknown }>) => void,
+  roles: RolesType[],
   formTouched: boolean,
   submitButtonDisabled: boolean,
   formErrorMessage: string,
   loading: boolean,
-  submitFn: () => Promise<void>,
+  submitFn: (selectedRoles: RolesType[], selectedStatus: UserStatusType) => Promise<void>,
 }
+
+export type RoleCheckBoxesStateType = {
+  [key in RolesType]?: boolean
+};
 
 const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const classes = useStyles();
@@ -57,8 +67,7 @@ const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onEmailChange,
     licenseType,
     onLicenseTypeChange,
-    role,
-    onRoleChange,
+    roles,
     formTouched,
     submitButtonDisabled,
     formErrorMessage,
@@ -66,12 +75,34 @@ const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     submitFn,
   } = props;
 
+
+  const initialRoleCheckboxesState: RoleCheckBoxesStateType = {};
+  userRoles.forEach((value) => {
+    initialRoleCheckboxesState[value] = roles.includes(value);
+  });
+  const [roleCheckBoxesState, setRoleCheckboxesState] = useState<RoleCheckBoxesStateType>(initialRoleCheckboxesState);
+
+  const onRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRoleCheckboxesState(prevState => {
+      const newFormRolesState = { ...prevState };
+      newFormRolesState[e.target.value as RolesType] = e.target.checked;
+      return newFormRolesState;
+    });
+  };
+
+
   const licenseTypeOptionsJsx = licenseTypes.map((value, index) => {
     return <MenuItem key={value} value={value}>{value}</MenuItem>;
   });
 
-  const rolesOptionsJsx = roles.map((value, index) => {
-    return <MenuItem key={value} value={value}>{value}</MenuItem>;
+  const rolesJsx = userRoles.map((value) => {
+    return <FormControlLabel
+      key={value}
+      value={value}
+      control={<Checkbox color="primary" checked={roleCheckBoxesState[value]} onChange={onRoleChange} />}
+      label={value[0].toUpperCase() + value.slice(1).toLowerCase()}
+      labelPlacement="start"
+    />;
   });
 
 
@@ -135,19 +166,9 @@ const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={3}>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-outlined-label">Role</InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={role}
-                onChange={onRoleChange}
-                label="Role"
-              >
-                {rolesOptionsJsx}
-              </Select>
-            </FormControl>
+          <Grid item xs={12} sm={12}>
+            <FormLabel component="legend">Roles</FormLabel>
+            {rolesJsx}
           </Grid>
         </Grid>
         <FormSubmitButton
@@ -157,7 +178,13 @@ const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           className={classes.submit}
           onClick={(e) => {
             e.preventDefault();
-            return submitFn();
+            const updatedRoles: RolesType[] = [];
+            userRoles.forEach(value => {
+              if (roleCheckBoxesState[value] === true) {
+                updatedRoles.push(value);
+              }
+            });
+            return submitFn(updatedRoles, USER_STATUS_ACTIVE);
           }}
         />
         <FormSpinner show={loading} />

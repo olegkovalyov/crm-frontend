@@ -15,7 +15,7 @@ export interface ResetPassword_resetPassword_user {
   firstName: string;
   lastName: string;
   email: string;
-  role: string;
+  roles: string[];
   licenseType: string | null;
   createdAt: string;
   updatedAt: string;

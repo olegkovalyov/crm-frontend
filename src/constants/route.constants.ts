@@ -11,6 +11,8 @@ export const SETTINGS_URL = '/settings';
 export const JUMPS_URL = '/jumps';
 export const HISTORY_URL = '/history';
 
+export const NO_MATCH_URL = '*';
+
 
 export const breadcrumbsMap: { [key: string]: string } = {
   [DASHBOARD_URL]: 'Dashboard',

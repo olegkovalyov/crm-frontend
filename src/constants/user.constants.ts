@@ -1,21 +1,33 @@
 export const ROLE_STUDENT = 'STUDENT';
 export const ROLE_SKYDIVER = 'SKYDIVER';
-export const ROLE_INSTRUCTOR = 'INSTRUCTOR';
+export const ROLE_COACH = 'COACH';
+export const ROLE_CAMERAMAN = 'CAMERAMAN';
 export const ROLE_PACKER = 'PACKER';
 export const ROLE_RIGGER = 'RIGGER';
 export const ROLE_MANIFEST = 'MANIFEST';
 export const ROLE_ADMIN = 'ADMIN';
 
 
-export const roles = [
+export const userRoles: RolesType[] = [
   ROLE_STUDENT,
   ROLE_SKYDIVER,
-  ROLE_INSTRUCTOR,
+  ROLE_COACH,
+  ROLE_CAMERAMAN,
   ROLE_PACKER,
   ROLE_RIGGER,
   ROLE_MANIFEST,
   ROLE_ADMIN,
 ];
+
+export type RolesType =
+    'STUDENT' |
+    'SKYDIVER' |
+    'COACH' |
+    'CAMERAMAN' |
+    'PACKER' |
+    'RIGGER' |
+    'MANIFEST' |
+    'ADMIN';
 
 export const LICENSE_NONE = 'NONE';
 export const LICENSE_A = 'A';
@@ -29,4 +41,14 @@ export const licenseTypes = [
   LICENSE_B,
   LICENSE_C,
   LICENSE_D,
+];
+
+export const USER_STATUS_ACTIVE = 'ACTIVE';
+export const USER_STATUS_BLOCKED = 'BLOCKED';
+
+export type UserStatusType = 'ACTIVE' | 'BLOCKED';
+
+export const userStatuses = [
+  USER_STATUS_ACTIVE,
+  USER_STATUS_BLOCKED,
 ];

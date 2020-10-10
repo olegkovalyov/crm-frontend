@@ -4,7 +4,7 @@ query GetUser($input: String!) {
         firstName,
         lastName,
         email,
-        role,
+        roles,
         licenseType
     }
 }

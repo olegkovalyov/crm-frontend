@@ -8,7 +8,7 @@ import {
   HISTORY_URL,
   JUMPS_URL,
   LOGIN_URL,
-  MANAGE_USERS_URL,
+  MANAGE_USERS_URL, NO_MATCH_URL,
   REGISTER_URL,
   RESET_PASSWORD_URL,
   SETTINGS_URL,
@@ -90,5 +90,11 @@ export const routes: IRoute[] = [
     component: lazy(() => import('./pages/history/history.component')),
     exact: true,
     private: true,
+  },
+  {
+    path: NO_MATCH_URL,
+    component: lazy(() => import('./pages/not-found/not-found.component')),
+    exact: true,
+    private: false,
   },
 ];

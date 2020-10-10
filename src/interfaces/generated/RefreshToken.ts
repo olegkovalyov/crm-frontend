@@ -13,7 +13,7 @@ export interface RefreshToken_refreshToken_user {
   firstName: string;
   lastName: string;
   email: string;
-  role: string;
+  roles: string[];
   licenseType: string | null;
   createdAt: string;
   updatedAt: string;

@@ -8,11 +8,12 @@
 //==============================================================
 
 export interface CreateUserInput {
+  status: string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  role: string;
+  roles: string[];
   licenseType: string;
 }
 
@@ -31,11 +32,12 @@ export interface ResetPasswordInput {
 }
 
 export interface UpdateUserInput {
+  status?: string | null;
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
   password?: string | null;
-  role?: string | null;
+  roles?: string[] | null;
   licenseType?: string | null;
   id: string;
 }

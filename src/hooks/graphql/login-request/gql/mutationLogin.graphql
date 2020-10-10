@@ -5,7 +5,7 @@ mutation Login($input: LoginInput!) {
             firstName,
             lastName,
             email,
-            role,
+            roles,
             licenseType,
             createdAt,
             updatedAt,

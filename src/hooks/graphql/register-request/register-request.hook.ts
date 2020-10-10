@@ -23,21 +23,23 @@ export const useRegisterRequest = () => {
 
 
   const registerAsync = async (
+    status: string,
     email: string,
     password: string,
     firstName: string,
     lastName: string,
-    role: string,
+    roles: string[],
     licenseType: string,
   ): Promise<void> => {
     try {
       const variables: RegisterVariables = {
         input: {
+          status,
           email,
           password,
           firstName,
           lastName,
-          role,
+          roles,
           licenseType,
         },
       };

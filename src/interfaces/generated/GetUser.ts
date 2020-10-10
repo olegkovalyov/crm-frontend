@@ -13,7 +13,7 @@ export interface GetUser_getUser {
   firstName: string;
   lastName: string;
   email: string;
-  role: string;
+  roles: string[];
   licenseType: string | null;
 }
 

@@ -18,6 +18,7 @@ export const useGetUserRequest = (id: string) => {
           authorization: `Bearer ${accessToken} `,
         },
       },
+      fetchPolicy: 'network-only',
       variables: {
         input: id,
       },

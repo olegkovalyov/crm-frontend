@@ -4,6 +4,7 @@ import { useUserFormValidation } from '../../../hooks/forms/user-form-validation
 import { useCreateUserRequest } from '../../../hooks/graphql/create-user-request/create-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { MANAGE_USERS_URL } from '../../../constants/route.constants';
+import { RolesType, UserStatusType } from '../../../constants/user.constants';
 
 interface PropTypes {
   children?: never,
@@ -25,8 +26,7 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     emailErrorMessage,
     licenseType,
     onLicenceTypeChange,
-    role,
-    onRoleChange,
+    roles,
     formTouched,
     saveButtonDisabled,
   } = useUserFormValidation();
@@ -60,14 +60,20 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         onEmailChange={onEmailChange}
         licenseType={licenseType}
         onLicenseTypeChange={onLicenceTypeChange}
-        role={role}
-        onRoleChange={onRoleChange}
+        roles={roles}
         formTouched={formTouched}
         submitButtonDisabled={saveButtonDisabled}
         formErrorMessage={errorMessage}
         loading={loading}
-        submitFn={() => {
-          return createUserAsync(firstName, lastName, email, 'password', role, licenseType);
+        submitFn={(selectedRoles: RolesType[], selectedStatus: UserStatusType) => {
+          return createUserAsync(
+            selectedStatus,
+            firstName,
+            lastName,
+            email,
+            'password',
+            selectedRoles,
+            licenseType);
         }}
       />
     </>

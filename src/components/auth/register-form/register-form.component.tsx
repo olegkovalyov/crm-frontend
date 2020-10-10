@@ -16,7 +16,7 @@ import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
 import { useRegisterFormValidation } from '../../../hooks/forms/register-form-validation/register-form-validation.hook';
 import { useRegisterRequest } from '../../../hooks/graphql/register-request/register-request.hook';
-import { LICENSE_NONE, ROLE_SKYDIVER } from '../../../constants/user.constants';
+import { LICENSE_NONE, ROLE_SKYDIVER, USER_STATUS_ACTIVE } from '../../../constants/user.constants';
 import { LOGIN_URL } from '../../../constants/route.constants';
 
 
@@ -50,7 +50,6 @@ const RegisterForm: FC = (props): ReactElement => {
     registerButtonDisabled,
   } = useRegisterFormValidation();
 
-  const role = ROLE_SKYDIVER;
   const licenseType = LICENSE_NONE;
 
   const {
@@ -158,7 +157,14 @@ const RegisterForm: FC = (props): ReactElement => {
             className={classes.submit}
             onClick={(e) => {
               e.preventDefault();
-              return registerAsync(email, password, firstName, lastName, role, licenseType);
+              return registerAsync(
+                USER_STATUS_ACTIVE,
+                email,
+                password,
+                firstName,
+                lastName,
+                [ROLE_SKYDIVER],
+                licenseType);
             }}
           />
           <FormSpinner show={loading} />

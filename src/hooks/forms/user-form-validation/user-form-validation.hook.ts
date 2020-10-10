@@ -5,7 +5,7 @@ import {
   lastNameConstrains,
   validateInput,
 } from '../../../common/inputValidator';
-import { LICENSE_NONE, ROLE_SKYDIVER } from '../../../constants/user.constants';
+import { LICENSE_NONE, RolesType } from '../../../constants/user.constants';
 
 export const useUserFormValidation = () => {
 
@@ -13,13 +13,13 @@ export const useUserFormValidation = () => {
     firstName: string,
     lastName: string,
     email: string,
-    role: string,
+    roles: RolesType[],
     licenseType: string,
   ): void => {
     setFirstName(firstName);
     setLastName(lastName);
     setEmail(email);
-    setRole(role);
+    setRoles(roles);
     setLicenseType(licenseType);
   };
 
@@ -42,7 +42,8 @@ export const useUserFormValidation = () => {
 
   const [licenseType, setLicenseType] = useState(LICENSE_NONE);
 
-  const [role, setRole] = useState(ROLE_SKYDIVER);
+  const [roles, setRoles] = useState<RolesType[]>([]);
+
 
   useEffect(() => {
     if (!hasEmailError
@@ -85,11 +86,6 @@ export const useUserFormValidation = () => {
     setLicenseType(event.target.value as string);
   };
 
-  const onRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setFormTouched(true);
-    setRole(event.target.value as string);
-  };
-
   return {
     firstName,
     onFirstNameChange,
@@ -105,8 +101,7 @@ export const useUserFormValidation = () => {
     emailErrorMessage,
     licenseType,
     onLicenceTypeChange,
-    role,
-    onRoleChange,
+    roles,
     formTouched,
     saveButtonDisabled,
     setUser,

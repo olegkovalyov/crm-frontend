@@ -6,6 +6,11 @@ import LoadBackdrop from '../../../elements/backdrop.component';
 import { useUpdateUserRequest } from '../../../hooks/graphql/update-user-request/update-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { MANAGE_USERS_URL } from '../../../constants/route.constants';
+import {
+  RolesType,
+  UserStatusType,
+} from '../../../constants/user.constants';
+import { UserInterface } from '../../../interfaces/user.interface';
 
 interface PropTypes {
   id: string;
@@ -31,8 +36,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     emailErrorMessage,
     licenseType,
     onLicenceTypeChange,
-    role,
-    onRoleChange,
+    roles,
     formTouched,
     saveButtonDisabled,
     setUser,
@@ -48,14 +52,14 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   }, [getUser]);
 
   if (userData && needPopulateColumns) {
-    const currentUser = userData.getUser;
+    const currentUser = userData.getUser as UserInterface;
     if (currentUser !== null) {
       setUser(
         currentUser.firstName,
         currentUser.lastName,
         currentUser.email,
-        currentUser.role,
-        currentUser.licenseType!
+        currentUser.roles,
+        currentUser.licenseType!,
       );
       setNeedPopulateColumns(false);
     } else {
@@ -104,14 +108,21 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         onEmailChange={onEmailChange}
         licenseType={licenseType}
         onLicenseTypeChange={onLicenceTypeChange}
-        role={role}
-        onRoleChange={onRoleChange}
+        roles={roles}
         formTouched={formTouched}
         submitButtonDisabled={saveButtonDisabled}
         formErrorMessage={errorMessage}
         loading={loading}
-        submitFn={() => {
-          return updateUserAsync(props.id, firstName, lastName, email, null, role, licenseType);
+        submitFn={(selectedRoles: RolesType[], selectedStatus: UserStatusType) => {
+          return updateUserAsync(
+            props.id,
+            selectedStatus,
+            firstName,
+            lastName,
+            email,
+            null,
+            selectedRoles,
+            licenseType);
         }}
       />
     </>

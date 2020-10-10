@@ -12,10 +12,10 @@ import { useStyles } from './users-table.styles';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { useDeleteUserRequest } from '../../../hooks/graphql/delete-user-request/delete-user-request.hook';
 import { CREATE_USER_URL, EDIT_USER_URL } from '../../../constants/route.constants';
+import { UserInterface } from '../../../interfaces/user.interface';
 
 
 const UsersTable: FC = (props): ReactElement => {
-
   const [userIdToDetele, setUserIdToDelete] = useState('');
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
   const theme = useTheme();
@@ -79,7 +79,7 @@ const UsersTable: FC = (props): ReactElement => {
     { title: 'First Name', field: 'firstName' },
     { title: 'Last Name', field: 'lastName' },
     { title: 'Email', field: 'email' },
-    { title: 'Role', field: 'role' },
+    { title: 'Role', field: 'roles', render: (user: UserInterface) => user.roles.join(', ') },
     { title: 'License', field: 'licenseType' },
     { title: 'Created At', field: 'createdAt' },
     { title: 'Updated At', field: 'updatedAt' },

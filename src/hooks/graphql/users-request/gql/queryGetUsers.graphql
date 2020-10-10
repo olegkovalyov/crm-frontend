@@ -4,7 +4,7 @@ query GetUsers {
         firstName,
         lastName,
         email,
-        role,
+        roles,
         licenseType,
         createdAt,
         updatedAt
