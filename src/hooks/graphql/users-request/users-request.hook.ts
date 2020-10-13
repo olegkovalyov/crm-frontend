@@ -1,9 +1,11 @@
 import { useLazyQuery } from '@apollo/client';
 import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
-import { GetUsers_getUsers, GetUsers } from '../../../interfaces/generated/GetUsers';
+import { GetUsers_getUsers, GetUsers, GetUsersVariables } from '../../../interfaces/generated/GetUsers';
 import { IRootState } from '../../../redux/root.reducer';
 import { getAccessToken } from '../../../redux/auth/auth.selector';
+import { RolesType, UserStatusType } from '../../../constants/user.constants';
+import { GetUsersFilterInput } from '../../../interfaces/generated/globalTypes';
 
 const usersQuery = loader('./gql/queryGetUsers.graphql');
 
@@ -12,7 +14,7 @@ export const useGetUsersRequest = () => {
   const accessToken = useSelector((state: IRootState) => getAccessToken(state));
 
   let users: GetUsers_getUsers[] = [];
-  const [getUsersAsync, { loading, data, error }] = useLazyQuery<GetUsers>(usersQuery,
+  const [_getUsersAsync, { loading, data, error }] = useLazyQuery<GetUsers, GetUsersVariables>(usersQuery,
     {
       context: {
         headers: {
@@ -33,6 +35,19 @@ export const useGetUsersRequest = () => {
       return user;
     });
   }
+
+  const getUsersAsync = async (
+    status: UserStatusType | null,
+    roles: RolesType[] | null,
+  ): Promise<void> => {
+    const variables: GetUsersVariables = {
+      getUsersFilter: {
+        status,
+        roles,
+      },
+    };
+    await _getUsersAsync({ variables });
+  };
 
 
   return {

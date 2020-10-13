@@ -43,6 +43,7 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     errorMessage,
   } = useCreateUserRequest();
 
+
   if (createUserData) {
     return (<Redirect to={MANAGE_USERS_URL} />);
   }

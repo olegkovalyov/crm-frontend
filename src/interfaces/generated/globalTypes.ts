@@ -21,6 +21,11 @@ export interface ForgotPasswordInput {
   email: string;
 }
 
+export interface GetUsersFilterInput {
+  status?: string | null;
+  roles?: string[] | null;
+}
+
 export interface LoginInput {
   email: string;
   password: string;

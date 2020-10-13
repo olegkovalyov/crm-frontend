@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import Header from '../../components/layout/header/header.component';
 import LeftMenu from '../../components/layout/left-menu/left-menu.component';
 import { Content } from '../../components/layout/content/content.component';
-import UsersTable from '../../components/users/users-table/users-table.component';
+import UsersTableContainer from '../../components/users/users-table-container/users-table-container.component';
 
 const Users: FC = (props): ReactElement => {
 
@@ -11,7 +11,7 @@ const Users: FC = (props): ReactElement => {
       <Header />
       <LeftMenu />
       <Content>
-        <UsersTable />
+        <UsersTableContainer />
       </Content>
     </>
   );

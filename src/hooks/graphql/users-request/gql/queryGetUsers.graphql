@@ -1,5 +1,5 @@
-query GetUsers {
-    getUsers{
+query GetUsers($getUsersFilter: GetUsersFilterInput!) {
+    getUsers(getUsersFilterInput: $getUsersFilter){
         id,
         status,
         firstName,

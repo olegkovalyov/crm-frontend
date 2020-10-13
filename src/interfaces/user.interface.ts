@@ -6,3 +6,7 @@ export interface UserInterface extends GetUser_getUser {
   roles: RolesType[];
 }
 
+export type RoleCheckBoxesStateType = {
+  [key in RolesType]?: boolean
+};
+

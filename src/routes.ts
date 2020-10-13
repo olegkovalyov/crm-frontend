@@ -11,7 +11,7 @@ import {
   MANAGE_USERS_URL, NO_MATCH_URL,
   REGISTER_URL,
   RESET_PASSWORD_URL,
-  SETTINGS_URL, MANAGE_INVENTORY_URL,
+  SETTINGS_URL, MANAGE_INVENTORY_URL, HOME_URL,
 } from './constants/route.constants';
 
 export const authUrls = [
@@ -49,6 +49,12 @@ export const routes: IRoute[] = [
   },
 
   // Private
+  {
+    path: HOME_URL,
+    component: lazy(() => import('./pages/dashboard/dashboard.component')),
+    exact: true,
+    private: false,
+  },
   {
     path: DASHBOARD_URL,
     component: lazy(() => import('./pages/dashboard/dashboard.component')),

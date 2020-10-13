@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { Checkbox, FormControlLabel, FormLabel, Switch } from '@material-ui/core';
+import { FormControlLabel, FormLabel, Switch } from '@material-ui/core';
 import { useStyles } from './common-user-form.styles';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import FormSpinner from '../../../elements/form-spinner.component';
@@ -14,9 +14,9 @@ import FormError from '../../../elements/form-error.component';
 
 import {
   licenseTypes,
-  RolesType,
-  userRoles,
 } from '../../../constants/user.constants';
+import Roles from '../roles/roles.component';
+import { RoleCheckBoxesStateType } from '../../../interfaces/user.interface';
 
 
 interface PropTypes {
@@ -46,10 +46,6 @@ interface PropTypes {
   loading: boolean,
   submitFn: () => Promise<void>,
 }
-
-export type RoleCheckBoxesStateType = {
-  [key in RolesType]?: boolean
-};
 
 const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const classes = useStyles();
@@ -83,16 +79,6 @@ const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   const licenseTypeOptionsJsx = licenseTypes.map((value, index) => {
     return <MenuItem key={value} value={value}>{value}</MenuItem>;
-  });
-
-  const rolesJsx = userRoles.map((value) => {
-    return <FormControlLabel
-      key={value}
-      value={value}
-      control={<Checkbox color="primary" checked={roleCheckBoxesState[value]} onChange={onRoleChange} />}
-      label={value[0].toUpperCase() + value.slice(1).toLowerCase()}
-      labelPlacement="start"
-    />;
   });
 
 
@@ -158,7 +144,10 @@ const CommonUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormLabel component="legend">Roles</FormLabel>
-            {rolesJsx}
+            <Roles
+              roleCheckBoxesState={roleCheckBoxesState}
+              onRoleChange={onRoleChange}
+            />
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormControlLabel

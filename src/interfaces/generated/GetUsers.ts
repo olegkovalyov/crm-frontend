@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { GetUsersFilterInput } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetUsers
 // ====================================================
@@ -22,4 +24,8 @@ export interface GetUsers_getUsers {
 
 export interface GetUsers {
   getUsers: (GetUsers_getUsers | null)[];
+}
+
+export interface GetUsersVariables {
+  getUsersFilter: GetUsersFilterInput;
 }

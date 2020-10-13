@@ -2,27 +2,45 @@ import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import Alert from '@material-ui/lab/Alert';
-import { Button, Grid, LinearProgress } from '@material-ui/core';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import {
+  LinearProgress,
+} from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useGetUsersRequest } from '../../../hooks/graphql/users-request/users-request.hook';
+import BlockIcon from '@material-ui/icons/Block';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
+import { ApolloError } from '@apollo/client';
 import { GetUsers_getUsers } from '../../../interfaces/generated/GetUsers';
-import { useStyles } from './users-table.styles';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { useDeleteUserRequest } from '../../../hooks/graphql/delete-user-request/delete-user-request.hook';
-import { CREATE_USER_URL, EDIT_USER_URL } from '../../../constants/route.constants';
+import { EDIT_USER_URL } from '../../../constants/route.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
-import HowToRegIcon from '@material-ui/icons/HowToReg';
-import BlockIcon from '@material-ui/icons/Block';
-import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
+import { RolesType, USER_STATUS_ACTIVE, UserStatusType } from '../../../constants/user.constants';
 
+interface IPropTypes {
+  getUsersAsync: (
+    status: UserStatusType | null,
+    roles: RolesType[] | null,
+  ) => Promise<void>,
+  loading: boolean,
+  users: GetUsers_getUsers[],
+  error: ApolloError | undefined
+}
 
-const UsersTable: FC = (props): ReactElement => {
+const UsersTable: FC<IPropTypes> = (props): ReactElement => {
+
+  const {
+    getUsersAsync,
+    loading,
+    error,
+    users,
+  } = props;
+
   const [userIdToDetele, setUserIdToDelete] = useState('');
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
   const theme = useTheme();
   const isFullScreenDialog = useMediaQuery(theme.breakpoints.down('sm'));
+  const history = useHistory();
 
   const handleClickOpen = () => {
     setIsOpenDeleteDialog(true);
@@ -36,30 +54,20 @@ const UsersTable: FC = (props): ReactElement => {
   const handleConfirmRemove = () => {
     deleteUserAsync(userIdToDetele).then(() => {
       setIsOpenDeleteDialog(false);
-      return getUsersAsync();
+      return getUsersAsync(USER_STATUS_ACTIVE, []);
     });
   };
-
-  const classes = useStyles();
-  const history = useHistory();
-
-  const {
-    getUsersAsync,
-    loading,
-    users,
-    error,
-  } = useGetUsersRequest();
 
   const {
     deleting,
     deleteUserAsync,
   } = useDeleteUserRequest();
 
-  useEffect(() => {
-    // console.log('Refetch users');
-    getUsersAsync();
-    // return () => console.log('Unmounted');
-  }, [getUsersAsync]);
+  //
+  // useEffect(() => {
+  //   console.log('FETCH');
+  //   getUsersAsync(null, null);
+  // }, []);
 
   if (loading) {
     return (
@@ -97,51 +105,33 @@ const UsersTable: FC = (props): ReactElement => {
 
   return (
     <>
-      <Grid container spacing={3}>
-        <Grid item xs={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-            startIcon={<PersonAddIcon />}
-            onClick={(e: React.MouseEvent) => {
-              history.push(CREATE_USER_URL);
-            }}
-          >
-            Create
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <MaterialTable
-            title="Users"
-            columns={columns}
-            data={users}
-            actions={[
-              {
-                icon: 'edit',
-                tooltip: 'Edit User',
-                onClick: (event, rowData) => {
-                  const { id } = rowData as GetUsers_getUsers;
-                  const url = `${EDIT_USER_URL}/${id}`;
-                  history.push(url);
-                },
-              },
-              {
-                icon: 'delete',
-                tooltip: 'Delete User',
-                onClick: (event, rowData) => {
-                  setUserIdToDelete((rowData as GetUsers_getUsers).id);
-                  handleClickOpen();
-                },
-              },
-            ]}
-            options={{
-              actionsColumnIndex: -1,
-            }}
-          />
-        </Grid>
-      </Grid>
+      <MaterialTable
+        title="Users"
+        columns={columns}
+        data={users}
+        actions={[
+          {
+            icon: 'edit',
+            tooltip: 'Edit User',
+            onClick: (event, rowData) => {
+              const { id } = rowData as GetUsers_getUsers;
+              const url = `${EDIT_USER_URL}/${id}`;
+              history.push(url);
+            },
+          },
+          {
+            icon: 'delete',
+            tooltip: 'Delete User',
+            onClick: (event, rowData) => {
+              setUserIdToDelete((rowData as GetUsers_getUsers).id);
+              handleClickOpen();
+            },
+          },
+        ]}
+        options={{
+          actionsColumnIndex: -1,
+        }}
+      />
       <ResponsiveDialog
         handleClose={handleClose}
         handleConfirm={handleConfirmRemove}

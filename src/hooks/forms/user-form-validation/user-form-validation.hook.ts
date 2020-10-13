@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   emailConstraints,
   firstNameConstrains,
@@ -9,10 +9,9 @@ import {
   LICENSE_NONE,
   RolesType,
   USER_STATUS_ACTIVE, USER_STATUS_BLOCKED,
-  userRoles,
   UserStatusType,
 } from '../../../constants/user.constants';
-import { RoleCheckBoxesStateType } from '../../../components/users/common-user-form/common-user-form.component';
+import { useRoles } from '../roles/roles.hook';
 
 export const useUserFormValidation = () => {
 
@@ -28,12 +27,8 @@ export const useUserFormValidation = () => {
     setFirstName(firstName);
     setLastName(lastName);
     setEmail(email);
-    setRoles(roles);
     setLicenseType(licenseType);
-    userRoles.forEach((value) => {
-      initialRoleCheckboxesState[value] = roles.includes(value);
-    });
-    setRoleCheckboxesState(initialRoleCheckboxesState);
+    initCheckboxes(roles);
   };
 
 
@@ -55,25 +50,14 @@ export const useUserFormValidation = () => {
 
   const [licenseType, setLicenseType] = useState(LICENSE_NONE);
 
-  const [roles, setRoles] = useState<RolesType[]>([]);
-
-  const initialRoleCheckboxesState: RoleCheckBoxesStateType = {};
-  userRoles.forEach((value) => {
-    initialRoleCheckboxesState[value] = roles.includes(value);
-  });
-  const [roleCheckBoxesState, setRoleCheckboxesState] = useState<RoleCheckBoxesStateType>(initialRoleCheckboxesState);
+  const {
+    roleCheckBoxesState,
+    getSelectedRoles,
+    handleRoleChange,
+    initCheckboxes,
+  } = useRoles();
 
   const [status, setStatus] = useState<UserStatusType>(USER_STATUS_ACTIVE);
-
-  const getSelectedRoles = useCallback( (): RolesType[] => {
-    const selectedRoles: RolesType[] = [];
-    userRoles.forEach(value => {
-      if (roleCheckBoxesState[value] === true) {
-        selectedRoles.push(value);
-      }
-    });
-    return selectedRoles;
-  }, [roleCheckBoxesState]);
 
   useEffect(() => {
     if (!hasEmailError
@@ -118,14 +102,6 @@ export const useUserFormValidation = () => {
     setLicenseType(event.target.value as string);
   };
 
-  const handleRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRoleCheckboxesState(prevState => {
-      const newFormRolesState = { ...prevState };
-      newFormRolesState[e.target.value as RolesType] = e.target.checked;
-      return newFormRolesState;
-    });
-  };
-
   const handleIsActiveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked ? setStatus(USER_STATUS_ACTIVE) : setStatus(USER_STATUS_BLOCKED);
   };
@@ -153,6 +129,7 @@ export const useUserFormValidation = () => {
     formTouched,
     submitButtonEnabled,
     setUser,
+    initCheckboxes,
   };
 
 };

@@ -63,6 +63,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         currentUser.roles,
         currentUser.licenseType!,
       );
+      console.log(roleCheckBoxesState);
       setNeedPopulateColumns(false);
     } else {
       return <Redirect to={MANAGE_USERS_URL} />;
