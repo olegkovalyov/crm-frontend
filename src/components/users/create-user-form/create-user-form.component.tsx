@@ -4,13 +4,14 @@ import { useUserFormValidation } from '../../../hooks/forms/user-form-validation
 import { useCreateUserRequest } from '../../../hooks/graphql/create-user-request/create-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { MANAGE_USERS_URL } from '../../../constants/route.constants';
-import { RolesType, UserStatusType } from '../../../constants/user.constants';
+import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
 
 interface PropTypes {
   children?: never,
 }
 
 const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+
   const {
     firstName,
     onFirstNameChange,
@@ -26,9 +27,13 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     emailErrorMessage,
     licenseType,
     onLicenceTypeChange,
-    roles,
+    roleCheckBoxesState,
+    handleRoleChange,
+    getSelectedRoles,
+    status,
+    handleIsActiveChange,
     formTouched,
-    saveButtonDisabled,
+    submitButtonEnabled,
   } = useUserFormValidation();
 
   const {
@@ -60,19 +65,22 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         onEmailChange={onEmailChange}
         licenseType={licenseType}
         onLicenseTypeChange={onLicenceTypeChange}
-        roles={roles}
+        roleCheckBoxesState={roleCheckBoxesState}
+        onRoleChange={handleRoleChange}
+        isActive={status === USER_STATUS_ACTIVE}
+        onIsActiveChange={handleIsActiveChange}
         formTouched={formTouched}
-        submitButtonDisabled={saveButtonDisabled}
+        submitButtonEnabled={submitButtonEnabled}
         formErrorMessage={errorMessage}
         loading={loading}
-        submitFn={(selectedRoles: RolesType[], selectedStatus: UserStatusType) => {
+        submitFn={() => {
           return createUserAsync(
-            selectedStatus,
+            status,
             firstName,
             lastName,
             email,
             'password',
-            selectedRoles,
+            getSelectedRoles(),
             licenseType);
         }}
       />

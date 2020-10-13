@@ -1,10 +1,6 @@
 import {
   CLOSE_LEFT_MENU,
   CLOSE_TOP_MENU,
-  COLLAPSE_JUMPS_SUBMENU,
-  COLLAPSE_USERS_SUBMENU,
-  EXPAND_JUMPS_SUBMENU,
-  EXPAND_USERS_SUBMENU,
   OPEN_LEFT_MENU,
   OPEN_TOP_MENU,
 } from './ui.types';
@@ -24,22 +20,6 @@ export interface IOpenTopMenuAction {
 
 export interface ICloseTopMenuAction {
   type: typeof CLOSE_TOP_MENU
-}
-
-export interface IExpandUsersSubMenuAction {
-  type: typeof EXPAND_USERS_SUBMENU
-}
-
-export interface ICollapseUsersSubMenuAction {
-  type: typeof COLLAPSE_USERS_SUBMENU
-}
-
-export interface IExpandJumpsSubMenuAction {
-  type: typeof EXPAND_JUMPS_SUBMENU
-}
-
-export interface ICollapseJumpsSubMenuAction {
-  type: typeof COLLAPSE_JUMPS_SUBMENU
 }
 
 export const openLeftMenuAction = (): IOpenLeftMenuAction => {
@@ -66,36 +46,9 @@ export const closeTopMenuAction = (): ICloseTopMenuAction => {
   };
 };
 
-export const expandUsersSubMenuAction = (): IExpandUsersSubMenuAction => {
-  return {
-    type: EXPAND_USERS_SUBMENU,
-  };
-};
-
-export const expandJumpsSubMenuAction = (): IExpandJumpsSubMenuAction => {
-  return {
-    type: EXPAND_JUMPS_SUBMENU,
-  };
-};
-
-export const collapseUsersSubMenuAction = (): ICollapseUsersSubMenuAction => {
-  return {
-    type: COLLAPSE_USERS_SUBMENU,
-  };
-};
-
-export const collapseJumpsSubMenuAction = (): ICollapseJumpsSubMenuAction => {
-  return {
-    type: COLLAPSE_JUMPS_SUBMENU,
-  };
-};
 
 
 export type UiActionTypes = IOpenLeftMenuAction
   | ICloseLeftMenuAction
   | IOpenTopMenuAction
-  | ICloseTopMenuAction
-  | IExpandJumpsSubMenuAction
-  | ICollapseJumpsSubMenuAction
-  | IExpandUsersSubMenuAction
-  | ICollapseUsersSubMenuAction;
+  | ICloseTopMenuAction;

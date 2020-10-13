@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import Alert from '@material-ui/lab/Alert';
-import { Button, LinearProgress } from '@material-ui/core';
+import { Button, Grid, LinearProgress } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -13,6 +13,9 @@ import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { useDeleteUserRequest } from '../../../hooks/graphql/delete-user-request/delete-user-request.hook';
 import { CREATE_USER_URL, EDIT_USER_URL } from '../../../constants/route.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
+import BlockIcon from '@material-ui/icons/Block';
+import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
 
 
 const UsersTable: FC = (props): ReactElement => {
@@ -78,6 +81,13 @@ const UsersTable: FC = (props): ReactElement => {
   const columns = [
     { title: 'First Name', field: 'firstName' },
     { title: 'Last Name', field: 'lastName' },
+    {
+      title: 'Active', field: 'status', render: (user: UserInterface) => {
+        return (user.status === USER_STATUS_ACTIVE) ?
+          <HowToRegIcon color='primary' /> :
+          <BlockIcon color='error' />;
+      },
+    },
     { title: 'Email', field: 'email' },
     { title: 'Role', field: 'roles', render: (user: UserInterface) => user.roles.join(', ') },
     { title: 'License', field: 'licenseType' },
@@ -87,18 +97,51 @@ const UsersTable: FC = (props): ReactElement => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        className={classes.button}
-        startIcon={<PersonAddIcon />}
-        onClick={(e: React.MouseEvent) => {
-          history.push(CREATE_USER_URL);
-        }}
-      >
-        Create
-      </Button>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            startIcon={<PersonAddIcon />}
+            onClick={(e: React.MouseEvent) => {
+              history.push(CREATE_USER_URL);
+            }}
+          >
+            Create
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <MaterialTable
+            title="Users"
+            columns={columns}
+            data={users}
+            actions={[
+              {
+                icon: 'edit',
+                tooltip: 'Edit User',
+                onClick: (event, rowData) => {
+                  const { id } = rowData as GetUsers_getUsers;
+                  const url = `${EDIT_USER_URL}/${id}`;
+                  history.push(url);
+                },
+              },
+              {
+                icon: 'delete',
+                tooltip: 'Delete User',
+                onClick: (event, rowData) => {
+                  setUserIdToDelete((rowData as GetUsers_getUsers).id);
+                  handleClickOpen();
+                },
+              },
+            ]}
+            options={{
+              actionsColumnIndex: -1,
+            }}
+          />
+        </Grid>
+      </Grid>
       <ResponsiveDialog
         handleClose={handleClose}
         handleConfirm={handleConfirmRemove}
@@ -109,33 +152,6 @@ const UsersTable: FC = (props): ReactElement => {
         isOpen={isOpenDeleteDialog}
         isFullScreen={isFullScreenDialog}
         inProcess={deleting}
-      />
-      <MaterialTable
-        title="Users"
-        columns={columns}
-        data={users}
-        actions={[
-          {
-            icon: 'edit',
-            tooltip: 'Edit User',
-            onClick: (event, rowData) => {
-              const { id } = rowData as GetUsers_getUsers;
-              const url = EDIT_USER_URL.substring(0, EDIT_USER_URL.length - 3) + id;
-              history.push(url);
-            },
-          },
-          {
-            icon: 'delete',
-            tooltip: 'Delete User',
-            onClick: (event, rowData) => {
-              setUserIdToDelete((rowData as GetUsers_getUsers).id);
-              handleClickOpen();
-            },
-          },
-        ]}
-        options={{
-          actionsColumnIndex: -1,
-        }}
       />
     </>
   );

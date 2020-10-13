@@ -2,10 +2,6 @@ import { UiActionTypes } from './ui.actions';
 import {
   CLOSE_LEFT_MENU,
   CLOSE_TOP_MENU,
-  COLLAPSE_JUMPS_SUBMENU,
-  COLLAPSE_USERS_SUBMENU,
-  EXPAND_JUMPS_SUBMENU,
-  EXPAND_USERS_SUBMENU,
   OPEN_LEFT_MENU,
   OPEN_TOP_MENU,
 } from './ui.types';
@@ -13,15 +9,11 @@ import {
 export interface IUiState {
   isOpenedLeftMenu: boolean,
   isOpenedTopMenu: boolean,
-  isExpandedUsersSubMenu: boolean,
-  isExpandedJumpsSubMenu: boolean,
 }
 
 export const uiState: IUiState = {
   isOpenedLeftMenu: true,
   isOpenedTopMenu: false,
-  isExpandedJumpsSubMenu: false,
-  isExpandedUsersSubMenu: false,
 };
 
 export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
@@ -48,30 +40,6 @@ export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
       return {
         ...state,
         isOpenedTopMenu: false,
-      };
-    }
-    case EXPAND_USERS_SUBMENU: {
-      return {
-        ...state,
-        isExpandedUsersSubMenu: true,
-      };
-    }
-    case COLLAPSE_USERS_SUBMENU: {
-      return {
-        ...state,
-        isExpandedUsersSubMenu: false,
-      };
-    }
-    case EXPAND_JUMPS_SUBMENU: {
-      return {
-        ...state,
-        isExpandedJumpsSubMenu: true,
-      };
-    }
-    case COLLAPSE_JUMPS_SUBMENU: {
-      return {
-        ...state,
-        isExpandedJumpsSubMenu: false,
       };
     }
     default:

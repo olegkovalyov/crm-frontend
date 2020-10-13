@@ -6,12 +6,12 @@ import {
   EDIT_USER_URL,
   FORGOT_PASSWORD_URL,
   HISTORY_URL,
-  JUMPS_URL,
+  EVENTS_URL,
   LOGIN_URL,
   MANAGE_USERS_URL, NO_MATCH_URL,
   REGISTER_URL,
   RESET_PASSWORD_URL,
-  SETTINGS_URL,
+  SETTINGS_URL, MANAGE_INVENTORY_URL,
 } from './constants/route.constants';
 
 export const authUrls = [
@@ -68,8 +68,14 @@ export const routes: IRoute[] = [
     private: true,
   },
   {
-    path: EDIT_USER_URL,
+    path: `${EDIT_USER_URL}/:id`,
     component: lazy(() => import('./pages/edit-user/edit-user.component')),
+    exact: false,
+    private: true,
+  },
+  {
+    path: MANAGE_INVENTORY_URL,
+    component: lazy(() => import('./pages/inventory/inventory.component')),
     exact: false,
     private: true,
   },
@@ -80,8 +86,8 @@ export const routes: IRoute[] = [
     private: true,
   },
   {
-    path: JUMPS_URL,
-    component: lazy(() => import('./pages/jumps/jumps.component')),
+    path: EVENTS_URL,
+    component: lazy(() => import('./pages/events/events.component')),
     exact: true,
     private: true,
   },

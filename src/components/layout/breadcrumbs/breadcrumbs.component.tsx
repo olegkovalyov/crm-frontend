@@ -3,39 +3,55 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Link as RouterLink, Route } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { useStyles } from '../content/content.styles';
-import { breadcrumbsMap } from '../../../constants/route.constants';
+import { breadcrumbsMap, DASHBOARD_URL, EDIT_USER_URL } from '../../../constants/route.constants';
 
 
 export const SimpleBreadcrumbs = (): ReactElement => {
   const classes = useStyles();
+
+  const isEmptyLink = (url: string): boolean => {
+    const emptyLinks = [
+      EDIT_USER_URL,
+    ];
+    return emptyLinks.includes(url);
+  };
+
+  const prepareLink = (url: string) => {
+    if (url.includes(EDIT_USER_URL)) {
+      return EDIT_USER_URL;
+    }
+    if (url.includes(DASHBOARD_URL)) {
+      return '';
+    }
+    return url;
+  };
+
+
   return (
     <Route>
       {({ location }) => {
-        const pathnames = location.pathname.split('/').filter(x => x);
+        const pathNames = prepareLink(location.pathname).split('/').filter(x => x);
         return (
           <Breadcrumbs aria-label="Breadcrumb" className={classes.breadcrumbs}>
-            <RouterLink color="inherit" to="/">
-              Home
+            <RouterLink color="inherit" to={DASHBOARD_URL}>
+              Dashboard
             </RouterLink>
-            {pathnames.map((value, index) => {
-              const last = index === pathnames.length - 1;
-              const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-              let breadCrumbTitle = breadcrumbsMap[to];
-              if (last
-                && to !== '/users/create'
-                && to.match('/users/')
-              ) {
-                breadCrumbTitle = 'Edit';
-              }
-              return last ? (
-                <Typography color="textPrimary" key={to}>
-                  {breadCrumbTitle}
-                </Typography>
-              ) : (
-                <RouterLink color="inherit" to={to} key={to}>
-                  {breadCrumbTitle}
-                </RouterLink>
-              );
+            {pathNames.map((value, index) => {
+              const isLast = index === pathNames.length - 1;
+              let url = `/${pathNames.slice(0, index + 1).join('/')}`;
+              url = prepareLink(url);
+              const breadCrumbTitle = breadcrumbsMap[url];
+              return (isLast
+                || isEmptyLink(url)) ?
+                (
+                  <Typography color="textPrimary" key={url}>
+                    {breadCrumbTitle}
+                  </Typography>
+                ) : (
+                  <RouterLink color="inherit" to={url} key={url}>
+                    {breadCrumbTitle}
+                  </RouterLink>
+                );
             })}
           </Breadcrumbs>
         );

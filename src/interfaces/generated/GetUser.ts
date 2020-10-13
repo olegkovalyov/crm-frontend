@@ -10,6 +10,7 @@
 export interface GetUser_getUser {
   __typename: "UserModel";
   id: string;
+  status: string;
   firstName: string;
   lastName: string;
   email: string;

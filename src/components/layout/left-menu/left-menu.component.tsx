@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import HistoryIcon from '@material-ui/icons/History';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -20,13 +19,16 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
-import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
-import { Collapse } from '@material-ui/core';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useStyles } from './left-menu.styles';
 import { useLeftMenu } from '../../../hooks/core/left-menu/left-menu.hook';
-import { DASHBOARD_URL, HISTORY_URL, JUMPS_URL, MANAGE_USERS_URL, SETTINGS_URL } from '../../../constants/route.constants';
+import {
+  DASHBOARD_URL,
+  HISTORY_URL,
+  EVENTS_URL,
+  MANAGE_USERS_URL,
+  SETTINGS_URL,
+  MANAGE_INVENTORY_URL,
+} from '../../../constants/route.constants';
 
 
 const LeftMenu: FC = (props): ReactElement => {
@@ -34,13 +36,10 @@ const LeftMenu: FC = (props): ReactElement => {
   const {
     logout,
     isOpenedLeftMenu,
-    isExpandedUsersSubmenu,
-    isExpandedJumpsSubmenu,
-    expandCollapseUsersSubMenu,
-    expandCollapseJumpsSubMenu,
     isDashboardMenuSelected,
-    isUsersMenuSelected,
-    isJumpsMenuSelected,
+    isManageUsersMenuSelected,
+    isManageInventoryMenuSelected,
+    isEventsMenuSelected,
     isHistoryMenuSelected,
     isSettingsMenuSelected,
     closeLeftMenu,
@@ -76,69 +75,45 @@ const LeftMenu: FC = (props): ReactElement => {
               <ListItemText primary="Dashboard" />
             </ListItem>
             <ListItem
+              selected={isManageUsersMenuSelected}
               button
-              onClick={expandCollapseUsersSubMenu}
+              onClick={() => history.push(MANAGE_USERS_URL)}
             >
               <ListItemIcon>
                 <SupervisedUserCircleIcon />
               </ListItemIcon>
               <ListItemText primary="Users" />
-              {isExpandedUsersSubmenu ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={isExpandedUsersSubmenu} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItem
-                  selected={isUsersMenuSelected}
-                  button
-                  className={classes.nested}
-                  onClick={() => history.push(MANAGE_USERS_URL)}
-                >
-                  <ListItemIcon>
-                    <PermContactCalendarIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Manage" />
-                </ListItem>
-                <ListItem button className={classes.nested}>
-                  <ListItemIcon>
-                    <HowToRegIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Roles" />
-                </ListItem>
-              </List>
-            </Collapse>
-            <ListItem button onClick={expandCollapseJumpsSubMenu}>
+            <ListItem
+              selected={isManageInventoryMenuSelected}
+              button
+              onClick={() => history.push(MANAGE_INVENTORY_URL)}
+            >
               <ListItemIcon>
-                <AirplanemodeActiveIcon />
+                <HowToRegIcon />
               </ListItemIcon>
-              <ListItemText primary="Jumps" />
-              {isExpandedJumpsSubmenu ? <ExpandLess /> : <ExpandMore />}
+              <ListItemText primary="Inventory" />
             </ListItem>
-            <Collapse in={isExpandedJumpsSubmenu} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItem
-                  selected={isJumpsMenuSelected}
-                  button
-                  className={classes.nested}
-                  onClick={() => history.push(JUMPS_URL)}
-                >
-                  <ListItemIcon>
-                    <EventAvailableIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Manage" />
-                </ListItem>
-                <ListItem
-                  selected={isHistoryMenuSelected}
-                  button
-                  className={classes.nested}
-                  onClick={() => history.push(HISTORY_URL)}
-                >
-                  <ListItemIcon>
-                    <HistoryIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="History" />
-                </ListItem>
-              </List>
-            </Collapse>
+            <ListItem
+              selected={isEventsMenuSelected}
+              button
+              onClick={() => history.push(EVENTS_URL)}
+            >
+              <ListItemIcon>
+                <EventAvailableIcon />
+              </ListItemIcon>
+              <ListItemText primary="Events" />
+            </ListItem>
+            <ListItem
+              selected={isHistoryMenuSelected}
+              button
+              onClick={() => history.push(HISTORY_URL)}
+            >
+              <ListItemIcon>
+                <HistoryIcon />
+              </ListItemIcon>
+              <ListItemText primary="History" />
+            </ListItem>
           </div>
         </List>
         <Divider />

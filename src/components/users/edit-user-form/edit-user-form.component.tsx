@@ -6,10 +6,7 @@ import LoadBackdrop from '../../../elements/backdrop.component';
 import { useUpdateUserRequest } from '../../../hooks/graphql/update-user-request/update-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { MANAGE_USERS_URL } from '../../../constants/route.constants';
-import {
-  RolesType,
-  UserStatusType,
-} from '../../../constants/user.constants';
+import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
 
 interface PropTypes {
@@ -36,9 +33,13 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     emailErrorMessage,
     licenseType,
     onLicenceTypeChange,
-    roles,
+    roleCheckBoxesState,
+    handleRoleChange,
+    getSelectedRoles,
+    status,
+    handleIsActiveChange,
     formTouched,
-    saveButtonDisabled,
+    submitButtonEnabled,
     setUser,
   } = useUserFormValidation();
 
@@ -55,6 +56,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     const currentUser = userData.getUser as UserInterface;
     if (currentUser !== null) {
       setUser(
+        currentUser.status,
         currentUser.firstName,
         currentUser.lastName,
         currentUser.email,
@@ -108,20 +110,23 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         onEmailChange={onEmailChange}
         licenseType={licenseType}
         onLicenseTypeChange={onLicenceTypeChange}
-        roles={roles}
+        roleCheckBoxesState={roleCheckBoxesState}
+        onRoleChange={handleRoleChange}
+        isActive={status === USER_STATUS_ACTIVE}
+        onIsActiveChange={handleIsActiveChange}
         formTouched={formTouched}
-        submitButtonDisabled={saveButtonDisabled}
+        submitButtonEnabled={submitButtonEnabled}
         formErrorMessage={errorMessage}
         loading={loading}
-        submitFn={(selectedRoles: RolesType[], selectedStatus: UserStatusType) => {
+        submitFn={() => {
           return updateUserAsync(
             props.id,
-            selectedStatus,
+            status,
             firstName,
             lastName,
             email,
             null,
-            selectedRoles,
+            getSelectedRoles(),
             licenseType);
         }}
       />

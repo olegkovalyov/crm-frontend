@@ -1,26 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   emailConstraints,
   firstNameConstrains,
   lastNameConstrains,
   validateInput,
 } from '../../../common/inputValidator';
-import { LICENSE_NONE, RolesType } from '../../../constants/user.constants';
+import {
+  LICENSE_NONE,
+  RolesType,
+  USER_STATUS_ACTIVE, USER_STATUS_BLOCKED,
+  userRoles,
+  UserStatusType,
+} from '../../../constants/user.constants';
+import { RoleCheckBoxesStateType } from '../../../components/users/common-user-form/common-user-form.component';
 
 export const useUserFormValidation = () => {
 
   const setUser = (
+    status: UserStatusType,
     firstName: string,
     lastName: string,
     email: string,
     roles: RolesType[],
     licenseType: string,
   ): void => {
+    setStatus(status);
     setFirstName(firstName);
     setLastName(lastName);
     setEmail(email);
     setRoles(roles);
     setLicenseType(licenseType);
+    userRoles.forEach((value) => {
+      initialRoleCheckboxesState[value] = roles.includes(value);
+    });
+    setRoleCheckboxesState(initialRoleCheckboxesState);
   };
 
 
@@ -36,7 +49,7 @@ export const useUserFormValidation = () => {
   const [hasEmailError, setHasEmailError] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
 
-  const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
+  const [submitButtonEnabled, enableSubmitButton] = useState(false);
 
   const [formTouched, setFormTouched] = useState(false);
 
@@ -44,6 +57,23 @@ export const useUserFormValidation = () => {
 
   const [roles, setRoles] = useState<RolesType[]>([]);
 
+  const initialRoleCheckboxesState: RoleCheckBoxesStateType = {};
+  userRoles.forEach((value) => {
+    initialRoleCheckboxesState[value] = roles.includes(value);
+  });
+  const [roleCheckBoxesState, setRoleCheckboxesState] = useState<RoleCheckBoxesStateType>(initialRoleCheckboxesState);
+
+  const [status, setStatus] = useState<UserStatusType>(USER_STATUS_ACTIVE);
+
+  const getSelectedRoles = useCallback( (): RolesType[] => {
+    const selectedRoles: RolesType[] = [];
+    userRoles.forEach(value => {
+      if (roleCheckBoxesState[value] === true) {
+        selectedRoles.push(value);
+      }
+    });
+    return selectedRoles;
+  }, [roleCheckBoxesState]);
 
   useEffect(() => {
     if (!hasEmailError
@@ -52,10 +82,11 @@ export const useUserFormValidation = () => {
       && email.length
       && firstName.length
       && lastName.length
+      && getSelectedRoles().length
     ) {
-      setSaveButtonDisabled(false);
+      enableSubmitButton(true);
     } else {
-      setSaveButtonDisabled(true);
+      enableSubmitButton(false);
     }
   }, [
     hasEmailError,
@@ -64,6 +95,7 @@ export const useUserFormValidation = () => {
     email,
     firstName,
     lastName,
+    getSelectedRoles,
   ]);
 
   const onFirstNameChange = (value: string): void => {
@@ -86,6 +118,18 @@ export const useUserFormValidation = () => {
     setLicenseType(event.target.value as string);
   };
 
+  const handleRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRoleCheckboxesState(prevState => {
+      const newFormRolesState = { ...prevState };
+      newFormRolesState[e.target.value as RolesType] = e.target.checked;
+      return newFormRolesState;
+    });
+  };
+
+  const handleIsActiveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.checked ? setStatus(USER_STATUS_ACTIVE) : setStatus(USER_STATUS_BLOCKED);
+  };
+
   return {
     firstName,
     onFirstNameChange,
@@ -101,9 +145,13 @@ export const useUserFormValidation = () => {
     emailErrorMessage,
     licenseType,
     onLicenceTypeChange,
-    roles,
+    roleCheckBoxesState,
+    handleRoleChange,
+    getSelectedRoles,
+    status,
+    handleIsActiveChange,
     formTouched,
-    saveButtonDisabled,
+    submitButtonEnabled,
     setUser,
   };
 

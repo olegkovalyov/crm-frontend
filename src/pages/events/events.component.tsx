@@ -3,16 +3,16 @@ import Header from '../../components/layout/header/header.component';
 import LeftMenu from '../../components/layout/left-menu/left-menu.component';
 import { Content } from '../../components/layout/content/content.component';
 
-const Jumps: FC = (props): ReactElement => {
+const Events: FC = (props): ReactElement => {
   return (
     <>
       <Header />
       <LeftMenu />
       <Content>
-        Jumps
+        Events
       </Content>
     </>
   );
 };
 
-export default Jumps;
+export default Events;
