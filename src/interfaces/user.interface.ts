@@ -10,3 +10,7 @@ export type RoleCheckBoxesStateType = {
   [key in RolesType]?: boolean
 };
 
+export type UserStatusCheckBoxesStateType = {
+  [key in UserStatusType]?: boolean
+};
+

@@ -8,6 +8,7 @@ export const useRoles = () => {
     STUDENT: false,
     MANIFEST: false,
     COACH: false,
+    TM: false,
     ADMIN: false,
     PACKER: false,
     RIGGER: false,

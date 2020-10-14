@@ -11,6 +11,7 @@ import { CREATE_USER_URL } from '../../../constants/route.constants';
 import UsersTableFilter from '../users-table-filter/users-table-filter.component';
 import UsersTable from '../users-table/users-table.component';
 import { useRoles } from '../../../hooks/forms/roles/roles.hook';
+import { useStatusFilter } from '../../../hooks/forms/status-filter/status-filter.hook';
 
 
 const UsersTableContainer: FC = (props): ReactElement => {
@@ -24,6 +25,13 @@ const UsersTableContainer: FC = (props): ReactElement => {
     getSelectedRoles,
     initCheckboxes,
   } = useRoles();
+
+  const {
+    statusCheckBoxesState,
+    handleStatusChange,
+    getSelectedStatuses,
+    initStatusCheckboxes,
+  } = useStatusFilter();
 
   const {
     getUsersAsync,
@@ -54,13 +62,19 @@ const UsersTableContainer: FC = (props): ReactElement => {
             roleCheckBoxesState={roleCheckBoxesState}
             handleRoleChange={handleRoleChange}
             getSelectedRoles={getSelectedRoles}
-            updateDataFn={getUsersAsync}
-            initCheckboxes={initCheckboxes}
+            updateDataAsync={getUsersAsync}
+            initRoleCheckboxes={initCheckboxes}
+            handleStatusChange={handleStatusChange}
+            getSelectedStatuses={getSelectedStatuses}
+            initStatusCheckboxes={initStatusCheckboxes}
+            statusCheckBoxesState={statusCheckBoxesState}
           />
         </Grid>
         <Grid item xs={12}>
           <UsersTable
             getUsersAsync={getUsersAsync}
+            getSelectedRoles={getSelectedRoles}
+            getSelectedStatuses={getSelectedStatuses}
             loading={loading}
             error={error}
             users={users}

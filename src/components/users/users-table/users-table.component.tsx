@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import Alert from '@material-ui/lab/Alert';
@@ -19,12 +19,14 @@ import { RolesType, USER_STATUS_ACTIVE, UserStatusType } from '../../../constant
 
 interface IPropTypes {
   getUsersAsync: (
-    status: UserStatusType | null,
+    status: UserStatusType[] | null,
     roles: RolesType[] | null,
   ) => Promise<void>,
   loading: boolean,
   users: GetUsers_getUsers[],
-  error: ApolloError | undefined
+  error: ApolloError | undefined,
+  getSelectedStatuses: () => UserStatusType[],
+  getSelectedRoles: () => RolesType[],
 }
 
 const UsersTable: FC<IPropTypes> = (props): ReactElement => {
@@ -34,6 +36,8 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
     loading,
     error,
     users,
+    getSelectedRoles,
+    getSelectedStatuses,
   } = props;
 
   const [userIdToDetele, setUserIdToDelete] = useState('');
@@ -54,7 +58,7 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
   const handleConfirmRemove = () => {
     deleteUserAsync(userIdToDetele).then(() => {
       setIsOpenDeleteDialog(false);
-      return getUsersAsync(USER_STATUS_ACTIVE, []);
+      return getUsersAsync(getSelectedStatuses(), getSelectedRoles());
     });
   };
 
@@ -62,12 +66,6 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
     deleting,
     deleteUserAsync,
   } = useDeleteUserRequest();
-
-  //
-  // useEffect(() => {
-  //   console.log('FETCH');
-  //   getUsersAsync(null, null);
-  // }, []);
 
   if (loading) {
     return (

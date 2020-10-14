@@ -5,55 +5,53 @@ import {
   AccordionSummary,
   FormControl,
   FormGroup,
-  FormLabel,
+  FormLabel, Grid,
   Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Roles from '../roles/roles.component';
 import {
-  ROLE_ADMIN, ROLE_CAMERAMAN, ROLE_COACH,
-  ROLE_MANIFEST, ROLE_PACKER, ROLE_RIGGER, ROLE_SKYDIVER, ROLE_STUDENT,
   RolesType,
-  USER_STATUS_ACTIVE,
+  userRoles, userStatuses,
   UserStatusType,
 } from '../../../constants/user.constants';
-import { RoleCheckBoxesStateType } from '../../../interfaces/user.interface';
+import { RoleCheckBoxesStateType, UserStatusCheckBoxesStateType } from '../../../interfaces/user.interface';
+import StatusFilter from '../status-filter/status-filter.component';
 
 interface IPropType {
-  updateDataFn: (status: UserStatusType | null, roles: RolesType[] | null) => void,
   roleCheckBoxesState: RoleCheckBoxesStateType,
+  statusCheckBoxesState: UserStatusCheckBoxesStateType,
   handleRoleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  handleStatusChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  initStatusCheckboxes: (statuses: UserStatusType[]) => void,
+  initRoleCheckboxes: (roles: RolesType[]) => void,
+  getSelectedStatuses: () => UserStatusType[],
   getSelectedRoles: () => RolesType[],
-  initCheckboxes: (roles: RolesType[]) => void,
+  updateDataAsync: (status: UserStatusType[] | null, roles: RolesType[] | null) => void,
 }
 
 const UsersTableFilter: FC<IPropType> = (props): ReactElement => {
 
   const {
-    updateDataFn,
+    updateDataAsync,
     handleRoleChange,
     getSelectedRoles,
     roleCheckBoxesState,
-    initCheckboxes,
+    initRoleCheckboxes,
+    handleStatusChange,
+    getSelectedStatuses,
+    statusCheckBoxesState,
+    initStatusCheckboxes,
   } = props;
 
   useEffect(() => {
-    const roles: RolesType[] = [
-      ROLE_MANIFEST,
-      ROLE_ADMIN,
-      ROLE_SKYDIVER,
-      ROLE_CAMERAMAN,
-      ROLE_PACKER,
-      ROLE_RIGGER,
-      ROLE_COACH,
-      ROLE_STUDENT,
-    ];
-    initCheckboxes(roles);
+    initRoleCheckboxes(userRoles);
+    initStatusCheckboxes(userStatuses);
   }, []);
 
   useEffect(() => {
-    updateDataFn(null, getSelectedRoles());
-  }, [getSelectedRoles]);
+    updateDataAsync(getSelectedStatuses(), getSelectedRoles());
+  }, [getSelectedRoles, getSelectedStatuses]);
 
   return (
     <Accordion>
@@ -65,21 +63,30 @@ const UsersTableFilter: FC<IPropType> = (props): ReactElement => {
         <Typography variant='button'>Filter</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Roles</FormLabel>
-          <FormGroup>
-            <Roles
-              roleCheckBoxesState={roleCheckBoxesState}
-              onRoleChange={(e) => {
-                handleRoleChange(e);
-                // const roles = getSelectedRoles().length ? getSelectedRoles() : null;
-                // console.log(roles);
-                // console.log('MANUAL FETCH');
-                // updateDataFn(USER_STATUS_ACTIVE, roles);
-              }}
-            />
-          </FormGroup>
-        </FormControl>
+        <Grid container spacing={1}>
+          <Grid item xs={4}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Role:</FormLabel>
+              <FormGroup>
+                <Roles
+                  roleCheckBoxesState={roleCheckBoxesState}
+                  onRoleChange={handleRoleChange}
+                />
+              </FormGroup>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Status:</FormLabel>
+              <FormGroup>
+                <StatusFilter
+                  statusCheckBoxesState={statusCheckBoxesState}
+                  onStatusChange={handleStatusChange}
+                />
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        </Grid>
       </AccordionDetails>
     </Accordion>
   );

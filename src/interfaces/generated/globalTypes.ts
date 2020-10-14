@@ -22,7 +22,7 @@ export interface ForgotPasswordInput {
 }
 
 export interface GetUsersFilterInput {
-  status?: string | null;
+  statuses?: string[] | null;
   roles?: string[] | null;
 }
 

@@ -5,7 +5,6 @@ import { GetUsers_getUsers, GetUsers, GetUsersVariables } from '../../../interfa
 import { IRootState } from '../../../redux/root.reducer';
 import { getAccessToken } from '../../../redux/auth/auth.selector';
 import { RolesType, UserStatusType } from '../../../constants/user.constants';
-import { GetUsersFilterInput } from '../../../interfaces/generated/globalTypes';
 
 const usersQuery = loader('./gql/queryGetUsers.graphql');
 
@@ -37,12 +36,12 @@ export const useGetUsersRequest = () => {
   }
 
   const getUsersAsync = async (
-    status: UserStatusType | null,
+    statuses: UserStatusType[] | null,
     roles: RolesType[] | null,
   ): Promise<void> => {
     const variables: GetUsersVariables = {
       getUsersFilter: {
-        status,
+        statuses,
         roles,
       },
     };
