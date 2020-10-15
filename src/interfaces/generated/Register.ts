@@ -12,6 +12,7 @@ import { CreateUserInput } from "./globalTypes";
 export interface Register_register_user {
   __typename: "UserModel";
   id: string;
+  status: string;
   firstName: string;
   lastName: string;
   email: string;

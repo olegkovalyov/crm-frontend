@@ -12,6 +12,7 @@ import { ResetPasswordInput } from "./globalTypes";
 export interface ResetPassword_resetPassword_user {
   __typename: "UserModel";
   id: string;
+  status: string;
   firstName: string;
   lastName: string;
   email: string;

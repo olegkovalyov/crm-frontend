@@ -29,10 +29,17 @@ import {
   SETTINGS_URL,
   MANAGE_INVENTORY_URL,
 } from '../../../constants/route.constants';
+import { useSelector } from 'react-redux';
+import { IRootState } from '../../../redux/root.reducer';
+import { getCurrentUser } from '../../../redux/auth/auth.selector';
+import { ROLE_ADMIN, ROLE_MANIFEST } from '../../../constants/user.constants';
 
 
 const LeftMenu: FC = (props): ReactElement => {
   const classes = useStyles();
+
+  const currentUser = useSelector((state: IRootState) => getCurrentUser(state));
+
   const {
     logout,
     isOpenedLeftMenu,
@@ -45,6 +52,23 @@ const LeftMenu: FC = (props): ReactElement => {
     closeLeftMenu,
     history,
   } = useLeftMenu();
+
+  const usersMenuJsx = (currentUser
+    && (currentUser.roles.includes(ROLE_ADMIN)
+      || currentUser.roles.includes(ROLE_MANIFEST)
+    )
+  ) ?
+    <ListItem
+      selected={isManageUsersMenuSelected}
+      button
+      onClick={() => history.push(MANAGE_USERS_URL)}
+    >
+      <ListItemIcon>
+        <SupervisedUserCircleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Users" />
+    </ListItem>
+    : '';
 
 
   return (
@@ -74,16 +98,7 @@ const LeftMenu: FC = (props): ReactElement => {
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem
-              selected={isManageUsersMenuSelected}
-              button
-              onClick={() => history.push(MANAGE_USERS_URL)}
-            >
-              <ListItemIcon>
-                <SupervisedUserCircleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Users" />
-            </ListItem>
+            {usersMenuJsx}
             <ListItem
               selected={isManageInventoryMenuSelected}
               button

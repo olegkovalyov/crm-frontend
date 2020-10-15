@@ -10,6 +10,7 @@
 export interface RefreshToken_refreshToken_user {
   __typename: "UserModel";
   id: string;
+  status: string;
   firstName: string;
   lastName: string;
   email: string;

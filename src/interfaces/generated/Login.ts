@@ -12,6 +12,7 @@ import { LoginInput } from "./globalTypes";
 export interface Login_login_user {
   __typename: "UserModel";
   id: string;
+  status: string;
   firstName: string;
   lastName: string;
   email: string;
