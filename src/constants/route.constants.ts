@@ -7,13 +7,15 @@ export const HOME_URL = '/';
 // Dashboard
 export const DASHBOARD_URL = '/dashboard';
 // Manage
-export const MANAGE_USERS_URL = '/users';
+export const USERS_URL = '/users';
 export const CREATE_USER_URL = '/users/create';
 export const EDIT_USER_URL = '/users/edit';
 export const MANAGE_INVENTORY_URL = '/inventory';
 
 // Events
 export const EVENTS_URL = '/events';
+export const CREATE_EVENT_URL = '/events/create';
+export const EDIT_EVENT_URL = '/events/edit';
 export const HISTORY_URL = '/history';
 
 // Settings
@@ -24,11 +26,13 @@ export const NO_MATCH_URL = '*';
 
 export const breadcrumbsMap: { [key: string]: string } = {
   [DASHBOARD_URL]: 'Dashboard',
-  [MANAGE_USERS_URL]: 'Users',
-  [MANAGE_INVENTORY_URL]: 'Inventory',
+  [USERS_URL]: 'Users',
   [CREATE_USER_URL]: 'Create',
   [EDIT_USER_URL]: 'Edit',
+  [MANAGE_INVENTORY_URL]: 'Inventory',
   [SETTINGS_URL]: 'Settings',
   [EVENTS_URL]: 'Events',
+  [CREATE_EVENT_URL]: 'Create',
+  [EDIT_EVENT_URL]: 'Edit',
   [HISTORY_URL]: 'History',
 };

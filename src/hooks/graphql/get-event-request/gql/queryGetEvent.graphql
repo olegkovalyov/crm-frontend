@@ -1,0 +1,14 @@
+query GetEvent($input: String!) {
+    getEvent(id: $input) {
+        id,
+        name,
+        date,
+        notes,
+        loads{
+            id,
+            aircraft,
+            date,
+            status
+        }
+    }
+}

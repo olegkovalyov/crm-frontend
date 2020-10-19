@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { useUserFormValidation } from '../../../hooks/forms/user-form-validation/user-form-validation.hook';
 import { useCreateUserRequest } from '../../../hooks/graphql/create-user-request/create-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
-import { MANAGE_USERS_URL } from '../../../constants/route.constants';
+import { USERS_URL } from '../../../constants/route.constants';
 import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
 
 interface PropTypes {
@@ -45,7 +45,7 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
 
   if (createUserData) {
-    return (<Redirect to={MANAGE_USERS_URL} />);
+    return (<Redirect to={USERS_URL} />);
   }
 
   return (

@@ -8,10 +8,10 @@ import {
   HISTORY_URL,
   EVENTS_URL,
   LOGIN_URL,
-  MANAGE_USERS_URL, NO_MATCH_URL,
+  USERS_URL, NO_MATCH_URL,
   REGISTER_URL,
   RESET_PASSWORD_URL,
-  SETTINGS_URL, MANAGE_INVENTORY_URL, HOME_URL,
+  SETTINGS_URL, MANAGE_INVENTORY_URL, HOME_URL, CREATE_EVENT_URL, EDIT_EVENT_URL,
 } from './constants/route.constants';
 
 export const authUrls = [
@@ -62,7 +62,7 @@ export const routes: IRoute[] = [
     private: true,
   },
   {
-    path: MANAGE_USERS_URL,
+    path: USERS_URL,
     component: lazy(() => import('./pages/users/users.component')),
     exact: true,
     private: true,
@@ -94,6 +94,18 @@ export const routes: IRoute[] = [
   {
     path: EVENTS_URL,
     component: lazy(() => import('./pages/events/events.component')),
+    exact: true,
+    private: true,
+  },
+  {
+    path: CREATE_EVENT_URL,
+    component: lazy(() => import('./pages/create-event/create-event.component')),
+    exact: true,
+    private: true,
+  },
+  {
+    path: `${EDIT_EVENT_URL}/:id`,
+    component: lazy(() => import('./pages/edit-event/edit-event.component')),
     exact: true,
     private: true,
   },

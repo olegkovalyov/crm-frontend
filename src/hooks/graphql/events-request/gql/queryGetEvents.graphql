@@ -1,0 +1,11 @@
+query GetEvents {
+    getEvents{
+        id,
+        name,
+        date,
+        notes,
+        loads{
+            id,
+        }
+    }
+}

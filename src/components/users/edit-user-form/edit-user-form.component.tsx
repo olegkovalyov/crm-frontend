@@ -5,7 +5,7 @@ import { useGetUserRequest } from '../../../hooks/graphql/get-user-request/get-u
 import LoadBackdrop from '../../../elements/backdrop.component';
 import { useUpdateUserRequest } from '../../../hooks/graphql/update-user-request/update-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
-import { MANAGE_USERS_URL } from '../../../constants/route.constants';
+import { USERS_URL } from '../../../constants/route.constants';
 import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
 
@@ -16,7 +16,7 @@ interface PropTypes {
 const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   let errorMessage = '';
 
-  const [needPopulateColumns, setNeedPopulateColumns] = useState(true);
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
 
   const {
     firstName,
@@ -52,7 +52,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     getUser();
   }, [getUser]);
 
-  if (userData && needPopulateColumns) {
+  if (userData && !isUserLoaded) {
     const currentUser = userData.getUser as UserInterface;
     if (currentUser !== null) {
       setUser(
@@ -63,10 +63,9 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         currentUser.roles,
         currentUser.licenseType!,
       );
-      console.log(roleCheckBoxesState);
-      setNeedPopulateColumns(false);
+      setIsUserLoaded(true);
     } else {
-      return <Redirect to={MANAGE_USERS_URL} />;
+      return <Redirect to={USERS_URL} />;
     }
   }
 
@@ -89,7 +88,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   }
 
   if (updatedUserData) {
-    return <Redirect to={MANAGE_USERS_URL} />;
+    return <Redirect to={USERS_URL} />;
   }
   // End Updating User
 

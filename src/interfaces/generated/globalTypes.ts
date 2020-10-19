@@ -7,6 +7,12 @@
 // START Enums and Input Objects
 //==============================================================
 
+export interface CreateEventInput {
+  name: string;
+  date: any;
+  notes: string;
+}
+
 export interface CreateUserInput {
   status: string;
   firstName: string;
@@ -34,6 +40,13 @@ export interface LoginInput {
 export interface ResetPasswordInput {
   password: string;
   token: string;
+}
+
+export interface UpdateEventInput {
+  id: string;
+  name?: string | null;
+  date?: any | null;
+  notes?: string | null;
 }
 
 export interface UpdateUserInput {

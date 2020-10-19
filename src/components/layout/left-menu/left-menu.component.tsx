@@ -25,7 +25,7 @@ import {
   DASHBOARD_URL,
   HISTORY_URL,
   EVENTS_URL,
-  MANAGE_USERS_URL,
+  USERS_URL,
   SETTINGS_URL,
   MANAGE_INVENTORY_URL,
 } from '../../../constants/route.constants';
@@ -61,7 +61,7 @@ const LeftMenu: FC = (props): ReactElement => {
     <ListItem
       selected={isManageUsersMenuSelected}
       button
-      onClick={() => history.push(MANAGE_USERS_URL)}
+      onClick={() => history.push(USERS_URL)}
     >
       <ListItemIcon>
         <SupervisedUserCircleIcon />

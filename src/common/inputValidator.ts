@@ -34,6 +34,16 @@ export const firstNameConstrains: IValidationConstraints = {
   length: { minimum: 3, maximum: 20 },
 };
 
+export const eventNameConstrains: IValidationConstraints = {
+  presence: { allowEmpty: false, message: 'title name can\'t be empty' },
+  format: {
+    pattern: '[a-z. ]+',
+    flags: 'i',
+    message: 'Can only contain letters and spaces',
+  },
+  length: { minimum: 3, maximum: 30 },
+};
+
 export const lastNameConstrains: IValidationConstraints = {
   presence: { allowEmpty: false, message: 'last name can\'t be empty' },
   format: {

@@ -1,0 +1,5 @@
+mutation UpdateEvent($input: UpdateEventInput!) {
+    updateEvent(updateEventData: $input){
+        id,
+    }
+}

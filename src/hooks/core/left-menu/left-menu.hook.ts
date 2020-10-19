@@ -13,7 +13,7 @@ import {
   CREATE_USER_URL, DASHBOARD_URL,
   EDIT_USER_URL, HISTORY_URL,
   EVENTS_URL,
-  MANAGE_USERS_URL,
+  USERS_URL,
   SETTINGS_URL, MANAGE_INVENTORY_URL,
 } from '../../../constants/route.constants';
 
@@ -35,7 +35,7 @@ export const useLeftMenu = () => {
 
   useEffect(() => {
     switch (history.location.pathname) {
-      case MANAGE_USERS_URL:
+      case USERS_URL:
       case CREATE_USER_URL:
       case EDIT_USER_URL:
         setManageUsersMenuSelected(true);
