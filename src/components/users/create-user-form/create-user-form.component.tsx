@@ -4,7 +4,7 @@ import { useUserFormValidation } from '../../../hooks/forms/user-form-validation
 import { useCreateUserRequest } from '../../../hooks/graphql/create-user-request/create-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { USERS_URL } from '../../../constants/route.constants';
-import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
+import { UserStatus } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypes {
   children?: never,
@@ -68,7 +68,7 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         onLicenseTypeChange={onLicenceTypeChange}
         roleCheckBoxesState={roleCheckBoxesState}
         onRoleChange={handleRoleChange}
-        isActive={status === USER_STATUS_ACTIVE}
+        isActive={status === UserStatus.ACTIVE}
         onIsActiveChange={handleIsActiveChange}
         formTouched={formTouched}
         submitButtonEnabled={submitButtonEnabled}

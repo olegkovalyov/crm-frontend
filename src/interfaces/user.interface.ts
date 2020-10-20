@@ -1,16 +1,15 @@
 import { GetUser_getUser } from './generated/GetUser';
-import { RolesType, UserStatusType } from '../constants/user.constants';
+import { UserRole, UserStatus } from './generated/globalTypes';
 
 export interface UserInterface extends GetUser_getUser {
-  status: UserStatusType;
-  roles: RolesType[];
+
 }
 
 export type RoleCheckBoxesStateType = {
-  [key in RolesType]?: boolean
+  [key in UserRole]?: boolean
 };
 
 export type UserStatusCheckBoxesStateType = {
-  [key in UserStatusType]?: boolean
+  [key in UserStatus]?: boolean
 };
 

@@ -6,8 +6,8 @@ import LoadBackdrop from '../../../elements/backdrop.component';
 import { useUpdateUserRequest } from '../../../hooks/graphql/update-user-request/update-user-request.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { USERS_URL } from '../../../constants/route.constants';
-import { USER_STATUS_ACTIVE } from '../../../constants/user.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
+import { UserStatus } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypes {
   id: string;
@@ -112,7 +112,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         onLicenseTypeChange={onLicenceTypeChange}
         roleCheckBoxesState={roleCheckBoxesState}
         onRoleChange={handleRoleChange}
-        isActive={status === USER_STATUS_ACTIVE}
+        isActive={status === UserStatus.ACTIVE}
         onIsActiveChange={handleIsActiveChange}
         formTouched={formTouched}
         submitButtonEnabled={submitButtonEnabled}

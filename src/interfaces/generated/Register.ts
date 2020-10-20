@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CreateUserInput } from "./globalTypes";
+import { CreateUserInput, UserStatus, UserRole, LicenseType } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: Register
@@ -12,12 +12,12 @@ import { CreateUserInput } from "./globalTypes";
 export interface Register_register_user {
   __typename: "UserModel";
   id: string;
-  status: string;
+  status: UserStatus;
   firstName: string;
   lastName: string;
   email: string;
-  roles: string[];
-  licenseType: string | null;
+  roles: UserRole[];
+  licenseType: LicenseType | null;
   createdAt: string;
   updatedAt: string;
 }

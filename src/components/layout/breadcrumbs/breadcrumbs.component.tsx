@@ -3,7 +3,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Link as RouterLink, Route } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { useStyles } from '../content/content.styles';
-import { breadcrumbsMap, DASHBOARD_URL, EDIT_USER_URL } from '../../../constants/route.constants';
+import { breadcrumbsMap, DASHBOARD_URL, EDIT_EVENT_URL, EDIT_USER_URL } from '../../../constants/route.constants';
 
 
 export const SimpleBreadcrumbs = (): ReactElement => {
@@ -12,6 +12,7 @@ export const SimpleBreadcrumbs = (): ReactElement => {
   const isEmptyLink = (url: string): boolean => {
     const emptyLinks = [
       EDIT_USER_URL,
+      EDIT_EVENT_URL,
     ];
     return emptyLinks.includes(url);
   };
@@ -19,6 +20,9 @@ export const SimpleBreadcrumbs = (): ReactElement => {
   const prepareLink = (url: string) => {
     if (url.includes(EDIT_USER_URL)) {
       return EDIT_USER_URL;
+    }
+    if (url.includes(EDIT_EVENT_URL)) {
+      return EDIT_EVENT_URL;
     }
     if (url.includes(DASHBOARD_URL)) {
       return '';

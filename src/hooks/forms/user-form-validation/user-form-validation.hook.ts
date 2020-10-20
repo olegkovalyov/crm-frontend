@@ -5,23 +5,18 @@ import {
   lastNameConstrains,
   validateInput,
 } from '../../../common/inputValidator';
-import {
-  LICENSE_NONE,
-  RolesType,
-  USER_STATUS_ACTIVE, USER_STATUS_BLOCKED,
-  UserStatusType,
-} from '../../../constants/user.constants';
 import { useRoles } from '../roles/roles.hook';
+import { LicenseType, UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
 
 export const useUserFormValidation = () => {
 
   const setUser = (
-    status: UserStatusType,
+    status: UserStatus,
     firstName: string,
     lastName: string,
     email: string,
-    roles: RolesType[],
-    licenseType: string,
+    roles: UserRole[],
+    licenseType: LicenseType,
   ): void => {
     setStatus(status);
     setFirstName(firstName);
@@ -48,7 +43,7 @@ export const useUserFormValidation = () => {
 
   const [formTouched, setFormTouched] = useState(false);
 
-  const [licenseType, setLicenseType] = useState(LICENSE_NONE);
+  const [licenseType, setLicenseType] = useState(LicenseType.NONE);
 
   const {
     roleCheckBoxesState,
@@ -57,7 +52,7 @@ export const useUserFormValidation = () => {
     initCheckboxes,
   } = useRoles();
 
-  const [status, setStatus] = useState<UserStatusType>(USER_STATUS_ACTIVE);
+  const [status, setStatus] = useState<UserStatus>(UserStatus.ACTIVE);
 
   useEffect(() => {
     if (!hasEmailError
@@ -99,11 +94,11 @@ export const useUserFormValidation = () => {
 
   const onLicenceTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setFormTouched(true);
-    setLicenseType(event.target.value as string);
+    setLicenseType(event.target.value as LicenseType);
   };
 
   const handleIsActiveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.checked ? setStatus(USER_STATUS_ACTIVE) : setStatus(USER_STATUS_BLOCKED);
+    e.target.checked ? setStatus(UserStatus.ACTIVE) : setStatus(UserStatus.BLOCKED);
   };
 
   return {

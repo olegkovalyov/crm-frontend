@@ -5,6 +5,7 @@ import { loader } from 'graphql.macro';
 import { setUserAction } from '../../../redux/auth/auth.actions';
 import { Register, RegisterVariables } from '../../../interfaces/generated/Register';
 import { useGraphQlErrorHandler } from '../grahhql-error-handler/grahpql-error-handler.hook';
+import { LicenseType, UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
 
 export const useRegisterRequest = () => {
   const dispatch = useDispatch();
@@ -23,13 +24,13 @@ export const useRegisterRequest = () => {
 
 
   const registerAsync = async (
-    status: string,
+    status: UserStatus,
     email: string,
     password: string,
     firstName: string,
     lastName: string,
-    roles: string[],
-    licenseType: string,
+    roles: UserRole[],
+    licenseType: LicenseType,
   ): Promise<void> => {
     try {
       const variables: RegisterVariables = {

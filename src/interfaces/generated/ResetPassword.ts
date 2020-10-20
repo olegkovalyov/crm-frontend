@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ResetPasswordInput } from "./globalTypes";
+import { ResetPasswordInput, UserStatus, UserRole, LicenseType } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ResetPassword
@@ -12,12 +12,12 @@ import { ResetPasswordInput } from "./globalTypes";
 export interface ResetPassword_resetPassword_user {
   __typename: "UserModel";
   id: string;
-  status: string;
+  status: UserStatus;
   firstName: string;
   lastName: string;
   email: string;
-  roles: string[];
-  licenseType: string | null;
+  roles: UserRole[];
+  licenseType: LicenseType | null;
   createdAt: string;
   updatedAt: string;
 }

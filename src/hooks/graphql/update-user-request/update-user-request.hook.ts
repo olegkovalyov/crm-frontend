@@ -6,7 +6,7 @@ import { useGraphQlErrorHandler } from '../grahhql-error-handler/grahpql-error-h
 import { UpdateUser, UpdateUserVariables } from '../../../interfaces/generated/UpdateUser';
 import { IRootState } from '../../../redux/root.reducer';
 import { getAccessToken } from '../../../redux/auth/auth.selector';
-import { RolesType, UserStatusType } from '../../../constants/user.constants';
+import { LicenseType, UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
 
 const updateUserMutation = loader('./gql/mutationUpdateUser.graphql');
 
@@ -27,13 +27,13 @@ export const useUpdateUserRequest = () => {
 
   const updateUserAsync = async (
     id: string,
-    status: UserStatusType,
+    status: UserStatus,
     firstName: string,
     lastName: string,
     email: string,
     password: string | null,
-    roles: RolesType[],
-    licenseType: string,
+    roles: UserRole[],
+    licenseType: LicenseType,
   ): Promise<void> => {
     try {
       const variables: UpdateUserVariables = {

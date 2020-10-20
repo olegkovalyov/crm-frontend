@@ -11,23 +11,22 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Roles from '../roles/roles.component';
 import {
-  RolesType,
   userRoles, userStatuses,
-  UserStatusType,
 } from '../../../constants/user.constants';
 import { RoleCheckBoxesStateType, UserStatusCheckBoxesStateType } from '../../../interfaces/user.interface';
 import StatusFilter from '../status-filter/status-filter.component';
+import { UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
 
 interface IPropType {
   roleCheckBoxesState: RoleCheckBoxesStateType,
   statusCheckBoxesState: UserStatusCheckBoxesStateType,
   handleRoleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   handleStatusChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  initStatusCheckboxes: (statuses: UserStatusType[]) => void,
-  initRoleCheckboxes: (roles: RolesType[]) => void,
-  getSelectedStatuses: () => UserStatusType[],
-  getSelectedRoles: () => RolesType[],
-  updateDataAsync: (status: UserStatusType[] | null, roles: RolesType[] | null) => void,
+  initStatusCheckboxes: (statuses: UserStatus[]) => void,
+  initRoleCheckboxes: (roles: UserRole[]) => void,
+  getSelectedStatuses: () => UserStatus[],
+  getSelectedRoles: () => UserRole[],
+  updateDataAsync: (status: UserStatus[] | null, roles: UserRole[] | null) => void,
 }
 
 const UsersTableFilter: FC<IPropType> = (props): ReactElement => {

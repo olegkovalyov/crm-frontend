@@ -2,31 +2,28 @@ import React, { FC, ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import Alert from '@material-ui/lab/Alert';
-import {
-  LinearProgress,
-} from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import BlockIcon from '@material-ui/icons/Block';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import { ApolloError } from '@apollo/client';
-import { GetUsers_getUsers } from '../../../interfaces/generated/GetUsers';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { useDeleteUserRequest } from '../../../hooks/graphql/delete-user-request/delete-user-request.hook';
 import { EDIT_USER_URL } from '../../../constants/route.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
-import { RolesType, USER_STATUS_ACTIVE, UserStatusType } from '../../../constants/user.constants';
+import { UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
 
 interface IPropTypes {
   getUsersAsync: (
-    status: UserStatusType[] | null,
-    roles: RolesType[] | null,
+    status: UserStatus[] | null,
+    roles: UserRole[] | null,
   ) => Promise<void>,
   loading: boolean,
-  users: GetUsers_getUsers[],
+  users: UserInterface[],
   error: ApolloError | undefined,
-  getSelectedStatuses: () => UserStatusType[],
-  getSelectedRoles: () => RolesType[],
+  getSelectedStatuses: () => UserStatus[],
+  getSelectedRoles: () => UserRole[],
 }
 
 const UsersTable: FC<IPropTypes> = (props): ReactElement => {
@@ -89,7 +86,7 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
     { title: 'Last Name', field: 'lastName' },
     {
       title: 'Active', field: 'status', render: (user: UserInterface) => {
-        return (user.status === USER_STATUS_ACTIVE) ?
+        return (user.status === UserStatus.ACTIVE) ?
           <HowToRegIcon color='primary' /> :
           <BlockIcon color='error' />;
       },
@@ -112,7 +109,7 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
             icon: 'edit',
             tooltip: 'Edit User',
             onClick: (event, rowData) => {
-              const { id } = rowData as GetUsers_getUsers;
+              const { id } = rowData as UserInterface;
               const url = `${EDIT_USER_URL}/${id}`;
               history.push(url);
             },
@@ -121,7 +118,7 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
             icon: 'delete',
             tooltip: 'Delete User',
             onClick: (event, rowData) => {
-              setUserIdToDelete((rowData as GetUsers_getUsers).id);
+              setUserIdToDelete((rowData as UserInterface).id);
               handleClickOpen();
             },
           },

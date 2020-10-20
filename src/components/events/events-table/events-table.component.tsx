@@ -14,6 +14,7 @@ import { useDeleteEventRequest } from '../../../hooks/graphql/delete-event-reque
 import { EDIT_EVENT_URL } from '../../../constants/route.constants';
 import EventDetails from '../event-details/event-details.component';
 import { EventInterface } from '../../../interfaces/event.interface';
+import { UserInterface } from '../../../interfaces/user.interface';
 
 interface IPropTypes {
   getEventsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
@@ -91,6 +92,15 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
         columns={columns}
         data={events}
         actions={[
+          {
+            icon: 'edit',
+            tooltip: 'Edit Event',
+            onClick: (event, rowData) => {
+              const { id } = rowData as UserInterface;
+              const url = `${EDIT_EVENT_URL}/${id}`;
+              history.push(url);
+            },
+          },
           {
             icon: 'delete',
             tooltip: 'Delete event',

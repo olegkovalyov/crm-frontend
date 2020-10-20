@@ -7,6 +7,31 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum LicenseType {
+  A = "A",
+  B = "B",
+  C = "C",
+  D = "D",
+  NONE = "NONE",
+}
+
+export enum UserRole {
+  ADMIN = "ADMIN",
+  CAMERAMAN = "CAMERAMAN",
+  COACH = "COACH",
+  MANIFEST = "MANIFEST",
+  PACKER = "PACKER",
+  RIGGER = "RIGGER",
+  SKYDIVER = "SKYDIVER",
+  STUDENT = "STUDENT",
+  TM = "TM",
+}
+
+export enum UserStatus {
+  ACTIVE = "ACTIVE",
+  BLOCKED = "BLOCKED",
+}
+
 export interface CreateEventInput {
   name: string;
   date: any;
@@ -14,13 +39,13 @@ export interface CreateEventInput {
 }
 
 export interface CreateUserInput {
-  status: string;
+  status: UserStatus;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  roles: string[];
-  licenseType: string;
+  roles: UserRole[];
+  licenseType: LicenseType;
 }
 
 export interface ForgotPasswordInput {
@@ -50,13 +75,13 @@ export interface UpdateEventInput {
 }
 
 export interface UpdateUserInput {
-  status?: string | null;
+  status?: UserStatus | null;
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
   password?: string | null;
-  roles?: string[] | null;
-  licenseType?: string | null;
+  roles?: UserRole[] | null;
+  licenseType?: LicenseType | null;
   id: string;
 }
 

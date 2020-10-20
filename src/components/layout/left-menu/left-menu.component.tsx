@@ -19,20 +19,20 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
+import { useSelector } from 'react-redux';
 import { useStyles } from './left-menu.styles';
 import { useLeftMenu } from '../../../hooks/core/left-menu/left-menu.hook';
 import {
   DASHBOARD_URL,
-  HISTORY_URL,
   EVENTS_URL,
-  USERS_URL,
-  SETTINGS_URL,
+  HISTORY_URL,
   MANAGE_INVENTORY_URL,
+  SETTINGS_URL,
+  USERS_URL,
 } from '../../../constants/route.constants';
-import { useSelector } from 'react-redux';
 import { IRootState } from '../../../redux/root.reducer';
 import { getCurrentUser } from '../../../redux/auth/auth.selector';
-import { ROLE_ADMIN, ROLE_MANIFEST } from '../../../constants/user.constants';
+import { UserRole } from '../../../interfaces/generated/globalTypes';
 
 
 const LeftMenu: FC = (props): ReactElement => {
@@ -54,8 +54,8 @@ const LeftMenu: FC = (props): ReactElement => {
   } = useLeftMenu();
 
   const usersMenuJsx = (currentUser
-    && (currentUser.roles.includes(ROLE_ADMIN)
-      || currentUser.roles.includes(ROLE_MANIFEST)
+    && (currentUser.roles.includes(UserRole.ADMIN)
+      || currentUser.roles.includes(UserRole.MANIFEST)
     )
   ) ?
     <ListItem

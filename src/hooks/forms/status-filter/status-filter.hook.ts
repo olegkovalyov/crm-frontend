@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import { userStatuses, UserStatusType } from '../../../constants/user.constants';
+import { userStatuses } from '../../../constants/user.constants';
 import { UserStatusCheckBoxesStateType } from '../../../interfaces/user.interface';
+import { UserStatus } from '../../../interfaces/generated/globalTypes';
 
 export const useStatusFilter = () => {
   const initialStatusCheckboxesState: UserStatusCheckBoxesStateType = {
@@ -9,7 +10,7 @@ export const useStatusFilter = () => {
   };
   const [statusCheckBoxesState, setStatusCheckboxesState] = useState<UserStatusCheckBoxesStateType>(initialStatusCheckboxesState);
 
-  const initCheckboxes = (roles: UserStatusType[]) => {
+  const initCheckboxes = (roles: UserStatus[]) => {
     userStatuses.forEach((value) => {
       initialStatusCheckboxesState[value] = roles.includes(value);
     });
@@ -19,13 +20,13 @@ export const useStatusFilter = () => {
   const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStatusCheckboxesState(prevState => {
       const newFormRolesState = { ...prevState };
-      newFormRolesState[e.target.value as UserStatusType] = e.target.checked;
+      newFormRolesState[e.target.value as UserStatus] = e.target.checked;
       return newFormRolesState;
     });
   };
 
-  const getSelectedStatuses = useCallback((): UserStatusType[] => {
-    const selectedStatuses: UserStatusType[] = [];
+  const getSelectedStatuses = useCallback((): UserStatus[] => {
+    const selectedStatuses: UserStatus[] = [];
     userStatuses.forEach(value => {
       if (statusCheckBoxesState[value] === true) {
         selectedStatuses.push(value);
