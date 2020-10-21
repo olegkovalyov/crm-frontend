@@ -7,6 +7,8 @@ import { useEventFormValidation } from '../../../hooks/forms/event-form-validati
 import { useGetEventRequest } from '../../../hooks/graphql/get-event-request/get-event-request.hook';
 import { EventInterface } from '../../../interfaces/event.interface';
 import { useUpdateEventRequest } from '../../../hooks/graphql/update-event-request/update-event-request.hook';
+import { UserInterface } from '../../../interfaces/user.interface';
+import { useUsersList } from '../../../hooks/forms/users-list/users-list.hook';
 
 interface PropTypes {
   id: string;
@@ -14,6 +16,8 @@ interface PropTypes {
 
 const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   let errorMessage = '';
+  let title = '';
+  let users: UserInterface[] = [];
 
   const [isEventLoaded, setIsEventLoaded] = useState(false);
 
@@ -34,15 +38,34 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   const { isEventLoading, eventError, eventData, getEvent } = useGetEventRequest(props.id);
 
-  const { loading, updateErrorMessage, updatedEventData, updateEventAsync } = useUpdateEventRequest();
+  const {
+    loading,
+    updateErrorMessage,
+    updatedEventData,
+    updateEventAsync,
+  } = useUpdateEventRequest();
+
+  const {
+    selectedUsers: selectedStaff,
+    handleChangeUsersList: handleChangeStaffList,
+    setSelectedUsers: setStaff,
+  } = useUsersList();
 
   // Loading Event
   useEffect(() => {
     getEvent();
   }, []);
 
+  useEffect(() => {
+    if (eventData && eventData.getEvent) {
+      const staffIds = eventData.getEvent.staff.map(value => value.id);
+      setStaff(staffIds);
+    }
+  }, [eventData]);
+
   if (eventData && !isEventLoaded) {
     const currentEvent = eventData.getEvent as EventInterface;
+    users = eventData.getStaff as UserInterface[];
     if (currentEvent !== null) {
       setEvent(currentEvent.name, currentEvent.date, currentEvent.notes);
       setIsEventLoaded(true);
@@ -50,6 +73,8 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       return <Redirect to={EVENTS_URL} />;
     }
   }
+
+
   if (isEventLoading) {
     return (
       <>
@@ -72,10 +97,17 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     return <Redirect to={EVENTS_URL} />;
   }
   // End Updating Event
+  if (eventData && eventData.getEvent) {
+    title = eventData.getEvent.name;
+  }
+
+  if (eventData && eventData.getStaff) {
+    users = eventData.getStaff as UserInterface[];
+  }
 
   return (
     <CommonEventForm
-      title='Edit'
+      title={title}
       name={name}
       hasNameError={hasNameError}
       nameErrorMessage={nameErrorMessage}
@@ -84,13 +116,16 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       onNotesChange={onNotesChange}
       date={date}
       onDateChange={onDateChange}
+      users={users}
+      selectedStaff={selectedStaff}
+      onStaffChange={handleChangeStaffList}
       formTouched={formTouched}
       submitButtonEnabled={submitButtonEnabled}
       formErrorMessage={errorMessage}
       loading={loading}
       submitBtnTitle='Save'
       submitFn={() => {
-        return updateEventAsync(props.id, name, date, notes);
+        return updateEventAsync(props.id, name, date, notes, selectedStaff);
       }}
     />
   );

@@ -35,6 +35,7 @@ export enum UserStatus {
 export interface CreateEventInput {
   name: string;
   date: any;
+  staffIds?: string[] | null;
   notes: string;
 }
 
@@ -71,6 +72,7 @@ export interface UpdateEventInput {
   id: string;
   name?: string | null;
   date?: any | null;
+  staffIds?: string[] | null;
   notes?: string | null;
 }
 

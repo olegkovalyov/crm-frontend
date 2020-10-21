@@ -18,7 +18,7 @@ export interface GetEvents_getEvents {
   name: string;
   date: any;
   notes: string;
-  loads: GetEvents_getEvents_loads[] | null;
+  loads: GetEvents_getEvents_loads[];
 }
 
 export interface GetEvents {

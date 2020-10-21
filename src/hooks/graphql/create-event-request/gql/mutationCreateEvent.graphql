@@ -2,8 +2,5 @@ mutation CreateEvent($input: CreateEventInput!) {
     createEvent(createEventData: $input)
     {
         id,
-        name,
-        date,
-        notes
     }
 }

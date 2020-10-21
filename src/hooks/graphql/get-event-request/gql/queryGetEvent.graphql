@@ -1,5 +1,5 @@
-query GetEvent($input: String!) {
-    getEvent(id: $input) {
+query GetEvent($eventId: String!) {
+    getEvent(id: $eventId) {
         id,
         name,
         date,
@@ -9,6 +9,28 @@ query GetEvent($input: String!) {
             aircraft,
             date,
             status
+        },
+        staff{
+            id,
+            status,
+            firstName,
+            lastName,
+            email,
+            roles,
+            licenseType,
+            createdAt,
+            updatedAt
         }
+    },
+    getStaff{
+        id,
+        status,
+        firstName,
+        lastName,
+        email,
+        roles,
+        licenseType,
+        createdAt,
+        updatedAt
     }
 }

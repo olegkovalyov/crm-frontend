@@ -12,6 +12,13 @@ export const userRoles = [
   UserRole.ADMIN,
 ];
 
+export const staffRoles = [
+  UserRole.COACH,
+  UserRole.TM,
+  UserRole.CAMERAMAN,
+  UserRole.PACKER,
+];
+
 
 export const licenseTypes = [
   LicenseType.NONE,

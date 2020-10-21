@@ -12,9 +12,6 @@ import { CreateEventInput } from "./globalTypes";
 export interface CreateEvent_createEvent {
   __typename: "EventModel";
   id: string;
-  name: string;
-  date: any;
-  notes: string;
 }
 
 export interface CreateEvent {

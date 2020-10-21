@@ -10,12 +10,16 @@ export const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    width: '100%',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  padding: {
+    padding: theme.spacing(2),
   },
   form: {
     width: '100%', // Fix IE 11 issue.

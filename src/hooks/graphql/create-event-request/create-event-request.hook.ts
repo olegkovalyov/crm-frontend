@@ -28,6 +28,7 @@ export const useCreateEventRequest = () => {
     name: string,
     date: Date,
     notes: string,
+    staffIds: string[],
   ): Promise<void> => {
     try {
       const variables: CreateEventVariables = {
@@ -35,6 +36,7 @@ export const useCreateEventRequest = () => {
           name,
           date,
           notes,
+          staffIds,
         },
       };
       setErrorMessage('');

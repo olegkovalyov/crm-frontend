@@ -7,7 +7,9 @@ import { GetEvent, GetEventVariables } from '../../../interfaces/generated/GetEv
 
 const getEventQuery = loader('./gql/queryGetEvent.graphql');
 
-export const useGetEventRequest = (id: string) => {
+export const useGetEventRequest = (
+  id: string,
+) => {
 
   const accessToken = useSelector((state: IRootState) => getAccessToken(state));
 
@@ -20,7 +22,7 @@ export const useGetEventRequest = (id: string) => {
       },
       fetchPolicy: 'network-only',
       variables: {
-        input: id,
+        eventId: id,
       },
     });
 

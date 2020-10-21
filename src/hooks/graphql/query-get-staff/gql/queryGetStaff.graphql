@@ -1,0 +1,13 @@
+query GetStaff{
+    getStaff{
+        id,
+        status,
+        firstName,
+        lastName,
+        email,
+        roles,
+        licenseType,
+        createdAt,
+        updatedAt
+    }
+}

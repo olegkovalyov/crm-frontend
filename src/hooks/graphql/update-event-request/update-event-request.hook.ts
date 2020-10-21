@@ -29,6 +29,7 @@ export const useUpdateEventRequest = () => {
     name: string,
     date: Date,
     notes: string,
+    staffIds: string[],
   ): Promise<void> => {
     try {
       const variables: UpdateEventVariables = {
@@ -37,6 +38,7 @@ export const useUpdateEventRequest = () => {
           name,
           date,
           notes,
+          staffIds,
         },
       };
       setErrorMessage('');
