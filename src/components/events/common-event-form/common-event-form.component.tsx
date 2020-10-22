@@ -155,7 +155,7 @@ const CommonEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           }}
         />
         <FormSpinner show={loading} />
-        <FormError className={classes.eventErrorMessage} message={formErrorMessage} />
+        <FormError className={classes.getEventErrorMessage} message={formErrorMessage} />
       </form>
     </>
   );

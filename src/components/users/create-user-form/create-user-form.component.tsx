@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useUserFormValidation } from '../../../hooks/forms/user-form-validation/user-form-validation.hook';
-import { useCreateUserRequest } from '../../../hooks/graphql/create-user-request/create-user-request.hook';
+import { useCreateUserMutation } from '../../../hooks/graphql/mutations/create-user/create-user.mutation.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { USERS_URL } from '../../../constants/route.constants';
 import { UserStatus } from '../../../interfaces/generated/globalTypes';
@@ -37,14 +37,14 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   } = useUserFormValidation();
 
   const {
-    loading,
+    inProcessOfCreatingUser,
     createUserAsync,
-    createUserData,
-    errorMessage,
-  } = useCreateUserRequest();
+    userData,
+    createUserErrorMessage,
+  } = useCreateUserMutation();
 
 
-  if (createUserData) {
+  if (userData) {
     return (<Redirect to={USERS_URL} />);
   }
 
@@ -72,8 +72,8 @@ const CreateUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         onIsActiveChange={handleIsActiveChange}
         formTouched={formTouched}
         submitButtonEnabled={submitButtonEnabled}
-        formErrorMessage={errorMessage}
-        loading={loading}
+        formErrorMessage={createUserErrorMessage}
+        loading={inProcessOfCreatingUser}
         submitFn={() => {
           return createUserAsync(
             status,

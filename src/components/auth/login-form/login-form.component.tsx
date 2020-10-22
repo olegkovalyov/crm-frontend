@@ -15,7 +15,7 @@ import FormSpinner from '../../../elements/form-spinner.component';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import { Copyright } from '../../../elements/copyright.component';
 import { useLoginFormValidation } from '../../../hooks/forms/login-form-validation/login-form-validation.hook';
-import { useLoginRequest } from '../../../hooks/graphql/login-request/login-request.hook';
+import { useLoginMutation } from '../../../hooks/graphql/mutations/login/login.mutation.hook';
 import { FORGOT_PASSWORD_URL, REGISTER_URL } from '../../../constants/route.constants';
 
 const LogInForm: FC = (props): ReactElement => {
@@ -36,10 +36,10 @@ const LogInForm: FC = (props): ReactElement => {
   } = useLoginFormValidation();
 
   const {
-    loading,
-    errorMessage,
+    inProcessOfLogin,
+    loginErrorMessage,
     loginAsync,
-  } = useLoginRequest();
+  } = useLoginMutation();
 
   return (
     <>
@@ -85,7 +85,7 @@ const LogInForm: FC = (props): ReactElement => {
             />
             <FormSubmitButton
               title="Log In"
-              show={!loading}
+              show={!inProcessOfLogin}
               disabled={loginButtonDisabled}
               className={classes.submit}
               onClick={(e) => {
@@ -93,8 +93,8 @@ const LogInForm: FC = (props): ReactElement => {
                 return loginAsync(email, password);
               }}
             />
-            <FormSpinner show={loading} />
-            <FormError className={classes.loginErrorMessage} message={errorMessage} />
+            <FormSpinner show={inProcessOfLogin} />
+            <FormError className={classes.loginErrorMessage} message={loginErrorMessage} />
             <Grid container justify="flex-end">
               <Grid item>
                 <Link className={classes.link} onClick={() => history.push(REGISTER_URL)}>

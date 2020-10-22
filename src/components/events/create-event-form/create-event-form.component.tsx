@@ -2,10 +2,10 @@ import React, { FC, ReactElement, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useEventFormValidation } from '../../../hooks/forms/event-form-validation/event-form-validation.hook';
 import CommonEventForm from '../common-event-form/common-event-form.component';
-import { useCreateEventRequest } from '../../../hooks/graphql/create-event-request/create-event-request.hook';
+import { useCreateEventMutation } from '../../../hooks/graphql/mutations/create-event/create-event.mutation.hook';
 import { EVENTS_URL } from '../../../constants/route.constants';
 import { useUsersList } from '../../../hooks/forms/users-list/users-list.hook';
-import { useQueryGetStaff } from '../../../hooks/graphql/query-get-staff/query-get-staff.hook';
+import { useGetStaffQuery } from '../../../hooks/graphql/queries/get-staff/get-staff.query.hook';
 
 
 interface PropTypes {
@@ -29,18 +29,18 @@ const CreateEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   } = useEventFormValidation();
 
   const {
+    inProcessOfCreatingEvent,
+    createEventErrorMessage,
+    eventsData,
     createEventAsync,
-    createEventData,
-    loading: isCreatingEvent,
-    errorMessage: errorCreatingEventMessage,
-  } = useCreateEventRequest();
+  } = useCreateEventMutation();
 
   const {
-    loading: isStaffLoading,
-    staff,
+    isLoadingStaff,
+    staffData,
+    getStaffErrorMessage,
     getStaffAsync,
-    error: errorStaffLoadingMessage,
-  } = useQueryGetStaff();
+  } = useGetStaffQuery();
 
   useEffect(() => {
     getStaffAsync();
@@ -51,14 +51,17 @@ const CreateEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     handleChangeUsersList: handleChangeStaffList,
   } = useUsersList();
 
-  const isLoading = (isStaffLoading || isCreatingEvent);
+  const isLoading = (isLoadingStaff || inProcessOfCreatingEvent);
 
 
-  errorMessage = errorCreatingEventMessage || '';
-  // errorMessage = errorStaffLoadingMessage || '';
+  if (createEventErrorMessage) {
+    errorMessage = createEventErrorMessage;
+  } else if (getStaffErrorMessage) {
+    errorMessage = getStaffErrorMessage;
+  }
 
 
-  if (createEventData) {
+  if (eventsData) {
     return (<Redirect to={EVENTS_URL} />);
   }
 
@@ -73,7 +76,7 @@ const CreateEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       onNotesChange={onNotesChange}
       date={date}
       onDateChange={onDateChange}
-      users={staff}
+      users={staffData}
       selectedStaff={selectedStaff}
       onStaffChange={handleChangeStaffList}
       formTouched={formTouched}

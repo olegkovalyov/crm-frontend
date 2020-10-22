@@ -15,7 +15,7 @@ import { Copyright } from '../../../elements/copyright.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
 import { useRegisterFormValidation } from '../../../hooks/forms/register-form-validation/register-form-validation.hook';
-import { useRegisterRequest } from '../../../hooks/graphql/register-request/register-request.hook';
+import { useRegisterMutation } from '../../../hooks/graphql/mutations/register/register.mutation.hook';
 import { LOGIN_URL } from '../../../constants/route.constants';
 import { LicenseType, UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
 
@@ -53,10 +53,10 @@ const RegisterForm: FC = (props): ReactElement => {
   const licenseType = LicenseType.NONE;
 
   const {
-    loading,
+    inProcessOfRegister,
+    registerErrorMessage,
     registerAsync,
-    errorMessage,
-  } = useRegisterRequest();
+  } = useRegisterMutation();
 
 
   return (
@@ -167,8 +167,8 @@ const RegisterForm: FC = (props): ReactElement => {
                 licenseType);
             }}
           />
-          <FormSpinner show={loading} />
-          <FormError className={classes.registerErrorMessage} message={errorMessage} />
+          <FormSpinner show={inProcessOfRegister} />
+          <FormError className={classes.registerErrorMessage} message={registerErrorMessage} />
           <Grid container justify="flex-end">
             <Grid item>
               <Link className={classes.link} onClick={() => history.push(LOGIN_URL)}>

@@ -5,7 +5,7 @@ import {
   Grid,
 } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { useGetUsersRequest } from '../../../hooks/graphql/users-request/users-request.hook';
+import { useGetUsersQuery } from '../../../hooks/graphql/queries/get-users/get-users.query.hook';
 import { useStyles } from './users-table-container.styles';
 import { CREATE_USER_URL } from '../../../constants/route.constants';
 import UsersTableFilter from '../users-table-filter/users-table-filter.component';
@@ -34,11 +34,11 @@ const UsersTableContainer: FC = (props): ReactElement => {
   } = useStatusFilter();
 
   const {
+    usersData,
+    areUsersLoading,
+    getUsersErrorMessage,
     getUsersAsync,
-    users,
-    loading,
-    error,
-  } = useGetUsersRequest();
+  } = useGetUsersQuery();
 
   return (
     <>
@@ -75,9 +75,9 @@ const UsersTableContainer: FC = (props): ReactElement => {
             getUsersAsync={getUsersAsync}
             getSelectedRoles={getSelectedRoles}
             getSelectedStatuses={getSelectedStatuses}
-            loading={loading}
-            error={error}
-            users={users}
+            loading={areUsersLoading}
+            errorMessage={getUsersErrorMessage}
+            users={usersData}
           />
         </Grid>
       </Grid>

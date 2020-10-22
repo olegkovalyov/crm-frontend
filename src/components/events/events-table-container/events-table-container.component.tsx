@@ -7,7 +7,7 @@ import {
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { useStyles } from './events-table-container.styles';
 import { CREATE_EVENT_URL } from '../../../constants/route.constants';
-import { useGetEventsRequest } from '../../../hooks/graphql/events-request/events-request.hook';
+import { useGetEventsQuery } from '../../../hooks/graphql/queries/get-events/get-events.query.hook';
 import EventsTable from '../events-table/events-table.component';
 
 
@@ -18,10 +18,10 @@ const EventsTableContainer: FC = (props): ReactElement => {
 
   const {
     getEventsAsync,
-    events,
-    loading,
-    error,
-  } = useGetEventsRequest();
+    eventsData,
+    areEventsLoading,
+    getEventsErrorMessage,
+  } = useGetEventsQuery();
 
   return (
     <>
@@ -43,9 +43,9 @@ const EventsTableContainer: FC = (props): ReactElement => {
         <Grid item xs={12}>
           <EventsTable
             getEventsAsync={getEventsAsync}
-            error={error}
-            events={events}
-            loading={loading}
+            errorMessage={getEventsErrorMessage}
+            events={eventsData}
+            loading={areEventsLoading}
           />
         </Grid>
       </Grid>

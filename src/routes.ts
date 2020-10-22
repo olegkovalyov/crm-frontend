@@ -53,7 +53,7 @@ export const routes: IRoute[] = [
     path: HOME_URL,
     component: lazy(() => import('./pages/dashboard/dashboard.component')),
     exact: true,
-    private: false,
+    private: true,
   },
   {
     path: DASHBOARD_URL,

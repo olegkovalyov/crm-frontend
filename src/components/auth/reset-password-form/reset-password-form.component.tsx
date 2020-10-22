@@ -13,7 +13,7 @@ import FormSpinner from '../../../elements/form-spinner.component';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import { Copyright } from '../../../elements/copyright.component';
 import { useResetPasswordFormValidation } from '../../../hooks/forms/reset-password-form-validation/register-form-validation.hook';
-import { useResetPasswordRequest } from '../../../hooks/graphql/reset-password-request/reset-password-request.hook';
+import { useResetPasswordMutation } from '../../../hooks/graphql/mutations/reset-password/reset-password.mutation.hook';
 
 interface IResetPasswordPageParams {
   token: string,
@@ -34,14 +34,14 @@ const ResetPasswordForm: FC = (props): ReactElement => {
     confirmPasswordErrorMessage,
     passwordErrorMessage,
     formTouched,
-    resetPasswordButtonDisabled
+    resetPasswordButtonDisabled,
   } = useResetPasswordFormValidation();
 
   const {
-    loading,
+    inProcessOfResetPassword,
+    resetPasswordErrorMessage,
     resetPasswordAsync,
-    errorMessage
-  } = useResetPasswordRequest();
+  } = useResetPasswordMutation();
 
   return (
     <>
@@ -86,7 +86,7 @@ const ResetPasswordForm: FC = (props): ReactElement => {
             />
             <FormSubmitButton
               title="Reset password"
-              show={!loading}
+              show={!inProcessOfResetPassword}
               disabled={resetPasswordButtonDisabled}
               className={classes.submit}
               onClick={(e) => {
@@ -94,8 +94,8 @@ const ResetPasswordForm: FC = (props): ReactElement => {
                 return resetPasswordAsync(password, token!);
               }}
             />
-            <FormSpinner show={loading} />
-            <FormError className={classes.resetPasswordErrorMessage} message={errorMessage} />
+            <FormSpinner show={inProcessOfResetPassword} />
+            <FormError className={classes.resetPasswordErrorMessage} message={resetPasswordErrorMessage} />
           </form>
         </div>
         <Box mt={5}>

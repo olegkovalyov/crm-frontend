@@ -15,7 +15,7 @@ import FormSpinner from '../../../elements/form-spinner.component';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import { Copyright } from '../../../elements/copyright.component';
 import { useForgotPasswordFormValidation } from '../../../hooks/forms/forgot-password-form-validation/forgot-password-form-validation.hook';
-import { useForgotPasswordRequest } from '../../../hooks/graphql/forgot-password-request/forgot-password-request.hook';
+import { useForgotPasswordMutation } from '../../../hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook';
 import { LOGIN_URL } from '../../../constants/route.constants';
 
 const ForgotPasswordForm: FC = (props): ReactElement => {
@@ -32,13 +32,13 @@ const ForgotPasswordForm: FC = (props): ReactElement => {
   } = useForgotPasswordFormValidation();
 
   const {
-    loading,
+    inProcessOfForgotPassword,
+    forgotPasswordData,
+    forgotPasswordErrorMessage,
     forgotPasswordAsync,
-    data,
-    errorMessage,
-  } = useForgotPasswordRequest();
+  } = useForgotPasswordMutation();
 
-  if (data) {
+  if (forgotPasswordData) {
     return (
       <>
         <Container maxWidth='xs'>
@@ -84,7 +84,7 @@ const ForgotPasswordForm: FC = (props): ReactElement => {
             />
             <FormSubmitButton
               title="Reset password"
-              show={!loading}
+              show={!inProcessOfForgotPassword}
               disabled={resetButtonDisabled}
               className={classes.submit}
               onClick={(e) => {
@@ -92,8 +92,8 @@ const ForgotPasswordForm: FC = (props): ReactElement => {
                 return forgotPasswordAsync(email);
               }}
             />
-            <FormSpinner show={loading} />
-            <FormError className={classes.forgotPasswordErrorMessage} message={errorMessage} />
+            <FormSpinner show={inProcessOfForgotPassword} />
+            <FormError className={classes.forgotPasswordErrorMessage} message={forgotPasswordErrorMessage} />
             <Grid container justify="flex-end">
               <Grid item>
                 <Link className={classes.link} onClick={() => history.push(LOGIN_URL)}>

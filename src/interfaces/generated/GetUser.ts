@@ -27,5 +27,5 @@ export interface GetUser {
 }
 
 export interface GetUserVariables {
-  input: string;
+  userId: string;
 }

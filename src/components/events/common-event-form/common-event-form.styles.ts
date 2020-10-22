@@ -25,7 +25,7 @@ export const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
-  eventErrorMessage: {
+  getEventErrorMessage: {
     color: 'red',
     fontSize: '14px',
     textAlign: 'center',

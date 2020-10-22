@@ -8,10 +8,10 @@ import { doesRefreshTokenExists } from '../../../redux/auth/auth.selector';
 import { useIsAuthenticated } from '../../../hooks/core/is-authenticated/is-authenticated.hook';
 import { authUrls } from '../../../routes';
 import { DASHBOARD_URL, LOGIN_URL } from '../../../constants/route.constants';
-import { useRefreshTokenRequest } from '../../../hooks/graphql/refresh-token-request/refresh-token-request.hook';
+import { useRefreshTokenQuery } from '../../../hooks/graphql/queries/refresh-token/refresh-token.query.hook';
 
 const RouteWithSubRoutes = (route: IRoute): JSX.Element => {
-  const { refreshAccessToken } = useRefreshTokenRequest();
+  const { refreshAccessToken } = useRefreshTokenQuery();
   refreshAccessToken();
 
   const refreshTokenExists = useSelector((state: IRootState) => doesRefreshTokenExists(state));

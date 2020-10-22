@@ -8,7 +8,7 @@ import {
 import {
   closeLeftMenuAction,
 } from '../../../redux/ui/ui.actions';
-import { useLogoutRequest } from '../../graphql/logout-request/logout-request.hook';
+import { useLogoutQuery } from '../../graphql/queries/logout/logout.query.hook';
 import {
   CREATE_USER_URL, DASHBOARD_URL,
   EDIT_USER_URL, HISTORY_URL,
@@ -64,7 +64,7 @@ export const useLeftMenu = () => {
     }
   }, [history.location.pathname]);
 
-  const { logoutAsync } = useLogoutRequest();
+  const { logoutAsync } = useLogoutQuery();
 
   const logout = (e: React.MouseEvent) => {
     logoutAsync();

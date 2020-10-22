@@ -10,7 +10,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ApolloError, QueryLazyOptions } from '@apollo/client';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { GetEvents_getEvents } from '../../../interfaces/generated/GetEvents';
-import { useDeleteEventRequest } from '../../../hooks/graphql/delete-event-request/delete-user-request.hook';
+import { useDeleteEventMutation } from '../../../hooks/graphql/mutations/delete-event/delete-event.mutation.hook';
 import { EDIT_EVENT_URL } from '../../../constants/route.constants';
 import EventDetails from '../event-details/event-details.component';
 import { EventInterface } from '../../../interfaces/event.interface';
@@ -20,7 +20,7 @@ interface IPropTypes {
   getEventsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
   loading: boolean,
   events: GetEvents_getEvents[],
-  error: ApolloError | undefined,
+  errorMessage: string,
 }
 
 const EventsTable: FC<IPropTypes> = (props): ReactElement => {
@@ -28,7 +28,7 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
   const {
     getEventsAsync,
     loading,
-    error,
+    errorMessage,
     events,
   } = props;
 
@@ -55,9 +55,9 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
   };
 
   const {
-    deleting,
+    inProcessOfDeletingEvent,
     deleteEventAsync,
-  } = useDeleteEventRequest();
+  } = useDeleteEventMutation();
 
   useEffect(() => {
     getEventsAsync();
@@ -71,10 +71,10 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
     );
   }
 
-  if (error) {
+  if (errorMessage) {
     return (
       <>
-        <Alert severity="error">{error.message}</Alert>
+        <Alert severity="error">{errorMessage}</Alert>
       </>
     );
   }
@@ -131,7 +131,7 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
         title='Are you sure you want to delete event'
         isOpen={isOpenDeleteDialog}
         isFullScreen={isFullScreenDialog}
-        inProcess={deleting}
+        inProcess={inProcessOfDeletingEvent}
       />
     </>
   );

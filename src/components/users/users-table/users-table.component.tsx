@@ -9,7 +9,7 @@ import BlockIcon from '@material-ui/icons/Block';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import { ApolloError } from '@apollo/client';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
-import { useDeleteUserRequest } from '../../../hooks/graphql/delete-user-request/delete-user-request.hook';
+import { useDeleteUserMutation } from '../../../hooks/graphql/mutations/delete-user/delete-user.mutation.hook';
 import { EDIT_USER_URL } from '../../../constants/route.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
 import { UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
@@ -21,7 +21,7 @@ interface IPropTypes {
   ) => Promise<void>,
   loading: boolean,
   users: UserInterface[],
-  error: ApolloError | undefined,
+  errorMessage: string,
   getSelectedStatuses: () => UserStatus[],
   getSelectedRoles: () => UserRole[],
 }
@@ -31,7 +31,7 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
   const {
     getUsersAsync,
     loading,
-    error,
+    errorMessage,
     users,
     getSelectedRoles,
     getSelectedStatuses,
@@ -60,9 +60,9 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
   };
 
   const {
-    deleting,
+    inProcessOfDeletingUser,
     deleteUserAsync,
-  } = useDeleteUserRequest();
+  } = useDeleteUserMutation();
 
   if (loading) {
     return (
@@ -72,10 +72,10 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
     );
   }
 
-  if (error) {
+  if (errorMessage) {
     return (
       <>
-        <Alert severity="error">{error.message}</Alert>
+        <Alert severity="error">{errorMessage}</Alert>
       </>
     );
   }
@@ -136,7 +136,7 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
         title='Are you sure you want to delete user'
         isOpen={isOpenDeleteDialog}
         isFullScreen={isFullScreenDialog}
-        inProcess={deleting}
+        inProcess={inProcessOfDeletingUser}
       />
     </>
   );

@@ -1,9 +1,9 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useUserFormValidation } from '../../../hooks/forms/user-form-validation/user-form-validation.hook';
-import { useGetUserRequest } from '../../../hooks/graphql/get-user-request/get-user-request.hook';
+import { useGetUserQuery } from '../../../hooks/graphql/queries/get-user/get-user.query.hook';
 import LoadBackdrop from '../../../elements/backdrop.component';
-import { useUpdateUserRequest } from '../../../hooks/graphql/update-user-request/update-user-request.hook';
+import { useUpdateUserMutation } from '../../../hooks/graphql/mutations/update-user/update-user.mutation.hook';
 import CommonUserForm from '../common-user-form/common-user-form.component';
 import { USERS_URL } from '../../../constants/route.constants';
 import { UserInterface } from '../../../interfaces/user.interface';
@@ -43,14 +43,24 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     setUser,
   } = useUserFormValidation();
 
-  const { isUserLoading, userError, userData, getUser } = useGetUserRequest(props.id);
+  const {
+    isUserLoading,
+    getUserErrorMessage,
+    userData,
+    getUserAsync,
+  } = useGetUserQuery();
 
-  const { loading, updateErrorMessage, updatedUserData, updateUserAsync } = useUpdateUserRequest();
+  const {
+    inProcessOfUpdatingUser,
+    updateUserData,
+    updateUserErrorMessage,
+    updateUserAsync,
+  } = useUpdateUserMutation();
 
   // Loading User
   useEffect(() => {
-    getUser();
-  }, [getUser]);
+    getUserAsync(props.id);
+  }, []);
 
   if (userData && !isUserLoaded) {
     const currentUser = userData.getUser as UserInterface;
@@ -77,17 +87,17 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     );
   }
 
-  if (userError) {
-    errorMessage = userError.message;
+  if (getUserErrorMessage) {
+    errorMessage = getUserErrorMessage;
   }
   // End Loading User
 
   // Updating User
-  if (updateErrorMessage) {
-    errorMessage = updateErrorMessage;
+  if (updateUserErrorMessage) {
+    errorMessage = updateUserErrorMessage;
   }
 
-  if (updatedUserData) {
+  if (updateUserData) {
     return <Redirect to={USERS_URL} />;
   }
   // End Updating User
@@ -117,7 +127,7 @@ const EditUserForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         formTouched={formTouched}
         submitButtonEnabled={submitButtonEnabled}
         formErrorMessage={errorMessage}
-        loading={loading}
+        loading={inProcessOfUpdatingUser}
         submitFn={() => {
           return updateUserAsync(
             props.id,

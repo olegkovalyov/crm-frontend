@@ -4,9 +4,9 @@ import LoadBackdrop from '../../../elements/backdrop.component';
 import { EVENTS_URL } from '../../../constants/route.constants';
 import CommonEventForm from '../common-event-form/common-event-form.component';
 import { useEventFormValidation } from '../../../hooks/forms/event-form-validation/event-form-validation.hook';
-import { useGetEventRequest } from '../../../hooks/graphql/get-event-request/get-event-request.hook';
+import { useGetEventQuery } from '../../../hooks/graphql/queries/get-event/get-event.query.hook';
 import { EventInterface } from '../../../interfaces/event.interface';
-import { useUpdateEventRequest } from '../../../hooks/graphql/update-event-request/update-event-request.hook';
+import { useUpdateEventMutation } from '../../../hooks/graphql/mutations/update-event/update-event.mutation.hook';
 import { UserInterface } from '../../../interfaces/user.interface';
 import { useUsersList } from '../../../hooks/forms/users-list/users-list.hook';
 
@@ -36,14 +36,19 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     setEvent,
   } = useEventFormValidation();
 
-  const { isEventLoading, eventError, eventData, getEvent } = useGetEventRequest(props.id);
+  const {
+    isEventLoading,
+    getEventErrorMessage,
+    eventData,
+    getEventAsync,
+  } = useGetEventQuery();
 
   const {
-    loading,
-    updateErrorMessage,
-    updatedEventData,
+    inProcessOfUpdatingEvent,
+    updateEventData,
+    updateEventErrorMessage,
     updateEventAsync,
-  } = useUpdateEventRequest();
+  } = useUpdateEventMutation();
 
   const {
     selectedUsers: selectedStaff,
@@ -53,7 +58,7 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   // Loading Event
   useEffect(() => {
-    getEvent();
+    getEventAsync(props.id);
   }, []);
 
   useEffect(() => {
@@ -83,17 +88,17 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     );
   }
 
-  if (eventError) {
-    errorMessage = eventError.message;
+  if (getEventErrorMessage) {
+    errorMessage = getEventErrorMessage;
   }
   // End Loading Event
 
   // Updating Event
-  if (updateErrorMessage) {
-    errorMessage = updateErrorMessage;
+  if (updateEventErrorMessage) {
+    errorMessage = updateEventErrorMessage;
   }
 
-  if (updatedEventData) {
+  if (updateEventData) {
     return <Redirect to={EVENTS_URL} />;
   }
   // End Updating Event
@@ -122,7 +127,7 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       formTouched={formTouched}
       submitButtonEnabled={submitButtonEnabled}
       formErrorMessage={errorMessage}
-      loading={loading}
+      loading={inProcessOfUpdatingEvent}
       submitBtnTitle='Save'
       submitFn={() => {
         return updateEventAsync(props.id, name, date, notes, selectedStaff);
