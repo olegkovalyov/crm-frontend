@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, matchPath } from 'react-router-dom';
 import { IRootState } from '../../../redux/root.reducer';
 import {
   isOpenedLeftMenuSelector,
@@ -14,7 +14,7 @@ import {
   EDIT_USER_URL, HISTORY_URL,
   EVENTS_URL,
   USERS_URL,
-  SETTINGS_URL, MANAGE_INVENTORY_URL,
+  SETTINGS_URL, MANAGE_INVENTORY_URL, NO_MATCH_URL, CREATE_EVENT_URL, EDIT_EVENT_URL, LOADS_URL, routePaths,
 } from '../../../constants/route.constants';
 
 export const useLeftMenu = () => {
@@ -34,34 +34,41 @@ export const useLeftMenu = () => {
   const [isSettingsMenuSelected, setSettingsMenuSelected] = useState(false);
 
   useEffect(() => {
-    switch (history.location.pathname) {
-      case USERS_URL:
-      case CREATE_USER_URL:
-      case EDIT_USER_URL:
-        setManageUsersMenuSelected(true);
-        break;
-      case MANAGE_INVENTORY_URL:
-        setManageInventoryMenuSelected(true);
-        break;
-      case EVENTS_URL:
-        setEventsMenuSelected(true);
-        break;
-      case HISTORY_URL:
-        setHistoryMenuSelected(true);
-        break;
-      case SETTINGS_URL:
-        setSettingsMenuSelected(true);
-        break;
-      case DASHBOARD_URL:
-        setDashboardMenuSelected(true);
-        break;
-      default:
-        break;
-    }
-
-    if (history.location.pathname.includes(EDIT_USER_URL)) {
-      setManageUsersMenuSelected(true);
-    }
+    routePaths.forEach(path => {
+      if (path !== NO_MATCH_URL
+        && matchPath(history.location.pathname, {
+          path,
+          exact: true,
+        })) {
+        switch (path) {
+          case USERS_URL:
+          case CREATE_USER_URL:
+          case EDIT_USER_URL:
+            setManageUsersMenuSelected(true);
+            break;
+          case MANAGE_INVENTORY_URL:
+            setManageInventoryMenuSelected(true);
+            break;
+          case EVENTS_URL:
+          case CREATE_EVENT_URL:
+          case EDIT_EVENT_URL:
+          case LOADS_URL:
+            setEventsMenuSelected(true);
+            break;
+          case HISTORY_URL:
+            setHistoryMenuSelected(true);
+            break;
+          case SETTINGS_URL:
+            setSettingsMenuSelected(true);
+            break;
+          case DASHBOARD_URL:
+            setDashboardMenuSelected(true);
+            break;
+          default:
+            break;
+        }
+      }
+    });
   }, [history.location.pathname]);
 
   const { logoutAsync } = useLogoutQuery();

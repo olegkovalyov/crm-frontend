@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
-import { generatePath, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import Alert from '@material-ui/lab/Alert';
 import {
@@ -7,13 +7,12 @@ import {
 } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { QueryLazyOptions } from '@apollo/client';
+import {  QueryLazyOptions } from '@apollo/client';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { GetEvents_getEvents } from '../../../interfaces/generated/GetEvents';
 import { useDeleteEventMutation } from '../../../hooks/graphql/mutations/delete-event/delete-event.mutation.hook';
-import { EDIT_EVENT_URL, LOADS_URL } from '../../../constants/route.constants';
-import EventDetails from '../event-details/event-details.component';
-import { EventInterface } from '../../../interfaces/event.interface';
+import { EDIT_EVENT_URL } from '../../../constants/route.constants';
+import { UserInterface } from '../../../interfaces/user.interface';
 
 interface IPropTypes {
   getEventsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
@@ -22,7 +21,7 @@ interface IPropTypes {
   errorMessage: string,
 }
 
-const EventsTable: FC<IPropTypes> = (props): ReactElement => {
+const LoadsTable: FC<IPropTypes> = (props): ReactElement => {
 
   const {
     getEventsAsync,
@@ -95,8 +94,8 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
             icon: 'edit',
             tooltip: 'Edit Event',
             onClick: (event, rowData) => {
-              const { id } = rowData as EventInterface;
-              const url = generatePath(EDIT_EVENT_URL, { id });
+              const { id } = rowData as UserInterface;
+              const url = `${EDIT_EVENT_URL}/${id}`;
               history.push(url);
             },
           },
@@ -109,15 +108,12 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
             },
           },
         ]}
-        detailPanel={rowData => {
-          return <EventDetails notes={(rowData as EventInterface).notes} />;
-        }}
         options={{
           actionsColumnIndex: -1,
         }}
         onRowClick={((event, rowData) => {
-          const { id } = rowData as EventInterface;
-          const url = generatePath(LOADS_URL, { id });
+          const { id } = rowData as GetEvents_getEvents;
+          const url = `${EDIT_EVENT_URL}/${id}`;
           history.push(url);
         })}
       />
@@ -136,4 +132,4 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
   );
 };
 
-export default EventsTable;
+export default LoadsTable;

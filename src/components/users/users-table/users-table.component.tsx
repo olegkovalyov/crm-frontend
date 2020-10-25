@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, generatePath } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import Alert from '@material-ui/lab/Alert';
 import { LinearProgress } from '@material-ui/core';
@@ -7,7 +7,6 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import BlockIcon from '@material-ui/icons/Block';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
-import { ApolloError } from '@apollo/client';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { useDeleteUserMutation } from '../../../hooks/graphql/mutations/delete-user/delete-user.mutation.hook';
 import { EDIT_USER_URL } from '../../../constants/route.constants';
@@ -110,7 +109,7 @@ const UsersTable: FC<IPropTypes> = (props): ReactElement => {
             tooltip: 'Edit User',
             onClick: (event, rowData) => {
               const { id } = rowData as UserInterface;
-              const url = `${EDIT_USER_URL}/${id}`;
+              const url = generatePath(EDIT_USER_URL, { id });
               history.push(url);
             },
           },
