@@ -1,4 +1,6 @@
-export interface IDecodedJwtData {
+import { Login_login } from './generated/Login';
+
+export interface DecodedJwtDataInterface {
   email: string,
   firstName: string,
   lastName: string,
@@ -8,3 +10,6 @@ export interface IDecodedJwtData {
   role: string
 }
 
+export interface AuthDataInterface extends Login_login {
+
+}

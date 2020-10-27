@@ -1,6 +1,6 @@
-import { GetEvents_getEvents } from './generated/GetEvents';
+import { GetEvent_getEvent } from './generated/GetEvent';
 
-export interface EventInterface extends GetEvents_getEvents {
+export interface EventInterface extends GetEvent_getEvent {
   id: string;
   name: string;
   date: Date;

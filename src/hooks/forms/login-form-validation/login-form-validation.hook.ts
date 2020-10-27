@@ -25,7 +25,7 @@ export const useLoginFormValidation = () => {
     } else {
       setLoginButtonDisabled(true);
     }
-  }, [hasEmailError, hasPasswordError, email, password]);
+  }, [hasEmailError, hasPasswordError, email, password]); // eslint-disable-line
 
 
   const onEmailChange = (value: string): void => {

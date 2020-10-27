@@ -21,7 +21,7 @@ export const useResetPasswordMutation = () => {
     if (data) {
       dispatch(setUserAction(data.resetPassword));
     }
-  }, [data, dispatch]);
+  }, [data, dispatch]); // eslint-disable-line
 
   const resetPasswordAsync = async (password: string, token: string): Promise<void> => {
     try {

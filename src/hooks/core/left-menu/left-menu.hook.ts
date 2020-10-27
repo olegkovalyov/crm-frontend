@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, matchPath } from 'react-router-dom';
-import { IRootState } from '../../../redux/root.reducer';
-import {
-  isOpenedLeftMenuSelector,
-} from '../../../redux/ui/ui.selector';
-import {
-  closeLeftMenuAction,
-} from '../../../redux/ui/ui.actions';
+import { matchPath, useHistory } from 'react-router-dom';
+import { RootStateInterface } from '../../../redux/root.reducer';
+import { isOpenedLeftMenuSelector } from '../../../redux/ui/ui.selector';
+import { closeLeftMenuAction } from '../../../redux/ui/ui.actions';
 import { useLogoutQuery } from '../../graphql/queries/logout/logout.query.hook';
 import {
-  CREATE_USER_URL, DASHBOARD_URL,
-  EDIT_USER_URL, HISTORY_URL,
+  CLIENTS_URL,
+  CREATE_EVENT_URL,
+  CREATE_MEMBER_URL,
+  DASHBOARD_URL,
+  EDIT_EVENT_URL,
+  EDIT_MEMBER_URL,
   EVENTS_URL,
-  USERS_URL,
-  SETTINGS_URL, MANAGE_INVENTORY_URL, NO_MATCH_URL, CREATE_EVENT_URL, EDIT_EVENT_URL, LOADS_URL, routePaths,
+  HISTORY_URL,
+  LOADS_URL,
+  MANAGE_INVENTORY_URL,
+  MEMBERS_URL,
+  NO_MATCH_URL,
+  routePaths,
+  SETTINGS_URL,
 } from '../../../constants/route.constants';
 
 export const useLeftMenu = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const isOpenedLeftMenu = useSelector((state: IRootState) => isOpenedLeftMenuSelector(state));
+  const isOpenedLeftMenu = useSelector((state: RootStateInterface) => isOpenedLeftMenuSelector(state));
 
   const closeLeftMenu = () => {
     dispatch(closeLeftMenuAction());
   };
 
   const [isDashboardMenuSelected, setDashboardMenuSelected] = useState(false);
-  const [isManageUsersMenuSelected, setManageUsersMenuSelected] = useState(false);
+  const [isManageMembersMenuSelected, setManageMembersMenuSelected] = useState(false);
   const [isManageInventoryMenuSelected, setManageInventoryMenuSelected] = useState(false);
   const [isEventsMenuSelected, setEventsMenuSelected] = useState(false);
+  const [isClientsMenuSelected, setClientsMenuSelected] = useState(false);
   const [isHistoryMenuSelected, setHistoryMenuSelected] = useState(false);
   const [isSettingsMenuSelected, setSettingsMenuSelected] = useState(false);
 
@@ -41,10 +47,10 @@ export const useLeftMenu = () => {
           exact: true,
         })) {
         switch (path) {
-          case USERS_URL:
-          case CREATE_USER_URL:
-          case EDIT_USER_URL:
-            setManageUsersMenuSelected(true);
+          case MEMBERS_URL:
+          case CREATE_MEMBER_URL:
+          case EDIT_MEMBER_URL:
+            setManageMembersMenuSelected(true);
             break;
           case MANAGE_INVENTORY_URL:
             setManageInventoryMenuSelected(true);
@@ -54,6 +60,9 @@ export const useLeftMenu = () => {
           case EDIT_EVENT_URL:
           case LOADS_URL:
             setEventsMenuSelected(true);
+            break;
+          case CLIENTS_URL:
+            setClientsMenuSelected(true);
             break;
           case HISTORY_URL:
             setHistoryMenuSelected(true);
@@ -69,7 +78,7 @@ export const useLeftMenu = () => {
         }
       }
     });
-  }, [history.location.pathname]);
+  }, [history.location.pathname]); // eslint-disable-line
 
   const { logoutAsync } = useLogoutQuery();
 
@@ -81,9 +90,10 @@ export const useLeftMenu = () => {
     logout,
     isOpenedLeftMenu,
     isDashboardMenuSelected,
-    isManageUsersMenuSelected,
+    isManageMembersMenuSelected,
     isManageInventoryMenuSelected,
     isEventsMenuSelected,
+    isClientsMenuSelected,
     isHistoryMenuSelected,
     isSettingsMenuSelected,
     closeLeftMenu,

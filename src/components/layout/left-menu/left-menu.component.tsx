@@ -18,7 +18,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import HowToRegIcon from '@material-ui/icons/HowToReg';
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import { useSelector } from 'react-redux';
 import { useStyles } from './left-menu.styles';
 import { useLeftMenu } from '../../../hooks/core/left-menu/left-menu.hook';
@@ -28,25 +29,26 @@ import {
   HISTORY_URL,
   MANAGE_INVENTORY_URL,
   SETTINGS_URL,
-  USERS_URL,
+  MEMBERS_URL, CLIENTS_URL,
 } from '../../../constants/route.constants';
-import { IRootState } from '../../../redux/root.reducer';
+import { RootStateInterface } from '../../../redux/root.reducer';
 import { getCurrentUser } from '../../../redux/auth/auth.selector';
-import { UserRole } from '../../../interfaces/generated/globalTypes';
+import { MemberRole } from '../../../interfaces/generated/globalTypes';
 
 
 const LeftMenu: FC = (props): ReactElement => {
   const classes = useStyles();
 
-  const currentUser = useSelector((state: IRootState) => getCurrentUser(state));
+  const currentUser = useSelector((state: RootStateInterface) => getCurrentUser(state));
 
   const {
     logout,
     isOpenedLeftMenu,
     isDashboardMenuSelected,
-    isManageUsersMenuSelected,
+    isManageMembersMenuSelected,
     isManageInventoryMenuSelected,
     isEventsMenuSelected,
+    isClientsMenuSelected,
     isHistoryMenuSelected,
     isSettingsMenuSelected,
     closeLeftMenu,
@@ -54,19 +56,19 @@ const LeftMenu: FC = (props): ReactElement => {
   } = useLeftMenu();
 
   const usersMenuJsx = (currentUser
-    && (currentUser.roles.includes(UserRole.ADMIN)
-      || currentUser.roles.includes(UserRole.MANIFEST)
+    && (currentUser.roles.includes(MemberRole.ADMIN)
+      || currentUser.roles.includes(MemberRole.MANIFEST)
     )
   ) ?
     <ListItem
-      selected={isManageUsersMenuSelected}
+      selected={isManageMembersMenuSelected}
       button
-      onClick={() => history.push(USERS_URL)}
+      onClick={() => history.push(MEMBERS_URL)}
     >
       <ListItemIcon>
         <SupervisedUserCircleIcon />
       </ListItemIcon>
-      <ListItemText primary="Users" />
+      <ListItemText primary="Members" />
     </ListItem>
     : '';
 
@@ -100,16 +102,6 @@ const LeftMenu: FC = (props): ReactElement => {
             </ListItem>
             {usersMenuJsx}
             <ListItem
-              selected={isManageInventoryMenuSelected}
-              button
-              onClick={() => history.push(MANAGE_INVENTORY_URL)}
-            >
-              <ListItemIcon>
-                <HowToRegIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inventory" />
-            </ListItem>
-            <ListItem
               selected={isEventsMenuSelected}
               button
               onClick={() => history.push(EVENTS_URL)}
@@ -118,6 +110,26 @@ const LeftMenu: FC = (props): ReactElement => {
                 <EventAvailableIcon />
               </ListItemIcon>
               <ListItemText primary="Events" />
+            </ListItem>
+            <ListItem
+              selected={isClientsMenuSelected}
+              button
+              onClick={() => history.push(CLIENTS_URL)}
+            >
+              <ListItem
+                selected={isManageInventoryMenuSelected}
+                button
+                onClick={() => history.push(MANAGE_INVENTORY_URL)}
+              >
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Inventory" />
+              </ListItem>
+              <ListItemIcon>
+                <PeopleOutlineIcon />
+              </ListItemIcon>
+              <ListItemText primary="Clients" />
             </ListItem>
             <ListItem
               selected={isHistoryMenuSelected}

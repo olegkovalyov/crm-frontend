@@ -34,7 +34,7 @@ export const useResetPasswordFormValidation = () => {
     hasConfirmPasswordError,
     password,
     confirmPassword,
-  ]);
+  ]); // eslint-disable-line
 
 
   const onPasswordChange = (value: string): void => {

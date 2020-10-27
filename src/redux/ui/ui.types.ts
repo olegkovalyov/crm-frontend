@@ -6,5 +6,8 @@ export const CLOSE_LEFT_MENU = 'CLOSE_LEFT_MENU';
 export const OPEN_TOP_MENU = 'OPEN_TOP_MENU';
 export const CLOSE_TOP_MENU = 'CLOSE_TOP_MENU';
 
+// Breadcrumbs
+export const SET_BREADCRUMBS_DATA = 'SET_BREADCRUMBS_DATA';
+
 
 

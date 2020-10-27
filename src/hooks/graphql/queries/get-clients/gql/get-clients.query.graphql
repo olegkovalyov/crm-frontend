@@ -1,0 +1,27 @@
+query GetClients {
+    getClients{
+        id,
+        status,
+        firstName,
+        lastName,
+        phone,
+        weight,
+        gender,
+        withCameraman,
+        withHandCameraVideo,
+        onlyFlight,
+        paid,
+        tm {
+            id
+            firstName,
+            lastName
+        },
+        cameraman{
+            id,
+            firstName,
+            lastName
+        },
+        date,
+        notes
+    }
+}

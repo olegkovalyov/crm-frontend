@@ -15,7 +15,7 @@ import { useStyles } from './header.styles';
 
 // Selectors
 import { isOpenedLeftMenuSelector, isOpenedTopMenuSelector } from '../../../redux/ui/ui.selector';
-import { IRootState } from '../../../redux/root.reducer';
+import { RootStateInterface } from '../../../redux/root.reducer';
 import { closeTopMenuAction, openLeftMenuAction, openTopMenuAction } from '../../../redux/ui/ui.actions';
 import { TopMenuAnonymousComponent } from '../../../elements/top-menu-anonymous.component';
 import { TopMenuLoggedIn } from '../../../elements/top-menu-logged-in.component';
@@ -27,12 +27,12 @@ const Header: FC = (props): ReactElement => {
   const classes: Record<string, string> = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const isOpenedLeftMenu: boolean = useSelector((state: IRootState) => isOpenedLeftMenuSelector(state));
+  const isOpenedLeftMenu: boolean = useSelector((state: RootStateInterface) => isOpenedLeftMenuSelector(state));
 
   const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null);
 
-  const isTopMenuOpen = useSelector((state: IRootState) => isOpenedTopMenuSelector(state)); // Boolean(anchorEl);
-  const currentUser = useSelector((state: IRootState) => getCurrentUser(state));
+  const isTopMenuOpen = useSelector((state: RootStateInterface) => isOpenedTopMenuSelector(state)); // Boolean(anchorEl);
+  const currentUser = useSelector((state: RootStateInterface) => getCurrentUser(state));
 
   const handleTopMenuOpen = (e: React.MouseEvent) => {
     dispatch(openTopMenuAction());

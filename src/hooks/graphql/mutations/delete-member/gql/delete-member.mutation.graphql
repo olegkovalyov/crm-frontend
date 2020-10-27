@@ -1,0 +1,5 @@
+mutation DeleteMember($input: String!) {
+    deleteMember(id: $input){
+        id
+    }
+}

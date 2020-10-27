@@ -1,0 +1,13 @@
+query GetMember($memberId: String!) {
+    getMember(id: $memberId) {
+        id,
+        status,
+        firstName,
+        lastName,
+        email,
+        roles,
+        licenseType,
+        createdAt,
+        updatedAt
+    }
+}

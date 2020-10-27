@@ -1,5 +1,5 @@
 mutation DeleteEvent($input: String!) {
-    removeEvent(id: $input){
+    deleteEvent(id: $input){
         id
     }
 }

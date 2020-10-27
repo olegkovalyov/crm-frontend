@@ -5,7 +5,7 @@ import { loader } from 'graphql.macro';
 import { setUserAction } from '../../../../redux/auth/auth.actions';
 import { Register, RegisterVariables } from '../../../../interfaces/generated/Register';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-import { LicenseType, UserRole, UserStatus } from '../../../../interfaces/generated/globalTypes';
+import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
 
 const registerMutation = loader('./gql/register.mutation.graphql');
 
@@ -16,20 +16,20 @@ export const useRegisterMutation = () => {
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  useEffect(() => {
+   useEffect(() => {
     if (data) {
       dispatch(setUserAction(data.register));
     }
-  }, [data, dispatch]);
+  }, [data, dispatch]); // eslint-disable-line
 
 
   const registerAsync = async (
-    status: UserStatus,
+    status: MemberStatus,
     email: string,
     password: string,
     firstName: string,
     lastName: string,
-    roles: UserRole[],
+    roles: MemberRole[],
     licenseType: LicenseType,
   ): Promise<void> => {
     try {

@@ -1,22 +1,20 @@
 import { UiActionTypes } from './ui.actions';
-import {
-  CLOSE_LEFT_MENU,
-  CLOSE_TOP_MENU,
-  OPEN_LEFT_MENU,
-  OPEN_TOP_MENU,
-} from './ui.types';
+import { CLOSE_LEFT_MENU, CLOSE_TOP_MENU, OPEN_LEFT_MENU, OPEN_TOP_MENU, SET_BREADCRUMBS_DATA } from './ui.types';
+import { BreadcrumbsDataInterface } from '../../interfaces/ui.interface';
 
-export interface IUiState {
+export interface UiStateInterface {
   isOpenedLeftMenu: boolean,
   isOpenedTopMenu: boolean,
+  breadCrumbsData: BreadcrumbsDataInterface[],
 }
 
-export const uiState: IUiState = {
+export const uiState: UiStateInterface = {
   isOpenedLeftMenu: true,
   isOpenedTopMenu: false,
+  breadCrumbsData: [],
 };
 
-export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
+export const uiReducer = (state = uiState, action: UiActionTypes): UiStateInterface => {
   switch (action.type) {
     case OPEN_LEFT_MENU: {
       return {
@@ -40,6 +38,12 @@ export const uiReducer = (state = uiState, action: UiActionTypes): IUiState => {
       return {
         ...state,
         isOpenedTopMenu: false,
+      };
+    }
+    case SET_BREADCRUMBS_DATA: {
+      return {
+        ...state,
+        breadCrumbsData: action.payload,
       };
     }
     default:

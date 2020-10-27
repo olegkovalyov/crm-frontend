@@ -12,16 +12,16 @@ import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { GetEvents_getEvents } from '../../../interfaces/generated/GetEvents';
 import { useDeleteEventMutation } from '../../../hooks/graphql/mutations/delete-event/delete-event.mutation.hook';
 import { EDIT_EVENT_URL } from '../../../constants/route.constants';
-import { UserInterface } from '../../../interfaces/user.interface';
+import { MemberInterface } from '../../../interfaces/member.interface';
 
-interface IPropTypes {
+interface PropTypesInterface {
   getEventsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
   loading: boolean,
   events: GetEvents_getEvents[],
   errorMessage: string,
 }
 
-const LoadsTable: FC<IPropTypes> = (props): ReactElement => {
+const LoadsTable: FC<PropTypesInterface> = (props): ReactElement => {
 
   const {
     getEventsAsync,
@@ -59,7 +59,7 @@ const LoadsTable: FC<IPropTypes> = (props): ReactElement => {
 
   useEffect(() => {
     getEventsAsync();
-  }, []);
+  }, []); // eslint-disable-line
 
   if (loading) {
     return (
@@ -94,7 +94,7 @@ const LoadsTable: FC<IPropTypes> = (props): ReactElement => {
             icon: 'edit',
             tooltip: 'Edit Event',
             onClick: (event, rowData) => {
-              const { id } = rowData as UserInterface;
+              const { id } = rowData as MemberInterface;
               const url = `${EDIT_EVENT_URL}/${id}`;
               history.push(url);
             },

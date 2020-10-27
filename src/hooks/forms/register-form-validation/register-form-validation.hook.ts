@@ -61,7 +61,7 @@ export const useRegisterFormValidation = () => {
     confirmPassword,
     firstName,
     lastName,
-  ]);
+  ]); // eslint-disable-line
 
   const onFirstNameChange = (value: string): void => {
     setFormTouched(true);

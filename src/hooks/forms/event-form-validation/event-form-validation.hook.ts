@@ -57,7 +57,7 @@ export const useEventFormValidation = () => {
     name,
     hasNameError,
     hasDateError,
-  ]);
+  ]); // eslint-disable-line
 
   const onNameChange = (value: string): void => {
     setFormTouched(true);

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RefreshToken } from '../../../../interfaces/generated/RefreshToken';
 import { logoutAction, setUserAction } from '../../../../redux/auth/auth.actions';
 import { useIsAuthenticated } from '../../../core/is-authenticated/is-authenticated.hook';
-import { IRootState } from '../../../../redux/root.reducer';
+import { RootStateInterface } from '../../../../redux/root.reducer';
 import { doesRefreshTokenExists } from '../../../../redux/auth/auth.selector';
 import { client } from '../../../../http/graphql.client';
 import { store } from '../../../../redux/store';
@@ -12,7 +12,7 @@ const refreshTokenQuery = loader('./gql/refresh-token.query.graphql');
 
 export const useRefreshTokenQuery = () => {
   const { timeFromLastUpdate, isAuthenticated } = useIsAuthenticated();
-  const refreshTokenExists = useSelector((state: IRootState) => doesRefreshTokenExists(state));
+  const refreshTokenExists = useSelector((state: RootStateInterface) => doesRefreshTokenExists(state));
 
   /*
    We refresh access token only if refresh token exists and

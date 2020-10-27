@@ -17,7 +17,7 @@ import FormError from '../../../elements/form-error.component';
 import { useRegisterFormValidation } from '../../../hooks/forms/register-form-validation/register-form-validation.hook';
 import { useRegisterMutation } from '../../../hooks/graphql/mutations/register/register.mutation.hook';
 import { LOGIN_URL } from '../../../constants/route.constants';
-import { LicenseType, UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
+import { LicenseType, MemberRole, MemberStatus } from '../../../interfaces/generated/globalTypes';
 
 
 const RegisterForm: FC = (props): ReactElement => {
@@ -158,12 +158,12 @@ const RegisterForm: FC = (props): ReactElement => {
             onClick={(e) => {
               e.preventDefault();
               return registerAsync(
-                UserStatus.ACTIVE,
+                MemberStatus.ACTIVE,
                 email,
                 password,
                 firstName,
                 lastName,
-                [UserRole.SKYDIVER],
+                [MemberRole.SKYDIVER],
                 licenseType);
             }}
           />

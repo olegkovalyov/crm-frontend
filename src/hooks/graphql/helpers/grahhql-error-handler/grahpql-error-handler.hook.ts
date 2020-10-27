@@ -6,7 +6,7 @@ export const useGraphQlErrorHandler = () => {
     const { graphQLErrors, networkError } = e;
     let formattedMessage = '';
     if (networkError) {
-      formattedMessage = 'Network eventsErrorMessage. Try again later...';
+      formattedMessage = 'Network error. Try again later...';
     } else {
       const errorExtensions = graphQLErrors[0].extensions!;
       let notFormattedErrorMessage;

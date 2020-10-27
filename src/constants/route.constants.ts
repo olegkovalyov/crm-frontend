@@ -7,17 +7,22 @@ export const HOME_URL = '/';
 // Dashboard
 export const DASHBOARD_URL = '/dashboard';
 // Manage
-export const USERS_URL = '/users';
-export const CREATE_USER_URL = '/users/create';
-export const EDIT_USER_URL = '/users/edit/:id';
+export const MEMBERS_URL = '/members';
+export const CREATE_MEMBER_URL = '/members/create';
+export const EDIT_MEMBER_URL = '/members/:id';
 export const MANAGE_INVENTORY_URL = '/inventory';
 
 // Events
 export const EVENTS_URL = '/events';
 export const CREATE_EVENT_URL = '/events/create';
-export const EDIT_EVENT_URL = '/events/edit/:id';
+export const EDIT_EVENT_URL = '/events/:id';
 export const HISTORY_URL = '/history';
 export const LOADS_URL = '/events/:id/loads';
+
+// Clients
+export const CLIENTS_URL = '/clients';
+export const CREATE_CLIENT_URL = '/clients/create';
+export const EDIT_CLIENT_URL = '/clients/:id';
 
 // Loads
 
@@ -29,24 +34,24 @@ export const NO_MATCH_URL = '*';
 
 export const breadcrumbsMap: { [key: string]: string } = {
   [DASHBOARD_URL]: 'Dashboard',
-  [USERS_URL]: 'Users',
-  [CREATE_USER_URL]: 'Create',
-  [EDIT_USER_URL]: 'Edit',
+  [MEMBERS_URL]: 'Members',
+  [CREATE_MEMBER_URL]: 'Create',
   [MANAGE_INVENTORY_URL]: 'Inventory',
   [SETTINGS_URL]: 'Settings',
   [EVENTS_URL]: 'Events',
-  [LOADS_URL]: 'Loads',
   [CREATE_EVENT_URL]: 'Create',
-  [EDIT_EVENT_URL]: 'Edit',
+  [LOADS_URL]: 'Loads',
   [HISTORY_URL]: 'History',
+  [CLIENTS_URL]: 'Clients',
+  [CREATE_CLIENT_URL]: 'Create',
 };
 
 export const routePaths = [
   HOME_URL,
   DASHBOARD_URL,
-  USERS_URL,
-  CREATE_USER_URL,
-  EDIT_USER_URL,
+  MEMBERS_URL,
+  CREATE_MEMBER_URL,
+  EDIT_MEMBER_URL,
   MANAGE_INVENTORY_URL,
   SETTINGS_URL,
   EVENTS_URL,
@@ -54,5 +59,8 @@ export const routePaths = [
   CREATE_EVENT_URL,
   EDIT_EVENT_URL,
   HISTORY_URL,
+  CLIENTS_URL,
+  CREATE_CLIENT_URL,
+  EDIT_CLIENT_URL,
 ];
 

@@ -1,0 +1,5 @@
+mutation DeleteClient($input: String!) {
+    deleteClient(id: $input){
+        id
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import {  userRoles } from '../../../constants/user.constants';
-import { RoleCheckBoxesStateType } from '../../../interfaces/user.interface';
-import { UserRole } from '../../../interfaces/generated/globalTypes';
+import {  memberRoles } from '../../../constants/member.constants';
+import { RoleCheckBoxesStateType } from '../../../interfaces/member.interface';
+import { MemberRole } from '../../../interfaces/generated/globalTypes';
 
 export const useRoles = () => {
   const initialRoleCheckboxesState: RoleCheckBoxesStateType = {
@@ -17,8 +17,8 @@ export const useRoles = () => {
   };
   const [roleCheckBoxesState, setRoleCheckboxesState] = useState<RoleCheckBoxesStateType>(initialRoleCheckboxesState);
 
-  const initCheckboxes = (roles: UserRole[]) => {
-    userRoles.forEach((value) => {
+  const initCheckboxes = (roles: MemberRole[]) => {
+    memberRoles.forEach((value) => {
       initialRoleCheckboxesState[value] = roles.includes(value);
     });
     setRoleCheckboxesState(initialRoleCheckboxesState);
@@ -27,14 +27,14 @@ export const useRoles = () => {
   const handleRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRoleCheckboxesState(prevState => {
       const newFormRolesState = { ...prevState };
-      newFormRolesState[e.target.value as UserRole] = e.target.checked;
+      newFormRolesState[e.target.value as MemberRole] = e.target.checked;
       return newFormRolesState;
     });
   };
 
-  const getSelectedRoles = useCallback((): UserRole[] => {
-    const selectedRoles: UserRole[] = [];
-    userRoles.forEach(value => {
+  const getSelectedRoles = useCallback((): MemberRole[] => {
+    const selectedRoles: MemberRole[] = [];
+    memberRoles.forEach(value => {
       if (roleCheckBoxesState[value] === true) {
         selectedRoles.push(value);
       }

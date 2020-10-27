@@ -9,11 +9,11 @@ import { useStyles } from './common-event-form.styles';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
-import UsersList from '../users-list/users-list.component';
-import { UserInterface } from '../../../interfaces/user.interface';
+import MembersList from '../members-list/members-list.component';
+import { MemberInterface } from '../../../interfaces/member.interface';
 import { EventUserListType } from '../../../constants/event.constants';
 import Staff from '../staff/staff.component';
-import { UserRole } from '../../../interfaces/generated/globalTypes';
+import { MemberRole } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypes {
   children?: never,
@@ -26,7 +26,7 @@ interface PropTypes {
   onNotesChange: (value: string) => void,
   date: Date,
   onDateChange: (date: Date | null) => void,
-  users: UserInterface[],
+  members: MemberInterface[],
   formTouched: boolean,
   submitButtonEnabled: boolean,
   formErrorMessage: string,
@@ -51,7 +51,7 @@ const CommonEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onNotesChange,
     date,
     onDateChange,
-    users,
+    members,
     onStaffChange,
     selectedStaff,
     formTouched,
@@ -62,17 +62,17 @@ const CommonEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     submitFn,
   } = props;
 
-  const instructors = users.filter(user => {
-    return (selectedStaff.includes(user.id)
-      && (user.roles.includes(UserRole.TM)
-        || user.roles.includes(UserRole.CAMERAMAN)
-        || user.roles.includes(UserRole.COACH)
+  const instructors = members.filter(member => {
+    return (selectedStaff.includes(member.id)
+      && (member.roles.includes(MemberRole.TM)
+        || member.roles.includes(MemberRole.CAMERAMAN)
+        || member.roles.includes(MemberRole.COACH)
       ));
   });
 
-  const packers = users.filter(user => {
-    return (selectedStaff.includes(user.id)
-      && (user.roles.includes(UserRole.PACKER)));
+  const packers = members.filter(member => {
+    return (selectedStaff.includes(member.id)
+      && (member.roles.includes(MemberRole.PACKER)));
   });
 
   return (
@@ -134,8 +134,8 @@ const CommonEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
           <Grid item xs={12} sm={3}>
             <Grid item xs={12} sm={12}>
-              <UsersList
-                users={users}
+              <MembersList
+                users={members}
                 type={EventUserListType.STAFF}
                 onUsersListChange={onStaffChange}
                 selectedUsers={selectedStaff}

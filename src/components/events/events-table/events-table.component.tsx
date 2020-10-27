@@ -15,14 +15,14 @@ import { EDIT_EVENT_URL, LOADS_URL } from '../../../constants/route.constants';
 import EventDetails from '../event-details/event-details.component';
 import { EventInterface } from '../../../interfaces/event.interface';
 
-interface IPropTypes {
+interface PropTypesInterface {
   getEventsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
   loading: boolean,
   events: GetEvents_getEvents[],
   errorMessage: string,
 }
 
-const EventsTable: FC<IPropTypes> = (props): ReactElement => {
+const EventsTable: FC<PropTypesInterface> = (props): ReactElement => {
 
   const {
     getEventsAsync,
@@ -60,7 +60,7 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
 
   useEffect(() => {
     getEventsAsync();
-  }, []);
+  }, []); // eslint-disable-line
 
   if (loading) {
     return (
@@ -81,7 +81,12 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
 
   const columns = [
     { title: 'Name', field: 'name' },
-    { title: 'Date', field: 'date' },
+    {
+      title: 'Date', field: 'date', render: (event: EventInterface) => {
+        const date = new Date(event.date);
+        return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+      },
+    },
   ];
 
   return (
@@ -94,30 +99,28 @@ const EventsTable: FC<IPropTypes> = (props): ReactElement => {
           {
             icon: 'edit',
             tooltip: 'Edit Event',
-            onClick: (event, rowData) => {
-              const { id } = rowData as EventInterface;
-              const url = generatePath(EDIT_EVENT_URL, { id });
+            onClick: (e, event: EventInterface) => {
+              const url = generatePath(EDIT_EVENT_URL, { id: event.id });
               history.push(url);
             },
           },
           {
             icon: 'delete',
             tooltip: 'Delete event',
-            onClick: (event, rowData) => {
-              setEventIdToDelete((rowData as GetEvents_getEvents).id);
+            onClick: (e, event: EventInterface) => {
+              setEventIdToDelete(event.id);
               handleClickOpen();
             },
           },
         ]}
-        detailPanel={rowData => {
-          return <EventDetails notes={(rowData as EventInterface).notes} />;
+        detailPanel={(event: EventInterface) => {
+          return <EventDetails notes={event.notes} />;
         }}
         options={{
           actionsColumnIndex: -1,
         }}
-        onRowClick={((event, rowData) => {
-          const { id } = rowData as EventInterface;
-          const url = generatePath(LOADS_URL, { id });
+        onRowClick={((e, event: EventInterface) => {
+          const url = generatePath(LOADS_URL, { id: event.id });
           history.push(url);
         })}
       />

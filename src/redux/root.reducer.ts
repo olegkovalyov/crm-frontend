@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { IUiState, uiReducer } from './ui/ui.reducer';
-import { authReducer, IAuthState } from './auth/auth.reducer';
+import { UiStateInterface, uiReducer } from './ui/ui.reducer';
+import { authReducer, AuthStateInterface } from './auth/auth.reducer';
 
-export interface IRootState {
-  ui: IUiState;
-  auth: IAuthState,
+export interface RootStateInterface {
+  ui: UiStateInterface;
+  auth: AuthStateInterface,
 }
 
 const persistConfig = {

@@ -1,15 +1,15 @@
 // Core
 import React, { FC, ReactElement } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useStyles } from './event-details.styles';
 import { Paper } from '@material-ui/core';
+import { useStyles } from './event-details.styles';
 
 
-interface IPropTypes {
+interface PropTypesInterface {
   notes: string;
 }
 
-const EventDetails: FC<IPropTypes> = (props): ReactElement => {
+const EventDetails: FC<PropTypesInterface> = (props): ReactElement => {
   const classes = useStyles();
   const { notes } = props;
 

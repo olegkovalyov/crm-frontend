@@ -1,0 +1,13 @@
+query GetMembers($getMembersFilter: GetMembersFilterInput!) {
+    getMembers(getMembersFilterInput: $getMembersFilter){
+        id,
+        status,
+        firstName,
+        lastName,
+        email,
+        roles,
+        licenseType,
+        createdAt,
+        updatedAt
+    }
+}

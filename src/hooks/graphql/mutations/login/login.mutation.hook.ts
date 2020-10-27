@@ -17,11 +17,11 @@ export const useLoginMutation = () => {
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  useEffect(() => {
+   useEffect(() => {
     if (data) {
       dispatch(setUserAction(data.login));
     }
-  }, [data, dispatch]);
+  }, [data, dispatch]); // eslint-disable-line
 
   const loginAsync = async (email: string, password: string): Promise<void> => {
     try {

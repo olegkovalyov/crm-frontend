@@ -1,17 +1,17 @@
 import { lazy } from 'react';
-import { IRoute } from './interfaces/routes.interface';
+import { RouteInterface } from './interfaces/routes.interface';
 import {
-  CREATE_USER_URL,
+  CREATE_MEMBER_URL,
   DASHBOARD_URL,
-  EDIT_USER_URL,
+  EDIT_MEMBER_URL,
   FORGOT_PASSWORD_URL,
   HISTORY_URL,
   EVENTS_URL,
   LOGIN_URL,
-  USERS_URL, NO_MATCH_URL,
+  MEMBERS_URL, NO_MATCH_URL,
   REGISTER_URL,
   RESET_PASSWORD_URL,
-  SETTINGS_URL, MANAGE_INVENTORY_URL, HOME_URL, CREATE_EVENT_URL, EDIT_EVENT_URL, LOADS_URL,
+  SETTINGS_URL, MANAGE_INVENTORY_URL, HOME_URL, CREATE_EVENT_URL, EDIT_EVENT_URL, LOADS_URL, CLIENTS_URL,
 } from './constants/route.constants';
 
 export const authUrls = [
@@ -22,7 +22,7 @@ export const authUrls = [
   RESET_PASSWORD_URL,
 ];
 
-export const routes: IRoute[] = [
+export const routes: RouteInterface[] = [
   // Public
   {
     path: LOGIN_URL,
@@ -63,19 +63,19 @@ export const routes: IRoute[] = [
     private: true,
   },
   {
-    path: USERS_URL,
+    path: MEMBERS_URL,
     component: lazy(() => import('./pages/users/users.component')),
     exact: true,
     private: true,
   },
   {
-    path: CREATE_USER_URL,
+    path: CREATE_MEMBER_URL,
     component: lazy(() => import('./pages/create-user/create-user.component')),
     exact: true,
     private: true,
   },
   {
-    path: EDIT_USER_URL,
+    path: EDIT_MEMBER_URL,
     component: lazy(() => import('./pages/edit-user/edit-user.component')),
     exact: false,
     private: true,
@@ -107,6 +107,12 @@ export const routes: IRoute[] = [
   {
     path: EDIT_EVENT_URL,
     component: lazy(() => import('./pages/edit-event/edit-event.component')),
+    exact: true,
+    private: true,
+  },
+  {
+    path: CLIENTS_URL,
+    component: lazy(() => import('./pages/clients/clients.component')),
     exact: true,
     private: true,
   },

@@ -9,11 +9,11 @@ import { Copyright } from '../../../elements/copyright.component';
 import { useStyles } from './content.styles';
 import { SimpleBreadcrumbs } from '../breadcrumbs/breadcrumbs.component';
 
-interface IPropTypes {
+interface PropTypesInterface {
   children?: ReactElement | string
 }
 
-export const Content: FC<IPropTypes> = ({ children }: IPropTypes): ReactElement => {
+export const Content: FC<PropTypesInterface> = ({ children }: PropTypesInterface): ReactElement => {
   const classes = useStyles();
   return (
     <>

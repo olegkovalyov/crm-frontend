@@ -1,0 +1,38 @@
+query GetClient($clientId: String!) {
+    getClient(id: $clientId) {
+        id,
+        status,
+        firstName,
+        lastName,
+        phone,
+        weight,
+        gender,
+        withCameraman,
+        withHandCameraVideo,
+        onlyFlight,
+        paid,
+        tm {
+            id
+            firstName,
+            lastName
+        },
+        cameraman{
+            id,
+            firstName,
+            lastName
+        },
+        date,
+        notes
+    },
+    getStaff{
+        id,
+        status,
+        firstName,
+        lastName,
+        email,
+        roles,
+        licenseType,
+        createdAt,
+        updatedAt
+    }
+}

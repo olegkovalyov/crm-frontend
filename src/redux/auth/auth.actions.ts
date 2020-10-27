@@ -1,30 +1,29 @@
 import { LOGOUT, SET_USER } from './auth.types';
-import { Login_login } from '../../interfaces/generated/Login';
+import { AuthDataInterface } from '../../interfaces/auth.interface';
 
 
-export interface ILogoutAction {
+export interface LogoutActionInterface {
   type: typeof LOGOUT,
 }
 
-export interface ISetUserAction {
+export interface SetUserActionInterface {
   type: typeof SET_USER,
-  payload: Login_login,
+  payload: AuthDataInterface,
 }
 
-export const logoutAction = (): ILogoutAction => {
+export const logoutAction = (): LogoutActionInterface => {
   return {
     type: LOGOUT,
   };
 };
 
-export const setUserAction = (data: Login_login): ISetUserAction => {
+export const setUserAction = (authData: AuthDataInterface): SetUserActionInterface => {
   return {
     type: SET_USER,
-    payload: data,
+    payload: authData,
   };
 };
 
 
-
-export type AuthActions = ISetUserAction
-  | ILogoutAction;
+export type AuthActions = SetUserActionInterface
+  | LogoutActionInterface;

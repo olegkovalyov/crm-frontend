@@ -6,16 +6,16 @@ import {
   validateInput,
 } from '../../../common/inputValidator';
 import { useRoles } from '../roles/roles.hook';
-import { LicenseType, UserRole, UserStatus } from '../../../interfaces/generated/globalTypes';
+import { LicenseType, MemberRole, MemberStatus } from '../../../interfaces/generated/globalTypes';
 
-export const useUserFormValidation = () => {
+export const useMemberFormValidation = () => {
 
   const setUser = (
-    status: UserStatus,
+    status: MemberStatus,
     firstName: string,
     lastName: string,
     email: string,
-    roles: UserRole[],
+    roles: MemberRole[],
     licenseType: LicenseType,
   ): void => {
     setStatus(status);
@@ -52,7 +52,7 @@ export const useUserFormValidation = () => {
     initCheckboxes,
   } = useRoles();
 
-  const [status, setStatus] = useState<UserStatus>(UserStatus.ACTIVE);
+  const [status, setStatus] = useState<MemberStatus>(MemberStatus.ACTIVE);
 
   useEffect(() => {
     if (!hasEmailError
@@ -75,7 +75,7 @@ export const useUserFormValidation = () => {
     firstName,
     lastName,
     getSelectedRoles,
-  ]);
+  ]); // eslint-disable-line
 
   const onFirstNameChange = (value: string): void => {
     setFormTouched(true);
@@ -98,7 +98,7 @@ export const useUserFormValidation = () => {
   };
 
   const handleIsActiveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.checked ? setStatus(UserStatus.ACTIVE) : setStatus(UserStatus.BLOCKED);
+    e.target.checked ? setStatus(MemberStatus.ACTIVE) : setStatus(MemberStatus.BLOCKED);
   };
 
   return {
@@ -123,7 +123,7 @@ export const useUserFormValidation = () => {
     handleIsActiveChange,
     formTouched,
     submitButtonEnabled,
-    setUser,
+    setMember: setUser,
     initCheckboxes,
   };
 

@@ -19,7 +19,7 @@ export const useForgotPasswordFormValidation = () => {
     } else {
       setResetButtonDisabled(true);
     }
-  }, [hasEmailError, email]);
+  }, [hasEmailError, email]); // eslint-disable-line
 
 
   const onEmailChange = (value: string): void => {

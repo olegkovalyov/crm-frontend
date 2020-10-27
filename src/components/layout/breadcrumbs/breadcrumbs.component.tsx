@@ -1,55 +1,50 @@
 import React, { ReactElement } from 'react';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import { Link as RouterLink, Route, matchPath } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
+import { Link as RouterLink, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useStyles } from '../content/content.styles';
-import {
-  breadcrumbsMap,
-  HOME_URL, NO_MATCH_URL, routePaths,
-} from '../../../constants/route.constants';
+import { HOME_URL } from '../../../constants/route.constants';
+import { RootStateInterface } from '../../../redux/root.reducer';
+import { getBreadcrumbsDataSelector } from '../../../redux/ui/ui.selector';
+import { useBreadcrumbs } from '../../../hooks/core/breadcrumbs/breadcrumbs.hook';
 
 
 export const SimpleBreadcrumbs = (): ReactElement => {
   const classes = useStyles();
 
+  const {
+    getBreadcrumbsTitle,
+  } = useBreadcrumbs();
+
+  const breadcrumbsData = useSelector((state: RootStateInterface) => getBreadcrumbsDataSelector(state));
+
   return (
     <Route>
       {({ location }) => {
         const pathNames = location.pathname.split('/').filter(x => x);
+        // console.log(pathNames);
         return (
           <Breadcrumbs aria-label="Breadcrumb" className={classes.breadcrumbs}>
             <RouterLink color="inherit" to={HOME_URL}>
               Home
             </RouterLink>
-            {pathNames.map((value, index) => {
-              const isLast = index === pathNames.length - 1;
+            {pathNames.map((currentPathPart, index) => {
+
               const url = `/${pathNames.slice(0, index + 1).join('/')}`;
-              let breadCrumbTitle = null;
+              const breadcrumbTitle = getBreadcrumbsTitle(
+                pathNames,
+                index,
+                breadcrumbsData,
+                currentPathPart,
+                url,
+              );
 
-              routePaths.forEach(path => {
-                if (path !== NO_MATCH_URL
-                  && matchPath(url, {
-                    path,
-                    exact: true,
-                  })) {
-                  breadCrumbTitle = breadcrumbsMap[path];
-                }
-              });
-
-              if(!breadCrumbTitle) {
+              if (!breadcrumbTitle) {
                 return '';
               }
-
-              return isLast ?
-                (
-                  <Typography color="textPrimary" key={url}>
-                    {breadCrumbTitle}
-                  </Typography>
-                ) : (
-                  <RouterLink color="inherit" to={url} key={url}>
-                    {breadCrumbTitle}
-                  </RouterLink>
-                );
+              return <RouterLink color="inherit" to={url} key={url}>
+                {breadcrumbTitle}
+              </RouterLink>;
             })}
           </Breadcrumbs>
         );

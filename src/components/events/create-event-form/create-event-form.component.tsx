@@ -44,7 +44,7 @@ const CreateEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   useEffect(() => {
     getStaffAsync();
-  }, []);
+  }, []); // eslint-disable-line
 
   const {
     selectedUsers: selectedStaff,
@@ -76,7 +76,7 @@ const CreateEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       onNotesChange={onNotesChange}
       date={date}
       onDateChange={onDateChange}
-      users={staffData}
+      members={staffData}
       selectedStaff={selectedStaff}
       onStaffChange={handleChangeStaffList}
       formTouched={formTouched}

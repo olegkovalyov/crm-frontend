@@ -1,20 +1,20 @@
 import React, { Suspense } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IRoute } from '../../../interfaces/routes.interface';
+import { RouteInterface } from '../../../interfaces/routes.interface';
 import Loading from '../../../elements/loading.component';
-import { IRootState } from '../../../redux/root.reducer';
+import { RootStateInterface } from '../../../redux/root.reducer';
 import { doesRefreshTokenExists } from '../../../redux/auth/auth.selector';
 import { useIsAuthenticated } from '../../../hooks/core/is-authenticated/is-authenticated.hook';
 import { authUrls } from '../../../routes';
 import { DASHBOARD_URL, LOGIN_URL } from '../../../constants/route.constants';
 import { useRefreshTokenQuery } from '../../../hooks/graphql/queries/refresh-token/refresh-token.query.hook';
 
-const RouteWithSubRoutes = (route: IRoute): JSX.Element => {
+const RouteWithSubRoutes = (route: RouteInterface): JSX.Element => {
   const { refreshAccessToken } = useRefreshTokenQuery();
   refreshAccessToken();
 
-  const refreshTokenExists = useSelector((state: IRootState) => doesRefreshTokenExists(state));
+  const refreshTokenExists = useSelector((state: RootStateInterface) => doesRefreshTokenExists(state));
   const { isAuthenticated } = useIsAuthenticated();
 
   return (

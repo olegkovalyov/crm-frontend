@@ -1,9 +1,14 @@
-import { IRootState } from '../root.reducer';
+import { RootStateInterface } from '../root.reducer';
+import { BreadcrumbsDataInterface } from '../../interfaces/ui.interface';
 
-export const isOpenedLeftMenuSelector = (state: IRootState): boolean => {
+export const isOpenedLeftMenuSelector = (state: RootStateInterface): boolean => {
   return state.ui.isOpenedLeftMenu;
 };
 
-export const isOpenedTopMenuSelector = (state: IRootState): boolean => {
+export const isOpenedTopMenuSelector = (state: RootStateInterface): boolean => {
   return state.ui.isOpenedTopMenu;
+};
+
+export const getBreadcrumbsDataSelector = (state: RootStateInterface): BreadcrumbsDataInterface[] => {
+  return state.ui.breadCrumbsData;
 };

@@ -15,7 +15,7 @@ export enum LicenseType {
   NONE = "NONE",
 }
 
-export enum UserRole {
+export enum MemberRole {
   ADMIN = "ADMIN",
   CAMERAMAN = "CAMERAMAN",
   COACH = "COACH",
@@ -27,7 +27,7 @@ export enum UserRole {
   TM = "TM",
 }
 
-export enum UserStatus {
+export enum MemberStatus {
   ACTIVE = "ACTIVE",
   BLOCKED = "BLOCKED",
 }
@@ -39,13 +39,13 @@ export interface CreateEventInput {
   notes: string;
 }
 
-export interface CreateUserInput {
-  status: UserStatus;
+export interface CreateMemberInput {
+  status: MemberStatus;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  roles: UserRole[];
+  roles: MemberRole[];
   licenseType: LicenseType;
 }
 
@@ -53,9 +53,9 @@ export interface ForgotPasswordInput {
   email: string;
 }
 
-export interface GetUsersFilterInput {
-  statuses?: string[] | null;
-  roles?: string[] | null;
+export interface GetMembersFilterInput {
+  statuses?: MemberStatus[] | null;
+  roles?: MemberRole[] | null;
 }
 
 export interface LoginInput {
@@ -76,13 +76,13 @@ export interface UpdateEventInput {
   notes?: string | null;
 }
 
-export interface UpdateUserInput {
-  status?: UserStatus | null;
+export interface UpdateMemberInput {
+  status?: MemberStatus | null;
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
   password?: string | null;
-  roles?: UserRole[] | null;
+  roles?: MemberRole[] | null;
   licenseType?: LicenseType | null;
   id: string;
 }

@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface Logout_logout_user {
-  __typename: "UserModel";
+  __typename: "MemberModel";
   email: string;
 }
 

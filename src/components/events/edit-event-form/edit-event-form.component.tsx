@@ -1,14 +1,13 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { FC, ReactElement, useEffect } from 'react';
+import Alert from '@material-ui/lab/Alert';
+import { useSnackbar } from 'notistack';
 import LoadBackdrop from '../../../elements/backdrop.component';
-import { EVENTS_URL } from '../../../constants/route.constants';
 import CommonEventForm from '../common-event-form/common-event-form.component';
 import { useEventFormValidation } from '../../../hooks/forms/event-form-validation/event-form-validation.hook';
 import { useGetEventQuery } from '../../../hooks/graphql/queries/get-event/get-event.query.hook';
-import { EventInterface } from '../../../interfaces/event.interface';
 import { useUpdateEventMutation } from '../../../hooks/graphql/mutations/update-event/update-event.mutation.hook';
-import { UserInterface } from '../../../interfaces/user.interface';
 import { useUsersList } from '../../../hooks/forms/users-list/users-list.hook';
+import { useBreadcrumbs } from '../../../hooks/core/breadcrumbs/breadcrumbs.hook';
 
 interface PropTypes {
   id: string;
@@ -17,10 +16,10 @@ interface PropTypes {
 const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   let errorMessage = '';
   let title = '';
-  let users: UserInterface[] = [];
 
-  const [isEventLoaded, setIsEventLoaded] = useState(false);
+  const { setBreadcrumbsCustomData } = useBreadcrumbs();
 
+  const { enqueueSnackbar } = useSnackbar();
 
   const {
     name,
@@ -39,7 +38,10 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const {
     isEventLoading,
     getEventErrorMessage,
-    eventData,
+    event,
+    staff,
+    wasEventLoadCalled,
+    setEventErrorMessage,
     getEventAsync,
   } = useGetEventQuery();
 
@@ -59,25 +61,40 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   // Loading Event
   useEffect(() => {
     getEventAsync(props.id);
-  }, []);
+  }, []); // eslint-disable-line
+
 
   useEffect(() => {
-    if (eventData && eventData.getEvent) {
-      const staffIds = eventData.getEvent.staff.map(value => value.id);
+    if (event) {
+      setBreadcrumbsCustomData(props.id, event.name);
+      const staffIds = event.staff.map(value => value.id);
       setStaff(staffIds);
     }
-  }, [eventData]);
+  }, [event]); // eslint-disable-line
 
-  if (eventData && !isEventLoaded) {
-    const currentEvent = eventData.getEvent as EventInterface;
-    users = eventData.getStaff as UserInterface[];
-    if (currentEvent !== null) {
-      setEvent(currentEvent.name, currentEvent.date, currentEvent.notes);
-      setIsEventLoaded(true);
-    } else {
-      return <Redirect to={EVENTS_URL} />;
+  useEffect(() => {
+    if (!isEventLoading
+      && wasEventLoadCalled) {
+      if (event) {
+        setEvent(event.name, event.date, event.notes);
+      } else {
+        setEventErrorMessage('Failed to load event');
+      }
     }
-  }
+
+  }, [isEventLoading, wasEventLoadCalled]); // eslint-disable-line
+
+  useEffect(() => {
+    if (updateEventData) {
+      enqueueSnackbar('Saved', {
+        variant: 'success',
+        anchorOrigin: {
+          horizontal: 'right',
+          vertical: 'bottom',
+        },
+      });
+    }
+  }, [updateEventData]); // eslint-disable-line
 
 
   if (isEventLoading) {
@@ -89,7 +106,11 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   }
 
   if (getEventErrorMessage) {
-    errorMessage = getEventErrorMessage;
+    return (
+      <>
+        <Alert severity="error">{getEventErrorMessage}</Alert>
+      </>
+    );
   }
   // End Loading Event
 
@@ -97,18 +118,11 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   if (updateEventErrorMessage) {
     errorMessage = updateEventErrorMessage;
   }
-
-  if (updateEventData) {
-    return <Redirect to={EVENTS_URL} />;
-  }
   // End Updating Event
-  if (eventData && eventData.getEvent) {
-    title = eventData.getEvent.name;
+  if (event) {
+    title = event.name;
   }
 
-  if (eventData && eventData.getStaff) {
-    users = eventData.getStaff as UserInterface[];
-  }
 
   return (
     <CommonEventForm
@@ -121,7 +135,7 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       onNotesChange={onNotesChange}
       date={date}
       onDateChange={onDateChange}
-      users={users}
+      members={staff}
       selectedStaff={selectedStaff}
       onStaffChange={handleChangeStaffList}
       formTouched={formTouched}

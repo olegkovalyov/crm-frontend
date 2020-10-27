@@ -11,7 +11,7 @@
     "types": [
       {
         "kind": "OBJECT",
-        "name": "UserModel",
+        "name": "MemberModel",
         "description": null,
         "fields": [
           {
@@ -39,7 +39,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "UserStatus",
+                "name": "MemberStatus",
                 "ofType": null
               }
             },
@@ -109,7 +109,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "UserRole",
+                    "name": "MemberRole",
                     "ofType": null
                   }
                 }
@@ -127,7 +127,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -143,7 +143,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -180,7 +180,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "UserStatus",
+        "name": "MemberStatus",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -203,7 +203,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "UserRole",
+        "name": "MemberRole",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -267,6 +267,16 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "DateTime",
+        "description": "A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "ENUM",
         "name": "LicenseType",
         "description": null,
@@ -318,7 +328,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "UserModel",
+              "name": "MemberModel",
               "ofType": null
             },
             "isDeprecated": false,
@@ -381,7 +391,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "PassengerModel",
+        "name": "ClientModel",
         "description": null,
         "fields": [
           {
@@ -497,7 +507,7 @@
             "deprecationReason": null
           },
           {
-            "name": "handCamera",
+            "name": "withHandCameraVideo",
             "description": null,
             "args": [],
             "type": {
@@ -513,7 +523,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cameraman",
+            "name": "withCameraman",
             "description": null,
             "args": [],
             "type": {
@@ -524,6 +534,62 @@
                 "name": "Boolean",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "onlyFlight",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "paid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tm",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MemberModel",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cameraman",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MemberModel",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -562,16 +628,6 @@
         "kind": "SCALAR",
         "name": "Float",
         "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "DateTime",
-        "description": "A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -785,7 +841,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "UserModel",
+                    "name": "MemberModel",
                     "ofType": null
                   }
                 }
@@ -822,18 +878,18 @@
         "description": null,
         "fields": [
           {
-            "name": "getUsers",
+            "name": "getMembers",
             "description": null,
             "args": [
               {
-                "name": "getUsersFilterInput",
+                "name": "getMembersFilterInput",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "GetUsersFilterInput",
+                    "name": "GetMembersFilterInput",
                     "ofType": null
                   }
                 },
@@ -847,9 +903,13 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "UserModel",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MemberModel",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -857,7 +917,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getUser",
+            "name": "getMember",
             "description": null,
             "args": [
               {
@@ -877,7 +937,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "UserModel",
+              "name": "MemberModel",
               "ofType": null
             },
             "isDeprecated": false,
@@ -895,7 +955,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "UserModel",
+                  "name": "MemberModel",
                   "ofType": null
                 }
               }
@@ -936,7 +996,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getPassengers",
+            "name": "getClients",
             "description": null,
             "args": [],
             "type": {
@@ -946,11 +1006,42 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PassengerModel",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ClientModel",
+                    "ofType": null
+                  }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getClient",
+            "description": null,
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ClientModel",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -966,9 +1057,13 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "EventModel",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "EventModel",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -1013,9 +1108,13 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "LoadModel",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "LoadModel",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -1030,7 +1129,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "GetUsersFilterInput",
+        "name": "GetMembersFilterInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1044,8 +1143,8 @@
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
+                  "kind": "ENUM",
+                  "name": "MemberStatus",
                   "ofType": null
                 }
               }
@@ -1062,8 +1161,8 @@
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
+                  "kind": "ENUM",
+                  "name": "MemberRole",
                   "ofType": null
                 }
               }
@@ -1081,7 +1180,7 @@
         "description": null,
         "fields": [
           {
-            "name": "removeUser",
+            "name": "deleteMember",
             "description": null,
             "args": [
               {
@@ -1101,25 +1200,25 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "UserModel",
+              "name": "MemberModel",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "createUser",
+            "name": "createMember",
             "description": null,
             "args": [
               {
-                "name": "createUserData",
+                "name": "createMemberData",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CreateUserInput",
+                    "name": "CreateMemberInput",
                     "ofType": null
                   }
                 },
@@ -1131,7 +1230,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "UserModel",
+                "name": "MemberModel",
                 "ofType": null
               }
             },
@@ -1139,18 +1238,18 @@
             "deprecationReason": null
           },
           {
-            "name": "updateUser",
+            "name": "updateMember",
             "description": null,
             "args": [
               {
-                "name": "updateUserData",
+                "name": "updateMemberData",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "UpdateUserInput",
+                    "name": "UpdateMemberInput",
                     "ofType": null
                   }
                 },
@@ -1162,7 +1261,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "UserModel",
+                "name": "MemberModel",
                 "ofType": null
               }
             },
@@ -1212,7 +1311,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CreateUserInput",
+                    "name": "CreateMemberInput",
                     "ofType": null
                   }
                 },
@@ -1294,18 +1393,18 @@
             "deprecationReason": null
           },
           {
-            "name": "createPassenger",
+            "name": "createClient",
             "description": null,
             "args": [
               {
-                "name": "createPassengerData",
+                "name": "createClientData",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CreatePassengerInput",
+                    "name": "CreateClientInput",
                     "ofType": null
                   }
                 },
@@ -1317,7 +1416,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "PassengerModel",
+                "name": "ClientModel",
                 "ofType": null
               }
             },
@@ -1325,18 +1424,18 @@
             "deprecationReason": null
           },
           {
-            "name": "updatePassenger",
+            "name": "updateClient",
             "description": null,
             "args": [
               {
-                "name": "updatePassengerData",
+                "name": "updateClientData",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "UpdatePassengerInput",
+                    "name": "UpdateClientInput",
                     "ofType": null
                   }
                 },
@@ -1348,7 +1447,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "PassengerModel",
+                "name": "ClientModel",
                 "ofType": null
               }
             },
@@ -1356,7 +1455,7 @@
             "deprecationReason": null
           },
           {
-            "name": "removePassenger",
+            "name": "deleteClient",
             "description": null,
             "args": [
               {
@@ -1376,7 +1475,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "PassengerModel",
+              "name": "ClientModel",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1445,7 +1544,7 @@
             "deprecationReason": null
           },
           {
-            "name": "removeEvent",
+            "name": "deleteEvent",
             "description": null,
             "args": [
               {
@@ -1568,7 +1667,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CreateUserInput",
+        "name": "CreateMemberInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1580,7 +1679,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "UserStatus",
+                "name": "MemberStatus",
                 "ofType": null
               }
             },
@@ -1656,7 +1755,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "UserRole",
+                    "name": "MemberRole",
                     "ofType": null
                   }
                 }
@@ -1685,7 +1784,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UpdateUserInput",
+        "name": "UpdateMemberInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1694,7 +1793,7 @@
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "UserStatus",
+              "name": "MemberStatus",
               "ofType": null
             },
             "defaultValue": null
@@ -1750,7 +1849,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "UserRole",
+                  "name": "MemberRole",
                   "ofType": null
                 }
               }
@@ -1891,7 +1990,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CreatePassengerInput",
+        "name": "CreateClientInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1980,7 +2079,7 @@
             "defaultValue": null
           },
           {
-            "name": "handCamera",
+            "name": "withHandCameraVideo",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -1994,7 +2093,7 @@
             "defaultValue": null
           },
           {
-            "name": "cameraman",
+            "name": "withCameraman",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -2004,6 +2103,54 @@
                 "name": "Boolean",
                 "ofType": null
               }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "onlyFlight",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "paid",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "tmId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cameramanId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -2034,7 +2181,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UpdatePassengerInput",
+        "name": "UpdateClientInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -2113,7 +2260,7 @@
             "defaultValue": null
           },
           {
-            "name": "handCamera",
+            "name": "withHandCameraVideo",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -2123,11 +2270,51 @@
             "defaultValue": null
           },
           {
-            "name": "cameraman",
+            "name": "withCameraman",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "onlyFlight",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "paid",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "tmId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cameramanId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null

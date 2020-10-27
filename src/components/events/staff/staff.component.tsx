@@ -4,19 +4,19 @@ import {
   Grid, Paper, Typography,
 } from '@material-ui/core';
 import { useStyles } from './staff.styles';
-import { UserInterface } from '../../../interfaces/user.interface';
+import { MemberInterface } from '../../../interfaces/member.interface';
 
-interface IPropTypes {
-  instructors: UserInterface[];
-  packers: UserInterface[];
+interface PropTypesInterface {
+  instructors: MemberInterface[];
+  packers: MemberInterface[];
 }
 
-const Staff: FC<IPropTypes> = (props): ReactElement => {
+const Staff: FC<PropTypesInterface> = (props): ReactElement => {
   const classes = useStyles();
 
   const { instructors, packers } = props;
 
-  const makeJsx = (users: UserInterface[]) => {
+  const makeJsx = (users: MemberInterface[]) => {
     let jsx: ReactElement[] | null = null;
     if (users.length) {
       jsx = users.map(user => {

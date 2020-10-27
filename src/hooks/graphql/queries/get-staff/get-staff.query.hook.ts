@@ -2,22 +2,22 @@ import { useLazyQuery } from '@apollo/client';
 import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { IRootState } from '../../../../redux/root.reducer';
+import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { GetStaff, GetStaff_getStaff } from '../../../../interfaces/generated/GetStaff';
-import { UserInterface } from '../../../../interfaces/user.interface';
+import { GetStaff } from '../../../../interfaces/generated/GetStaff';
+import { MemberInterface, StaffInterface } from '../../../../interfaces/member.interface';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 
 const queryGetStaff = loader('./gql/get-staff.query.graphql');
 
 export const useGetStaffQuery = () => {
 
-  const accessToken = useSelector((state: IRootState) => getAccessToken(state));
+  const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
   const [errorMessage, setErrorMessage] = useState('');
 
-  let staff: GetStaff_getStaff[] = [];
+  let staff: StaffInterface[] = [];
   const [_getStaffAsync, { loading, data }] = useLazyQuery<GetStaff, null>(queryGetStaff,
     {
       context: {
@@ -29,7 +29,7 @@ export const useGetStaffQuery = () => {
     });
 
   if (data && data.getStaff) {
-    staff = data.getStaff.filter(x => x != null) as UserInterface[];
+    staff = data.getStaff.filter(x => x != null) as MemberInterface[];
   }
 
   const getStaffAsync = async () => {

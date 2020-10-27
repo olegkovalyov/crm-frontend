@@ -1,54 +1,63 @@
-import {
-  CLOSE_LEFT_MENU,
-  CLOSE_TOP_MENU,
-  OPEN_LEFT_MENU,
-  OPEN_TOP_MENU,
-} from './ui.types';
+import { CLOSE_LEFT_MENU, CLOSE_TOP_MENU, OPEN_LEFT_MENU, OPEN_TOP_MENU, SET_BREADCRUMBS_DATA } from './ui.types';
+import { BreadcrumbsDataInterface } from '../../interfaces/ui.interface';
 
 
-export interface IOpenLeftMenuAction {
+export interface OpenLeftMenuActionInterface {
   type: typeof OPEN_LEFT_MENU,
 }
 
-export interface ICloseLeftMenuAction {
+export interface CloseLeftMenuActionInterface {
   type: typeof CLOSE_LEFT_MENU
 }
 
-export interface IOpenTopMenuAction {
+export interface OpenTopMenuActionInterface {
   type: typeof OPEN_TOP_MENU
 }
 
-export interface ICloseTopMenuAction {
+export interface CloseTopMenuActionInterface {
   type: typeof CLOSE_TOP_MENU
 }
 
-export const openLeftMenuAction = (): IOpenLeftMenuAction => {
+export interface SetBreadcrumbDataInterface {
+  type: typeof SET_BREADCRUMBS_DATA,
+  payload: BreadcrumbsDataInterface[],
+}
+
+export const openLeftMenuAction = (): OpenLeftMenuActionInterface => {
   return {
     type: OPEN_LEFT_MENU,
   };
 };
 
-export const closeLeftMenuAction = (): ICloseLeftMenuAction => {
+export const closeLeftMenuAction = (): CloseLeftMenuActionInterface => {
   return {
     type: CLOSE_LEFT_MENU,
   };
 };
 
-export const openTopMenuAction = (): IOpenTopMenuAction => {
+export const openTopMenuAction = (): OpenTopMenuActionInterface => {
   return {
     type: OPEN_TOP_MENU,
   };
 };
 
-export const closeTopMenuAction = (): ICloseTopMenuAction => {
+export const closeTopMenuAction = (): CloseTopMenuActionInterface => {
   return {
     type: CLOSE_TOP_MENU,
   };
 };
 
+export const setBreadcrumbsDataAction = (data: BreadcrumbsDataInterface[]): SetBreadcrumbDataInterface => {
+  return {
+    type: SET_BREADCRUMBS_DATA,
+    payload: data,
+  };
+};
 
 
-export type UiActionTypes = IOpenLeftMenuAction
-  | ICloseLeftMenuAction
-  | IOpenTopMenuAction
-  | ICloseTopMenuAction;
+
+export type UiActionTypes = OpenLeftMenuActionInterface
+  | CloseLeftMenuActionInterface
+  | OpenTopMenuActionInterface
+  | CloseTopMenuActionInterface
+  | SetBreadcrumbDataInterface;

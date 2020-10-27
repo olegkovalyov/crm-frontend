@@ -35,7 +35,7 @@ export const firstNameConstrains: IValidationConstraints = {
 };
 
 export const eventNameConstrains: IValidationConstraints = {
-  presence: { allowEmpty: false, message: 'title name can\'t be empty' },
+  presence: { allowEmpty: false, message: 'customBreadcrumbTitle name can\'t be empty' },
   format: {
     pattern: '[a-z. ]+',
     flags: 'i',
