@@ -116,20 +116,20 @@ const LeftMenu: FC = (props): ReactElement => {
               button
               onClick={() => history.push(CLIENTS_URL)}
             >
-              <ListItem
-                selected={isManageInventoryMenuSelected}
-                button
-                onClick={() => history.push(MANAGE_INVENTORY_URL)}
-              >
-                <ListItemIcon>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Inventory" />
-              </ListItem>
               <ListItemIcon>
                 <PeopleOutlineIcon />
               </ListItemIcon>
               <ListItemText primary="Clients" />
+            </ListItem>
+            <ListItem
+              selected={isManageInventoryMenuSelected}
+              button
+              onClick={() => history.push(MANAGE_INVENTORY_URL)}
+            >
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Events" />
             </ListItem>
             <ListItem
               selected={isHistoryMenuSelected}

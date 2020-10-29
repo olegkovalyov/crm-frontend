@@ -8,10 +8,18 @@ import {
   HISTORY_URL,
   EVENTS_URL,
   LOGIN_URL,
-  MEMBERS_URL, NO_MATCH_URL,
+  MEMBERS_URL,
+  NO_MATCH_URL,
   REGISTER_URL,
   RESET_PASSWORD_URL,
-  SETTINGS_URL, MANAGE_INVENTORY_URL, HOME_URL, CREATE_EVENT_URL, EDIT_EVENT_URL, LOADS_URL, CLIENTS_URL,
+  SETTINGS_URL,
+  MANAGE_INVENTORY_URL,
+  HOME_URL,
+  CREATE_EVENT_URL,
+  EDIT_EVENT_URL,
+  LOADS_URL,
+  CLIENTS_URL,
+  CREATE_CLIENT_URL,
 } from './constants/route.constants';
 
 export const authUrls = [
@@ -113,6 +121,12 @@ export const routes: RouteInterface[] = [
   {
     path: CLIENTS_URL,
     component: lazy(() => import('./pages/clients/clients.component')),
+    exact: true,
+    private: true,
+  },
+  {
+    path: CREATE_CLIENT_URL,
+    component: lazy(() => import('./pages/create-client/create-client.component')),
     exact: true,
     private: true,
   },

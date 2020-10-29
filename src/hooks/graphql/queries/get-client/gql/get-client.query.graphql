@@ -1,16 +1,19 @@
 query GetClient($clientId: String!) {
     getClient(id: $clientId) {
         id,
+        type,
         status,
-        firstName,
-        lastName,
-        phone,
+        age,
         weight,
         gender,
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
         withCameraman,
         withHandCameraVideo,
-        onlyFlight,
-        paid,
+        paymentStatus,
         tm {
             id
             firstName,
@@ -23,16 +26,5 @@ query GetClient($clientId: String!) {
         },
         date,
         notes
-    },
-    getStaff{
-        id,
-        status,
-        firstName,
-        lastName,
-        email,
-        roles,
-        licenseType,
-        createdAt,
-        updatedAt
     }
 }

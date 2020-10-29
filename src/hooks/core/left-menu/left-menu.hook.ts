@@ -6,10 +6,10 @@ import { isOpenedLeftMenuSelector } from '../../../redux/ui/ui.selector';
 import { closeLeftMenuAction } from '../../../redux/ui/ui.actions';
 import { useLogoutQuery } from '../../graphql/queries/logout/logout.query.hook';
 import {
-  CLIENTS_URL,
+  CLIENTS_URL, CREATE_CLIENT_URL,
   CREATE_EVENT_URL,
   CREATE_MEMBER_URL,
-  DASHBOARD_URL,
+  DASHBOARD_URL, EDIT_CLIENT_URL,
   EDIT_EVENT_URL,
   EDIT_MEMBER_URL,
   EVENTS_URL,
@@ -62,6 +62,8 @@ export const useLeftMenu = () => {
             setEventsMenuSelected(true);
             break;
           case CLIENTS_URL:
+          case CREATE_CLIENT_URL:
+          case EDIT_CLIENT_URL:
             setClientsMenuSelected(true);
             break;
           case HISTORY_URL:

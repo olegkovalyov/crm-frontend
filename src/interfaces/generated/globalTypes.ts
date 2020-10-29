@@ -7,6 +7,23 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum ClientStatus {
+  ACTIVE = "ACTIVE",
+  PROCESSED = "PROCESSED",
+  REFUSED = "REFUSED",
+}
+
+export enum ClientType {
+  AS_A_PASSENGER = "AS_A_PASSENGER",
+  STATIC_LINE = "STATIC_LINE",
+  TANDEM = "TANDEM",
+}
+
+export enum Gender {
+  FEMALE = "FEMALE",
+  MAIL = "MAIL",
+}
+
 export enum LicenseType {
   A = "A",
   B = "B",
@@ -30,6 +47,12 @@ export enum MemberRole {
 export enum MemberStatus {
   ACTIVE = "ACTIVE",
   BLOCKED = "BLOCKED",
+}
+
+export enum PaymentStatus {
+  NOT_PAID = "NOT_PAID",
+  PAID = "PAID",
+  REFUNDED = "REFUNDED",
 }
 
 export interface CreateEventInput {

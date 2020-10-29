@@ -1,30 +1,46 @@
 import React from 'react';
 import validate from 'validate.js';
 
-export interface IValidationConstraints {
-  presence?: {
-    allowEmpty?: boolean,
-    message?: string
+
+export const ageConstrains = {
+  numericality: {
+    onlyInteger: true,
+    strict: true,
+    greaterThan: 0,
+    lessThanOrEqualTo: 100,
   },
-  format?: {
-    pattern: string,
-    flags: string,
-    message: string,
-  }
-  email?: boolean,
-  length?: {
-    minimum: number,
-    maximum: number
-  }
-}
+};
+
+export const weightConstrains = {
+  numericality: {
+    onlyInteger: true,
+    strict: true,
+    greaterThan: 40,
+    lessThanOrEqualTo: 130,
+  },
+};
+
+export const addressConstrains = {
+  length: { maximum: 200 },
+};
+
+export const phoneConstrains = {
+  presence: { allowEmpty: false, message: 'phone can\'t be empty' },
+  format: {
+    pattern: '[0-9]+',
+    flags: 'i',
+    message: 'can only contain digits',
+  },
+  length: { minimum: 6, maximum: 20 },
+};
 
 
-export const emailConstraints: IValidationConstraints = {
+export const emailConstraints = {
   presence: { allowEmpty: false, message: 'email can\'t be empty' },
   email: true,
 };
 
-export const firstNameConstrains: IValidationConstraints = {
+export const firstNameConstrains = {
   presence: { allowEmpty: false, message: 'first name can\'t be empty' },
   format: {
     pattern: '[a-z.]+',
@@ -34,7 +50,7 @@ export const firstNameConstrains: IValidationConstraints = {
   length: { minimum: 3, maximum: 20 },
 };
 
-export const eventNameConstrains: IValidationConstraints = {
+export const eventNameConstrains = {
   presence: { allowEmpty: false, message: 'customBreadcrumbTitle name can\'t be empty' },
   format: {
     pattern: '[a-z. ]+',
@@ -44,7 +60,7 @@ export const eventNameConstrains: IValidationConstraints = {
   length: { minimum: 3, maximum: 30 },
 };
 
-export const lastNameConstrains: IValidationConstraints = {
+export const lastNameConstrains = {
   presence: { allowEmpty: false, message: 'last name can\'t be empty' },
   format: {
     pattern: '[a-z.]+',
@@ -54,18 +70,18 @@ export const lastNameConstrains: IValidationConstraints = {
   length: { minimum: 3, maximum: 20 },
 };
 
-export const passwordConstrains: IValidationConstraints = {
+export const passwordConstrains = {
   presence: { allowEmpty: false, message: 'password name can\'t be empty' },
   length: { minimum: 6, maximum: 20 },
 };
 
 
-export const validateInput = (
-  value: string,
-  setValue: (state: React.SetStateAction<string>) => void,
+export const validateInput = <T>(
+  value: T,
+  setValue: (state: React.SetStateAction<T>) => void,
   setValueErrorMessage: (state: React.SetStateAction<string>) => void,
   setHasError: (state: React.SetStateAction<boolean>) => void,
-  constraints: IValidationConstraints,
+  constraints: Object,
 ): void => {
   setValue(value);
   const validationResult: string[] | undefined = validate.single(value, constraints);
