@@ -19,6 +19,7 @@ import Phone from '../../common/phone/phone.component';
 import Email from '../../common/email/email.component';
 import FirstName from '../../common/first-name/first-name.component';
 import LastName from '../../common/last-name/last-name.component';
+import Certificate from '../../common/certificate/certificate.component';
 
 interface PropTypes {
   children?: never,
@@ -64,6 +65,10 @@ interface PropTypes {
   withCameraman: boolean,
   onWithCameramanChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   notes: string,
+  certificate: string,
+  hasCertificateError: boolean,
+  certificateErrorMessage: string,
+  onCertificateChange: (value: string) => void,
   onNotesChange: (value: string) => void,
   formTouched: boolean,
   submitButtonEnabled: boolean,
@@ -118,6 +123,10 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onWithCameramanChange,
     notes,
     onNotesChange,
+    certificate,
+    hasCertificateError,
+    certificateErrorMessage,
+    onCertificateChange,
     formTouched,
     submitButtonEnabled,
     formErrorMessage,
@@ -244,6 +253,15 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
             <Notes
               notes={notes}
               onNotesChange={onNotesChange}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Certificate
+              certificate={certificate}
+              onCertificateChange={onCertificateChange}
+              certificateErrorMessage={certificateErrorMessage}
+              hasCertificateError={hasCertificateError}
+              formTouched={formTouched}
             />
           </Grid>
 

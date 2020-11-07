@@ -21,7 +21,7 @@ export enum ClientType {
 
 export enum Gender {
   FEMALE = "FEMALE",
-  MAIL = "MAIL",
+  MALE = "MALE",
 }
 
 export enum LicenseType {
@@ -53,6 +53,27 @@ export enum PaymentStatus {
   NOT_PAID = "NOT_PAID",
   PAID = "PAID",
   REFUNDED = "REFUNDED",
+}
+
+export interface CreateClientInput {
+  type: ClientType;
+  status: ClientStatus;
+  gender: Gender;
+  age: number;
+  firstName: string;
+  lastName: string;
+  email?: string | null;
+  weight: number;
+  phone: string;
+  address: string;
+  withHandCameraVideo: boolean;
+  withCameraman: boolean;
+  paymentStatus: PaymentStatus;
+  tmId?: string | null;
+  cameramanId?: string | null;
+  date?: any | null;
+  notes?: string | null;
+  certificate?: string | null;
 }
 
 export interface CreateEventInput {
@@ -89,6 +110,28 @@ export interface LoginInput {
 export interface ResetPasswordInput {
   password: string;
   token: string;
+}
+
+export interface UpdateClientInput {
+  id: string;
+  type?: ClientType | null;
+  status?: ClientStatus | null;
+  gender?: Gender | null;
+  age?: number | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  weight?: number | null;
+  phone?: string | null;
+  address?: string | null;
+  withHandCameraVideo?: boolean | null;
+  withCameraman?: boolean | null;
+  paymentStatus?: PaymentStatus | null;
+  tmId?: string | null;
+  cameramanId?: string | null;
+  date?: any | null;
+  notes?: string | null;
+  certificate?: string | null;
 }
 
 export interface UpdateEventInput {

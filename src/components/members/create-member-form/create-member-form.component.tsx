@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useMemberFormValidation } from '../../../hooks/forms/member-form-validation/member-form-validation.hook';
+import { useMemberFormValidation } from '../../../hooks/ui/member-form-validation/member-form-validation.hook';
 import { useCreateMemberMutation } from '../../../hooks/graphql/mutations/create-member/create-member.mutation.hook';
 import CommonMemberForm from '../common-member-form/common-member-form.component';
 import { MEMBERS_URL } from '../../../constants/route.constants';

@@ -43,6 +43,7 @@ export interface GetClient_getClient {
   cameraman: GetClient_getClient_cameraman | null;
   date: any | null;
   notes: string | null;
+  certificate: string | null;
 }
 
 export interface GetClient {

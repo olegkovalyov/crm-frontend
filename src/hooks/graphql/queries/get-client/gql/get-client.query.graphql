@@ -25,6 +25,7 @@ query GetClient($clientId: String!) {
             lastName
         },
         date,
-        notes
+        notes,
+        certificate,
     }
 }

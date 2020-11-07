@@ -24,6 +24,10 @@ export const addressConstrains = {
   length: { maximum: 200 },
 };
 
+export const certificateConstrains = {
+  length: { maximum: 40 },
+};
+
 export const phoneConstrains = {
   presence: { allowEmpty: false, message: 'phone can\'t be empty' },
   format: {

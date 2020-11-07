@@ -2,9 +2,7 @@ import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { generatePath, useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import Alert from '@material-ui/lab/Alert';
-import {
-  LinearProgress,
-} from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { QueryLazyOptions } from '@apollo/client';
@@ -12,6 +10,7 @@ import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { EDIT_CLIENT_URL } from '../../../constants/route.constants';
 import { ClientInterface } from '../../../interfaces/client.interface';
 import { useDeleteClientMutation } from '../../../hooks/graphql/mutations/delete-client/delete-member.mutation.hook';
+import { useClientsTableRender } from '../../../hooks/ui/clients-table-render/clients-table-render.hook';
 
 interface PropTypesInterface {
   getClientsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
@@ -52,6 +51,13 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
   };
 
   const {
+    renderDate,
+    renderGender,
+    renderClientStatus,
+    renderClientType,
+  } = useClientsTableRender();
+
+  const {
     inProcessOfDeletingClient,
     deleteClientAsync,
   } = useDeleteClientMutation();
@@ -78,13 +84,18 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
 
 
   const columns = [
+    { title: 'Type', field: 'type', render: renderClientType },
+    { title: 'Status', field: 'status', render: renderClientStatus },
     { title: 'First Name', field: 'firstName' },
     { title: 'Last Name', field: 'lastName' },
+    { title: 'Certificate', field: 'certificate' },
+    { title: 'Email', field: 'email' },
+    { title: 'Gender', field: 'gender', render: renderGender },
+    { title: 'Age', field: 'age' },
+    { title: 'Weight', field: 'weight' },
+    { title: 'Phone', field: 'phone' },
     {
-      title: 'Date', field: 'date', render: (client: ClientInterface) => {
-        const date = new Date(client.date);
-        return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-      },
+      title: 'Date', field: 'date', render: renderDate,
     },
   ];
 
@@ -116,8 +127,8 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
           actionsColumnIndex: -1,
         }}
         onRowClick={((e, client: ClientInterface) => {
-          // const url = generatePath(LOADS_URL, { id: event.id });
-          // history.push(url);
+          const url = generatePath(EDIT_CLIENT_URL, { id: client.id });
+          history.push(url);
         })}
       />
       <ResponsiveDialog

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   addressConstrains,
-  ageConstrains,
+  ageConstrains, certificateConstrains,
   emailConstraints,
   firstNameConstrains,
   lastNameConstrains, phoneConstrains,
@@ -11,25 +11,43 @@ import { ClientStatus, ClientType, Gender, PaymentStatus } from '../../../interf
 
 export const useClientFormValidation = () => {
 
-  // const setUser = (
-  //   status: MemberStatus,
-  //   firstName: string,
-  //   lastName: string,
-  //   email: string,
-  //   roles: MemberRole[],
-  //   licenseType: LicenseType,
-  // ): void => {
-  //   setStatus(status);
-  //   setFirstName(firstName);
-  //   setLastName(lastName);
-  //   setEmail(email);
-  //   setLicenseType(licenseType);
-  //   initCheckboxes(roles);
-  // };
+  const setClient = (
+    type: ClientType,
+    status: ClientStatus,
+    firstName: string,
+    lastName: string,
+    email: string,
+    gender: Gender,
+    age: string,
+    weight: string,
+    address: string,
+    phone: string,
+    notes: string,
+    certificate: string,
+    withHandCameraVideo: boolean,
+    withCameraman: boolean,
+    paymentStatus: PaymentStatus,
+  ): void => {
+    setClientType(type);
+    setClientStatus(status);
+    setGender(gender);
+    setAge(age);
+    setWeight(weight);
+    setFirstName(firstName);
+    setLastName(lastName);
+    setEmail(email);
+    setAddress(address);
+    setPhone(phone);
+    setNotes(notes);
+    setCertificate(certificate);
+    setWithHandCameraVideo(withHandCameraVideo);
+    setWithCameraman(withCameraman);
+    setPaymentStatus(paymentStatus);
+  };
 
   const [clientType, setClientType] = useState<ClientType>(ClientType.TANDEM);
   const [clientStatus, setClientStatus] = useState<ClientStatus>(ClientStatus.ACTIVE);
-  const [gender, setGender] = useState<Gender>(Gender.MAIL);
+  const [gender, setGender] = useState<Gender>(Gender.MALE);
 
   const [age, setAge] = useState('');
   const [hasAgeError, setHasAgeError] = useState(false);
@@ -66,6 +84,10 @@ export const useClientFormValidation = () => {
   const [withCameraman, setWithCameraman] = useState(false);
 
   const [notes, setNotes] = useState('');
+
+  const [certificate, setCertificate] = useState('');
+  const [hasCertificateError, setHasCertificateError] = useState(false);
+  const [certificateErrorMessage, setCertificateErrorMessage] = useState('');
 
   const [submitButtonEnabled, enableSubmitButton] = useState(false);
   const [formTouched, setFormTouched] = useState(false);
@@ -178,6 +200,11 @@ export const useClientFormValidation = () => {
     setNotes(value);
   };
 
+  const onCertificateChange = (value: string): void => {
+    setFormTouched(true);
+    validateInput(value, setCertificate, setCertificateErrorMessage, setHasCertificateError, certificateConstrains);
+  };
+
 
   return {
     firstName,
@@ -221,10 +248,14 @@ export const useClientFormValidation = () => {
     withHandCameraVideo,
     onWithHandCameraVideoChange,
     notes,
+    certificate,
+    certificateErrorMessage,
+    onCertificateChange,
+    hasCertificateError,
     onNotesChange,
     formTouched,
     submitButtonEnabled,
-    // setMember: setUser,
+    setClient,
   };
 
 };

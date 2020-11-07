@@ -14,7 +14,7 @@ import FormError from '../../../elements/form-error.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import { Copyright } from '../../../elements/copyright.component';
-import { useForgotPasswordFormValidation } from '../../../hooks/forms/forgot-password-form-validation/forgot-password-form-validation.hook';
+import { useForgotPasswordFormValidation } from '../../../hooks/ui/forgot-password-form-validation/forgot-password-form-validation.hook';
 import { useForgotPasswordMutation } from '../../../hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook';
 import { LOGIN_URL } from '../../../constants/route.constants';
 

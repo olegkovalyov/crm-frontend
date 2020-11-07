@@ -1,15 +1,23 @@
-import React, { FC, ReactElement } from 'react';
-import { Redirect } from 'react-router-dom';
-import { CLIENTS_URL } from '../../../constants/route.constants';
+import React, { FC, ReactElement, useEffect } from 'react';
+import Alert from '@material-ui/lab/Alert';
+import { useSnackbar } from 'notistack';
+import LoadBackdrop from '../../../elements/backdrop.component';
+import { useBreadcrumbs } from '../../../hooks/core/breadcrumbs/breadcrumbs.hook';
 import ClientForm from '../client-form/client-form.component';
 import { useClientFormValidation } from '../../../hooks/ui/client-form-validation/client-form-validation.hook';
-import { useCreateClientMutation } from '../../../hooks/graphql/mutations/create-client/create-client.mutation.hook';
+import { useGetClientQuery } from '../../../hooks/graphql/queries/get-client/get-client.query.hook';
+import { useUpdateClientMutation } from '../../../hooks/graphql/mutations/update-client/update-client.mutation.hook';
 
 interface PropTypes {
-  children?: never,
+  id: string;
 }
 
-const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+  let errorMessage = '';
+
+  const { setBreadcrumbsCustomData } = useBreadcrumbs();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const {
     age,
@@ -60,18 +68,99 @@ const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onCertificateChange,
     formTouched,
     submitButtonEnabled,
+    setClient,
   } = useClientFormValidation();
 
   const {
-    inProcessOfCreatingClient,
-    createClientAsync,
-    clientData,
-    createClientErrorMessage,
-  } = useCreateClientMutation();
+    isClientLoading,
+    getClientErrorMessage,
+    setClientErrorMessage,
+    client,
+    wasClientLoadCalled,
+    getClientAsync,
+  } = useGetClientQuery();
 
-  if (clientData) {
-    return (<Redirect to={CLIENTS_URL} />);
+  const {
+    inProcessOfUpdatingClient,
+    updateClientData,
+    updateClientErrorMessage,
+    updateClientAsync,
+  } = useUpdateClientMutation();
+
+  // Loading Client
+  useEffect(() => {
+    getClientAsync(props.id);
+  }, []); // eslint-disable-line
+
+  useEffect(() => {
+    if (client) {
+      const fullName = `${client.firstName} ${client.lastName}`;
+      setBreadcrumbsCustomData(props.id, fullName);
+    }
+  }, [client]); // eslint-disable-line
+
+  useEffect(() => {
+    if (!isClientLoading
+      && wasClientLoadCalled) {
+      if (client) {
+        setClient(
+          client.type,
+          client.status,
+          client.firstName,
+          client.lastName,
+          (client.email ?? ''),
+          client.gender,
+          client.age.toString(),
+          client.weight.toString(),
+          client.address,
+          client.phone,
+          (client.notes ?? ''),
+          (client.certificate ?? ''),
+          client.withHandCameraVideo,
+          client.withCameraman,
+          client.paymentStatus,
+        );
+      } else {
+        setClientErrorMessage('Failed to load client');
+      }
+    }
+  }, [isClientLoading, wasClientLoadCalled]); // eslint-disable-line
+
+  useEffect(() => {
+    if (updateClientData) {
+      enqueueSnackbar('Saved', {
+        variant: 'success',
+        anchorOrigin: {
+          horizontal: 'right',
+          vertical: 'bottom',
+        },
+      });
+    }
+  }, [updateClientData]); // eslint-disable-line
+
+
+  if (isClientLoading) {
+    return (
+      <>
+        <LoadBackdrop isOpen={true} />
+      </>
+    );
   }
+
+  if (getClientErrorMessage) {
+    return (
+      <>
+        <Alert severity="error">{getClientErrorMessage}</Alert>
+      </>
+    );
+  }
+  // End Loading Member
+
+  // Updating Member
+  if (updateClientErrorMessage) {
+    errorMessage = updateClientErrorMessage;
+  }
+  // End Updating Member
 
   return (
     <>
@@ -125,10 +214,11 @@ const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         certificateErrorMessage={certificateErrorMessage}
         formTouched={formTouched}
         submitButtonEnabled={submitButtonEnabled}
-        formErrorMessage={createClientErrorMessage}
-        loading={inProcessOfCreatingClient}
+        formErrorMessage={errorMessage}
+        loading={inProcessOfUpdatingClient}
         submitFn={() => {
-          return createClientAsync(
+          return updateClientAsync(
+            props.id,
             clientType,
             clientStatus,
             gender,
@@ -154,4 +244,4 @@ const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   );
 };
 
-export default CreateClientForm;
+export default EditClientForm;

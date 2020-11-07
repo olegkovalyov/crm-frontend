@@ -3,24 +3,24 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/layout/header/header.component';
 import LeftMenu from '../../components/layout/left-menu/left-menu.component';
 import { Content } from '../../components/layout/content/content.component';
-import EditMemberForm from '../../components/members/edit-member-form/edit-member-form.component';
+import EditClientForm from '../../components/clients/edit-client-form/edit-client-form.component';
 
-interface IEditPageParams {
+interface EditPageParamsInterface {
   id: string,
 }
 
-const EditUser: FC = (props): ReactElement => {
+const EditClient: FC = (props): ReactElement => {
 
-  const { id } = useParams<IEditPageParams>();
+  const { id } = useParams<EditPageParamsInterface>();
   return (
     <>
       <Header />
       <LeftMenu />
       <Content>
-        <EditMemberForm id={id!} />
+        <EditClientForm id={id!} />
       </Content>
     </>
   );
 };
 
-export default EditUser;
+export default EditClient;

@@ -28,7 +28,7 @@ const ClientGenderOptions: FC<PropTypesInterface> = React.memo((props): ReactEle
         onChange={onGenderChange}
       >
         <FormControlLabel
-          value={Gender.MAIL}
+          value={Gender.MALE}
           control={<Radio color='primary' />}
           label="Male"
         />

@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, useEffect } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
-import { useMemberFormValidation } from '../../../hooks/forms/member-form-validation/member-form-validation.hook';
+import { useMemberFormValidation } from '../../../hooks/ui/member-form-validation/member-form-validation.hook';
 import { useGetMemberQuery } from '../../../hooks/graphql/queries/get-member/get-member.query.hook';
 import LoadBackdrop from '../../../elements/backdrop.component';
 import { useUpdateMemberMutation } from '../../../hooks/graphql/mutations/update-member/update-member.mutation.hook';

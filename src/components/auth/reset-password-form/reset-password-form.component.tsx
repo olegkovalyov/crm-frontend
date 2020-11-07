@@ -12,7 +12,7 @@ import FormError from '../../../elements/form-error.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import { Copyright } from '../../../elements/copyright.component';
-import { useResetPasswordFormValidation } from '../../../hooks/forms/reset-password-form-validation/register-form-validation.hook';
+import { useResetPasswordFormValidation } from '../../../hooks/ui/reset-password-form-validation/register-form-validation.hook';
 import { useResetPasswordMutation } from '../../../hooks/graphql/mutations/reset-password/reset-password.mutation.hook';
 
 interface IResetPasswordPageParams {

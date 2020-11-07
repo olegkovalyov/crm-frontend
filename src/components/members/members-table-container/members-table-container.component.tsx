@@ -10,8 +10,8 @@ import { useStyles } from './members-table-container.styles';
 import { CREATE_MEMBER_URL } from '../../../constants/route.constants';
 import MembersTableFilter from '../members-table-filter/members-table-filter.component';
 import MembersTable from '../members-table/members-table.component';
-import { useRoles } from '../../../hooks/forms/roles/roles.hook';
-import { useStatusFilter } from '../../../hooks/forms/status-filter/status-filter.hook';
+import { useRoles } from '../../../hooks/ui/roles/roles.hook';
+import { useStatusFilter } from '../../../hooks/ui/status-filter/status-filter.hook';
 
 
 const MembersTableContainer: FC = (props): ReactElement => {

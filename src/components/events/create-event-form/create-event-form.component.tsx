@@ -1,10 +1,10 @@
 import React, { FC, ReactElement, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useEventFormValidation } from '../../../hooks/forms/event-form-validation/event-form-validation.hook';
+import { useEventFormValidation } from '../../../hooks/ui/event-form-validation/event-form-validation.hook';
 import CommonEventForm from '../common-event-form/common-event-form.component';
 import { useCreateEventMutation } from '../../../hooks/graphql/mutations/create-event/create-event.mutation.hook';
 import { EVENTS_URL } from '../../../constants/route.constants';
-import { useUsersList } from '../../../hooks/forms/users-list/users-list.hook';
+import { useUsersList } from '../../../hooks/ui/users-list/users-list.hook';
 import { useGetStaffQuery } from '../../../hooks/graphql/queries/get-staff/get-staff.query.hook';
 
 

@@ -8,7 +8,7 @@ import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
 
-const updatememberMutation = loader('./gql/update-member.mutation.graphql');
+const updateMemberMutation = loader('./gql/update-member.mutation.graphql');
 
 export const useUpdateMemberMutation = () => {
 
@@ -16,7 +16,7 @@ export const useUpdateMemberMutation = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_updateMemberAsync, { loading, data }] = useMutation<UpdateMember, UpdateMemberVariables>(updatememberMutation, {
+  const [_updateMemberAsync, { loading, data }] = useMutation<UpdateMember, UpdateMemberVariables>(updateMemberMutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,

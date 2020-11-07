@@ -19,7 +19,7 @@ import {
   EDIT_EVENT_URL,
   LOADS_URL,
   CLIENTS_URL,
-  CREATE_CLIENT_URL,
+  CREATE_CLIENT_URL, EDIT_CLIENT_URL,
 } from './constants/route.constants';
 
 export const authUrls = [
@@ -84,7 +84,7 @@ export const routes: RouteInterface[] = [
   },
   {
     path: EDIT_MEMBER_URL,
-    component: lazy(() => import('./pages/edit-user/edit-user.component')),
+    component: lazy(() => import('./pages/edit-member/edit-member.component')),
     exact: false,
     private: true,
   },
@@ -127,6 +127,12 @@ export const routes: RouteInterface[] = [
   {
     path: CREATE_CLIENT_URL,
     component: lazy(() => import('./pages/create-client/create-client.component')),
+    exact: true,
+    private: true,
+  },
+  {
+    path: EDIT_CLIENT_URL,
+    component: lazy(() => import('./pages/edit-client/edit-member.component')),
     exact: true,
     private: true,
   },

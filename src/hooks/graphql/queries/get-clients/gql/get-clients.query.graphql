@@ -25,6 +25,7 @@ query GetClients {
             lastName
         },
         date,
-        notes
+        notes,
+        certificate,
     }
 }
