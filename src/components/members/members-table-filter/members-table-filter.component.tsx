@@ -9,12 +9,12 @@ import {
   Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Roles from '../roles/roles.component';
+import MemberRoles from '../../common/member-roles/member-roles.component';
 import {
   memberRoles, memberStatuses,
 } from '../../../constants/member.constants';
 import { RoleCheckBoxesStateType, MemberStatusCheckBoxesStateType } from '../../../interfaces/member.interface';
-import StatusFilter from '../status-filter/status-filter.component';
+import MemberStatusFilter from '../../common/member-status-filter/member-status-filter.component';
 import { MemberRole, MemberStatus } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypesInterface {
@@ -67,7 +67,7 @@ const MembersTableFilter: FC<PropTypesInterface> = (props): ReactElement => {
             <FormControl component="fieldset">
               <FormLabel component="legend">Role:</FormLabel>
               <FormGroup>
-                <Roles
+                <MemberRoles
                   roleCheckBoxesState={roleCheckBoxesState}
                   onRoleChange={handleRoleChange}
                 />
@@ -78,7 +78,7 @@ const MembersTableFilter: FC<PropTypesInterface> = (props): ReactElement => {
             <FormControl component="fieldset">
               <FormLabel component="legend">Status:</FormLabel>
               <FormGroup>
-                <StatusFilter
+                <MemberStatusFilter
                   statusCheckBoxesState={statusCheckBoxesState}
                   onStatusChange={handleStatusChange}
                 />

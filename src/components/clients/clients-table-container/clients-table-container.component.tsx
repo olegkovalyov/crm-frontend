@@ -9,6 +9,10 @@ import { useStyles } from './clients-table-container.styles';
 import { CREATE_CLIENT_URL } from '../../../constants/route.constants';
 import { useGetClientsQuery } from '../../../hooks/graphql/queries/get-clients/get-clients.query.hook';
 import ClientsTable from '../clients-table/clients-table.component';
+import ClientsTableFilter from '../clients-table-filter/clients-table-filter.component';
+import { useClientStatusFilter } from '../../../hooks/ui/client-status-filter/client-status-filter.hook';
+import { usePaymentStatusFilter } from '../../../hooks/ui/payment-status-filter/payment-status-filter.hook';
+import { useClientCreatedFilter } from '../../../hooks/ui/client-created-filter/client-created-filter.hook';
 
 
 const ClientsTableContainer: FC = (props): ReactElement => {
@@ -22,6 +26,27 @@ const ClientsTableContainer: FC = (props): ReactElement => {
     areClientsLoading,
     getClientsErrorMessage,
   } = useGetClientsQuery();
+
+  const {
+    clientStatusCheckBoxesState,
+    handleClientStatusChange,
+    getSelectedClientStatuses,
+    initClientStatusCheckboxes,
+  } = useClientStatusFilter();
+
+  const {
+    createdDateMin,
+    createdDateMax,
+    onCreatedDateMinChange,
+    onCreatedDateMaxChange,
+  } = useClientCreatedFilter();
+
+  const {
+    paymentStatusCheckBoxesState,
+    handlePaymentStatusChange,
+    getSelectedPaymentStatuses,
+    initPaymentStatusCheckboxes,
+  } = usePaymentStatusFilter();
 
   return (
     <>
@@ -40,12 +65,33 @@ const ClientsTableContainer: FC = (props): ReactElement => {
             Create
           </Button>
         </Grid>
+        <Grid item xs={9}>
+          <ClientsTableFilter
+            clientStatusCheckBoxesState={clientStatusCheckBoxesState}
+            paymentStatusCheckBoxesState={paymentStatusCheckBoxesState}
+            handleClientStatusChange={handleClientStatusChange}
+            handlePaymentStatusChange={handlePaymentStatusChange}
+            initClientStatusCheckboxes={initClientStatusCheckboxes}
+            initPaymentStatusCheckboxes={initPaymentStatusCheckboxes}
+            getSelectedClientStatuses={getSelectedClientStatuses}
+            getSelectedPaymentStatuses={getSelectedPaymentStatuses}
+            createdDateMin={createdDateMin}
+            onCreatedDateMinChange={onCreatedDateMinChange}
+            createdDateMax={createdDateMax}
+            onCreatedDateMaxChange={onCreatedDateMaxChange}
+            updateDataAsync={getClientsAsync}
+          />
+        </Grid>
         <Grid item xs={12}>
           <ClientsTable
             getClientsAsync={getClientsAsync}
             loading={areClientsLoading}
             clients={clients}
             errorMessage={getClientsErrorMessage}
+            getSelectedClientStatuses={getSelectedClientStatuses}
+            getSelectedPaymentStatuses={getSelectedPaymentStatuses}
+            createdDateMin={createdDateMin}
+            createdDateMax={createdDateMax}
           />
         </Grid>
       </Grid>

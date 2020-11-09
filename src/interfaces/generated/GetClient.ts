@@ -41,7 +41,8 @@ export interface GetClient_getClient {
   paymentStatus: PaymentStatus;
   tm: GetClient_getClient_tm | null;
   cameraman: GetClient_getClient_cameraman | null;
-  date: any | null;
+  createdAt: any;
+  processedAt: any | null;
   notes: string | null;
   certificate: string | null;
 }

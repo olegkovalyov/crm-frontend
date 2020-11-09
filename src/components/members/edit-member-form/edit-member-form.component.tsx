@@ -5,7 +5,7 @@ import { useMemberFormValidation } from '../../../hooks/ui/member-form-validatio
 import { useGetMemberQuery } from '../../../hooks/graphql/queries/get-member/get-member.query.hook';
 import LoadBackdrop from '../../../elements/backdrop.component';
 import { useUpdateMemberMutation } from '../../../hooks/graphql/mutations/update-member/update-member.mutation.hook';
-import CommonMemberForm from '../common-member-form/common-member-form.component';
+import MemberForm from '../member-form/member-form.component';
 import { MemberStatus } from '../../../interfaces/generated/globalTypes';
 import { useBreadcrumbs } from '../../../hooks/core/breadcrumbs/breadcrumbs.hook';
 
@@ -129,7 +129,7 @@ const EditMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   return (
     <>
-      <CommonMemberForm
+      <MemberForm
         title="Edit"
         firstName={firstName}
         hasFirstNameError={hasFirstNameError}

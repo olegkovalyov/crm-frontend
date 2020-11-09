@@ -71,7 +71,7 @@ export interface CreateClientInput {
   paymentStatus: PaymentStatus;
   tmId?: string | null;
   cameramanId?: string | null;
-  date?: any | null;
+  processedAt?: any | null;
   notes?: string | null;
   certificate?: string | null;
 }
@@ -95,6 +95,13 @@ export interface CreateMemberInput {
 
 export interface ForgotPasswordInput {
   email: string;
+}
+
+export interface GetClientsFilterInput {
+  clientStatuses?: ClientStatus[] | null;
+  paymentStatuses?: PaymentStatus[] | null;
+  createdAtMin?: any | null;
+  createdAtMax?: any | null;
 }
 
 export interface GetMembersFilterInput {
@@ -129,7 +136,7 @@ export interface UpdateClientInput {
   paymentStatus?: PaymentStatus | null;
   tmId?: string | null;
   cameramanId?: string | null;
-  date?: any | null;
+  processedAt?: any | null;
   notes?: string | null;
   certificate?: string | null;
 }

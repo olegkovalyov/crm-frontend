@@ -3,7 +3,7 @@ import { memberStatuses } from '../../../constants/member.constants';
 import { MemberStatusCheckBoxesStateType } from '../../../interfaces/member.interface';
 import { MemberStatus } from '../../../interfaces/generated/globalTypes';
 
-export const useStatusFilter = () => {
+export const useMemberStatusFilter = () => {
   const initialStatusCheckboxesState: MemberStatusCheckBoxesStateType = {
     ACTIVE: true,
     BLOCKED: true,

@@ -8,7 +8,7 @@ interface PropTypesInterface {
   onRoleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Roles: FC<PropTypesInterface> = (props): ReactElement => {
+const MemberRoles: FC<PropTypesInterface> = (props): ReactElement => {
   const { roleCheckBoxesState, onRoleChange } = props;
   const rolesJsx = memberRoles.map((value) => {
     return <FormControlLabel
@@ -27,4 +27,4 @@ const Roles: FC<PropTypesInterface> = (props): ReactElement => {
   );
 };
 
-export default Roles;
+export default MemberRoles;

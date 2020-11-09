@@ -50,10 +50,10 @@ export const useClientsTableRender = () => {
   };
 
   const renderDate = (client: ClientInterface) => {
-    if (!client.date) {
+    if (!client.createdAt) {
       return '-';
     }
-    const date = new Date(client.date);
+    const date = new Date(client.createdAt);
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   };
 

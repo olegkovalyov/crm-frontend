@@ -3,7 +3,7 @@ import {  memberRoles } from '../../../constants/member.constants';
 import { RoleCheckBoxesStateType } from '../../../interfaces/member.interface';
 import { MemberRole } from '../../../interfaces/generated/globalTypes';
 
-export const useRoles = () => {
+export const useMemberRolesFilter = () => {
   const initialRoleCheckboxesState: RoleCheckBoxesStateType = {
     SKYDIVER: false,
     STUDENT: false,

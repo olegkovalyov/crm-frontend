@@ -10,8 +10,8 @@ import { useStyles } from './members-table-container.styles';
 import { CREATE_MEMBER_URL } from '../../../constants/route.constants';
 import MembersTableFilter from '../members-table-filter/members-table-filter.component';
 import MembersTable from '../members-table/members-table.component';
-import { useRoles } from '../../../hooks/ui/roles/roles.hook';
-import { useStatusFilter } from '../../../hooks/ui/status-filter/status-filter.hook';
+import { useMemberRolesFilter } from '../../../hooks/ui/member-roles-filter/member-roles-filter.hook';
+import { useMemberStatusFilter } from '../../../hooks/ui/member-status-filter/member-status-filter.hook';
 
 
 const MembersTableContainer: FC = (props): ReactElement => {
@@ -24,14 +24,14 @@ const MembersTableContainer: FC = (props): ReactElement => {
     handleRoleChange,
     getSelectedRoles,
     initCheckboxes,
-  } = useRoles();
+  } = useMemberRolesFilter();
 
   const {
     statusCheckBoxesState,
     handleStatusChange,
     getSelectedStatuses,
     initStatusCheckboxes,
-  } = useStatusFilter();
+  } = useMemberStatusFilter();
 
   const {
     members,

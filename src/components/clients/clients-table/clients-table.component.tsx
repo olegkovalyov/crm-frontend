@@ -5,18 +5,27 @@ import Alert from '@material-ui/lab/Alert';
 import { LinearProgress } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { QueryLazyOptions } from '@apollo/client';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { EDIT_CLIENT_URL } from '../../../constants/route.constants';
 import { ClientInterface } from '../../../interfaces/client.interface';
 import { useDeleteClientMutation } from '../../../hooks/graphql/mutations/delete-client/delete-member.mutation.hook';
 import { useClientsTableRender } from '../../../hooks/ui/clients-table-render/clients-table-render.hook';
+import { ClientStatus, PaymentStatus } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypesInterface {
-  getClientsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
+  getClientsAsync: (
+    clientStatuses: ClientStatus[] | null,
+    paymentStatuses: PaymentStatus[] | null,
+    createdAtMin: Date | null,
+    createdAtMax: Date | null,
+  ) => Promise<void>,
   loading: boolean,
   clients: ClientInterface[],
   errorMessage: string,
+  getSelectedClientStatuses: () => ClientStatus[],
+  getSelectedPaymentStatuses: () => PaymentStatus[],
+  createdDateMin: Date | null,
+  createdDateMax: Date | null,
 }
 
 const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
@@ -26,6 +35,10 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
     loading,
     errorMessage,
     clients,
+    getSelectedPaymentStatuses,
+    getSelectedClientStatuses,
+    createdDateMin,
+    createdDateMax,
   } = props;
 
   const [clientIdToDetele, setClientIdToDelete] = useState('');
@@ -46,7 +59,12 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
   const handleConfirmRemove = () => {
     deleteClientAsync(clientIdToDetele).then(() => {
       setIsOpenDeleteDialog(false);
-      return getClientsAsync();
+      return getClientsAsync(
+        getSelectedClientStatuses(),
+        getSelectedPaymentStatuses(),
+        createdDateMin,
+        createdDateMax,
+      );
     });
   };
 
@@ -63,7 +81,12 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
   } = useDeleteClientMutation();
 
   useEffect(() => {
-    getClientsAsync();
+    getClientsAsync(
+      getSelectedClientStatuses(),
+      getSelectedPaymentStatuses(),
+      createdDateMin,
+      createdDateMax,
+    );
   }, []); // eslint-disable-line
 
   if (loading) {
@@ -95,7 +118,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
     { title: 'Weight', field: 'weight' },
     { title: 'Phone', field: 'phone' },
     {
-      title: 'Date', field: 'date', render: renderDate,
+      title: 'Created At', field: 'createdAt', render: renderDate,
     },
   ];
 

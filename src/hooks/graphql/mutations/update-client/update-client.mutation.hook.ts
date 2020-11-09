@@ -46,7 +46,7 @@ export const useUpdateClientMutation = () => {
     paymentStatus: PaymentStatus,
     tmId: string | null,
     cameramanId: string | null,
-    date: Date | null,
+    processedAt: Date | null,
     notes: string | null,
     certificate: string | null,
   ): Promise<void> => {
@@ -69,7 +69,7 @@ export const useUpdateClientMutation = () => {
           paymentStatus,
           tmId,
           cameramanId,
-          date,
+          processedAt,
           notes,
           certificate,
         },

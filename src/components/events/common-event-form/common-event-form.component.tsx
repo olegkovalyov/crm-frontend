@@ -104,7 +104,7 @@ const CommonEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
                     <DatePicker
                       margin="normal"
                       id="date-picker-dialog"
-                      format="MM/dd/yyyy"
+                      format="dd.MM.yyyy"
                       label='Select date'
                       value={date}
                       onChange={onDateChange}

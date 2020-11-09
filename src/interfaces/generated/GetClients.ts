@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ClientType, ClientStatus, Gender, PaymentStatus } from "./globalTypes";
+import { GetClientsFilterInput, ClientType, ClientStatus, Gender, PaymentStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetClients
@@ -41,11 +41,16 @@ export interface GetClients_getClients {
   paymentStatus: PaymentStatus;
   tm: GetClients_getClients_tm | null;
   cameraman: GetClients_getClients_cameraman | null;
-  date: any | null;
+  createdAt: any;
+  processedAt: any | null;
   notes: string | null;
   certificate: string | null;
 }
 
 export interface GetClients {
   getClients: GetClients_getClients[];
+}
+
+export interface GetClientsVariables {
+  getClientsFilter: GetClientsFilterInput;
 }

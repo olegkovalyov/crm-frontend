@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { FormControlLabel, FormLabel, Switch } from '@material-ui/core';
-import { useStyles } from './common-member-form.styles';
+import { useStyles } from './member-form.styles';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
@@ -15,7 +15,7 @@ import FormError from '../../../elements/form-error.component';
 import {
   licenseTypes,
 } from '../../../constants/member.constants';
-import Roles from '../roles/roles.component';
+import MemberRoles from '../../common/member-roles/member-roles.component';
 import { RoleCheckBoxesStateType } from '../../../interfaces/member.interface';
 
 
@@ -47,7 +47,7 @@ interface PropTypes {
   submitFn: () => Promise<void>,
 }
 
-const CommonMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const classes = useStyles();
   const {
     title,
@@ -144,7 +144,7 @@ const CommonMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormLabel component="legend">Roles</FormLabel>
-            <Roles
+            <MemberRoles
               roleCheckBoxesState={roleCheckBoxesState}
               onRoleChange={onRoleChange}
             />
@@ -174,4 +174,4 @@ const CommonMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   );
 };
 
-export default CommonMemberForm;
+export default MemberForm;

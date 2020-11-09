@@ -24,7 +24,8 @@ query GetClient($clientId: String!) {
             firstName,
             lastName
         },
-        date,
+        createdAt,
+        processedAt,
         notes,
         certificate,
     }

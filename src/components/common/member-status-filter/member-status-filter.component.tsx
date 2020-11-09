@@ -8,7 +8,7 @@ interface PropTypesInterface {
   onStatusChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const StatusFilter: FC<PropTypesInterface> = (props): ReactElement => {
+const MemberStatusFilter: FC<PropTypesInterface> = (props): ReactElement => {
   const { statusCheckBoxesState, onStatusChange } = props;
   const statusJsx = memberStatuses.map((value) => {
     const color = (value === 'ACTIVE') ? 'primary' : 'secondary';
@@ -28,4 +28,4 @@ const StatusFilter: FC<PropTypesInterface> = (props): ReactElement => {
   );
 };
 
-export default StatusFilter;
+export default MemberStatusFilter;

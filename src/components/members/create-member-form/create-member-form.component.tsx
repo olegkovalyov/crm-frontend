@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useMemberFormValidation } from '../../../hooks/ui/member-form-validation/member-form-validation.hook';
 import { useCreateMemberMutation } from '../../../hooks/graphql/mutations/create-member/create-member.mutation.hook';
-import CommonMemberForm from '../common-member-form/common-member-form.component';
+import MemberForm from '../member-form/member-form.component';
 import { MEMBERS_URL } from '../../../constants/route.constants';
 import { MemberStatus } from '../../../interfaces/generated/globalTypes';
 
@@ -50,7 +50,7 @@ const CreateMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   return (
     <>
-      <CommonMemberForm
+      <MemberForm
         title='Create'
         firstName={firstName}
         hasFirstNameError={hasFirstNameError}

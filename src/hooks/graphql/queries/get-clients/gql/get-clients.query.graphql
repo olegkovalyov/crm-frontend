@@ -1,5 +1,5 @@
-query GetClients {
-    getClients{
+query GetClients($getClientsFilter: GetClientsFilterInput!) {
+    getClients(getClientsFilterInput: $getClientsFilter){
         id,
         type,
         status,
@@ -24,7 +24,8 @@ query GetClients {
             firstName,
             lastName
         },
-        date,
+        createdAt,
+        processedAt,
         notes,
         certificate,
     }

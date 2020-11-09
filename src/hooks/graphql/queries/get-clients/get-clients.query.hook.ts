@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-import { GetClients } from '../../../../interfaces/generated/GetClients';
+import { GetClients, GetClientsVariables } from '../../../../interfaces/generated/GetClients';
 import { ClientInterface } from '../../../../interfaces/client.interface';
+import { ClientStatus, PaymentStatus } from '../../../../interfaces/generated/globalTypes';
 
 const getClientsQuery = loader('./gql/get-clients.query.graphql');
 
@@ -18,7 +19,7 @@ export const useGetClientsQuery = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   let clients: ClientInterface[] = [];
-  const [_getClientsAsync, { loading, data }] = useLazyQuery<GetClients, null>(getClientsQuery,
+  const [_getClientsAsync, { loading, data }] = useLazyQuery<GetClients, GetClientsVariables>(getClientsQuery,
     {
       context: {
         headers: {
@@ -34,9 +35,22 @@ export const useGetClientsQuery = () => {
     });
   }
 
-  const getClientsAsync = async () => {
+  const getClientsAsync = async (
+    clientStatuses: ClientStatus[] | null,
+    paymentStatuses: PaymentStatus[] | null,
+    createdAtMin: Date | null,
+    createdAtMax: Date | null,
+  ) => {
     try {
-      await _getClientsAsync();
+      const variables: GetClientsVariables = {
+        getClientsFilter: {
+          clientStatuses,
+          paymentStatuses,
+          createdAtMin,
+          createdAtMax,
+        },
+      };
+      await _getClientsAsync({ variables });
     } catch (e) {
       const formattedErrorMessage = getFormattedErrorMessage(e);
       setErrorMessage(formattedErrorMessage);

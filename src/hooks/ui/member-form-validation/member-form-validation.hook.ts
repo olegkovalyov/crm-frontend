@@ -5,7 +5,7 @@ import {
   lastNameConstrains,
   validateInput,
 } from '../../../common/inputValidator';
-import { useRoles } from '../roles/roles.hook';
+import { useMemberRolesFilter } from '../member-roles-filter/member-roles-filter.hook';
 import { LicenseType, MemberRole, MemberStatus } from '../../../interfaces/generated/globalTypes';
 
 export const useMemberFormValidation = () => {
@@ -50,7 +50,7 @@ export const useMemberFormValidation = () => {
     getSelectedRoles,
     handleRoleChange,
     initCheckboxes,
-  } = useRoles();
+  } = useMemberRolesFilter();
 
   const [status, setStatus] = useState<MemberStatus>(MemberStatus.ACTIVE);
 
