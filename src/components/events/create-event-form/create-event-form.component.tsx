@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useEventFormValidation } from '../../../hooks/ui/event-form-validation/event-form-validation.hook';
-import CommonEventForm from '../common-event-form/common-event-form.component';
+import EventForm from '../event-form/event-form.component';
 import { useCreateEventMutation } from '../../../hooks/graphql/mutations/create-event/create-event.mutation.hook';
 import { EVENTS_URL } from '../../../constants/route.constants';
 import { useUsersList } from '../../../hooks/ui/users-list/users-list.hook';
@@ -66,7 +66,7 @@ const CreateEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   }
 
   return (
-    <CommonEventForm
+    <EventForm
       title='Create'
       name={name}
       hasNameError={hasNameError}

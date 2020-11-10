@@ -120,7 +120,7 @@ const EventsTable: FC<PropTypesInterface> = (props): ReactElement => {
           actionsColumnIndex: -1,
         }}
         onRowClick={((e, event: EventInterface) => {
-          const url = generatePath(LOADS_URL, { id: event.id });
+          const url = generatePath(LOADS_URL, { eventId: event.id });
           history.push(url);
         })}
       />

@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
 import LoadBackdrop from '../../../elements/backdrop.component';
-import CommonEventForm from '../common-event-form/common-event-form.component';
+import EventForm from '../event-form/event-form.component';
 import { useEventFormValidation } from '../../../hooks/ui/event-form-validation/event-form-validation.hook';
 import { useGetEventQuery } from '../../../hooks/graphql/queries/get-event/get-event.query.hook';
 import { useUpdateEventMutation } from '../../../hooks/graphql/mutations/update-event/update-event.mutation.hook';
@@ -125,7 +125,7 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
 
   return (
-    <CommonEventForm
+    <EventForm
       title={title}
       name={name}
       hasNameError={hasNameError}

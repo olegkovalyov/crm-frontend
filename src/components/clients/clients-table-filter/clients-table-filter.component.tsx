@@ -71,11 +71,11 @@ const ClientsTableFilter: FC<PropTypesInterface> = (props): ReactElement => {
       createdDateMin,
       createdDateMax,
     );
-  }, [
-    getSelectedClientStatuses,
-    getSelectedPaymentStatuses,
-    createdDateMin,
-    createdDateMax,
+  }, [// eslint-disable-line
+    getSelectedClientStatuses, // eslint-disable-line
+    getSelectedPaymentStatuses,// eslint-disable-line
+    createdDateMin,// eslint-disable-line
+    createdDateMax,// eslint-disable-line
   ]); // eslint-disable-line
 
   return (

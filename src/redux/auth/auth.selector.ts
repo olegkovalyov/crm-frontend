@@ -13,3 +13,7 @@ export const doesRefreshTokenExists = (state: RootStateInterface): boolean => {
   return state.auth.refreshTokenExists;
 };
 
+export const getRedirectUrl = (state: RootStateInterface): string | null => {
+  return state.auth.redirectUrl;
+};
+

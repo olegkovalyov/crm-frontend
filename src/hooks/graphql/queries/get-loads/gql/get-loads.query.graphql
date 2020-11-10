@@ -1,0 +1,45 @@
+query GetLoads($eventId: String!) {
+    getLoads(eventId: $eventId){
+        id,
+        status,
+        loadNumber,
+        date,
+        aircraft
+        event{
+            name,
+            date,
+        },
+        members{
+            id,
+            status,
+            firstName,
+            lastName,
+            email,
+            roles,
+            licenseType,
+            createdAt,
+            updatedAt
+        },
+        clients{
+            id,
+            type,
+            status,
+            age,
+            weight,
+            gender,
+            firstName,
+            lastName,
+            email,
+            phone,
+            address,
+            withCameraman,
+            withHandCameraVideo,
+            paymentStatus,
+            createdAt,
+            processedAt,
+            notes,
+            certificate,
+        },
+        notes
+    }
+}

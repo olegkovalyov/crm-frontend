@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { Paper } from '@material-ui/core';
-import { useStyles } from './common-event-form.styles';
+import { useStyles } from './event-form.styles';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
@@ -37,7 +37,7 @@ interface PropTypes {
   onStaffChange: (e: React.ChangeEvent<HTMLInputElement>, userId: string) => void,
 }
 
-const CommonEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+const EventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   const classes = useStyles();
 
@@ -161,4 +161,4 @@ const CommonEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
   );
 };
 
-export default CommonEventForm;
+export default EventForm;

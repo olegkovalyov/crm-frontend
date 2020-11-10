@@ -17,7 +17,7 @@ export const EVENTS_URL = '/events';
 export const CREATE_EVENT_URL = '/events/create';
 export const EDIT_EVENT_URL = '/events/:id';
 export const HISTORY_URL = '/history';
-export const LOADS_URL = '/events/:id/loads';
+export const LOADS_URL = '/events/:eventId/loads';
 
 // Clients
 export const CLIENTS_URL = '/clients';

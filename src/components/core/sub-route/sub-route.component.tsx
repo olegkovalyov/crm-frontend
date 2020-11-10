@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Redirect, Route, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouteInterface } from '../../../interfaces/routes.interface';
 import Loading from '../../../elements/loading.component';
 import { RootStateInterface } from '../../../redux/root.reducer';
@@ -9,6 +9,7 @@ import { useIsAuthenticated } from '../../../hooks/core/is-authenticated/is-auth
 import { authUrls } from '../../../routes';
 import { DASHBOARD_URL, LOGIN_URL } from '../../../constants/route.constants';
 import { useRefreshTokenQuery } from '../../../hooks/graphql/queries/refresh-token/refresh-token.query.hook';
+import { setRedirectUrlAction } from '../../../redux/auth/auth.actions';
 
 const RouteWithSubRoutes = (route: RouteInterface): JSX.Element => {
   const { refreshAccessToken } = useRefreshTokenQuery();
@@ -16,17 +17,19 @@ const RouteWithSubRoutes = (route: RouteInterface): JSX.Element => {
 
   const refreshTokenExists = useSelector((state: RootStateInterface) => doesRefreshTokenExists(state));
   const { isAuthenticated } = useIsAuthenticated();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <Suspense fallback={<Loading />}>
       <Route
         path={route.path}
         render={(props) => {
-
           if (route.component) {
 
             if (isAuthenticated
-              && authUrls.includes(route.path)) {
+              && authUrls.includes(route.path)
+            ) {
               return <Redirect to={DASHBOARD_URL} />;
             }
 
@@ -43,8 +46,8 @@ const RouteWithSubRoutes = (route: RouteInterface): JSX.Element => {
               return <Loading />;
             }
           }
+          dispatch(setRedirectUrlAction(history.location.pathname));
           return <Redirect to={LOGIN_URL} />;
-
         }}
       />
     </Suspense>
