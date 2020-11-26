@@ -33,8 +33,8 @@ interface PropTypes {
   loading: boolean,
   submitBtnTitle: string,
   submitFn: () => Promise<void>,
-  selectedStaff: string[],
-  onStaffChange: (e: React.ChangeEvent<HTMLInputElement>, userId: string) => void,
+  selectedStaff: number[],
+  onStaffChange: (e: React.ChangeEvent<HTMLInputElement>, userId: number) => void,
 }
 
 const EventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {

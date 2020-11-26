@@ -25,11 +25,11 @@ export const useUpdateEventMutation = () => {
 
 
   const updateEventAsync = async (
-    id: string,
+    id: number,
     name: string,
     date: Date,
     notes: string,
-    staffIds: string[],
+    staffIds: number[],
   ): Promise<void> => {
     try {
       const variables: UpdateEventVariables = {

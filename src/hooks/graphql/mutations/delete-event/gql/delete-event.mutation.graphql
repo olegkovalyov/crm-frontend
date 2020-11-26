@@ -1,5 +1,3 @@
-mutation DeleteEvent($input: String!) {
-    deleteEvent(id: $input){
-        id
-    }
+mutation DeleteEvent($input: Int!) {
+    deleteEvent(id: $input)
 }

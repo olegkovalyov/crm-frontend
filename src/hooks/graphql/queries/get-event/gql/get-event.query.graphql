@@ -1,17 +1,11 @@
-query GetEvent($eventId: String!) {
+query GetEvent($eventId: Int!) {
     getEvent(id: $eventId) {
         id,
         name,
         date,
-        notes,
-        loads{
-            id,
-            aircraft,
-            date,
-            status
-        },
         staff{
             id,
+            userId,
             status,
             firstName,
             lastName,
@@ -20,10 +14,12 @@ query GetEvent($eventId: String!) {
             licenseType,
             createdAt,
             updatedAt
-        }
+        },
+        notes
     },
     getStaff{
         id,
+        userId,
         status,
         firstName,
         lastName,

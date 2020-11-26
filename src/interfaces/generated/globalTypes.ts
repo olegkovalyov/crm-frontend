@@ -32,6 +32,13 @@ export enum LicenseType {
   NONE = "NONE",
 }
 
+export enum LoadStatus {
+  ACTIVE = "ACTIVE",
+  CANCELLED = "CANCELLED",
+  DRAFT = "DRAFT",
+  PROCESSED = "PROCESSED",
+}
+
 export enum MemberRole {
   ADMIN = "ADMIN",
   CAMERAMAN = "CAMERAMAN",
@@ -69,9 +76,8 @@ export interface CreateClientInput {
   withHandCameraVideo: boolean;
   withCameraman: boolean;
   paymentStatus: PaymentStatus;
-  tmId?: string | null;
-  cameramanId?: string | null;
-  processedAt?: any | null;
+  tmId?: number | null;
+  cameramanId?: number | null;
   notes?: string | null;
   certificate?: string | null;
 }
@@ -79,7 +85,7 @@ export interface CreateClientInput {
 export interface CreateEventInput {
   name: string;
   date: any;
-  staffIds?: string[] | null;
+  staffIds?: number[] | null;
   notes: string;
 }
 
@@ -104,6 +110,11 @@ export interface GetClientsFilterInput {
   createdAtMax?: any | null;
 }
 
+export interface GetEventsFilterInput {
+  dateMin?: any | null;
+  dateMax?: any | null;
+}
+
 export interface GetMembersFilterInput {
   statuses?: MemberStatus[] | null;
   roles?: MemberRole[] | null;
@@ -120,7 +131,7 @@ export interface ResetPasswordInput {
 }
 
 export interface UpdateClientInput {
-  id: string;
+  id: number;
   type?: ClientType | null;
   status?: ClientStatus | null;
   gender?: Gender | null;
@@ -134,18 +145,18 @@ export interface UpdateClientInput {
   withHandCameraVideo?: boolean | null;
   withCameraman?: boolean | null;
   paymentStatus?: PaymentStatus | null;
-  tmId?: string | null;
-  cameramanId?: string | null;
+  tmId?: number | null;
+  cameramanId?: number | null;
   processedAt?: any | null;
   notes?: string | null;
   certificate?: string | null;
 }
 
 export interface UpdateEventInput {
-  id: string;
+  id: number;
   name?: string | null;
   date?: any | null;
-  staffIds?: string[] | null;
+  staffIds?: number[] | null;
   notes?: string | null;
 }
 
@@ -157,7 +168,7 @@ export interface UpdateMemberInput {
   password?: string | null;
   roles?: MemberRole[] | null;
   licenseType?: LicenseType | null;
-  id: string;
+  id: number;
 }
 
 //==============================================================

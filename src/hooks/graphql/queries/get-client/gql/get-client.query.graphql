@@ -1,32 +1,29 @@
-query GetClient($clientId: String!) {
-    getClient(id: $clientId) {
+query GetClient($id: Int!) {
+    getClient(id: $id) {
         id,
+        userId,
         type,
         status,
-        age,
-        weight,
         gender,
+        age,
         firstName,
         lastName,
         email,
+        weight,
         phone,
         address,
-        withCameraman,
         withHandCameraVideo,
+        withCameraman,
+        notes,
+        certificate,
         paymentStatus,
         tm {
             id
-            firstName,
-            lastName
         },
-        cameraman{
-            id,
-            firstName,
-            lastName
-        },
+        cameraman {
+            id
+        }
         createdAt,
-        processedAt,
-        notes,
-        certificate,
+        processedAt
     }
 }

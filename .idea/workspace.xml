@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/loads/loads-panels/loads-panels.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/loads/loads-tabs/loads-tabs.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/loads/single-load/single-load.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/get-load.query.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/gql/get-load.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/generated/GetLoad.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/clients-table/clients-table.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/clients-table/clients-table.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/create-client-form/create-client-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/create-client-form/create-client-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/edit-client-form/edit-client-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/edit-client-form/edit-client-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/edit-event-form/edit-event-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/events/edit-event-form/edit-event-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/event-form/event-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/events/event-form/event-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/events-table/events-table.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/events/events-table/events-table.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/members-list/members-list.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/events/members-list/members-list.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/edit-member-form/edit-member-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/edit-member-form/edit-member-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/members-table/members-table.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/members-table/members-table.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/gql/create-client.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/gql/create-client.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/gql/create-event.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/gql/create-event.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-member/gql/create-member.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-member/gql/create-member.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/delete-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/delete-member.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/gql/delete-client.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/gql/delete-client.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/gql/delete-event.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/gql/delete-event.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/gql/delete-member.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/gql/delete-member.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/gql/forgot-password.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/gql/forgot-password.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/gql/login.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/gql/login.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/gql/register.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/gql/register.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/gql/reset-password.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/gql/reset-password.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/gql/update-client.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/gql/update-client.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/gql/updateEventMutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/gql/updateEventMutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/gql/update-member.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/gql/update-member.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/update-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/update-member.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/get-client.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/get-client.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/gql/get-client.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/gql/get-client.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-event/get-event.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-event/get-event.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-event/gql/get-event.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-event/gql/get-event.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/gql/get-events.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/gql/get-events.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/gql/get-loads.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/gql/get-loads.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-member/get-member.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-member/get-member.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-member/gql/get-member.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-member/gql/get-member.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/gql/get-members.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/gql/get-members.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/gql/get-staff.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/gql/get-staff.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/gql/logout.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/gql/logout.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/refresh-token/gql/refresh-token.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/refresh-token/gql/refresh-token.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/users-list/users-list.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ui/users-list/users-list.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/event.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/event.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateMember.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateMember.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteMember.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteMember.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetClients.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetClients.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetEvents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetEvents.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetLoads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetLoads.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetMember.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetMember.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetMembers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetMembers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetStaff.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetStaff.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/Login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/Login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/Logout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/Logout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/RefreshToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/RefreshToken.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/Register.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/Register.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/ResetPassword.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/ResetPassword.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/UpdateClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/UpdateClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/UpdateEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/UpdateEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/UpdateMember.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/UpdateMember.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/dashboard.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/dashboard.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/edit-client/edit-member.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/edit-client/edit-client.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth/auth.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth/auth.reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth/auth.selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth/auth.selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Oleg Kovalyov &lt;kovalyovoleg@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1iOoBQW9S27JSe2rS2MmawUsQvg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/graphql/queries/get-load" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="Docker" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="ts.rename.search.for.js.occurrences" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-load" />
+      <recent name="$PROJECT_DIR$/src/components/loads" />
+      <recent name="$PROJECT_DIR$/src/components/loads/loads-tabs" />
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries" />
+      <recent name="$PROJECT_DIR$/src/interfaces" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/common" />
+      <recent name="$PROJECT_DIR$/src/components/clients/clients-table-filter" />
+      <recent name="$PROJECT_DIR$/src/components/clients" />
+      <recent name="$PROJECT_DIR$/src/components/clients/client-form-elements" />
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/helpers" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="" />
+          <option name="buildCliOptions" value="" />
+          <option name="command" value="" />
+          <option name="containerName" value="" />
+          <option name="entrypoint" value="" />
+          <option name="commandLineOptions" value="" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="" />
+      <created>1601787862200</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601787862200</updated>
+      <workItem from="1601787863295" duration="45571000" />
+      <workItem from="1602569300154" duration="31000" />
+      <workItem from="1602569369201" duration="31484000" />
+      <workItem from="1603091264322" duration="3300000" />
+      <workItem from="1603095962458" duration="4438000" />
+      <workItem from="1603167899597" duration="6685000" />
+      <workItem from="1603178642076" duration="4956000" />
+      <workItem from="1603184583711" duration="4534000" />
+      <workItem from="1603253506579" duration="12471000" />
+      <workItem from="1603353421215" duration="10074000" />
+      <workItem from="1603455736161" duration="5368000" />
+      <workItem from="1603464506577" duration="6489000" />
+      <workItem from="1603690485306" duration="12629000" />
+      <workItem from="1603774780847" duration="2400000" />
+      <workItem from="1603777374123" duration="39000" />
+      <workItem from="1603777450200" duration="11039000" />
+      <workItem from="1603858921345" duration="20000" />
+      <workItem from="1603859075776" duration="610000" />
+      <workItem from="1603862432053" duration="5138000" />
+      <workItem from="1603875429541" duration="30000" />
+      <workItem from="1603875513170" duration="1456000" />
+      <workItem from="1603891801695" duration="12980000" />
+      <workItem from="1603969854513" duration="15166000" />
+      <workItem from="1604237588805" duration="520000" />
+      <workItem from="1604238665783" duration="347000" />
+      <workItem from="1604239858722" duration="48000" />
+      <workItem from="1604239927345" duration="14965000" />
+      <workItem from="1604902873921" duration="8250000" />
+      <workItem from="1604992579996" duration="17076000" />
+      <workItem from="1605108020483" duration="7011000" />
+    </task>
+    <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
+      <created>1602324599948</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602324599948</updated>
+    </task>
+    <task id="LOCAL-00002" summary="* implemented Status,&#10;* implemented Roles,&#10;* adjusted left menu">
+      <created>1602565793838</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1602565793838</updated>
+    </task>
+    <task id="LOCAL-00003" summary="* added Role filtering">
+      <created>1602583289335</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1602583289335</updated>
+    </task>
+    <task id="LOCAL-00004" summary="* added Status filtering">
+      <created>1602656209212</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1602656209212</updated>
+    </task>
+    <task id="LOCAL-00005" summary="* added admin/manifest role permissions for user editing">
+      <created>1602741592929</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1602741592929</updated>
+    </task>
+    <task id="LOCAL-00006" summary="* implemeted CRUD for events">
+      <created>1603100765932</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1603100765932</updated>
+    </task>
+    <task id="LOCAL-00007" summary="* get rid from local types,&#10;* generate types on server">
+      <created>1603173813994</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603173813995</updated>
+    </task>
+    <task id="LOCAL-00008" summary="* added staff functionality">
+      <created>1603270895779</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603270895780</updated>
+    </task>
+    <task id="LOCAL-00009" summary="* refactored graphql(structure/naming/error handling)">
+      <created>1603360970441</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603360970441</updated>
+    </task>
+    <task id="LOCAL-00010" summary="* refactored breadcrumbs and routes">
+      <created>1603613593788</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1603613593788</updated>
+    </task>
+    <task id="LOCAL-00011" summary="* users module renamed to members,&#10;* refactored all graphql queries/mutations,&#10;* refactored breadcrumbs(correct links and dynamic titles),&#10;* added clients module,&#10;* added notifications popups,&#10;* bugfixes">
+      <created>1603791955835</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603791955836</updated>
+    </task>
+    <task id="LOCAL-00012" summary="* added client form">
+      <created>1603989835640</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1603989835640</updated>
+    </task>
+    <task id="LOCAL-00013" summary="* implemented edit client functionality&#10;* added docker file">
+      <created>1604774844319</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1604774844319</updated>
+    </task>
+    <task id="LOCAL-00014" summary="* implemented client filtering">
+      <created>1604919129520</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1604919129521</updated>
+    </task>
+    <task id="LOCAL-00015" summary="* implemented redirect url,&#10;* draft for loads fetching">
+      <created>1605009423700</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1605009423700</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="2">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1" value="TOOL_WINDOW" />
+        <entry key="2" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="* refactored Roles functionality &#10;* added 404 page" />
+    <MESSAGE value="* implemented Status,&#10;* implemented Roles,&#10;* adjusted left menu" />
+    <MESSAGE value="* added Role filtering" />
+    <MESSAGE value="* added Status filtering" />
+    <MESSAGE value="* added admin/manifest role permissions for user editing" />
+    <MESSAGE value="* implemeted CRUD for events" />
+    <MESSAGE value="* get rid from local types,&#10;* generate types on server" />
+    <MESSAGE value="* added staff functionality" />
+    <MESSAGE value="* refactored graphql(structure/naming/error handling)" />
+    <MESSAGE value="* refactored breadcrumbs and routes" />
+    <MESSAGE value="* users module renamed to members,&#10;* refactored all graphql queries/mutations,&#10;* refactored breadcrumbs(correct links and dynamic titles),&#10;* added clients module,&#10;* added notifications popups,&#10;* bugfixes" />
+    <MESSAGE value="* added client form" />
+    <MESSAGE value="* implemented edit client functionality&#10;* added docker file" />
+    <MESSAGE value="* implemented client filtering" />
+    <MESSAGE value="* implemented redirect url,&#10;* draft for loads fetching" />
+    <option name="LAST_COMMIT_MESSAGE" value="* implemented redirect url,&#10;* draft for loads fetching" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="545" y="312" key="#ESLint" timestamp="1602574202268">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="545" y="312" key="#ESLint/0.23.1440.824@0.23.1440.824" timestamp="1602574202268" />
+    <state x="343" y="226" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604240529164">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="343" y="226" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.824@0.23.1440.824" timestamp="1604240529164" />
+    <state x="234" y="157" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1604235386894">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="234" y="157" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.23.1440.824@0.23.1440.824" timestamp="1604235386894" />
+    <state x="162" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603359098054">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="162" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.824@0.23.1440.824" timestamp="1603359098054" />
+    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2" timestamp="1605009423180">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1605009423180" />
+    <state x="101" y="123" width="1239" height="624" key="DiffContextDialog" timestamp="1603790335300">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="101" y="123" width="1239" height="624" key="DiffContextDialog/0.23.1440.824@0.23.1440.824" timestamp="1603790335300" />
+    <state x="468" y="75" key="RollbackChangesDialog" timestamp="1603445963260">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="468" y="75" key="RollbackChangesDialog/0.23.1440.824@0.23.1440.824" timestamp="1603445963260" />
+    <state x="66" y="23" key="SettingsEditor" timestamp="1604236704083">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="66" y="23" key="SettingsEditor/0.23.1440.824@0.23.1440.824" timestamp="1604236704083" />
+    <state x="220" y="112" key="Vcs.Push.Dialog.v2" timestamp="1605009426028">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="220" y="112" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1605009426028" />
+    <state x="342" y="121" width="778" height="628" key="find.popup" timestamp="1605008631560">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="342" y="121" width="778" height="628" key="find.popup/0.23.1440.824@0.23.1440.824" timestamp="1605008631560" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/constants/client.constants.ts</url>
+          <line>9</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -10,41 +10,38 @@ import { GetClientsFilterInput, ClientType, ClientStatus, Gender, PaymentStatus 
 // ====================================================
 
 export interface GetClients_getClients_tm {
-  __typename: "MemberModel";
-  id: string;
-  firstName: string;
-  lastName: string;
+  __typename: "UserModel";
+  id: number;
 }
 
 export interface GetClients_getClients_cameraman {
-  __typename: "MemberModel";
-  id: string;
-  firstName: string;
-  lastName: string;
+  __typename: "UserModel";
+  id: number;
 }
 
 export interface GetClients_getClients {
   __typename: "ClientModel";
-  id: string;
+  id: number;
+  userId: number;
   type: ClientType;
   status: ClientStatus;
-  age: number;
-  weight: number;
   gender: Gender;
+  age: number;
   firstName: string;
   lastName: string;
   email: string | null;
+  weight: number;
   phone: string;
   address: string;
-  withCameraman: boolean;
   withHandCameraVideo: boolean;
+  withCameraman: boolean;
+  notes: string | null;
+  certificate: string | null;
   paymentStatus: PaymentStatus;
   tm: GetClients_getClients_tm | null;
   cameraman: GetClients_getClients_cameraman | null;
   createdAt: any;
   processedAt: any | null;
-  notes: string | null;
-  certificate: string | null;
 }
 
 export interface GetClients {

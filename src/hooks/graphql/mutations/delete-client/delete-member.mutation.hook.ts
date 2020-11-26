@@ -24,7 +24,7 @@ export const useDeleteClientMutation = () => {
   });
 
 
-  const deleteClientAsync = async (id: string): Promise<void> => {
+  const deleteClientAsync = async (id: number): Promise<void> => {
     try {
       const variables: DeleteClientVariables = {
         input: id,

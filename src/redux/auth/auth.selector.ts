@@ -1,7 +1,7 @@
 import { RootStateInterface } from '../root.reducer';
-import { Login_login_user } from '../../interfaces/generated/Login';
+import { MemberInterface } from '../../interfaces/member.interface';
 
-export const getCurrentUser = (state: RootStateInterface): Login_login_user | null => {
+export const getCurrentUser = (state: RootStateInterface): MemberInterface | null => {
   return state.auth.currentUser;
 };
 

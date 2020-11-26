@@ -14,6 +14,7 @@ interface PropTypes {
 }
 
 const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+  const eventId = parseInt(props.id);
   let errorMessage = '';
   let title = '';
 
@@ -60,7 +61,7 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   // Loading Event
   useEffect(() => {
-    getEventAsync(props.id);
+    getEventAsync(eventId);
   }, []); // eslint-disable-line
 
 
@@ -144,7 +145,7 @@ const EditEventForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       loading={inProcessOfUpdatingEvent}
       submitBtnTitle='Save'
       submitFn={() => {
-        return updateEventAsync(props.id, name, date, notes, selectedStaff);
+        return updateEventAsync(eventId, name, date, notes, selectedStaff);
       }}
     />
   );

@@ -1,5 +1,3 @@
-mutation DeleteClient($input: String!) {
-    deleteClient(id: $input){
-        id
-    }
+mutation DeleteClient($input: Int!) {
+    deleteClient(id: $input)
 }

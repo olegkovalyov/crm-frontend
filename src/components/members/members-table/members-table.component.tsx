@@ -39,7 +39,7 @@ const MembersTable: FC<PropTypesInterface> = (props): ReactElement => {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const [memberIdToDetele, setMemberIdToDelete] = useState('');
+  const [memberIdToDetele, setMemberIdToDelete] = useState<number | null>(null);
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
   const theme = useTheme();
   const isFullScreenDialog = useMediaQuery(theme.breakpoints.down('sm'));
@@ -50,11 +50,14 @@ const MembersTable: FC<PropTypesInterface> = (props): ReactElement => {
   };
 
   const handleClose = () => {
-    setMemberIdToDelete('');
+    setMemberIdToDelete(null);
     setIsOpenDeleteDialog(false);
   };
 
   const handleConfirmRemove = () => {
+    if (!memberIdToDetele) {
+      return;
+    }
     deleteMemberAsync(memberIdToDetele);
   };
 
@@ -152,7 +155,7 @@ const MembersTable: FC<PropTypesInterface> = (props): ReactElement => {
           },
         ]}
         onRowClick={((e, member: MemberInterface) => {
-          const url = generatePath(EDIT_MEMBER_URL, { id : member.id });
+          const url = generatePath(EDIT_MEMBER_URL, { id: member.id });
           history.push(url);
         })}
         options={{

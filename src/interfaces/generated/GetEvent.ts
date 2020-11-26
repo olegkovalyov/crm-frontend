@@ -9,17 +9,10 @@ import { MemberStatus, MemberRole, LicenseType } from "./globalTypes";
 // GraphQL query operation: GetEvent
 // ====================================================
 
-export interface GetEvent_getEvent_loads {
-  __typename: "LoadModel";
-  id: string;
-  aircraft: string;
-  date: any;
-  status: string;
-}
-
 export interface GetEvent_getEvent_staff {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -32,17 +25,17 @@ export interface GetEvent_getEvent_staff {
 
 export interface GetEvent_getEvent {
   __typename: "EventModel";
-  id: string;
+  id: number;
   name: string;
   date: any;
-  notes: string;
-  loads: GetEvent_getEvent_loads[];
   staff: GetEvent_getEvent_staff[];
+  notes: string;
 }
 
 export interface GetEvent_getStaff {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -59,5 +52,5 @@ export interface GetEvent {
 }
 
 export interface GetEventVariables {
-  eventId: string;
+  eventId: number;
 }

@@ -29,7 +29,7 @@ export const authReducer = (state = authState, action: AuthActions): AuthStateIn
     case SET_USER: {
       return {
         ...state,
-        currentUser: action.payload.user,
+        currentUser: action.payload.payload,
         accessToken: action.payload.accessToken,
         refreshTokenExists: true,
       };

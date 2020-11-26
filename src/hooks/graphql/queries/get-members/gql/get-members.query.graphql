@@ -1,6 +1,8 @@
-query GetMembers($getMembersFilter: GetMembersFilterInput!) {
+query GetMembers($getMembersFilter: GetMembersFilterInput!)
+{
     getMembers(getMembersFilterInput: $getMembersFilter){
         id,
+        userId,
         status,
         firstName,
         lastName,

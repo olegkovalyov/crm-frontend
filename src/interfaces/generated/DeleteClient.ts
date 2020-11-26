@@ -7,15 +7,10 @@
 // GraphQL mutation operation: DeleteClient
 // ====================================================
 
-export interface DeleteClient_deleteClient {
-  __typename: "ClientModel";
-  id: string;
-}
-
 export interface DeleteClient {
-  deleteClient: DeleteClient_deleteClient | null;
+  deleteClient: boolean;
 }
 
 export interface DeleteClientVariables {
-  input: string;
+  input: number;
 }

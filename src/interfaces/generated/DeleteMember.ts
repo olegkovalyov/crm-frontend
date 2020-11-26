@@ -7,15 +7,10 @@
 // GraphQL mutation operation: DeleteMember
 // ====================================================
 
-export interface DeleteMember_deleteMember {
-  __typename: "MemberModel";
-  id: string;
-}
-
 export interface DeleteMember {
-  deleteMember: DeleteMember_deleteMember | null;
+  deleteMember: boolean;
 }
 
 export interface DeleteMemberVariables {
-  input: string;
+  input: number;
 }

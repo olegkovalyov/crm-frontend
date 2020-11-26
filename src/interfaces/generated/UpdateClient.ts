@@ -11,7 +11,7 @@ import { UpdateClientInput } from "./globalTypes";
 
 export interface UpdateClient_updateClient {
   __typename: "ClientModel";
-  id: string;
+  id: number;
 }
 
 export interface UpdateClient {

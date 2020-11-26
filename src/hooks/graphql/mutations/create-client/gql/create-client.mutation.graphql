@@ -1,5 +1,6 @@
 mutation CreateClient($input: CreateClientInput!) {
-    createClient(createClientData: $input) {
+    createClient(createClientInput: $input)
+    {
         id
     }
 }

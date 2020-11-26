@@ -9,9 +9,10 @@ import { ResetPasswordInput, MemberStatus, MemberRole, LicenseType } from "./glo
 // GraphQL mutation operation: ResetPassword
 // ====================================================
 
-export interface ResetPassword_resetPassword_user {
+export interface ResetPassword_resetPassword_payload {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -24,7 +25,7 @@ export interface ResetPassword_resetPassword_user {
 
 export interface ResetPassword_resetPassword {
   __typename: "AuthModel";
-  user: ResetPassword_resetPassword_user | null;
+  payload: ResetPassword_resetPassword_payload | null;
   accessToken: string | null;
 }
 

@@ -11,7 +11,7 @@ import { CreateClientInput } from "./globalTypes";
 
 export interface CreateClient_createClient {
   __typename: "ClientModel";
-  id: string;
+  id: number;
 }
 
 export interface CreateClient {

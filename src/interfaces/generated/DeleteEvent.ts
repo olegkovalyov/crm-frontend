@@ -7,15 +7,10 @@
 // GraphQL mutation operation: DeleteEvent
 // ====================================================
 
-export interface DeleteEvent_deleteEvent {
-  __typename: "EventModel";
-  id: string;
-}
-
 export interface DeleteEvent {
-  deleteEvent: DeleteEvent_deleteEvent | null;
+  deleteEvent: boolean;
 }
 
 export interface DeleteEventVariables {
-  input: string;
+  input: number;
 }

@@ -11,7 +11,8 @@ import { GetMembersFilterInput, MemberStatus, MemberRole, LicenseType } from "./
 
 export interface GetMembers_getMembers {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;

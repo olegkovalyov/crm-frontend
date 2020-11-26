@@ -1,5 +1,3 @@
-mutation DeleteMember($input: String!) {
-    deleteMember(id: $input){
-        id
-    }
+mutation DeleteMember($input: Int!) {
+    deleteMember(id: $input)
 }

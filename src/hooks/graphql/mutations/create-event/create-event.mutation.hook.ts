@@ -28,7 +28,7 @@ export const useCreateEventMutation = () => {
     name: string,
     date: Date,
     notes: string,
-    staffIds: string[],
+    staffIds: number[],
   ): Promise<void> => {
     try {
       const variables: CreateEventVariables = {

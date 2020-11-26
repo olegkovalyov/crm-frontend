@@ -7,17 +7,6 @@
 // GraphQL query operation: Logout
 // ====================================================
 
-export interface Logout_logout_user {
-  __typename: "MemberModel";
-  email: string;
-}
-
-export interface Logout_logout {
-  __typename: "AuthModel";
-  user: Logout_logout_user | null;
-  accessToken: string | null;
-}
-
 export interface Logout {
-  logout: Logout_logout;
+  logout: boolean;
 }

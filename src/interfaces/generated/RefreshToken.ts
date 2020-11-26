@@ -9,9 +9,10 @@ import { MemberStatus, MemberRole, LicenseType } from "./globalTypes";
 // GraphQL query operation: RefreshToken
 // ====================================================
 
-export interface RefreshToken_refreshToken_user {
+export interface RefreshToken_refreshToken_payload {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -24,7 +25,7 @@ export interface RefreshToken_refreshToken_user {
 
 export interface RefreshToken_refreshToken {
   __typename: "AuthModel";
-  user: RefreshToken_refreshToken_user | null;
+  payload: RefreshToken_refreshToken_payload | null;
   accessToken: string | null;
 }
 

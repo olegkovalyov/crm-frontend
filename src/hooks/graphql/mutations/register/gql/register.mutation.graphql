@@ -1,7 +1,8 @@
 mutation Register($input: CreateMemberInput!) {
-    register(registerData: $input){
-        user{
+    register(registerInput: $input){
+        payload{
             id,
+            userId,
             status,
             firstName,
             lastName,

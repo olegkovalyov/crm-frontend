@@ -30,7 +30,7 @@ export const useUpdateClientMutation = () => {
 
 
   const updateClientAsync = async (
-    id: string,
+    id: number,
     type: ClientType,
     status: ClientStatus,
     gender: Gender,
@@ -44,8 +44,8 @@ export const useUpdateClientMutation = () => {
     withHandCameraVideo: boolean,
     withCameraman: boolean,
     paymentStatus: PaymentStatus,
-    tmId: string | null,
-    cameramanId: string | null,
+    tmId: number | null,
+    cameramanId: number | null,
     processedAt: Date | null,
     notes: string | null,
     certificate: string | null,

@@ -24,7 +24,7 @@ export const useDeleteMemberMutation = () => {
   });
 
 
-  const deleteMemberAsync = async (id: string): Promise<void> => {
+  const deleteMemberAsync = async (id: number): Promise<void> => {
     try {
       const variables: DeleteMemberVariables = {
         input: id,

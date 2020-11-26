@@ -144,7 +144,6 @@ const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
             paymentStatus,
             null,
             null,
-            null,
             notes,
             certificate,
           );

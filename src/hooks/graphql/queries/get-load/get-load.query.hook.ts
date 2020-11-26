@@ -2,23 +2,23 @@ import { useLazyQuery } from '@apollo/client';
 import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { GetMemberVariables } from '../../../../interfaces/generated/GetMember';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-import { GetLoads, GetLoadsVariables } from '../../../../interfaces/generated/GetLoads';
+import { GetLoad, GetLoadVariables } from '../../../../interfaces/generated/GetLoad';
 import { LoadInterface } from '../../../../interfaces/load.interface';
 
-const getLoadsQuery = loader('./gql/get-loads.query.graphql');
+const getLoadQuery = loader('./gql/get-load.query.graphql');
 
-export const useGetLoadsQuery = () => {
+export const useGetLoadQuery = () => {
 
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
   const [errorMessage, setErrorMessage] = useState('');
 
-  let loads: LoadInterface[] | null = null;
-  const [_getLoadsAsync, { loading, data, called }] = useLazyQuery<GetLoads, GetLoadsVariables>(getLoadsQuery,
+  const [_getLoadAsync, { loading, data, called }] = useLazyQuery<GetLoad, GetLoadVariables>(getLoadQuery,
     {
       context: {
         headers: {
@@ -28,31 +28,32 @@ export const useGetLoadsQuery = () => {
       fetchPolicy: 'network-only',
     });
 
-  if (data && data.getLoads) {
-    loads = data.getLoads.map(item => {
-      return { ...item };
-    });
-  }
+  let load: LoadInterface | null = null;
 
-  const getLoadsAsync = async (eventId: number) => {
+  const getLoadAsync = async (id: number) => {
+    const variables: GetMemberVariables = {
+      id,
+    };
     try {
-      const variables: GetLoadsVariables = {
-        eventId,
-      };
-      await _getLoadsAsync({ variables });
+      await _getLoadAsync({
+        variables,
+      });
     } catch (e) {
       const formattedErrorMessage = getFormattedErrorMessage(e);
       setErrorMessage(formattedErrorMessage);
     }
   };
 
+  if (data && data.getLoad) {
+    load = data.getLoad;
+  }
 
   return {
-    areLoadsLoading: loading,
-    getLoadsErrorMessage: errorMessage,
-    setLoadsErrorMessage: setErrorMessage,
-    wasCalledGetLoads: called,
-    loadsData: loads,
-    getLoadsAsync,
+    isLoadLoading: loading,
+    getLoadErrorMessage: errorMessage,
+    setLoadErrorMessage: setErrorMessage,
+    wasMemberLoadCalled: called,
+    load,
+    getLoadAsync,
   };
 };

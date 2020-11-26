@@ -1,8 +1,3 @@
 query Logout {
-    logout{
-        user{
-            email
-        },
-        accessToken,
-    }
+    logout
 }

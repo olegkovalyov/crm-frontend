@@ -1,5 +1,5 @@
-query GetLoads($eventId: Int!) {
-    getLoads(eventId: $eventId){
+query GetLoad($id: Int!) {
+    getLoad(id: $id) {
         id,
         status,
         order,

@@ -6,16 +6,16 @@
 import { LoadStatus } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: GetLoads
+// GraphQL query operation: GetLoad
 // ====================================================
 
-export interface GetLoads_getLoads_slots {
+export interface GetLoad_getLoad_slots {
   __typename: "SlotModel";
   userId: number;
   description: string;
 }
 
-export interface GetLoads_getLoads {
+export interface GetLoad_getLoad {
   __typename: "LoadModel";
   id: number;
   status: LoadStatus;
@@ -23,13 +23,13 @@ export interface GetLoads_getLoads {
   date: any;
   aircraft: string;
   notes: string | null;
-  slots: GetLoads_getLoads_slots[];
+  slots: GetLoad_getLoad_slots[];
 }
 
-export interface GetLoads {
-  getLoads: GetLoads_getLoads[];
+export interface GetLoad {
+  getLoad: GetLoad_getLoad | null;
 }
 
-export interface GetLoadsVariables {
-  eventId: number;
+export interface GetLoadVariables {
+  id: number;
 }

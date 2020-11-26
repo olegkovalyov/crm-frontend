@@ -1,6 +1,7 @@
 query GetStaff{
     getStaff{
         id,
+        userId,
         status,
         firstName,
         lastName,

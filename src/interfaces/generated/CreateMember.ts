@@ -11,7 +11,7 @@ import { CreateMemberInput } from "./globalTypes";
 
 export interface CreateMember_createMember {
   __typename: "MemberModel";
-  id: string;
+  id: number;
 }
 
 export interface CreateMember {

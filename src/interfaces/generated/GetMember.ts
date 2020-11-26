@@ -11,7 +11,8 @@ import { MemberStatus, MemberRole, LicenseType } from "./globalTypes";
 
 export interface GetMember_getMember {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -27,5 +28,5 @@ export interface GetMember {
 }
 
 export interface GetMemberVariables {
-  memberId: string;
+  id: number;
 }

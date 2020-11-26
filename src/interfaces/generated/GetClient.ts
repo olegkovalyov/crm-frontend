@@ -10,41 +10,38 @@ import { ClientType, ClientStatus, Gender, PaymentStatus } from "./globalTypes";
 // ====================================================
 
 export interface GetClient_getClient_tm {
-  __typename: "MemberModel";
-  id: string;
-  firstName: string;
-  lastName: string;
+  __typename: "UserModel";
+  id: number;
 }
 
 export interface GetClient_getClient_cameraman {
-  __typename: "MemberModel";
-  id: string;
-  firstName: string;
-  lastName: string;
+  __typename: "UserModel";
+  id: number;
 }
 
 export interface GetClient_getClient {
   __typename: "ClientModel";
-  id: string;
+  id: number;
+  userId: number;
   type: ClientType;
   status: ClientStatus;
-  age: number;
-  weight: number;
   gender: Gender;
+  age: number;
   firstName: string;
   lastName: string;
   email: string | null;
+  weight: number;
   phone: string;
   address: string;
-  withCameraman: boolean;
   withHandCameraVideo: boolean;
+  withCameraman: boolean;
+  notes: string | null;
+  certificate: string | null;
   paymentStatus: PaymentStatus;
   tm: GetClient_getClient_tm | null;
   cameraman: GetClient_getClient_cameraman | null;
   createdAt: any;
   processedAt: any | null;
-  notes: string | null;
-  certificate: string | null;
 }
 
 export interface GetClient {
@@ -52,5 +49,5 @@ export interface GetClient {
 }
 
 export interface GetClientVariables {
-  clientId: string;
+  id: number;
 }

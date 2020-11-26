@@ -9,9 +9,10 @@ import { LoginInput, MemberStatus, MemberRole, LicenseType } from "./globalTypes
 // GraphQL mutation operation: Login
 // ====================================================
 
-export interface Login_login_user {
+export interface Login_login_payload {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -24,7 +25,7 @@ export interface Login_login_user {
 
 export interface Login_login {
   __typename: "AuthModel";
-  user: Login_login_user | null;
+  payload: Login_login_payload | null;
   accessToken: string | null;
 }
 

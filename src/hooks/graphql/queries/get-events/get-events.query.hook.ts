@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { GetEvents } from '../../../../interfaces/generated/GetEvents';
+import { GetEvents, GetEventsVariables } from '../../../../interfaces/generated/GetEvents';
 import { EventInterface } from '../../../../interfaces/event.interface';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 
@@ -18,7 +18,7 @@ export const useGetEventsQuery = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   let events: EventInterface[] = [];
-  const [_getEventsAsync, { loading, data }] = useLazyQuery<GetEvents, null>(getEventsQuery,
+  const [_getEventsAsync, { loading, data }] = useLazyQuery<GetEvents, GetEventsVariables>(getEventsQuery,
     {
       context: {
         headers: {
@@ -34,9 +34,17 @@ export const useGetEventsQuery = () => {
     });
   }
 
-  const getEventsAsync = async () => {
+  const getEventsAsync = async (dateMin: Date | null, dateMax: Date | null) => {
+    const variables: GetEventsVariables = {
+      getEventsFilter: {
+        dateMin,
+        dateMax,
+      },
+    };
     try {
-      await _getEventsAsync();
+      await _getEventsAsync({
+        variables,
+      });
     } catch (e) {
       const formattedErrorMessage = getFormattedErrorMessage(e);
       setErrorMessage(formattedErrorMessage);

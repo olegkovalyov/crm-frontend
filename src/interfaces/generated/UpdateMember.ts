@@ -11,7 +11,7 @@ import { UpdateMemberInput } from "./globalTypes";
 
 export interface UpdateMember_updateMember {
   __typename: "MemberModel";
-  id: string;
+  id: number;
 }
 
 export interface UpdateMember {

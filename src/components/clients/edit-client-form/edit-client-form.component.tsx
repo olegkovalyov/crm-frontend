@@ -13,6 +13,8 @@ interface PropTypes {
 }
 
 const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+  const clientId = parseInt(props.id);
+
   let errorMessage = '';
 
   const { setBreadcrumbsCustomData } = useBreadcrumbs();
@@ -89,7 +91,7 @@ const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   // Loading Client
   useEffect(() => {
-    getClientAsync(props.id);
+    getClientAsync(clientId);
   }, []); // eslint-disable-line
 
   useEffect(() => {
@@ -218,7 +220,7 @@ const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         loading={inProcessOfUpdatingClient}
         submitFn={() => {
           return updateClientAsync(
-            props.id,
+            clientId,
             clientType,
             clientStatus,
             gender,

@@ -1,7 +1,8 @@
 mutation Login($input: LoginInput!) {
-    login(loginData: $input) {
-        user {
+    login(loginInput: $input) {
+        payload {
             id,
+            userId,
             status,
             firstName,
             lastName,

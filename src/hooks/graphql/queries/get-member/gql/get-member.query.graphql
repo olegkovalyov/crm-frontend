@@ -1,6 +1,7 @@
-query GetMember($memberId: String!) {
-    getMember(id: $memberId) {
+query GetMember($id: Int!) {
+    getMember(id: $id) {
         id,
+        userId,
         status,
         firstName,
         lastName,

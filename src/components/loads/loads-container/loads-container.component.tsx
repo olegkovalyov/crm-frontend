@@ -1,46 +1,22 @@
 import React, { FC, ReactElement, useEffect } from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import { Box, LinearProgress, Tab, Typography } from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import { useStyles } from './loads-container.styles';
 import { useGetLoadsQuery } from '../../../hooks/graphql/queries/get-loads/get-loads.query.hook';
-import Alert from '@material-ui/lab/Alert';
+import LoadsTabs from '../loads-tabs/loads-tabs.component';
+import LoadsPanels from '../loads-panels/loads-panels.component';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
 
 interface PropTypes {
   eventId: string;
 }
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
 
 const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [selectedLoadTab, setSelectedLoadTab] = React.useState(1);
 
-  let loadTabsJsx: JSX.Element[] | null = null;
-  let loadContentJsx: JSX.Element[] | null = null;
+  const eventId = parseInt(props.eventId);
 
   const {
     areLoadsLoading,
@@ -52,7 +28,7 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
   } = useGetLoadsQuery();
 
   useEffect(() => {
-    getLoadsAsync(props.eventId);
+    getLoadsAsync(eventId);
   }, []);
 
   useEffect(() => {
@@ -80,50 +56,23 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
     );
   }
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+  const handleChangeLoadTab = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setSelectedLoadTab(newValue);
   };
 
-  if (loadsData) {
-    loadTabsJsx = loadsData.map((load, index) => {
-      const key = `tabKey${index}`;
-      const label = `Load ${index + 1}`;
-      const id = `vertical-tab-${index}`;
-      const ariaControls = `vertical-tabpanel-${index}`;
-      return <Tab
-        key={key}
-        label={label}
-        id={id}
-        aria-controls={ariaControls}
-      />;
-    });
-
-    loadContentJsx = loadsData.map((load, index) => {
-      const key = `tabContentKey${index}`;
-      const content = `Here will be content  of Load ${index + 1}`;
-      return <TabPanel
-        key={key}
-        value={value}
-        index={index}
-      >
-        {content}
-      </TabPanel>;
-    });
-  }
 
   return (
     <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
+      <LoadsTabs
+        loads={loadsData}
+        selectedLoadTab={selectedLoadTab}
+        handleChangeLoadTab={handleChangeLoadTab}
         className={classes.tabs}
-      >
-        {loadTabsJsx}
-      </Tabs>
-      {loadContentJsx}
+      />
+      <LoadsPanels
+        loads={loadsData}
+        selectedLoadTab={selectedLoadTab}
+      />
     </div>
   );
 };

@@ -29,9 +29,9 @@ export const useGetMemberQuery = () => {
 
   let member: MemberInterface | null = null;
 
-  const getMemberAsync = async (memberId: string) => {
+  const getMemberAsync = async (id: number) => {
     const variables: GetMemberVariables = {
-      memberId,
+      id,
     };
     try {
       await _getMemberAsync({

@@ -14,6 +14,7 @@ interface PropTypes {
 }
 
 const EditMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
+  const memberId = parseInt(props.id);
   let errorMessage = '';
 
   const { setBreadcrumbsCustomData } = useBreadcrumbs();
@@ -63,7 +64,7 @@ const EditMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   // Loading Member
   useEffect(() => {
-    getMemberAsync(props.id);
+    getMemberAsync(memberId);
   }, []); // eslint-disable-line
 
   useEffect(() => {
@@ -155,7 +156,7 @@ const EditMemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         loading={inProcessOfUpdatingMember}
         submitFn={() => {
           return updateMemberAsync(
-            props.id,
+            memberId,
             status,
             firstName,
             lastName,

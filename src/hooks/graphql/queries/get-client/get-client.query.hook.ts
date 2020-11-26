@@ -33,9 +33,9 @@ export const useGetClientQuery = () => {
     client = data.getClient;
   }
 
-  const getClientAsync = async (clientId: string) => {
+  const getClientAsync = async (id: number) => {
     const variables: GetClientVariables = {
-      clientId,
+      id,
     };
     try {
       await _getClientAsync({

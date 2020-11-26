@@ -26,7 +26,7 @@ export const useUpdateMemberMutation = () => {
 
 
   const updateMemberAsync = async (
-    id: string,
+    id: number,
     status: MemberStatus,
     firstName: string,
     lastName: string,

@@ -132,7 +132,7 @@ export const routes: RouteInterface[] = [
   },
   {
     path: EDIT_CLIENT_URL,
-    component: lazy(() => import('./pages/edit-client/edit-member.component')),
+    component: lazy(() => import('./pages/edit-client/edit-client.component')),
     exact: true,
     private: true,
   },

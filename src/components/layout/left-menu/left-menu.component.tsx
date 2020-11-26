@@ -129,7 +129,7 @@ const LeftMenu: FC = (props): ReactElement => {
               <ListItemIcon>
                 <AssignmentIcon />
               </ListItemIcon>
-              <ListItemText primary="Events" />
+              <ListItemText primary="Inventory" />
             </ListItem>
             <ListItem
               selected={isHistoryMenuSelected}

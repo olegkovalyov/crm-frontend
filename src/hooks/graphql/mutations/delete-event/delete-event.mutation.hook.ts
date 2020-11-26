@@ -24,7 +24,7 @@ export const useDeleteEventMutation = () => {
   });
 
 
-  const deleteEventAsync = async (id: string): Promise<void> => {
+  const deleteEventAsync = async (id: number): Promise<void> => {
     try {
       const variables: DeleteEventVariables = {
         input: id,

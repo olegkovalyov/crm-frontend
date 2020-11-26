@@ -41,7 +41,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
     createdDateMax,
   } = props;
 
-  const [clientIdToDetele, setClientIdToDelete] = useState('');
+  const [clientIdToDetele, setClientIdToDelete] = useState<number|null>(null);
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
   const theme = useTheme();
   const isFullScreenDialog = useMediaQuery(theme.breakpoints.down('sm'));
@@ -52,11 +52,14 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
   };
 
   const handleClose = () => {
-    setClientIdToDelete('');
+    setClientIdToDelete(null);
     setIsOpenDeleteDialog(false);
   };
 
   const handleConfirmRemove = () => {
+    if(!clientIdToDetele) {
+      return;
+    }
     deleteClientAsync(clientIdToDetele).then(() => {
       setIsOpenDeleteDialog(false);
       return getClientsAsync(

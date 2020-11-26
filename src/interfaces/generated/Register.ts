@@ -9,9 +9,10 @@ import { CreateMemberInput, MemberStatus, MemberRole, LicenseType } from "./glob
 // GraphQL mutation operation: Register
 // ====================================================
 
-export interface Register_register_user {
+export interface Register_register_payload {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -24,7 +25,7 @@ export interface Register_register_user {
 
 export interface Register_register {
   __typename: "AuthModel";
-  user: Register_register_user | null;
+  payload: Register_register_payload | null;
   accessToken: string | null;
 }
 

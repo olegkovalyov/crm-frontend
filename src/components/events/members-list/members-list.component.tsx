@@ -15,8 +15,8 @@ import { staffRoles } from '../../../constants/member.constants';
 interface PropTypesInterface {
   users: MemberInterface[];
   type: EventUserListType;
-  onUsersListChange: (e: React.ChangeEvent<HTMLInputElement>, userId: string) => void;
-  selectedUsers: string[];
+  onUsersListChange: (e: React.ChangeEvent<HTMLInputElement>, userId: number) => void;
+  selectedUsers: number[];
 }
 
 const MembersList: FC<PropTypesInterface> = (props): ReactElement => {

@@ -1,7 +1,8 @@
 query RefreshToken {
-    refreshToken{
-        user {
+    refreshToken {
+        payload {
             id,
+            userId,
             status,
             firstName,
             lastName,

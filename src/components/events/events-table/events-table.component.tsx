@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { QueryLazyOptions } from '@apollo/client';
 import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { GetEvents_getEvents } from '../../../interfaces/generated/GetEvents';
 import { useDeleteEventMutation } from '../../../hooks/graphql/mutations/delete-event/delete-event.mutation.hook';
@@ -16,7 +15,7 @@ import EventDetails from '../event-details/event-details.component';
 import { EventInterface } from '../../../interfaces/event.interface';
 
 interface PropTypesInterface {
-  getEventsAsync: (options?: (QueryLazyOptions<null> | undefined)) => void,
+  getEventsAsync: (dateMin: Date | null, dateMax: Date | null) => void,
   loading: boolean,
   events: GetEvents_getEvents[],
   errorMessage: string,
@@ -31,7 +30,7 @@ const EventsTable: FC<PropTypesInterface> = (props): ReactElement => {
     events,
   } = props;
 
-  const [eventIdToDetele, setEventIdToDelete] = useState('');
+  const [eventIdToDetele, setEventIdToDelete] = useState<number|null>(null);
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
   const theme = useTheme();
   const isFullScreenDialog = useMediaQuery(theme.breakpoints.down('sm'));
@@ -42,14 +41,17 @@ const EventsTable: FC<PropTypesInterface> = (props): ReactElement => {
   };
 
   const handleClose = () => {
-    setEventIdToDelete('');
+    setEventIdToDelete(null);
     setIsOpenDeleteDialog(false);
   };
 
   const handleConfirmRemove = () => {
+    if(!eventIdToDetele) {
+      return;
+    }
     deleteEventAsync(eventIdToDetele).then(() => {
       setIsOpenDeleteDialog(false);
-      return getEventsAsync();
+      return getEventsAsync(null, null);
     });
   };
 
@@ -59,7 +61,7 @@ const EventsTable: FC<PropTypesInterface> = (props): ReactElement => {
   } = useDeleteEventMutation();
 
   useEffect(() => {
-    getEventsAsync();
+    getEventsAsync(null, null);
   }, []); // eslint-disable-line
 
   if (loading) {

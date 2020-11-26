@@ -40,7 +40,7 @@ export const useGetEventQuery = () => {
     staff = data.getStaff;
   }
 
-  const getEventAsync = async (eventId: string) => {
+  const getEventAsync = async (eventId: number) => {
     const variables: GetEventVariables = {
       eventId,
     };

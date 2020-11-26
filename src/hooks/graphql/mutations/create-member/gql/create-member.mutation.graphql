@@ -1,5 +1,5 @@
 mutation CreateMember($input: CreateMemberInput!) {
-    createMember(createMemberData: $input)
+    createMember(createMemberInput: $input)
     {
         id
     }

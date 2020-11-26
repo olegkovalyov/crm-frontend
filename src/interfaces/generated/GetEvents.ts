@@ -3,23 +3,16 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { MemberStatus, MemberRole, LicenseType } from "./globalTypes";
+import { GetEventsFilterInput, MemberStatus, MemberRole, LicenseType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetEvents
 // ====================================================
 
-export interface GetEvents_getEvents_loads {
-  __typename: "LoadModel";
-  id: string;
-  aircraft: string;
-  date: any;
-  status: string;
-}
-
 export interface GetEvents_getEvents_staff {
   __typename: "MemberModel";
-  id: string;
+  id: number;
+  userId: number;
   status: MemberStatus;
   firstName: string;
   lastName: string;
@@ -32,14 +25,17 @@ export interface GetEvents_getEvents_staff {
 
 export interface GetEvents_getEvents {
   __typename: "EventModel";
-  id: string;
+  id: number;
   name: string;
   date: any;
-  notes: string;
-  loads: GetEvents_getEvents_loads[];
   staff: GetEvents_getEvents_staff[];
+  notes: string;
 }
 
 export interface GetEvents {
   getEvents: GetEvents_getEvents[];
+}
+
+export interface GetEventsVariables {
+  getEventsFilter: GetEventsFilterInput;
 }

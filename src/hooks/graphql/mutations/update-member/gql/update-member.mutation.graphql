@@ -1,5 +1,5 @@
 mutation UpdateMember($input: UpdateMemberInput!) {
-    updateMember(updateMemberData: $input){
+    updateMember(updateMemberInput: $input){
         id,
     }
 }
