@@ -38,8 +38,8 @@ const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onEmailChange,
     hasEmailError,
     emailErrorMessage,
-    clientType,
-    onClientTypeChange,
+    clientRole,
+    onClientRoleChange,
     clientStatus,
     onClientStatusChange,
     paymentStatus,
@@ -106,7 +106,7 @@ const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       && wasClientLoadCalled) {
       if (client) {
         setClient(
-          client.type,
+          client.role,
           client.status,
           client.firstName,
           client.lastName,
@@ -168,8 +168,8 @@ const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     <>
       <ClientForm
         title='Create'
-        clientType={clientType}
-        onClientTypeChange={onClientTypeChange}
+        clientRole={clientRole}
+        onClientRoleChange={onClientRoleChange}
         clientStatus={clientStatus}
         onClientStatusChange={onClientStatusChange}
         age={age}
@@ -221,7 +221,7 @@ const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         submitFn={() => {
           return updateClientAsync(
             clientId,
-            clientType,
+            clientRole,
             clientStatus,
             gender,
             parseInt(age),

@@ -7,7 +7,7 @@ import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import {
   ClientStatus,
-  ClientType, Gender,
+  ClientRole, Gender,
   PaymentStatus,
 } from '../../../../interfaces/generated/globalTypes';
 import { UpdateClient, UpdateClientVariables } from '../../../../interfaces/generated/UpdateClient';
@@ -31,7 +31,7 @@ export const useUpdateClientMutation = () => {
 
   const updateClientAsync = async (
     id: number,
-    type: ClientType,
+    role: ClientRole,
     status: ClientStatus,
     gender: Gender,
     age: number,
@@ -54,7 +54,7 @@ export const useUpdateClientMutation = () => {
       const variables: UpdateClientVariables = {
         input: {
           id,
-          type,
+          role,
           status,
           gender,
           age,

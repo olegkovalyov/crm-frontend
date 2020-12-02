@@ -1,5 +1,6 @@
-query GetLoad($id: Int!) {
-    getLoad(id: $id) {
+mutation CreateLoad($input: CreateLoadInput!) {
+    createLoad(createLoadInput: $input)
+    {
         id,
         status,
         order,

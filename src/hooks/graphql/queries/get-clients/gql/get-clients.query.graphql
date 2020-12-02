@@ -2,7 +2,7 @@ query GetClients($getClientsFilter: GetClientsFilterInput!) {
     getClients(getClientsFilterInput: $getClientsFilter){
         id,
         userId,
-        type,
+        role,
         status,
         gender,
         age,

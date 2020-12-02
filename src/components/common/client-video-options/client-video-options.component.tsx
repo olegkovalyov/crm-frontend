@@ -1,10 +1,10 @@
 import React, { FC, ReactElement } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import { Checkbox, FormControlLabel, FormLabel } from '@material-ui/core';
-import { ClientType } from '../../../interfaces/generated/globalTypes';
+import { ClientRole } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypesInterface {
-  clientType: ClientType,
+  clientRole: ClientRole,
   withHandCameraVideo: boolean,
   onWithHandCameraVideoChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   withCameraman: boolean,
@@ -15,7 +15,7 @@ interface PropTypesInterface {
 const ClientVideoOptions: FC<PropTypesInterface> = React.memo((props): ReactElement => {
 
   const {
-    clientType,
+    clientRole,
     withCameraman,
     onWithCameramanChange,
     withHandCameraVideo,
@@ -24,7 +24,7 @@ const ClientVideoOptions: FC<PropTypesInterface> = React.memo((props): ReactElem
 
   const className = props.className ?? '';
 
-  if (clientType === ClientType.TANDEM) {
+  if (clientRole === ClientRole.TANDEM) {
     return (
       <FormControl component="fieldset" className={className}>
         <FormLabel component="legend">Type</FormLabel>

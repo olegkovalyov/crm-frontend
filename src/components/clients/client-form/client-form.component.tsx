@@ -5,7 +5,7 @@ import { useStyles } from './client-form.styles';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
-import { ClientStatus, ClientType, Gender, PaymentStatus } from '../../../interfaces/generated/globalTypes';
+import { ClientStatus, ClientRole, Gender, PaymentStatus } from '../../../interfaces/generated/globalTypes';
 import ClientPaymentOptions from '../../common/client-payment-options/client-payment-options.component';
 import ClientStatusOptions from '../../common/client-status-options/client-status-options.component';
 import ClientEventOptions from '../../common/client-event-options/client-event-options.component';
@@ -24,8 +24,8 @@ import Certificate from '../../common/certificate/certificate.component';
 interface PropTypes {
   children?: never,
   title: string,
-  clientType: ClientType,
-  onClientTypeChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  clientRole: ClientRole,
+  onClientRoleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   clientStatus: ClientStatus,
   onClientStatusChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   age: string,
@@ -97,8 +97,8 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     hasEmailError,
     emailErrorMessage,
     onEmailChange,
-    clientType,
-    onClientTypeChange,
+    clientRole,
+    onClientRoleChange,
     clientStatus,
     onClientStatusChange,
     paymentStatus,
@@ -224,13 +224,13 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
                 <ClientEventOptions
-                  clientType={clientType}
-                  onClientTypeChange={onClientTypeChange}
+                  clientRole={clientRole}
+                  onClientRoleChange={onClientRoleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <ClientVideoOptions
-                  clientType={clientType}
+                  clientRole={clientRole}
                   withCameraman={withCameraman}
                   onWithCameramanChange={onWithCameramanChange}
                   withHandCameraVideo={withHandCameraVideo}

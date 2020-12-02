@@ -1,19 +1,19 @@
 import React, { FC, ReactElement } from 'react';
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
-import { ClientType } from '../../../interfaces/generated/globalTypes';
+import { ClientRole } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypesInterface {
-  clientType: ClientType,
-  onClientTypeChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  clientRole: ClientRole,
+  onClientRoleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   className?: string,
 }
 
 const ClientEventOptions: FC<PropTypesInterface> = React.memo((props): ReactElement => {
 
   const {
-    clientType,
-    onClientTypeChange,
+    clientRole,
+    onClientRoleChange,
   } = props;
 
   const className = props.className ?? '';
@@ -24,21 +24,21 @@ const ClientEventOptions: FC<PropTypesInterface> = React.memo((props): ReactElem
       <RadioGroup
         aria-label="client-type"
         name="client-type"
-        value={clientType}
-        onChange={onClientTypeChange}
+        value={clientRole}
+        onChange={onClientRoleChange}
       >
         <FormControlLabel
-          value={ClientType.TANDEM}
+          value={ClientRole.TANDEM}
           control={<Radio color='primary' />}
           label="Tandem"
         />
         <FormControlLabel
-          value={ClientType.STATIC_LINE}
+          value={ClientRole.STATIC_LINE}
           control={<Radio color='primary' />}
           label="Static Line"
         />
         <FormControlLabel
-          value={ClientType.AS_A_PASSENGER}
+          value={ClientRole.AS_A_PASSENGER}
           control={<Radio color='primary' />}
           label="As a passenger"
         />

@@ -1,0 +1,3 @@
+mutation DeleteLoad($input: Int!) {
+    deleteLoad(id: $input)
+}

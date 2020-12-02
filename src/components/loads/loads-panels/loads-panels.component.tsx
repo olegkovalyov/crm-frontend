@@ -6,29 +6,40 @@ import SingleLoad from '../single-load/single-load.component';
 interface IPropTypes {
   loads: LoadInterface[] | null,
   selectedLoadTab: number,
+  handleDeleteLoad: (loadId: number) => void,
+  isLoading: boolean,
 }
 
 const LoadsPanels: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
 
   const loads = props.loads ?? [];
-  const { selectedLoadTab } = props;
+  const {
+    selectedLoadTab,
+    handleDeleteLoad,
+    isLoading,
+  } = props;
 
   return (
     <>
       {
         loads.map(load => {
-          const id = `vertical-tabpanel-${load.id}`;
+          const id = `simple-tabpanel-${load.order}`;
           const key = `p${load.id}`;
-          const ariaLabelledBy = `vertical-tab-${load.id}`;
+          const ariaLabelledBy = `simple-tab-${load.order}`;
           return <div
             key={key}
             role="tabpanel"
-            hidden={selectedLoadTab !== load.id}
+            hidden={selectedLoadTab !== load.order}
             id={id}
             aria-labelledby={ariaLabelledBy}
+            aria-controls={`simple-tabpanel-${load.order}`}
           >
-            {selectedLoadTab === load.id && (
-              <SingleLoad load={load} />
+            {selectedLoadTab === load.order && (
+              <SingleLoad
+                handleDeleteLoad={handleDeleteLoad}
+                load={load}
+                isLoading={isLoading}
+              />
             )}
           </div>;
         })

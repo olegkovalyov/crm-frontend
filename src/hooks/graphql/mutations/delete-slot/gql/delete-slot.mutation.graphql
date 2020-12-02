@@ -1,5 +1,5 @@
-query GetLoad($id: Int!) {
-    getLoad(id: $id) {
+mutation DeleteSlot($id: Int!) {
+    deleteSlot(id: $id){
         id,
         status,
         order,

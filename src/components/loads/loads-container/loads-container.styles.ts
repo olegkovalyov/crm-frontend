@@ -1,12 +1,18 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles(theme => ({
-  root: {
+  slotTabs: {
     flexGrow: 1,
+    width: '98%',
     backgroundColor: theme.palette.background.paper,
-    display: 'flex',
   },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
+  loadTabs: {
+    flexGrow: 1,
+    width: '98%',
+    backgroundColor: theme.palette.background.paper,
+  },
+  button: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(3),
   },
 }));

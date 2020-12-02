@@ -28,8 +28,8 @@ const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onEmailChange,
     hasEmailError,
     emailErrorMessage,
-    clientType,
-    onClientTypeChange,
+    clientRole,
+    onClientRoleChange,
     clientStatus,
     onClientStatusChange,
     paymentStatus,
@@ -77,8 +77,8 @@ const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     <>
       <ClientForm
         title='Create'
-        clientType={clientType}
-        onClientTypeChange={onClientTypeChange}
+        clientRole={clientRole}
+        onClientRoleChange={onClientRoleChange}
         clientStatus={clientStatus}
         onClientStatusChange={onClientStatusChange}
         age={age}
@@ -129,7 +129,7 @@ const CreateClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
         loading={inProcessOfCreatingClient}
         submitFn={() => {
           return createClientAsync(
-            clientType,
+            clientRole,
             clientStatus,
             gender,
             parseInt(age),

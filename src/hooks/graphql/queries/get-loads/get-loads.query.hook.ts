@@ -7,6 +7,9 @@ import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { GetLoads, GetLoadsVariables } from '../../../../interfaces/generated/GetLoads';
 import { LoadInterface } from '../../../../interfaces/load.interface';
+import { ClientInterface } from '../../../../interfaces/client.interface';
+import { MemberInterface } from '../../../../interfaces/member.interface';
+import { ClientStatus, MemberRole, MemberStatus, PaymentStatus } from '../../../../interfaces/generated/globalTypes';
 
 const getLoadsQuery = loader('./gql/get-loads.query.graphql');
 
@@ -18,6 +21,8 @@ export const useGetLoadsQuery = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   let loads: LoadInterface[] | null = null;
+  let clients: ClientInterface[] | null = null;
+  let members: MemberInterface[] | null = null;
   const [_getLoadsAsync, { loading, data, called }] = useLazyQuery<GetLoads, GetLoadsVariables>(getLoadsQuery,
     {
       context: {
@@ -34,10 +39,40 @@ export const useGetLoadsQuery = () => {
     });
   }
 
-  const getLoadsAsync = async (eventId: number) => {
+  if (data && data.getClients) {
+    clients = data.getClients.map(item => {
+      return { ...item };
+    });
+  }
+
+  if (data && data.getMembers) {
+    members = data.getMembers.map(item => {
+      return { ...item };
+    });
+  }
+
+  const getLoadsAsync = async (
+    eventId: number,
+    memberStatuses: MemberStatus[] | null,
+    memberRoles: MemberRole[] | null,
+    clientStatuses: ClientStatus[] | null,
+    clientPaymentStatuses: PaymentStatus[] | null,
+    clientCreatedAtMin: Date | null,
+    clientCreatedAtMax: Date | null,
+  ) => {
     try {
       const variables: GetLoadsVariables = {
         eventId,
+        getMembersFilter: {
+          statuses: memberStatuses,
+          roles: memberRoles,
+        },
+        getClientsFilter: {
+          clientStatuses,
+          paymentStatuses: clientPaymentStatuses,
+          createdAtMin: clientCreatedAtMin,
+          createdAtMax: clientCreatedAtMax,
+        },
       };
       await _getLoadsAsync({ variables });
     } catch (e) {
@@ -52,7 +87,9 @@ export const useGetLoadsQuery = () => {
     getLoadsErrorMessage: errorMessage,
     setLoadsErrorMessage: setErrorMessage,
     wasCalledGetLoads: called,
-    loadsData: loads,
+    loads,
+    clients,
+    members,
     getLoadsAsync,
   };
 };

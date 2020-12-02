@@ -7,12 +7,12 @@ import {
   lastNameConstrains, phoneConstrains,
   validateInput, weightConstrains,
 } from '../../../common/inputValidator';
-import { ClientStatus, ClientType, Gender, PaymentStatus } from '../../../interfaces/generated/globalTypes';
+import { ClientStatus, ClientRole, Gender, PaymentStatus } from '../../../interfaces/generated/globalTypes';
 
 export const useClientFormValidation = () => {
 
   const setClient = (
-    type: ClientType,
+    role: ClientRole,
     status: ClientStatus,
     firstName: string,
     lastName: string,
@@ -28,7 +28,7 @@ export const useClientFormValidation = () => {
     withCameraman: boolean,
     paymentStatus: PaymentStatus,
   ): void => {
-    setClientType(type);
+    setClientRole(role);
     setClientStatus(status);
     setGender(gender);
     setAge(age);
@@ -45,7 +45,7 @@ export const useClientFormValidation = () => {
     setPaymentStatus(paymentStatus);
   };
 
-  const [clientType, setClientType] = useState<ClientType>(ClientType.TANDEM);
+  const [clientRole, setClientRole] = useState<ClientRole>(ClientRole.TANDEM);
   const [clientStatus, setClientStatus] = useState<ClientStatus>(ClientStatus.ACTIVE);
   const [gender, setGender] = useState<Gender>(Gender.MALE);
 
@@ -145,9 +145,9 @@ export const useClientFormValidation = () => {
     }
   };
 
-  const onClientTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onClientRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormTouched(true);
-    setClientType(event.target.value as ClientType);
+    setClientRole(event.target.value as ClientRole);
   };
 
   const onClientStatusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -219,8 +219,8 @@ export const useClientFormValidation = () => {
     onEmailChange,
     hasEmailError,
     emailErrorMessage,
-    clientType,
-    onClientTypeChange,
+    clientRole: clientRole,
+    onClientRoleChange: onClientRoleChange,
     clientStatus,
     onClientStatusChange,
     paymentStatus,

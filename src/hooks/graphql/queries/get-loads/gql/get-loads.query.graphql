@@ -1,4 +1,8 @@
-query GetLoads($eventId: Int!) {
+query GetLoads(
+    $eventId: Int!,
+    $getClientsFilter: GetClientsFilterInput!,
+    $getMembersFilter: GetMembersFilterInput!
+) {
     getLoads(eventId: $eventId){
         id,
         status,
@@ -7,8 +11,51 @@ query GetLoads($eventId: Int!) {
         aircraft,
         notes,
         slots {
+            id,
             userId,
+            firstName,
+            lastName,
+            role,
             description
         }
+    },
+    getClients(getClientsFilterInput: $getClientsFilter){
+        id,
+        userId,
+        role,
+        status,
+        gender,
+        age,
+        firstName,
+        lastName,
+        email,
+        weight,
+        phone,
+        address,
+        withHandCameraVideo,
+        withCameraman,
+        notes,
+        certificate,
+        paymentStatus,
+        tm {
+            id
+        },
+        cameraman {
+            id
+        }
+        createdAt,
+        processedAt
+    },
+    getMembers(getMembersFilterInput: $getMembersFilter){
+        id,
+        userId,
+        status,
+        firstName,
+        lastName,
+        email,
+        roles,
+        licenseType,
+        createdAt,
+        updatedAt
     }
 }

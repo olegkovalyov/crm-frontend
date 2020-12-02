@@ -1,27 +1,15 @@
 import { ClientInterface } from '../../../interfaces/client.interface';
-import { ClientStatus, ClientType, Gender } from '../../../interfaces/generated/globalTypes';
+import { ClientStatus, ClientRole, Gender } from '../../../interfaces/generated/globalTypes';
 
 export const useClientsTableRender = () => {
 
-  const renderClientType = (client: ClientInterface) => {
+  const renderClientRole = (client: ClientInterface) => {
     let output = '';
-    if (client.type === ClientType.TANDEM) {
+    if (client.role === ClientRole.TANDEM) {
       output = 'TM';
-      if (client.withCameraman || client.withHandCameraVideo) {
-        const videoOptions: string[] = [];
-        if (client.withCameraman) {
-          videoOptions.push('Cameraman');
-        }
-        if (client.withHandCameraVideo) {
-          videoOptions.push('Hand video');
-        }
-        if (videoOptions.length) {
-          output += `(${videoOptions.join(',')})`;
-        }
-      }
-    } else if (client.type === ClientType.AS_A_PASSENGER) {
+    } else if (client.role === ClientRole.AS_A_PASSENGER) {
       output = 'Passenger';
-    } else if (client.type === ClientType.STATIC_LINE) {
+    } else if (client.role === ClientRole.STATIC_LINE) {
       output = 'Static line';
     }
     return output;
@@ -58,7 +46,7 @@ export const useClientsTableRender = () => {
   };
 
   return {
-    renderClientType,
+    renderClientRole,
     renderClientStatus,
     renderGender,
     renderDate,

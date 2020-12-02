@@ -6,10 +6,10 @@
 import { LoadStatus, UserRole } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: GetLoad
+// GraphQL mutation operation: DeleteSlot
 // ====================================================
 
-export interface GetLoad_getLoad_slots {
+export interface DeleteSlot_deleteSlot_slots {
   __typename: "SlotModel";
   id: number;
   userId: number;
@@ -19,7 +19,7 @@ export interface GetLoad_getLoad_slots {
   description: string;
 }
 
-export interface GetLoad_getLoad {
+export interface DeleteSlot_deleteSlot {
   __typename: "LoadModel";
   id: number;
   status: LoadStatus;
@@ -27,13 +27,13 @@ export interface GetLoad_getLoad {
   date: any;
   aircraft: string;
   notes: string | null;
-  slots: GetLoad_getLoad_slots[];
+  slots: DeleteSlot_deleteSlot_slots[];
 }
 
-export interface GetLoad {
-  getLoad: GetLoad_getLoad | null;
+export interface DeleteSlot {
+  deleteSlot: DeleteSlot_deleteSlot;
 }
 
-export interface GetLoadVariables {
+export interface DeleteSlotVariables {
   id: number;
 }

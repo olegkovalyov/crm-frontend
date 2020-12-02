@@ -19,7 +19,7 @@ export const useGetMembersQuery = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   let members: MemberInterface[] = [];
-  const [_getMembersAsync, { loading, data }] = useLazyQuery<GetMembers, GetMembersVariables>(getMembersQuery,
+  const [_getMembersAsync, { loading, data, called }] = useLazyQuery<GetMembers, GetMembersVariables>(getMembersQuery,
     {
       context: {
         headers: {
@@ -59,5 +59,6 @@ export const useGetMembersQuery = () => {
     members,
     getMembersErrorMessage: errorMessage,
     getMembersAsync,
+    wasCalledGetMembers: called,
   };
 };

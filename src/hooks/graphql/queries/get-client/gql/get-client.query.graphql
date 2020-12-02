@@ -2,7 +2,7 @@ query GetClient($id: Int!) {
     getClient(id: $id) {
         id,
         userId,
-        type,
+        role,
         status,
         gender,
         age,

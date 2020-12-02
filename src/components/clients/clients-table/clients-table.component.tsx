@@ -75,7 +75,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
     renderDate,
     renderGender,
     renderClientStatus,
-    renderClientType,
+    renderClientRole,
   } = useClientsTableRender();
 
   const {
@@ -110,7 +110,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
 
 
   const columns = [
-    { title: 'Type', field: 'type', render: renderClientType },
+    { title: 'Type', field: 'type', render: renderClientRole },
     { title: 'Status', field: 'status', render: renderClientStatus },
     { title: 'First Name', field: 'firstName' },
     { title: 'Last Name', field: 'lastName' },

@@ -7,16 +7,16 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum ClientRole {
+  AS_A_PASSENGER = "AS_A_PASSENGER",
+  STATIC_LINE = "STATIC_LINE",
+  TANDEM = "TANDEM",
+}
+
 export enum ClientStatus {
   ACTIVE = "ACTIVE",
   PROCESSED = "PROCESSED",
   REFUSED = "REFUSED",
-}
-
-export enum ClientType {
-  AS_A_PASSENGER = "AS_A_PASSENGER",
-  STATIC_LINE = "STATIC_LINE",
-  TANDEM = "TANDEM",
 }
 
 export enum Gender {
@@ -62,8 +62,23 @@ export enum PaymentStatus {
   REFUNDED = "REFUNDED",
 }
 
+export enum UserRole {
+  ADMIN = "ADMIN",
+  AS_A_PASSENGER = "AS_A_PASSENGER",
+  CAMERAMAN = "CAMERAMAN",
+  COACH = "COACH",
+  MANIFEST = "MANIFEST",
+  PACKER = "PACKER",
+  RIGGER = "RIGGER",
+  SKYDIVER = "SKYDIVER",
+  STATIC_LINE = "STATIC_LINE",
+  STUDENT = "STUDENT",
+  TANDEM = "TANDEM",
+  TM = "TM",
+}
+
 export interface CreateClientInput {
-  type: ClientType;
+  role: ClientRole;
   status: ClientStatus;
   gender: Gender;
   age: number;
@@ -89,6 +104,15 @@ export interface CreateEventInput {
   notes: string;
 }
 
+export interface CreateLoadInput {
+  eventId: number;
+  status: LoadStatus;
+  order: number;
+  date: any;
+  aircraft: string;
+  notes?: string | null;
+}
+
 export interface CreateMemberInput {
   status: MemberStatus;
   firstName: string;
@@ -97,6 +121,15 @@ export interface CreateMemberInput {
   password: string;
   roles: MemberRole[];
   licenseType: LicenseType;
+}
+
+export interface CreateSlotInput {
+  loadId: number;
+  userId: number;
+  firstName: string;
+  lastName: string;
+  role: UserRole;
+  description: string;
 }
 
 export interface ForgotPasswordInput {
@@ -132,7 +165,7 @@ export interface ResetPasswordInput {
 
 export interface UpdateClientInput {
   id: number;
-  type?: ClientType | null;
+  role?: ClientRole | null;
   status?: ClientStatus | null;
   gender?: Gender | null;
   age?: number | null;
