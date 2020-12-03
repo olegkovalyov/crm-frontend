@@ -57,6 +57,7 @@ export const useGetLoadsQuery = () => {
     memberRoles: MemberRole[] | null,
     clientStatuses: ClientStatus[] | null,
     clientPaymentStatuses: PaymentStatus[] | null,
+    isClientAssigned: boolean | null,
     clientCreatedAtMin: Date | null,
     clientCreatedAtMax: Date | null,
   ) => {
@@ -70,6 +71,7 @@ export const useGetLoadsQuery = () => {
         getClientsFilter: {
           clientStatuses,
           paymentStatuses: clientPaymentStatuses,
+          isAssigned: isClientAssigned,
           createdAtMin: clientCreatedAtMin,
           createdAtMax: clientCreatedAtMax,
         },

@@ -1,18 +1,10 @@
 mutation CreateSlot($input: CreateSlotInput!) {
     createSlot(createSlotInput: $input){
         id,
-        status,
-        order,
-        date,
-        aircraft,
-        notes,
-        slots {
-            id,
-            userId,
-            firstName,
-            lastName,
-            role,
-            description
-        }
+        userId,
+        firstName,
+        lastName,
+        role,
+        description
     }
 }

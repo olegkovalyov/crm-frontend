@@ -1839,6 +1839,16 @@
             "defaultValue": null
           },
           {
+            "name": "isAssigned",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "createdAtMin",
             "description": null,
             "type": {
@@ -2047,7 +2057,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "LoadModel",
+                "name": "SlotModel",
                 "ofType": null
               }
             },
@@ -2077,8 +2087,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "LoadModel",
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },

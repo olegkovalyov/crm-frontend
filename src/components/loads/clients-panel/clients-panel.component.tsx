@@ -1,18 +1,19 @@
 // Core
 import React, { FC, ReactElement } from 'react';
-import { Button, Paper } from '@material-ui/core';
 import MaterialTable from 'material-table';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import Icon from '@material-ui/core/Icon';
+import { Paper } from '@material-ui/core';
 import { useStyles } from './clients-panel.styles';
 import { ClientInterface } from '../../../interfaces/client.interface';
-import { useClientsTableRender } from '../../../hooks/ui/clients-table-render/clients-table-render.hook';
+import { useTableColumnRender } from '../../../hooks/ui/clients-table-render/clients-table-render.hook';
 import { UserRole } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypesInterface {
   clients: ClientInterface[] | null;
   currentLoadId: number | null;
+  isLoading: boolean,
   handleCreateSlot: (
     loadId: number,
     userId: number,
@@ -26,25 +27,27 @@ interface PropTypesInterface {
 const ClientsPanel: FC<PropTypesInterface> = (props): ReactElement => {
   const classes = useStyles();
   const clients = props.clients ?? [];
-  const { handleCreateSlot, currentLoadId } = props;
+  const {
+    handleCreateSlot,
+    currentLoadId,
+    isLoading
+  } = props;
 
   const {
     renderDate,
     renderGender,
     renderClientStatus,
     renderClientRole,
-  } = useClientsTableRender();
+  } = useTableColumnRender();
 
   const columns = [
     {
       title: '',
       field: '',
       render: (client: ClientInterface) => {
-        return <Button
-          variant="contained"
+        return <Icon
+          className={classes.addSlotButton}
           color="primary"
-          size="small"
-          startIcon={<ArrowBackIcon />}
           onClick={() => {
             if (currentLoadId === null) {
               return;
@@ -58,7 +61,7 @@ const ClientsPanel: FC<PropTypesInterface> = (props): ReactElement => {
               '',
             );
           }}
-        />;
+        >add_circle</Icon>;
       },
     },
     { title: 'First Name', field: 'firstName' },
@@ -80,6 +83,7 @@ const ClientsPanel: FC<PropTypesInterface> = (props): ReactElement => {
   return (
     <Paper className={classes.padding}>
       <MaterialTable
+        isLoading={isLoading}
         title="Clients"
         columns={columns}
         data={clients}

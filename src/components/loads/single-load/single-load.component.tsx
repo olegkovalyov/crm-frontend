@@ -9,6 +9,7 @@ import SlotList from '../slots-list/slots-list.component';
 interface IPropTypes {
   load: LoadInterface,
   handleDeleteLoad: (loadId: number) => void,
+  handleDeleteSlot: (slotId: number) => Promise<void>,
   isLoading: boolean;
 }
 
@@ -19,6 +20,7 @@ const SingleLoad: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
     isLoading,
     load,
     handleDeleteLoad,
+    handleDeleteSlot,
   } = props;
 
 
@@ -28,6 +30,7 @@ const SingleLoad: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
         <SlotList
           isLoading={isLoading}
           slots={load.slots}
+          handleDeleteSlot={handleDeleteSlot}
         />
         <Button
           variant="contained"

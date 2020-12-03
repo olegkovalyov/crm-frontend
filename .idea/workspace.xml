@@ -6,55 +6,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/common/tab-panel/tab-panel.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/loads/loads-tabs/loads-tabs.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/loads/single-load/single-load.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/create-load.mutation.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/gql/create-load.mutation.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/gql/create-slot.mutation.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/delete-load.mutation.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/gql/delete-load.mutation.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/gql/delete-slot.mutation.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/ui/loads/loads.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateLoad.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateSlot.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteLoad.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteSlot.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clients/client-form/client-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/client-form/client-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/clients-table-filter/clients-table-filter.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/clients-table-filter/clients-table-filter.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clients/clients-table/clients-table.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/clients-table/clients-table.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clients/create-client-form/create-client-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/create-client-form/create-client-form.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clients/edit-client-form/edit-client-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/edit-client-form/edit-client-form.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/client-event-options/client-event-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/client-event-options/client-event-options.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/client-video-options/client-video-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/client-video-options/client-video-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/loads-panels/loads-panels.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-panels/loads-panels.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-tabs/loads-tabs.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-tabs/loads-tabs.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/single-load/single-load.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/single-load/single-load.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/gql/get-client.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/gql/get-client.query.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/gql/get-load.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/gql/get-load.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/gql/create-slot.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/gql/create-slot.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/gql/delete-slot.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/gql/delete-slot.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/gql/get-loads.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/gql/get-loads.query.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/get-members.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/get-members.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/ui/client-form-validation/client-form-validation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ui/client-form-validation/client-form-validation.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/ui/clients-table-render/clients-table-render.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ui/clients-table-render/clients-table-render.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetClients.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetClients.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetLoad.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetLoad.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetLoads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetLoads.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateSlot.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateSlot.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteSlot.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteSlot.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/load.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/load.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +61,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/loads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/graphql/mutations" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -115,11 +86,11 @@
       <recent name="$PROJECT_DIR$/src/hooks/graphql/helpers" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/loads" />
       <recent name="$PROJECT_DIR$/src/hooks/graphql/mutations" />
+      <recent name="$PROJECT_DIR$/src/components/loads/slots-list" />
+      <recent name="$PROJECT_DIR$/src/components/loads" />
       <recent name="$PROJECT_DIR$/src/components/loads/loads-tabs" />
       <recent name="$PROJECT_DIR$/src/hooks/ui/loads" />
-      <recent name="$PROJECT_DIR$/src/components/loads/single-load" />
     </key>
   </component>
   <component name="RunManager">
@@ -184,7 +155,7 @@
       <workItem from="1604902873921" duration="8250000" />
       <workItem from="1604992579996" duration="17076000" />
       <workItem from="1605108020483" duration="15702000" />
-      <workItem from="1606477939408" duration="22964000" />
+      <workItem from="1606477939408" duration="30186000" />
     </task>
     <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
       <created>1602324599948</created>
@@ -298,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606384317108</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="* added draft functionality of add/delete slot,&#10;* updated material-table and material ui to latest">
+      <created>1606910922252</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1606910922252</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,7 +367,8 @@
     <MESSAGE value="* implemented client filtering" />
     <MESSAGE value="* implemented redirect url,&#10;* draft for loads fetching" />
     <MESSAGE value="* implemented new graphql schema" />
-    <option name="LAST_COMMIT_MESSAGE" value="* implemented new graphql schema" />
+    <MESSAGE value="* added draft functionality of add/delete slot,&#10;* updated material-table and material ui to latest" />
+    <option name="LAST_COMMIT_MESSAGE" value="* added draft functionality of add/delete slot,&#10;* updated material-table and material ui to latest" />
   </component>
   <component name="WindowStateProjectService">
     <state x="545" y="312" key="#ESLint" timestamp="1602574202268">
@@ -408,10 +387,10 @@
       <screen x="0" y="23" width="1440" height="824" />
     </state>
     <state x="162" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.824@0.23.1440.824" timestamp="1603359098054" />
-    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2" timestamp="1606384315175">
+    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2" timestamp="1606910921444">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1606384315175" />
+    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1606910921444" />
     <state x="101" y="123" width="1239" height="624" key="DiffContextDialog" timestamp="1603790335300">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
@@ -424,14 +403,14 @@
       <screen x="0" y="23" width="1440" height="824" />
     </state>
     <state x="66" y="23" key="SettingsEditor/0.23.1440.824@0.23.1440.824" timestamp="1604236704083" />
-    <state x="220" y="112" key="Vcs.Push.Dialog.v2" timestamp="1606384319987">
+    <state x="220" y="112" key="Vcs.Push.Dialog.v2" timestamp="1606910923982">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="220" y="112" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1606384319987" />
-    <state x="342" y="121" width="778" height="628" key="find.popup" timestamp="1606819611387">
+    <state x="220" y="112" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1606910923982" />
+    <state x="342" y="121" width="778" height="628" key="find.popup" timestamp="1606988604899">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="342" y="121" width="778" height="628" key="find.popup/0.23.1440.824@0.23.1440.824" timestamp="1606819611387" />
+    <state x="342" y="121" width="778" height="628" key="find.popup/0.23.1440.824@0.23.1440.824" timestamp="1606988604899" />
     <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup" timestamp="1606750457409">
       <screen x="0" y="23" width="1440" height="824" />
     </state>

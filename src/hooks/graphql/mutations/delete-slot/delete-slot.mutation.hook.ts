@@ -9,13 +9,13 @@ import { DeleteSlot, DeleteSlotVariables } from '../../../../interfaces/generate
 
 const deleteSlotMutation = loader('./gql/delete-slot.mutation.graphql');
 
-export const useDeleteLoadMutation = () => {
+export const useDeleteSlotMutation = () => {
 
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_deleteSlotAsync, { loading, data }] = useMutation<DeleteSlot, DeleteSlotVariables>(deleteSlotMutation, {
+  const [_deleteSlotAsync, { loading, data, called }] = useMutation<DeleteSlot, DeleteSlotVariables>(deleteSlotMutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -24,7 +24,7 @@ export const useDeleteLoadMutation = () => {
   });
 
 
-  const deleteLoadAsync = async (id: number): Promise<void> => {
+  const deleteSlotAsync = async (id: number): Promise<void> => {
     try {
       const variables: DeleteSlotVariables = {
         id,
@@ -41,8 +41,9 @@ export const useDeleteLoadMutation = () => {
 
   return {
     inProcessOfDeletingSlot: loading,
-    deleteLoadAsync,
-    loadData: data,
+    deleteSlotAsync,
+    deleteSlotData: data,
+    wasCalledDeleteSlot: called,
     deleteSlotErrorMessage: errorMessage,
   };
 };

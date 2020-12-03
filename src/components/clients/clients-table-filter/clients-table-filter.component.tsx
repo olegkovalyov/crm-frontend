@@ -36,6 +36,7 @@ interface PropTypesInterface {
   updateDataAsync: (
     clientStatuses: ClientStatus[] | null,
     paymentStatuses: PaymentStatus[] | null,
+    isAssigned: boolean |null,
     createdAtMin: Date | null,
     createdAtMax: Date | null,
   ) => void,
@@ -68,6 +69,7 @@ const ClientsTableFilter: FC<PropTypesInterface> = (props): ReactElement => {
     updateDataAsync(
       getSelectedClientStatuses(),
       getSelectedPaymentStatuses(),
+      null,
       createdDateMin,
       createdDateMax,
     );

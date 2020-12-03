@@ -1,12 +1,13 @@
 import { ClientInterface } from '../../../interfaces/client.interface';
-import { ClientStatus, ClientRole, Gender } from '../../../interfaces/generated/globalTypes';
+import { ClientRole, ClientStatus, Gender, UserRole } from '../../../interfaces/generated/globalTypes';
+import { SlotInterface } from '../../../interfaces/load.interface';
 
-export const useClientsTableRender = () => {
+export const useTableColumnRender = () => {
 
   const renderClientRole = (client: ClientInterface) => {
     let output = '';
     if (client.role === ClientRole.TANDEM) {
-      output = 'TM';
+      output = 'TM Passenger';
     } else if (client.role === ClientRole.AS_A_PASSENGER) {
       output = 'Passenger';
     } else if (client.role === ClientRole.STATIC_LINE) {
@@ -45,10 +46,42 @@ export const useClientsTableRender = () => {
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   };
 
+  const renderSlotRole = (slot: SlotInterface) => {
+    let output = '';
+    switch (slot.role) {
+      case UserRole.CAMERAMAN:
+        output = 'Cameraman';
+        break;
+      case UserRole.STUDENT:
+        output = 'Student';
+        break;
+      case UserRole.COACH:
+        output = 'Coach';
+        break;
+      case UserRole.AS_A_PASSENGER:
+        output = 'Passenger';
+        break;
+      case UserRole.TANDEM:
+        output = 'TM Passenger';
+        break;
+      case UserRole.SKYDIVER:
+        output = 'Sport';
+        break;
+      case UserRole.STATIC_LINE:
+        output = 'Static Line';
+        break;
+      case UserRole.TM:
+        output = 'TM Instructor';
+        break;
+    }
+    return output;
+  };
+
   return {
     renderClientRole,
     renderClientStatus,
     renderGender,
     renderDate,
+    renderSlotRole,
   };
 };

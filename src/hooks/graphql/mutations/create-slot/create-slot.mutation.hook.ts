@@ -7,7 +7,7 @@ import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { UserRole } from '../../../../interfaces/generated/globalTypes';
 import { CreateSlot, CreateSlotVariables } from '../../../../interfaces/generated/CreateSlot';
-import { LoadInterface } from '../../../../interfaces/load.interface';
+import { SlotInterface } from '../../../../interfaces/load.interface';
 
 const createSlotMutation = loader('./gql/create-slot.mutation.graphql');
 
@@ -17,7 +17,7 @@ export const useCreateSlotMutation = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_createSlotAsync, { loading, data }] = useMutation<CreateSlot, CreateSlotVariables>(createSlotMutation, {
+  const [_createSlotAsync, { loading, data, called }] = useMutation<CreateSlot, CreateSlotVariables>(createSlotMutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -25,9 +25,9 @@ export const useCreateSlotMutation = () => {
     },
   });
 
-  let updatedLoad: LoadInterface | null = null;
+  let slot: SlotInterface | null = null;
   if (data) {
-    updatedLoad = data.createSlot;
+    slot = data.createSlot;
   }
 
 
@@ -63,7 +63,8 @@ export const useCreateSlotMutation = () => {
   return {
     inProcessOfCreatingSlot: loading,
     createSlotAsync,
-    updatedLoad,
+    slot,
+    wasCalledCreateSlot: called,
     createSlotErrorMessage: errorMessage,
   };
 };

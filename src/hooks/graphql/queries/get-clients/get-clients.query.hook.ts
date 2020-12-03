@@ -38,6 +38,7 @@ export const useGetClientsQuery = () => {
   const getClientsAsync = async (
     clientStatuses: ClientStatus[] | null,
     paymentStatuses: PaymentStatus[] | null,
+    isAssigned: boolean| null,
     createdAtMin: Date | null,
     createdAtMax: Date | null,
   ) => {
@@ -46,6 +47,7 @@ export const useGetClientsQuery = () => {
         getClientsFilter: {
           clientStatuses,
           paymentStatuses,
+          isAssigned,
           createdAtMin,
           createdAtMax,
         },

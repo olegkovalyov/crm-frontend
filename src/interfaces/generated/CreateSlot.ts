@@ -3,13 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CreateSlotInput, LoadStatus, UserRole } from "./globalTypes";
+import { CreateSlotInput, UserRole } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateSlot
 // ====================================================
 
-export interface CreateSlot_createSlot_slots {
+export interface CreateSlot_createSlot {
   __typename: "SlotModel";
   id: number;
   userId: number;
@@ -17,17 +17,6 @@ export interface CreateSlot_createSlot_slots {
   lastName: string;
   role: UserRole;
   description: string;
-}
-
-export interface CreateSlot_createSlot {
-  __typename: "LoadModel";
-  id: number;
-  status: LoadStatus;
-  order: number;
-  date: any;
-  aircraft: string;
-  notes: string | null;
-  slots: CreateSlot_createSlot_slots[];
 }
 
 export interface CreateSlot {

@@ -1,18 +1,3 @@
 mutation DeleteSlot($id: Int!) {
-    deleteSlot(id: $id){
-        id,
-        status,
-        order,
-        date,
-        aircraft,
-        notes,
-        slots {
-            id,
-            userId,
-            firstName,
-            lastName,
-            role,
-            description
-        }
-    }
+    deleteSlot(id: $id)
 }

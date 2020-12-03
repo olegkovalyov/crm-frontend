@@ -139,6 +139,7 @@ export interface ForgotPasswordInput {
 export interface GetClientsFilterInput {
   clientStatuses?: ClientStatus[] | null;
   paymentStatuses?: PaymentStatus[] | null;
+  isAssigned?: boolean | null;
   createdAtMin?: any | null;
   createdAtMax?: any | null;
 }

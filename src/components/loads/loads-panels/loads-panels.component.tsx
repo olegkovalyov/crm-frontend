@@ -7,6 +7,7 @@ interface IPropTypes {
   loads: LoadInterface[] | null,
   selectedLoadTab: number,
   handleDeleteLoad: (loadId: number) => void,
+  handleDeleteSlot: (slotId: number) => Promise<void>,
   isLoading: boolean,
 }
 
@@ -16,6 +17,7 @@ const LoadsPanels: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
   const {
     selectedLoadTab,
     handleDeleteLoad,
+    handleDeleteSlot,
     isLoading,
   } = props;
 
@@ -37,6 +39,7 @@ const LoadsPanels: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
             {selectedLoadTab === load.order && (
               <SingleLoad
                 handleDeleteLoad={handleDeleteLoad}
+                handleDeleteSlot={handleDeleteSlot}
                 load={load}
                 isLoading={isLoading}
               />

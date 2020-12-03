@@ -22,5 +22,9 @@ export const useStyles = makeStyles((theme: Theme) =>
         padding: theme.spacing(3),
       },
     },
+    addSlotButton: {
+      fontSize: 30,
+      cursor: 'pointer',
+    },
   }),
 );

@@ -7,11 +7,12 @@ import { useGetLoadsQuery } from '../../../hooks/graphql/queries/get-loads/get-l
 import LoadsTabs from '../loads-tabs/loads-tabs.component';
 import LoadsPanels from '../loads-panels/loads-panels.component';
 import { useCreateLoadMutation } from '../../../hooks/graphql/mutations/create-load/create-load.mutation.hook';
-import { LoadStatus } from '../../../interfaces/generated/globalTypes';
+import { LoadStatus, UserRole } from '../../../interfaces/generated/globalTypes';
 import { useDeleteLoadMutation } from '../../../hooks/graphql/mutations/delete-load/delete-load.mutation.hook';
 import TabPanel from '../../common/tab-panel/tab-panel.component';
 import ClientsPanel from '../clients-panel/clients-panel.component';
 import { useCreateSlotMutation } from '../../../hooks/graphql/mutations/create-slot/create-slot.mutation.hook';
+import { useDeleteSlotMutation } from '../../../hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook';
 
 interface PropTypes {
   eventId: string;
@@ -55,8 +56,18 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
     createSlotAsync,
     createSlotErrorMessage,
     inProcessOfCreatingSlot,
-    updatedLoad,
+    wasCalledCreateSlot,
+    slot,
   } = useCreateSlotMutation();
+
+  const {
+    deleteSlotAsync,
+    deleteSlotErrorMessage,
+    deleteSlotData,
+    wasCalledDeleteSlot,
+    inProcessOfDeletingSlot,
+  } = useDeleteSlotMutation();
+
 
   const {
     deleteLoadAsync,
@@ -72,6 +83,7 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
       null,
       null,
       null,
+      false,
       null,
       null,
     );// eslint-disable-next-line
@@ -90,10 +102,38 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
     areLoadsLoading,
   ]);
 
+  useEffect(() => {
+    if (wasCalledCreateSlot
+      && !inProcessOfCreatingSlot
+    ) {
+      if (!slot) {
+        setLoadsErrorMessage('Failed to create slot');
+      }
+    }// eslint-disable-next-line
+  }, [
+    wasCalledCreateSlot,
+    inProcessOfCreatingSlot,
+  ]);
+
+  useEffect(() => {
+    if (wasCalledDeleteSlot
+      && !inProcessOfDeletingSlot
+    ) {
+      if (!slot) {
+        setLoadsErrorMessage('Failed to delete slot');
+      }
+    }// eslint-disable-next-line
+  }, [
+    wasCalledDeleteSlot,
+    inProcessOfDeletingSlot,
+  ]);
+
+
   const isLoading = areLoadsLoading
     || inProcessOfCreatingSlot
     || inProcessOfCreatingLoad
-    || inProcessOfDeletingLoad;
+    || inProcessOfDeletingLoad
+    || inProcessOfDeletingSlot;
 
   if (getLoadsErrorMessage) {
     errorMessage = getLoadsErrorMessage;
@@ -121,6 +161,48 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
     console.log(currentLoadId);
   }
 
+  const handleCreateSlot = async (
+    loadId: number,
+    userId: number,
+    firstName: string,
+    lastName: string,
+    role: UserRole,
+    description: string,
+  ) => {
+    await createSlotAsync(
+      loadId,
+      userId,
+      firstName,
+      lastName,
+      role,
+      description,
+    );
+    await getLoadsAsync(
+      eventId,
+      null,
+      null,
+      null,
+      null,
+      false,
+      null,
+      null,
+    );
+  };
+
+  const handleDeleteSlot = async (slotId: number) => {
+    await deleteSlotAsync(slotId);
+    await getLoadsAsync(
+      eventId,
+      null,
+      null,
+      null,
+      null,
+      false,
+      null,
+      null,
+    );
+  };
+
   const handleDeleteLoad = async (loadId: number) => {
     await deleteLoadAsync(loadId);
     await getLoadsAsync(
@@ -129,6 +211,7 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
       null,
       null,
       null,
+      false,
       null,
       null,
     );
@@ -153,12 +236,14 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
         null,
         null,
         null,
+        false,
         null,
         null,
       );
       setSelectedLoadTab(highestOrder);
     }
   };
+
 
   return (
     <>
@@ -188,6 +273,7 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
               selectedLoadTab={selectedLoadTab}
               handleDeleteLoad={handleDeleteLoad}
               isLoading={isLoading}
+              handleDeleteSlot={handleDeleteSlot}
             />
           </div>
         </Grid>
@@ -209,8 +295,9 @@ const LoadsContainer: FC<PropTypes> = (props): ReactElement => {
             <TabPanel value={selectedSlotTab} index={2}>
               <ClientsPanel
                 clients={clients}
-                handleCreateSlot={createSlotAsync}
+                handleCreateSlot={handleCreateSlot}
                 currentLoadId={currentLoadId}
+                isLoading={isLoading}
               />
             </TabPanel>
           </div>

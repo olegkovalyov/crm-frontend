@@ -9,13 +9,14 @@ import ResponsiveDialog from '../../../elements/responsive-dialog.component';
 import { EDIT_CLIENT_URL } from '../../../constants/route.constants';
 import { ClientInterface } from '../../../interfaces/client.interface';
 import { useDeleteClientMutation } from '../../../hooks/graphql/mutations/delete-client/delete-member.mutation.hook';
-import { useClientsTableRender } from '../../../hooks/ui/clients-table-render/clients-table-render.hook';
+import { useTableColumnRender } from '../../../hooks/ui/clients-table-render/clients-table-render.hook';
 import { ClientStatus, PaymentStatus } from '../../../interfaces/generated/globalTypes';
 
 interface PropTypesInterface {
   getClientsAsync: (
     clientStatuses: ClientStatus[] | null,
     paymentStatuses: PaymentStatus[] | null,
+    isAssigned: boolean | null,
     createdAtMin: Date | null,
     createdAtMax: Date | null,
   ) => Promise<void>,
@@ -41,7 +42,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
     createdDateMax,
   } = props;
 
-  const [clientIdToDetele, setClientIdToDelete] = useState<number|null>(null);
+  const [clientIdToDetele, setClientIdToDelete] = useState<number | null>(null);
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
   const theme = useTheme();
   const isFullScreenDialog = useMediaQuery(theme.breakpoints.down('sm'));
@@ -57,7 +58,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
   };
 
   const handleConfirmRemove = () => {
-    if(!clientIdToDetele) {
+    if (!clientIdToDetele) {
       return;
     }
     deleteClientAsync(clientIdToDetele).then(() => {
@@ -65,6 +66,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
       return getClientsAsync(
         getSelectedClientStatuses(),
         getSelectedPaymentStatuses(),
+        null,
         createdDateMin,
         createdDateMax,
       );
@@ -76,7 +78,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
     renderGender,
     renderClientStatus,
     renderClientRole,
-  } = useClientsTableRender();
+  } = useTableColumnRender();
 
   const {
     inProcessOfDeletingClient,
@@ -87,6 +89,7 @@ const ClientsTable: FC<PropTypesInterface> = (props): ReactElement => {
     getClientsAsync(
       getSelectedClientStatuses(),
       getSelectedPaymentStatuses(),
+      null,
       createdDateMin,
       createdDateMax,
     );
