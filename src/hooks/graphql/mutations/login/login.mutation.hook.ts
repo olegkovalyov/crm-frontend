@@ -1,25 +1,46 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
+import gql from 'graphql-tag';
+import { useDispatch } from 'react-redux';
 import { Login, LoginVariables } from '../../../../interfaces/generated/Login';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { setUserAction } from '../../../../redux/auth/auth.actions';
+import { useRouter } from 'next/router';
 
-const loginMutation = loader('./gql/login.mutation.graphql');
+const mutation = gql`
+    mutation Login($input: LoginInput!) {
+        login(loginInput: $input) {
+            payload {
+                id,
+                userId,
+                status,
+                firstName,
+                lastName,
+                email,
+                roles,
+                licenseType,
+                createdAt,
+                updatedAt,
+            },
+            accessToken,
+        }
+    }
+`;
 
 export const useLoginMutation = () => {
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_loginAsync, { loading, data }] = useMutation<Login, LoginVariables>(loginMutation);
+  const [runLoginMutation, { loading, data }] = useMutation<Login, LoginVariables>(mutation);
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-   useEffect(() => {
+  useEffect(() => {
     if (data) {
       dispatch(setUserAction(data.login));
+      router.push('/login');
     }
   }, [data, dispatch]); // eslint-disable-line
 
@@ -31,7 +52,7 @@ export const useLoginMutation = () => {
           password,
         },
       };
-      await _loginAsync({
+      await runLoginMutation({
         variables,
       });
     } catch (e) {

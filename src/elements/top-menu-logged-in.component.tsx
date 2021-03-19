@@ -1,6 +1,6 @@
 // Core
 import React, { FC, ReactElement } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 // Components
 import Typography from '@material-ui/core/Typography';
@@ -32,10 +32,10 @@ export const TopMenuLoggedIn: FC<PropTypes> = (
   }: PropTypes,
 ): ReactElement => {
   const classes = useStyles();
-  const history = useHistory();
+  const router = useRouter();
 
   const handleRedirectToSettings = (e: React.MouseEvent) =>
-    history.push(SETTINGS_URL);
+    router.push(SETTINGS_URL);
 
   return (
     <>

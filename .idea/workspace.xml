@@ -6,27 +6,101 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/404.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/_document.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/hello.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/clients/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/clients/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/events/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/events/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/forgot-password/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/forgot-password/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/history/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/history/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/inventory/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/inventory/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/members/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/members/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/reset-password/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/reset-password/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/settings/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/settings/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/signin/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/signin/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/signup/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/signup/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/theme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vercel.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/error-modal/error-modal.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/error-modal/error-modal.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/core/data-fetch/data-fetch.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/ui/error-modal/error-modal.hook.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/ui/error-notify/error-notify.hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clients/clients-table-filter/clients-table-filter.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/clients-table-filter/clients-table-filter.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clients/clients-table/clients-table.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/clients-table/clients-table.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/core/app-router/app-router.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/core/sub-route/sub-route.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/breadcrumbs/breadcrumbs.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/breadcrumbs/breadcrumbs.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/content/content.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/content/content.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/header/header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/header/header.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/loads-panels/loads-panels.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/loads-panels/loads-panels.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/single-load/single-load.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/single-load/single-load.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/single-load/single-load.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/single-load/single-load.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/copyright.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/copyright.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/top-menu-anonymous.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/top-menu-anonymous.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/top-menu-logged-in.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/top-menu-logged-in.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/core/breadcrumbs/breadcrumbs.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/core/breadcrumbs/breadcrumbs.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/core/left-menu/left-menu.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/core/left-menu/left-menu.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/create-load.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/create-load.mutation.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/gql/create-slot.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/gql/create-slot.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/delete-load.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/delete-load.mutation.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/gql/delete-slot.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/gql/delete-slot.mutation.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/gql/login.mutation.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/ui/clients-table-render/clients-table-render.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ui/clients-table-render/clients-table-render.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateSlot.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateSlot.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteSlot.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteSlot.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/loads/loads.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ui/loads/loads.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/graphql.client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/graphql.client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/clients/clients.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/create-client/create-client.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/create-event/create-event.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/create-user/create-user.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/dashboard.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/edit-client/edit-client.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/edit-event/edit-event.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/edit-member/edit-member.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/events/events.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/forgot-password/forgot-password.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/history/history.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/inventory/inventory.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loads/loads.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/login.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/not-found/not-found.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/not-found/not-found.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register/register.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/reset-password/reset-password.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/settings/settings.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/users/users.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +113,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="React Component" />
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
       </list>
@@ -52,6 +127,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
   <component name="ProjectId" id="1iOoBQW9S27JSe2rS2MmawUsQvg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -59,9 +137,10 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/graphql/mutations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -77,20 +156,23 @@
     <property name="ts.rename.search.for.js.occurrences" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="ReadonlyStatusHandler">
+    <option name="SHOW_DIALOG" value="false" />
+  </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages" />
+      <recent name="$PROJECT_DIR$/pages/dashboard" />
+      <recent name="$PROJECT_DIR$/src/hooks/core/data-fetch" />
+      <recent name="$PROJECT_DIR$/src/components/common/error-modal" />
+      <recent name="$PROJECT_DIR$/src/hooks/ui" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/common" />
       <recent name="$PROJECT_DIR$/src/components/clients/clients-table-filter" />
       <recent name="$PROJECT_DIR$/src/components/clients" />
       <recent name="$PROJECT_DIR$/src/components/clients/client-form-elements" />
       <recent name="$PROJECT_DIR$/src/hooks/graphql/helpers" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/mutations" />
-      <recent name="$PROJECT_DIR$/src/components/loads/slots-list" />
-      <recent name="$PROJECT_DIR$/src/components/loads" />
-      <recent name="$PROJECT_DIR$/src/components/loads/loads-tabs" />
-      <recent name="$PROJECT_DIR$/src/hooks/ui/loads" />
     </key>
   </component>
   <component name="RunManager">
@@ -155,7 +237,15 @@
       <workItem from="1604902873921" duration="8250000" />
       <workItem from="1604992579996" duration="17076000" />
       <workItem from="1605108020483" duration="15702000" />
-      <workItem from="1606477939408" duration="30186000" />
+      <workItem from="1606477939408" duration="46541000" />
+      <workItem from="1607760806779" duration="20478000" />
+      <workItem from="1612881537755" duration="11000" />
+      <workItem from="1615230147539" duration="1801000" />
+      <workItem from="1615458422195" duration="250000" />
+      <workItem from="1615458705986" duration="7458000" />
+      <workItem from="1615721761891" duration="2017000" />
+      <workItem from="1615806642504" duration="6278000" />
+      <workItem from="1616083841626" duration="7510000" />
     </task>
     <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
       <created>1602324599948</created>
@@ -276,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606910922252</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="* refactored draft functionality of add/delete slot">
+      <created>1606993826304</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1606993826304</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,53 +465,22 @@
     <MESSAGE value="* implemented redirect url,&#10;* draft for loads fetching" />
     <MESSAGE value="* implemented new graphql schema" />
     <MESSAGE value="* added draft functionality of add/delete slot,&#10;* updated material-table and material ui to latest" />
-    <option name="LAST_COMMIT_MESSAGE" value="* added draft functionality of add/delete slot,&#10;* updated material-table and material ui to latest" />
+    <MESSAGE value="* refactored draft functionality of add/delete slot" />
+    <option name="LAST_COMMIT_MESSAGE" value="* refactored draft functionality of add/delete slot" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="545" y="312" key="#ESLint" timestamp="1602574202268">
+    <state x="101" y="123" width="1239" height="624" key="DiffContextDialog" timestamp="1615812387015">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="545" y="312" key="#ESLint/0.23.1440.824@0.23.1440.824" timestamp="1602574202268" />
-    <state x="343" y="226" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604240529164">
+    <state x="101" y="123" width="1239" height="624" key="DiffContextDialog/0.23.1440.824@0.23.1440.824" timestamp="1615812387015" />
+    <state x="342" y="121" width="778" height="628" key="find.popup" timestamp="1616144446792">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="343" y="226" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.824@0.23.1440.824" timestamp="1604240529164" />
-    <state x="234" y="157" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1604235386894">
+    <state x="342" y="121" width="778" height="628" key="find.popup/0.23.1440.824@0.23.1440.824" timestamp="1616144446792" />
+    <state x="408" y="266" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1615458251160">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="234" y="157" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.23.1440.824@0.23.1440.824" timestamp="1604235386894" />
-    <state x="162" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603359098054">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="162" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.824@0.23.1440.824" timestamp="1603359098054" />
-    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2" timestamp="1606910921444">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="97" y="42" width="1209" height="804" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1606910921444" />
-    <state x="101" y="123" width="1239" height="624" key="DiffContextDialog" timestamp="1603790335300">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="101" y="123" width="1239" height="624" key="DiffContextDialog/0.23.1440.824@0.23.1440.824" timestamp="1603790335300" />
-    <state x="468" y="75" key="RollbackChangesDialog" timestamp="1603445963260">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="468" y="75" key="RollbackChangesDialog/0.23.1440.824@0.23.1440.824" timestamp="1603445963260" />
-    <state x="66" y="23" key="SettingsEditor" timestamp="1604236704083">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="66" y="23" key="SettingsEditor/0.23.1440.824@0.23.1440.824" timestamp="1604236704083" />
-    <state x="220" y="112" key="Vcs.Push.Dialog.v2" timestamp="1606910923982">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="220" y="112" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1606910923982" />
-    <state x="342" y="121" width="778" height="628" key="find.popup" timestamp="1606988604899">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="342" y="121" width="778" height="628" key="find.popup/0.23.1440.824@0.23.1440.824" timestamp="1606988604899" />
-    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup" timestamp="1606750457409">
-      <screen x="0" y="23" width="1440" height="824" />
-    </state>
-    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1440.824@0.23.1440.824" timestamp="1606750457409" />
+    <state x="408" y="266" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.23.1440.824@0.23.1440.824" timestamp="1615458251160" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

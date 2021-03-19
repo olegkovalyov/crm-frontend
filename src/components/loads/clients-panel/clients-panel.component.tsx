@@ -27,10 +27,11 @@ interface PropTypesInterface {
 const ClientsPanel: FC<PropTypesInterface> = (props): ReactElement => {
   const classes = useStyles();
   const clients = props.clients ?? [];
+
   const {
     handleCreateSlot,
     currentLoadId,
-    isLoading
+    isLoading,
   } = props;
 
   const {

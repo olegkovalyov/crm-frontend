@@ -23,6 +23,7 @@ const LoadsPanels: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
 
   return (
     <>
+
       {
         loads.map(load => {
           const id = `simple-tabpanel-${load.order}`;

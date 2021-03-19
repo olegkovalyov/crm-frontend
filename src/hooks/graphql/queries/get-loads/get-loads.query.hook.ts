@@ -18,12 +18,12 @@ export const useGetLoadsQuery = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   let loads: LoadInterface[] | null = null;
   let clients: ClientInterface[] | null = null;
   let members: MemberInterface[] | null = null;
-  const [_getLoadsAsync, { loading, data, called }] = useLazyQuery<GetLoads, GetLoadsVariables>(getLoadsQuery,
+  const [_getLoadsAsync, { loading, data, called, error }] = useLazyQuery<GetLoads, GetLoadsVariables>(getLoadsQuery,
     {
       context: {
         headers: {
@@ -31,6 +31,10 @@ export const useGetLoadsQuery = () => {
         },
       },
       fetchPolicy: 'network-only',
+      onError: (e) => {
+        const formattedErrorMessage = getFormattedErrorMessage(e);
+        setErrorMessage(formattedErrorMessage);
+      }
     });
 
   if (data && data.getLoads) {
@@ -61,7 +65,7 @@ export const useGetLoadsQuery = () => {
     clientCreatedAtMin: Date | null,
     clientCreatedAtMax: Date | null,
   ) => {
-    try {
+      setErrorMessage(null);
       const variables: GetLoadsVariables = {
         eventId,
         getMembersFilter: {
@@ -77,21 +81,16 @@ export const useGetLoadsQuery = () => {
         },
       };
       await _getLoadsAsync({ variables });
-    } catch (e) {
-      const formattedErrorMessage = getFormattedErrorMessage(e);
-      setErrorMessage(formattedErrorMessage);
-    }
   };
 
 
   return {
-    areLoadsLoading: loading,
+    inProcessOfFetchingLoads: loading,
     getLoadsErrorMessage: errorMessage,
-    setLoadsErrorMessage: setErrorMessage,
     wasCalledGetLoads: called,
+    getLoadsAsync,
     loads,
     clients,
     members,
-    getLoadsAsync,
   };
 };

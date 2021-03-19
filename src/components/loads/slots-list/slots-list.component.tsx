@@ -51,7 +51,7 @@ const SlotList: FC<PropTypesInterface> = (props): ReactElement => {
   return (
     <MaterialTable
       isLoading={isLoading}
-      title="Clients"
+      title="Assigned"
       columns={columns}
       data={slots}
       options={{

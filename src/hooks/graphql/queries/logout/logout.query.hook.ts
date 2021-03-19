@@ -1,11 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { useLazyQuery } from '@apollo/client';
-import { loader } from 'graphql.macro';
+import gql from 'graphql-tag';
 import { logoutAction } from '../../../../redux/auth/auth.actions';
 import { Logout } from '../../../../interfaces/generated/Logout';
 
-const logoutQuery = loader('./gql/logout.query.graphql');
+const logoutQuery = gql`
+    query Logout {
+        logout
+    }
 
+`;
 export const useLogoutQuery = () => {
 
   const dispatch = useDispatch();

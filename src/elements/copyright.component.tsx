@@ -2,9 +2,9 @@
 import React, { FC, ReactElement } from 'react';
 
 // Components
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Link from 'next/link';
 
 export const Copyright: FC = (props): ReactElement => {
   return (
@@ -12,7 +12,7 @@ export const Copyright: FC = (props): ReactElement => {
       <Box pt={4}>
         <Typography variant="body2" color="textSecondary" align="center">
           {'Copyright © '}
-          <Link color="inherit" href={process.env.REACT_APP_DOMAIN}>
+          <Link href='http://test.com'>
             Skydiving Manager
           </Link>{' '}
           {new Date().getFullYear()}

@@ -14,7 +14,7 @@ export const useDeleteLoadMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string|null>(null);
   const [_deleteLoadAsync, { loading, data }] = useMutation<DeleteLoad, DeleteLoadVariables>(deleteLoadMutation, {
     context: {
       headers: {
@@ -29,7 +29,7 @@ export const useDeleteLoadMutation = () => {
       const variables: DeleteLoadVariables = {
         input: id,
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _deleteLoadAsync({
         variables,
       });

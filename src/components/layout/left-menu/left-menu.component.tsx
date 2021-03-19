@@ -21,6 +21,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { useStyles } from './left-menu.styles';
 import { useLeftMenu } from '../../../hooks/core/left-menu/left-menu.hook';
 import {
@@ -40,19 +41,12 @@ const LeftMenu: FC = (props): ReactElement => {
   const classes = useStyles();
 
   const currentUser = useSelector((state: RootStateInterface) => getCurrentUser(state));
+  const router = useRouter();
 
   const {
     logout,
     isOpenedLeftMenu,
-    isDashboardMenuSelected,
-    isManageMembersMenuSelected,
-    isManageInventoryMenuSelected,
-    isEventsMenuSelected,
-    isClientsMenuSelected,
-    isHistoryMenuSelected,
-    isSettingsMenuSelected,
     closeLeftMenu,
-    history,
   } = useLeftMenu();
 
   const usersMenuJsx = (currentUser
@@ -61,9 +55,9 @@ const LeftMenu: FC = (props): ReactElement => {
     )
   ) ?
     <ListItem
-      selected={isManageMembersMenuSelected}
+      selected={router.pathname.includes(MEMBERS_URL)}
       button
-      onClick={() => history.push(MEMBERS_URL)}
+      onClick={() => router.push(MEMBERS_URL)}
     >
       <ListItemIcon>
         <SupervisedUserCircleIcon />
@@ -91,9 +85,9 @@ const LeftMenu: FC = (props): ReactElement => {
         <List>
           <div>
             <ListItem
-              selected={isDashboardMenuSelected}
+              selected={router.pathname.includes(DASHBOARD_URL)}
               button
-              onClick={() => history.push(DASHBOARD_URL)}
+              onClick={() => router.push(DASHBOARD_URL)}
             >
               <ListItemIcon>
                 <AssessmentIcon />
@@ -102,9 +96,9 @@ const LeftMenu: FC = (props): ReactElement => {
             </ListItem>
             {usersMenuJsx}
             <ListItem
-              selected={isEventsMenuSelected}
+              selected={router.pathname.includes(EVENTS_URL)}
               button
-              onClick={() => history.push(EVENTS_URL)}
+              onClick={() => router.push(EVENTS_URL)}
             >
               <ListItemIcon>
                 <EventAvailableIcon />
@@ -112,9 +106,9 @@ const LeftMenu: FC = (props): ReactElement => {
               <ListItemText primary="Events" />
             </ListItem>
             <ListItem
-              selected={isClientsMenuSelected}
+              selected={router.pathname.includes(CLIENTS_URL)}
               button
-              onClick={() => history.push(CLIENTS_URL)}
+              onClick={() => router.push(CLIENTS_URL)}
             >
               <ListItemIcon>
                 <PeopleOutlineIcon />
@@ -122,9 +116,9 @@ const LeftMenu: FC = (props): ReactElement => {
               <ListItemText primary="Clients" />
             </ListItem>
             <ListItem
-              selected={isManageInventoryMenuSelected}
+              selected={router.pathname.includes(MANAGE_INVENTORY_URL)}
               button
-              onClick={() => history.push(MANAGE_INVENTORY_URL)}
+              onClick={() => router.push(MANAGE_INVENTORY_URL)}
             >
               <ListItemIcon>
                 <AssignmentIcon />
@@ -132,9 +126,9 @@ const LeftMenu: FC = (props): ReactElement => {
               <ListItemText primary="Inventory" />
             </ListItem>
             <ListItem
-              selected={isHistoryMenuSelected}
+              selected={router.pathname.includes(HISTORY_URL)}
               button
-              onClick={() => history.push(HISTORY_URL)}
+              onClick={() => router.push(HISTORY_URL)}
             >
               <ListItemIcon>
                 <HistoryIcon />
@@ -148,9 +142,9 @@ const LeftMenu: FC = (props): ReactElement => {
           <div>
             <ListSubheader />
             <ListItem
-              selected={isSettingsMenuSelected}
+              selected={router.pathname.includes(SETTINGS_URL)}
               button
-              onClick={() => history.push(SETTINGS_URL)}
+              onClick={() => router.push(SETTINGS_URL)}
             >
               <ListItemIcon>
                 <SettingsIcon />

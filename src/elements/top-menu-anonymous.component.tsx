@@ -1,15 +1,15 @@
 import React, { FC, ReactElement } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import Button from '@material-ui/core/Button';
 
 export const TopMenuAnonymousComponent: FC = (props): ReactElement => {
-  const history = useHistory();
+  const router = useRouter();
   return (
     <>
       <Button
         color="inherit"
         onClick={(e) => {
-          history.push('/signin');
+          router.push('/signin');
         }}
       >
         Sign In
@@ -17,7 +17,7 @@ export const TopMenuAnonymousComponent: FC = (props): ReactElement => {
       <Button
         color="inherit"
         onClick={(e) => {
-          history.push('/signup');
+          router.push('/signup');
         }}
       >
         Sign Up

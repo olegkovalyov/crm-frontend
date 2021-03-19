@@ -16,7 +16,7 @@ export const useCreateSlotMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string|null>(null);
   const [_createSlotAsync, { loading, data, called }] = useMutation<CreateSlot, CreateSlotVariables>(createSlotMutation, {
     context: {
       headers: {
@@ -50,7 +50,7 @@ export const useCreateSlotMutation = () => {
           description,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _createSlotAsync({
         variables,
       });

@@ -15,7 +15,7 @@ export const useCreateLoadMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string|null>(null);
   const [_createLoadAsync, { loading, data }] = useMutation<CreateLoad, CreateLoadVariables>(createLoadMutation, {
     context: {
       headers: {
@@ -44,7 +44,7 @@ export const useCreateLoadMutation = () => {
           order,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _createLoadAsync({
         variables,
       });

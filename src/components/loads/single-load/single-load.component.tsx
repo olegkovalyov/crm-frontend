@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Paper } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { LoadInterface } from '../../../interfaces/load.interface';
 import { useStyles } from './single-load.styles';
@@ -23,10 +23,9 @@ const SingleLoad: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
     handleDeleteSlot,
   } = props;
 
-
   return (
     <>
-      <Box p={3}>
+      <Paper className={classes.padding}>
         <SlotList
           isLoading={isLoading}
           slots={load.slots}
@@ -42,7 +41,7 @@ const SingleLoad: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
         >
           Delete Load
         </Button>
-      </Box>
+      </Paper>
     </>
   );
 };

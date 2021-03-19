@@ -14,8 +14,8 @@ export const useDeleteSlotMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
-  const [_deleteSlotAsync, { loading, data, called }] = useMutation<DeleteSlot, DeleteSlotVariables>(deleteSlotMutation, {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [_deleteSlotAsync, { loading, called }] = useMutation<DeleteSlot, DeleteSlotVariables>(deleteSlotMutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -23,16 +23,23 @@ export const useDeleteSlotMutation = () => {
     },
   });
 
+  let wasDeleted = false;
+
 
   const deleteSlotAsync = async (id: number): Promise<void> => {
+    wasDeleted = false;
+    setErrorMessage('');
     try {
       const variables: DeleteSlotVariables = {
         id,
       };
-      setErrorMessage('');
-      await _deleteSlotAsync({
+      setErrorMessage(null);
+      const result = await _deleteSlotAsync({
         variables,
       });
+      if (result?.data?.deleteSlot) {
+        wasDeleted = true;
+      }
     } catch (e) {
       const formattedErrorMessage = getFormattedErrorMessage(e);
       setErrorMessage(formattedErrorMessage);
@@ -42,7 +49,7 @@ export const useDeleteSlotMutation = () => {
   return {
     inProcessOfDeletingSlot: loading,
     deleteSlotAsync,
-    deleteSlotData: data,
+    wasDeleted,
     wasCalledDeleteSlot: called,
     deleteSlotErrorMessage: errorMessage,
   };

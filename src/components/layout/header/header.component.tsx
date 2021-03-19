@@ -1,7 +1,7 @@
 // Core
 import React, { FC, ReactElement, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import {useRouter} from 'next/router';
 import clsx from 'clsx';
 
 // Components
@@ -26,7 +26,7 @@ import { LOGIN_URL } from '../../../constants/route.constants';
 const Header: FC = (props): ReactElement => {
   const classes: Record<string, string> = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const router = useRouter();
   const isOpenedLeftMenu: boolean = useSelector((state: RootStateInterface) => isOpenedLeftMenuSelector(state));
 
   const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null);
@@ -43,7 +43,7 @@ const Header: FC = (props): ReactElement => {
     setAnchorEl(null);
     dispatch(closeTopMenuAction());
     dispatch(logoutAction());
-    history.push(LOGIN_URL);
+    router.push(LOGIN_URL);
   };
 
   const handleTopMenuClose = (e: React.MouseEvent) => {
@@ -82,7 +82,7 @@ const Header: FC = (props): ReactElement => {
             noWrap
             className={classes.title}
             onClick={(e: React.MouseEvent) => {
-              history.push('/');
+              router.push('/');
             }}
           >
             Skydive CRM
