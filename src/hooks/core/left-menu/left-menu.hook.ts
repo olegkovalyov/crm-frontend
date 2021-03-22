@@ -14,10 +14,10 @@ export const useLeftMenu = () => {
     dispatch(closeLeftMenuAction());
   };
 
-  const { logoutAsync } = useLogoutQuery();
+  const { handleLogout } = useLogoutQuery();
 
   const logout = (e: React.MouseEvent) => {
-    logoutAsync();
+    handleLogout();
   };
 
   return {

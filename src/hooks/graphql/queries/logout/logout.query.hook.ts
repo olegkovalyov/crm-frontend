@@ -1,30 +1,29 @@
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLazyQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-import { logoutAction } from '../../../../redux/auth/auth.actions';
 import { Logout } from '../../../../interfaces/generated/Logout';
+import { RootStateInterface } from '../../../../redux/root.reducer';
+import { getAccessToken } from '../../../../redux/auth/auth.selector';
 
 const logoutQuery = gql`
     query Logout {
         logout
     }
-
 `;
 export const useLogoutQuery = () => {
+  const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
 
-  const dispatch = useDispatch();
-
-  const [logoutAsync] = useLazyQuery<Logout, null>(logoutQuery, {
-    onCompleted: (logoutData) => {
-      dispatch(logoutAction());
+  const [logoutAsync, { data }] = useLazyQuery<Logout, null>(logoutQuery, {
+    context: {
+      headers: {
+        authorization: `Bearer ${accessToken} `,
+      },
     },
-    onError: (e) => {
-      dispatch(logoutAction());
-    },
+    fetchPolicy: 'network-only',
   });
 
-
   return {
-    logoutAsync,
+    handleLogout: logoutAsync,
+    logoutData: data,
   };
 };

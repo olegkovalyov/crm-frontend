@@ -1,7 +1,7 @@
-export const LOGIN_URL = '/login';
-export const REGISTER_URL = '/register';
+export const SIGN_IN_URL = '/signin';
+export const SIGN_UP_URL = '/signup';
 export const FORGOT_PASSWORD_URL = '/forgot-password';
-export const RESET_PASSWORD_URL = '/reset-password/:token';
+export const RESET_PASSWORD_URL = '/reset-password';
 
 export const HOME_URL = '/';
 // Dashboard

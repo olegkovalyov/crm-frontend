@@ -1,26 +1,35 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
-import { setUserAction } from '../../../../redux/auth/auth.actions';
+import gql from 'graphql-tag';
 import { Register, RegisterVariables } from '../../../../interfaces/generated/Register';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
 
-const registerMutation = loader('./gql/register.mutation.graphql');
+const mutation = gql`
+    mutation Register($input: CreateMemberInput!) {
+        register(registerInput: $input){
+            payload{
+                id,
+                userId,
+                status,
+                firstName,
+                lastName,
+                email,
+                roles,
+                licenseType,
+                createdAt,
+                updatedAt,
+            },
+            accessToken
+        }
+    }
+`;
 
 export const useRegisterMutation = () => {
-  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState('');
-  const [_registerAsync, { loading, data }] = useMutation<Register, RegisterVariables>(registerMutation);
+  const [_registerAsync, { loading, data }] = useMutation<Register, RegisterVariables>(mutation);
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
-
-   useEffect(() => {
-    if (data) {
-      dispatch(setUserAction(data.register));
-    }
-  }, [data, dispatch]); // eslint-disable-line
 
 
   const registerAsync = async (
@@ -55,7 +64,7 @@ export const useRegisterMutation = () => {
 
   return {
     inProcessOfRegister: loading,
-    registerAsync,
+    handleRegister: registerAsync,
     registerData: data,
     registerErrorMessage: errorMessage,
   };

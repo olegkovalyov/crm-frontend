@@ -1,28 +1,30 @@
-import React, { FC, ReactElement } from 'react';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { FC, ReactElement, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { NextPageContext } from 'next';
+import { useRouter } from 'next/router';
 import TextField from '@material-ui/core/TextField';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
-import { useParams } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { useStyles } from './reset-password-form.styles';
-import FormError from '../../../elements/form-error.component';
-import FormSpinner from '../../../elements/form-spinner.component';
-import FormSubmitButton from '../../../elements/form-submit-button.component';
-import { Copyright } from '../../../elements/copyright.component';
-import { useResetPasswordFormValidation } from '../../../hooks/ui/reset-password-form-validation/register-form-validation.hook';
-import { useResetPasswordMutation } from '../../../hooks/graphql/mutations/reset-password/reset-password.mutation.hook';
+import { useStyles } from '../../src/components/auth/reset-password-form/reset-password-form.styles';
+import { useResetPasswordFormValidation } from '../../src/hooks/ui/reset-password-form-validation/register-form-validation.hook';
+import { useResetPasswordMutation } from '../../src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook';
+import FormSubmitButton from '../../src/elements/form-submit-button.component';
+import FormSpinner from '../../src/elements/form-spinner.component';
+import FormError from '../../src/elements/form-error.component';
+import { Copyright } from '../../src/elements/copyright.component';
+import { setUserAction } from '../../src/redux/auth/auth.actions';
+import { DASHBOARD_URL } from '../../src/constants/route.constants';
 
-interface IResetPasswordPageParams {
-  token: string,
-}
-
-const ResetPasswordForm: FC = (props): ReactElement => {
+const ResetPassword: FC = (props): ReactElement => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  const { token } = useParams<IResetPasswordPageParams>();
+  const { token } = router.query;
 
   const {
     onPasswordChange,
@@ -40,8 +42,16 @@ const ResetPasswordForm: FC = (props): ReactElement => {
   const {
     inProcessOfResetPassword,
     resetPasswordErrorMessage,
-    resetPasswordAsync,
+    resetPasswordData,
+    handleResetPassword,
   } = useResetPasswordMutation();
+
+  useEffect(() => {
+    if (resetPasswordData) {
+      dispatch(setUserAction(resetPasswordData.resetPassword));
+      router.push(DASHBOARD_URL);
+    }
+  }, [resetPasswordData, dispatch]); // eslint-disable-line
 
   return (
     <>
@@ -91,7 +101,7 @@ const ResetPasswordForm: FC = (props): ReactElement => {
               className={classes.submit}
               onClick={(e) => {
                 e.preventDefault();
-                return resetPasswordAsync(password, token!);
+                return handleResetPassword(password, token as string);
               }}
             />
             <FormSpinner show={inProcessOfResetPassword} />
@@ -106,4 +116,22 @@ const ResetPasswordForm: FC = (props): ReactElement => {
   );
 };
 
-export default ResetPasswordForm;
+// Pass data to the page via props
+export const getServerSideProps = async (context: NextPageContext) => {
+  const cookie = require('cookie');
+  const cookies = context.req.headers.cookie ? cookie.parse(context.req.headers.cookie) : {};
+  if (cookies.refreshToken) {
+    return {
+      redirect: {
+        destination: DASHBOARD_URL,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
+
+export default ResetPassword;
+

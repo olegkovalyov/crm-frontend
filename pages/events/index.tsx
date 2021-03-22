@@ -1,7 +1,8 @@
 import React, { FC, ReactElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import { Content } from '../../src/components/layout/content/content.component';
-
 
 const Events: FC = (props): ReactElement => {
 
@@ -16,11 +17,12 @@ const Events: FC = (props): ReactElement => {
   );
 };
 
-export async function getServerSideProps(context) {
-
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
   // Pass data to the page via props
-  return { props: {} };
-}
+  return {
+    props: {},
+  };
+};
 
 export default Events;
 

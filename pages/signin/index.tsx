@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
@@ -9,20 +9,29 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { useRouter } from 'next/router';
-import gql from 'graphql-tag';
+import { ParsedUrlQuery } from 'querystring';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { useDispatch } from 'react-redux';
 import FormSubmitButton from '../../src/elements/form-submit-button.component';
 import FormSpinner from '../../src/elements/form-spinner.component';
 import FormError from '../../src/elements/form-error.component';
-import { FORGOT_PASSWORD_URL, REGISTER_URL } from '../../src/constants/route.constants';
+import { DASHBOARD_URL, FORGOT_PASSWORD_URL, SIGN_UP_URL } from '../../src/constants/route.constants';
 import { useStyles } from './index.styles';
 import { Copyright } from '../../src/elements/copyright.component';
 import { useLoginFormValidation } from '../../src/hooks/ui/login-form-validation/login-form-validation.hook';
 import { useLoginMutation } from '../../src/hooks/graphql/mutations/login/login.mutation.hook';
-import { initializeApollo } from '../../src/http/graphql.client';
+import { AuthInterface } from '../../src/interfaces/auth.interface';
+import { setUserAction } from '../../src/redux/auth/auth.actions';
 
-const LogInForm: FC = (props): ReactElement => {
+interface PropTypesInterface {
+  auth: AuthInterface
+  children: never;
+}
+
+const SignIn: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElement => {
   const classes = useStyles();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const {
     onEmailChange,
@@ -40,8 +49,21 @@ const LogInForm: FC = (props): ReactElement => {
   const {
     inProcessOfLogin,
     loginErrorMessage,
-    loginAsync,
+    handleLogin,
+    loginData,
   } = useLoginMutation();
+
+  useEffect(() => {
+    if (loginData) {
+      dispatch(setUserAction(loginData.login));
+    }
+  }, [loginData, dispatch]); // eslint-disable-line
+
+  const { auth } = props;
+  if (auth.user || loginData) {
+    router.push(DASHBOARD_URL);
+    return <></>;
+  }
 
   return (
     <>
@@ -92,14 +114,14 @@ const LogInForm: FC = (props): ReactElement => {
               className={classes.submit}
               onClick={(e) => {
                 e.preventDefault();
-                return loginAsync(email, password);
+                return handleLogin(email, password);
               }}
             />
             <FormSpinner show={inProcessOfLogin} />
             <FormError className={classes.loginErrorMessage} message={loginErrorMessage} />
             <Grid container justify="flex-end">
               <Grid item>
-                <Link className={classes.link} onClick={() => router.push(REGISTER_URL)}>
+                <Link className={classes.link} onClick={() => router.push(SIGN_UP_URL)}>
                   Don't have an account? Register
                 </Link>
               </Grid>
@@ -122,48 +144,12 @@ const LogInForm: FC = (props): ReactElement => {
 };
 
 
-export default LogInForm;
-
-export async function getServerSideProps(context) {
-  // Fetch data from external API
-  const { refreshToken } = context.req.cookies;
-
-  if (refreshToken) {
-    const client = initializeApollo();
-    const refreshTokenQuery = gql`
-        query RefreshToken {
-            refreshToken {
-                payload {
-                    id,
-                    userId,
-                    status,
-                    firstName,
-                    lastName,
-                    email,
-                    roles,
-                    licenseType,
-                    createdAt,
-                    updatedAt,
-                },
-                accessToken,
-            }
-        }
-    `;
-    try {
-      const result = await client.query({
-        query: refreshTokenQuery,
-        context: {
-          headers: {
-            refreshToken,
-          },
-        },
-      });
-      console.log(result);
-    } catch (e) {
-      console.log(e.message);
-    }
-  }
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
 
   // Pass data to the page via props
-  return { props: {} };
-}
+  return {
+    props: {},
+  };
+};
+
+export default SignIn;

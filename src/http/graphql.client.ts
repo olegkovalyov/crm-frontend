@@ -4,7 +4,6 @@ let apolloClient;
 
 export function createApolloClient() {
   const endpoint = typeof window === 'undefined' ? 'http://localhost:5000/graphql' : '/graphql';
-  console.log(endpoint);
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
     link: new HttpLink({
