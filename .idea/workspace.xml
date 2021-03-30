@@ -6,57 +6,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/logout/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/reset-password/[token].tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/access-token-handler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/layout/anonymous-header/anonymous-header.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/layout/authorized-header/autrorized-header.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/check-route-access.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/members/member-search-filter/member-search-filter.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/members/members-table/members-table-columns.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/ui/member-filter/member-filter.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/x-license/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/clients/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/clients/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/events/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/forgot-password/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/forgot-password/index.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/forgot-password/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/forgot-password/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/history/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/history/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/inventory/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/inventory/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/members/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/members/index.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/members/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/members/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reset-password/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reset-password/index.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/reset-password/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/settings/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reset-password/[token].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/reset-password/[token].tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/signin/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signin/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/signup/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup/index.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/signup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/forgot-password-form/forgot-password-form.component.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/forgot-password-form/forgot-password-form.styles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/login-form/login-form.component.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/login-form/login-form.styles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/register-form/register-form.component.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/register-form/register-form.styles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/header/header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/authorized-header/authorized-header.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/header/header.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/anonymous-header/anonymous-header.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/route.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/route.constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/top-menu-anonymous.component.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/top-menu-logged-in.component.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/core/left-menu/left-menu.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/core/left-menu/left-menu.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/gql/forgot-password.mutation.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/gql/register.mutation.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/register.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/register.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/gql/reset-password.mutation.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/gql/logout.query.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/refresh-token/gql/refresh-token.query.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/refresh-token/refresh-token.query.hook.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/http/graphql.client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/graphql.client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/auth.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/auth.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/member-roles/member-roles.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/member-roles-filter/member-roles-filter.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/member-status-filter/member-status-filter.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/member-status-filter/member-status-filter.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/member-form/member-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/member-form/member-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/members-table-container/members-table-container.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/members-table-container/members-table-container.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/member-search-filter/member-search-filter.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/members-table-filter/members-table-filter.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/members-table-filter/members-table-filter.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/gql/delete-member.mutation.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/get-members.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/get-members.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/gql/get-members.query.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/member-form-validation/member-form-validation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ui/member-form-validation/member-form-validation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/member-roles-filter/member-roles-filter.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/member-status-filter/member-status-filter.hook.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +46,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="React Component" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -96,7 +72,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/auth" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/common/member-search-filter" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -117,18 +93,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/members" />
       <recent name="$PROJECT_DIR$/src/components/common" />
       <recent name="$PROJECT_DIR$/src/components/clients/clients-table-filter" />
       <recent name="$PROJECT_DIR$/src/components/clients" />
       <recent name="$PROJECT_DIR$/src/components/clients/client-form-elements" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/helpers" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/auth" />
-      <recent name="$PROJECT_DIR$/pages" />
-      <recent name="$PROJECT_DIR$/src/components/layout/anonymous-header" />
-      <recent name="$PROJECT_DIR$/src/components/layout/authorized-header" />
-      <recent name="$PROJECT_DIR$/pages/dashboard" />
+      <recent name="$PROJECT_DIR$/src/components/common/member-search-filter" />
+      <recent name="$PROJECT_DIR$/src/components/common" />
+      <recent name="$PROJECT_DIR$/src/components/members/members-filter" />
+      <recent name="$PROJECT_DIR$/src/lib/x-license" />
+      <recent name="$PROJECT_DIR$/src/lib" />
     </key>
   </component>
   <component name="RunManager">
@@ -202,7 +178,8 @@
       <workItem from="1615721761891" duration="2017000" />
       <workItem from="1615806642504" duration="6278000" />
       <workItem from="1616083841626" duration="13653000" />
-      <workItem from="1616249398480" duration="24510000" />
+      <workItem from="1616249398480" duration="71876000" />
+      <workItem from="1617121936137" duration="701000" />
     </task>
     <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
       <created>1602324599948</created>
@@ -337,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616151437919</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="* Migrated SignIn/SignUp/ResetPassword/ForgotPassword fuinctionality,&#10;* fixed auth behaviour">
+      <created>1616413445066</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1616413445066</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,33 +415,34 @@
     <MESSAGE value="* added draft functionality of add/delete slot,&#10;* updated material-table and material ui to latest" />
     <MESSAGE value="* refactored draft functionality of add/delete slot" />
     <MESSAGE value="* Migrated routes to next.js,&#10;* Updated libraries" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Migrated routes to next.js,&#10;* Updated libraries" />
+    <MESSAGE value="* Migrated SignIn/SignUp/ResetPassword/ForgotPassword fuinctionality,&#10;* fixed auth behaviour" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Migrated SignIn/SignUp/ResetPassword/ForgotPassword fuinctionality,&#10;* fixed auth behaviour" />
   </component>
   <component name="WindowStateProjectService">
     <state x="543" y="308" key="#ESLint" timestamp="1616324890840">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
     <state x="543" y="308" key="#ESLint/0.23.1440.824@0.23.1440.824" timestamp="1616324890840" />
-    <state x="180" y="23" key="CommitChangelistDialog2" timestamp="1616151437410">
+    <state x="0" y="23" key="CommitChangelistDialog2" timestamp="1616413444189">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="180" y="23" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1616151437410" />
+    <state x="0" y="23" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1616413444189" />
     <state x="101" y="123" width="1239" height="624" key="DiffContextDialog" timestamp="1616253139245">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
     <state x="101" y="123" width="1239" height="624" key="DiffContextDialog/0.23.1440.824@0.23.1440.824" timestamp="1616253139245" />
-    <state x="220" y="114" key="Vcs.Push.Dialog.v2" timestamp="1616151439485">
+    <state x="220" y="114" key="Vcs.Push.Dialog.v2" timestamp="1616413447126">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="220" y="114" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1616151439485" />
-    <state x="342" y="121" width="778" height="628" key="find.popup" timestamp="1616324624039">
+    <state x="220" y="114" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1616413447126" />
+    <state x="104" y="43" width="984" height="628" key="find.popup" timestamp="1616506001112">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="342" y="121" width="778" height="628" key="find.popup/0.23.1440.824@0.23.1440.824" timestamp="1616324624039" />
-    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup" timestamp="1616324633590">
+    <state x="104" y="43" width="984" height="628" key="find.popup/0.23.1440.824@0.23.1440.824" timestamp="1616506001112" />
+    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup" timestamp="1616750794840">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1440.824@0.23.1440.824" timestamp="1616324633590" />
+    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1440.824@0.23.1440.824" timestamp="1616750794840" />
     <state x="408" y="266" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1615458251160">
       <screen x="0" y="23" width="1440" height="824" />
     </state>
@@ -470,6 +455,11 @@
           <url>file://$PROJECT_DIR$/src/constants/client.constants.ts</url>
           <line>9</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/members/members-table-filter/members-table-filter.component.tsx</url>
+          <line>78</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

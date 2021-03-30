@@ -145,7 +145,6 @@ const SignIn: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElement
 
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
-
   // Pass data to the page via props
   return {
     props: {},

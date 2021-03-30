@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import '../styles/globals.css';
 import { ApolloProvider } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { AppProps } from 'next/app';
 import { Router, useRouter } from 'next/router';
@@ -16,6 +16,12 @@ import LeftMenu from '../src/components/layout/left-menu/left-menu.component';
 import { handleAccessToken } from '../src/auth/access-token-handler';
 import { SIGN_IN_URL } from '../src/constants/route.constants';
 import { checkRouteAccess } from '../src/helpers/check-route-access';
+import { setUserAction } from '../src/redux/auth/auth.actions';
+import { GetServerSidePropsContext } from 'next';
+
+
+const Cookies = require('js-cookie');
+
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -94,7 +100,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 MyApp.getInitialProps = async (context: AppContextType<Router>) => {
   const auth = await handleAccessToken(context.ctx);
-
+  (context.ctx as unknown as GetServerSidePropsContext).req.cookies.accessToken = auth.accessToken;
   // Pass data to the page via props
   return {
     pageProps: {

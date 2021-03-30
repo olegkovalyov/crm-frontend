@@ -9,7 +9,6 @@ import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { useStyles } from '../../src/components/auth/reset-password-form/reset-password-form.styles';
 import { useResetPasswordFormValidation } from '../../src/hooks/ui/reset-password-form-validation/register-form-validation.hook';
 import { useResetPasswordMutation } from '../../src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook';
 import FormSubmitButton from '../../src/elements/form-submit-button.component';
@@ -18,6 +17,7 @@ import FormError from '../../src/elements/form-error.component';
 import { Copyright } from '../../src/elements/copyright.component';
 import { setUserAction } from '../../src/redux/auth/auth.actions';
 import { DASHBOARD_URL } from '../../src/constants/route.constants';
+import { useStyles } from './index.styles';
 
 const ResetPassword: FC = (props): ReactElement => {
   const classes = useStyles();

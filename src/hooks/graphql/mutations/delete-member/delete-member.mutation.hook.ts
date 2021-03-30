@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
+import gql from "graphql-tag";
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { DeleteMember, DeleteMemberVariables } from '../../../../interfaces/generated/DeleteMember';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 
-const deleteMemberMutation = loader('./gql/delete-member.mutation.graphql');
+const mutation = gql`
+    mutation DeleteMember($input: Int!) {
+        deleteMember(id: $input)
+    }
+`;
 
 export const useDeleteMemberMutation = () => {
 
@@ -15,7 +19,7 @@ export const useDeleteMemberMutation = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_deleteMemberAsync, { loading, data }] = useMutation<DeleteMember, DeleteMemberVariables>(deleteMemberMutation, {
+  const [_deleteMemberAsync, { loading, data }] = useMutation<DeleteMember, DeleteMemberVariables>(mutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -41,7 +45,7 @@ export const useDeleteMemberMutation = () => {
 
   return {
     inProcessOfDeletingMember: loading,
-    deleteMemberAsync,
+    handleDeleteMember: deleteMemberAsync,
     deletedUserData: data,
     deleteUserErrorMessage: errorMessage,
   };

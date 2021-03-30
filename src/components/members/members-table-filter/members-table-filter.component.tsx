@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect } from 'react';
+import React, { FC, ReactElement } from 'react';
 import {
   Accordion,
   AccordionDetails,
@@ -9,48 +9,33 @@ import {
   Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MemberRoles from '../../common/member-roles/member-roles.component';
-import {
-  memberRoles, memberStatuses,
-} from '../../../constants/member.constants';
-import { RoleCheckBoxesStateType, MemberStatusCheckBoxesStateType } from '../../../interfaces/member.interface';
-import MemberStatusFilter from '../../common/member-status-filter/member-status-filter.component';
+import MemberRolesFilter from '../member-roles-filter/member-roles-filter.component';
+import MemberStatusFilter from '../member-status-filter/member-status-filter.component';
 import { MemberRole, MemberStatus } from '../../../interfaces/generated/globalTypes';
+import MemberSearchFilter from '../member-search-filter/member-search-filter.component';
 
 interface PropTypesInterface {
-  roleCheckBoxesState: RoleCheckBoxesStateType,
-  statusCheckBoxesState: MemberStatusCheckBoxesStateType,
-  handleRoleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  // Statuses
   handleStatusChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  initStatusCheckboxes: (statuses: MemberStatus[]) => void,
-  initRoleCheckboxes: (roles: MemberRole[]) => void,
-  getSelectedStatuses: () => MemberStatus[],
-  getSelectedRoles: () => MemberRole[],
-  updateDataAsync: (status: MemberStatus[] | null, roles: MemberRole[] | null) => void,
+  selectedStatuses: MemberStatus[],
+  // Roles
+  handleRoleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  selectedRoles: MemberRole[],
+  // Search
+  handleSearchFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  searchFilterValue: string,
 }
 
 const MembersTableFilter: FC<PropTypesInterface> = (props): ReactElement => {
 
   const {
-    updateDataAsync,
-    handleRoleChange,
-    getSelectedRoles,
-    roleCheckBoxesState,
-    initRoleCheckboxes,
     handleStatusChange,
-    getSelectedStatuses,
-    statusCheckBoxesState,
-    initStatusCheckboxes,
+    selectedStatuses,
+    handleRoleChange,
+    selectedRoles,
+    handleSearchFilterChange,
+    searchFilterValue,
   } = props;
-
-  useEffect(() => {
-    initRoleCheckboxes(memberRoles);
-    initStatusCheckboxes(memberStatuses);
-  }, []); // eslint-disable-line
-
-  useEffect(() => {
-    updateDataAsync(getSelectedStatuses(), getSelectedRoles());
-  }, [getSelectedRoles, getSelectedStatuses]); // eslint-disable-line
 
   return (
     <Accordion>
@@ -63,23 +48,30 @@ const MembersTableFilter: FC<PropTypesInterface> = (props): ReactElement => {
       </AccordionSummary>
       <AccordionDetails>
         <Grid container spacing={1}>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
+            <FormLabel component="legend">Search:</FormLabel>
+            <MemberSearchFilter
+              searchFilterValue={searchFilterValue}
+              onSearchFilterChange={handleSearchFilterChange}
+            />
+          </Grid>
+          <Grid item xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">Role:</FormLabel>
-              <FormGroup>
-                <MemberRoles
-                  roleCheckBoxesState={roleCheckBoxesState}
+              <FormGroup row>
+                <MemberRolesFilter
+                  selectedRoles={selectedRoles}
                   onRoleChange={handleRoleChange}
                 />
               </FormGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">Status:</FormLabel>
-              <FormGroup>
+              <FormGroup row>
                 <MemberStatusFilter
-                  statusCheckBoxesState={statusCheckBoxesState}
+                  selectedStatuses={selectedStatuses}
                   onStatusChange={handleStatusChange}
                 />
               </FormGroup>

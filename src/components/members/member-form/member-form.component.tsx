@@ -15,12 +15,12 @@ import FormError from '../../../elements/form-error.component';
 import {
   licenseTypes,
 } from '../../../constants/member.constants';
-import MemberRoles from '../../common/member-roles/member-roles.component';
+import MemberRolesFilter from '../member-roles-filter/member-roles-filter.component';
 import { RoleCheckBoxesStateType } from '../../../interfaces/member.interface';
 
 
 interface PropTypes {
-  children?: never,
+  children: never,
   title: string,
   firstName: string,
   hasFirstNameError: boolean,
@@ -144,7 +144,7 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormLabel component="legend">Roles</FormLabel>
-            <MemberRoles
+            <MemberRolesFilter
               roleCheckBoxesState={roleCheckBoxesState}
               onRoleChange={onRoleChange}
             />
