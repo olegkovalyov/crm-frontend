@@ -1,13 +1,13 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useRouter } from 'next/router';
 import { XGrid } from '@material-ui/x-grid';
 import { ApolloQueryResult } from '@apollo/client';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { useDispatch } from 'react-redux';
 import { CREATE_MEMBER_URL } from '../../src/constants/route.constants';
 import { Content } from '../../src/components/layout/content/content.component';
 import { MemberInterface } from '../../src/interfaces/member.interface';
@@ -17,9 +17,14 @@ import {
 import { useStyles } from './index.styles';
 import { initializeApollo } from '../../src/http/graphql.client';
 import { GetMembers, GetMembersVariables } from '../../src/interfaces/generated/GetMembers';
-import { useMemberFilter } from '../../src/hooks/ui/member-filter/member-filter.hook';
-import MembersTableFilter from '../../src/components/members/members-table-filter/members-table-filter.component';
-import { columns } from '../../src/components/members/members-table/members-table-columns';
+import { useMembersFilter } from '../../src/hooks/members/members-filter/members-filter.hook';
+import MembersFilterContainer
+  from '../../src/components/members/members-filter-container/members-filter-container.component';
+import { useDeleteMemberMutation } from '../../src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook';
+import ResponsiveDialog from '../../src/elements/responsive-dialog.component';
+import { useMembersTable } from '../../src/hooks/members/members-table/members-table.hook';
+import { useSnackbar } from '../../src/hooks/ui/snackbar/snackbar.hook';
+import { setMembersAction } from '../../src/redux/members/members.actions';
 
 interface PropTypesInterface {
   members: MemberInterface[],
@@ -32,15 +37,75 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
   const router = useRouter();
   const { members, hasError, errorMessage } = props;
 
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackBarSeverity, setSnackbarSeverity] = useState<'success' | 'warning'>('success');
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setMembersAction(members));
+  }, []);
+
   const {
-    selectedRoles,
-    handleFilterRoleChange,
-    selectedStatuses,
-    handleFilterStatusChange,
     searchFilterValue,
     handleSearchFilterChange,
     tableData,
-  } = useMemberFilter(members);
+  } = useMembersFilter();
+
+  const {
+    inProcessOfDeletingMember,
+    deleteMemberErrorMessage,
+    deletedMemberData,
+    handleDeleteMember,
+  } = useDeleteMemberMutation();
+
+  const {
+    columns,
+    selectedMemberId,
+    setSelectedMemberId,
+    needOpenDialog,
+    setNeedOpenDialog,
+  } = useMembersTable();
+
+  const {
+    isOpenedSnackbar,
+    handleOpenSnackBar,
+    handleCloseSnackBar,
+  } = useSnackbar();
+
+
+  const handleDialogOpen = () => {
+    setNeedOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setNeedOpenDialog(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    setNeedOpenDialog(false);
+    await handleDeleteMember(selectedMemberId);
+  };
+
+  useEffect(() => {
+    if (needOpenDialog) {
+      handleDialogOpen();
+    } else {
+      handleDialogClose();
+    }
+  }, [needOpenDialog]);
+
+  useEffect(() => {
+    if (deletedMemberData) {
+      setSnackbarSeverity('success');
+      setSnackbarMessage(`Member #${selectedMemberId} was deleted successfully`);
+      handleOpenSnackBar();
+    } else if (deleteMemberErrorMessage.length) {
+      setSnackbarSeverity('warning');
+      setSnackbarMessage(`Failed to delete #${selectedMemberId} member: ${deleteMemberErrorMessage}`);
+      handleOpenSnackBar();
+    }
+  }, [deletedMemberData, deleteMemberErrorMessage]);
+
 
   if (hasError) {
     return (
@@ -55,6 +120,11 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
     <>
       <Content>
         <Grid container spacing={3}>
+          <Snackbar open={isOpenedSnackbar} autoHideDuration={6000} onClose={handleCloseSnackBar}>
+            <Alert onClose={handleCloseSnackBar} severity={snackBarSeverity}>
+              {snackbarMessage}
+            </Alert>
+          </Snackbar>
           <Grid item xs={12}>
             <Button
               variant="contained"
@@ -70,13 +140,9 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <MembersTableFilter
-              selectedRoles={selectedRoles}
-              handleRoleChange={handleFilterRoleChange}
-              selectedStatuses={selectedStatuses}
-              handleStatusChange={handleFilterStatusChange}
+            <MembersFilterContainer
               searchFilterValue={searchFilterValue}
-              handleSearchFilterChange={handleSearchFilterChange}
+              onSearchFilterChange={handleSearchFilterChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -85,6 +151,18 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
               rows={tableData}
               columns={columns}
               disableColumnMenu={true}
+              loading={inProcessOfDeletingMember}
+            />
+            <ResponsiveDialog
+              handleClose={handleDialogClose}
+              handleConfirm={handleConfirmDelete}
+              handleCancel={handleDialogClose}
+              confirmButtonText='Delete'
+              cancelButtonText='Cancel'
+              title='Are you sure you want to delete member'
+              isOpen={needOpenDialog}
+              isFullScreen={false}
+              inProcess={inProcessOfDeletingMember}
             />
           </Grid>
         </Grid>

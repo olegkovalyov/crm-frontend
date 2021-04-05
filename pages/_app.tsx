@@ -27,9 +27,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const { auth }: { auth: AuthInterface } = pageProps;
 
-  // console.log('Auth', auth);
-  // console.log('PageProps', pageProps);
-
   const router = useRouter();
 
   useEffect(() => {

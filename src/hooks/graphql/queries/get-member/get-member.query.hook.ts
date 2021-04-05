@@ -1,14 +1,29 @@
 import { useLazyQuery } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import gql from 'graphql-tag';
 import { GetMember, GetMemberVariables } from '../../../../interfaces/generated/GetMember';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { MemberInterface } from '../../../../interfaces/member.interface';
 
-const getMemberQuery = loader('./gql/get-member.query.graphql');
+export const getMemberQuery = gql`
+    query GetMember($id: Int!) {
+        getMember(id: $id) {
+            id,
+            userId,
+            status,
+            firstName,
+            lastName,
+            email,
+            roles,
+            licenseType,
+            createdAt,
+            updatedAt
+        }
+    }
+`;
 
 export const useGetMemberQuery = () => {
 
@@ -53,6 +68,6 @@ export const useGetMemberQuery = () => {
     setMemberErrorMessage: setErrorMessage,
     wasMemberLoadCalled: called,
     member,
-    getMemberAsync,
+    handleGetMember: getMemberAsync,
   };
 };

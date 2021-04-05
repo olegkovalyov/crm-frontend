@@ -1,24 +1,37 @@
 import React, { ReactElement } from 'react';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { useSelector } from 'react-redux';
+import { Typography, Breadcrumbs } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
 import { useStyles } from '../content/content.styles';
 import { HOME_URL } from '../../../constants/route.constants';
 import { RootStateInterface } from '../../../redux/root.reducer';
 import { getBreadcrumbsDataSelector } from '../../../redux/ui/ui.selector';
-import { useBreadcrumbs } from '../../../hooks/core/breadcrumbs/breadcrumbs.hook';
+import { useBreadcrumbs } from '../../../hooks/layout/breadcrumbs/breadcrumbs.hook';
 
 
-export const SimpleBreadcrumbs = (): ReactElement => {
+export const AppBreadcrumbs = (): ReactElement => {
   const classes = useStyles();
-
-  const {
-    getBreadcrumbsTitle,
-  } = useBreadcrumbs();
-
-  const breadcrumbsData = useSelector((state: RootStateInterface) => getBreadcrumbsDataSelector(state));
+  //
+  // const {
+  //   getBreadcrumbsTitle,
+  // } = useBreadcrumbs();
+  //
+  // const breadcrumbsData = useSelector((state: RootStateInterface) => getBreadcrumbsDataSelector(state));
 
   return (
-    <></>
+    <>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link color="inherit" href="/" onClick={(e) => {
+        }}>
+          Material-UI
+        </Link>
+        <Link color="inherit" href="/getting-started/installation/" onClick={(e) => {
+        }}>
+          Core
+        </Link>
+        <Typography color="textPrimary">Breadcrumb</Typography>
+      </Breadcrumbs>
+    </>
   );
   // return (
   //   <Route>

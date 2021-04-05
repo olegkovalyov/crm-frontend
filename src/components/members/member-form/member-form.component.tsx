@@ -15,12 +15,12 @@ import FormError from '../../../elements/form-error.component';
 import {
   licenseTypes,
 } from '../../../constants/member.constants';
-import MemberRolesFilter from '../member-roles-filter/member-roles-filter.component';
-import { RoleCheckBoxesStateType } from '../../../interfaces/member.interface';
+import { MemberRole } from '../../../interfaces/generated/globalTypes';
+import MemberRoles from '../member-roles/member-roles';
 
 
 interface PropTypes {
-  children: never,
+  children?: never,
   title: string,
   firstName: string,
   hasFirstNameError: boolean,
@@ -36,8 +36,8 @@ interface PropTypes {
   onEmailChange: (value: string) => void,
   licenseType: string,
   onLicenseTypeChange: (event: React.ChangeEvent<{ value: unknown }>) => void,
-  roleCheckBoxesState: RoleCheckBoxesStateType,
-  onRoleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  selectedRoles: MemberRole[],
+  onRolesChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   isActive: boolean,
   onIsActiveChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   formTouched: boolean,
@@ -54,21 +54,21 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     firstName,
     hasFirstNameError,
     firstNameErrorMessage,
-    onFirstNameChange,
+    onFirstNameChange: handleFirstNameChange,
     lastName,
     hasLastNameError,
     lastNameErrorMessage,
-    onLastNameChange,
+    onLastNameChange: handleLastNameChange,
     email,
     hasEmailError,
     emailErrorMessage,
-    onEmailChange,
+    onEmailChange: handleEmailChange,
     licenseType,
-    onLicenseTypeChange,
-    roleCheckBoxesState,
-    onRoleChange,
+    onLicenseTypeChange: handleLicenseTypeChange,
+    selectedRoles,
+    onRolesChange: handleRolesChange,
     isActive,
-    onIsActiveChange,
+    onIsActiveChange: handleIsActiveChange,
     formTouched,
     submitButtonEnabled,
     formErrorMessage,
@@ -76,11 +76,12 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     submitFn,
   } = props;
 
-
-  const licenseTypeOptionsJsx = licenseTypes.map((value, index) => {
-    return <MenuItem key={value} value={value}>{value}</MenuItem>;
-  });
-
+  const licenseTypeOptionsJsx = licenseTypes.map((value, index) =>
+    <MenuItem
+      key={value}
+      value={value}>{value}
+    </MenuItem>,
+  );
 
   return (
     <>
@@ -92,7 +93,7 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           <Grid item xs={12} sm={6}>
             <TextField
               value={firstName}
-              onChange={(e) => onFirstNameChange(e.target.value)}
+              onChange={(e) => handleFirstNameChange(e.target.value)}
               error={hasFirstNameError && formTouched}
               helperText={firstNameErrorMessage}
               required
@@ -105,7 +106,7 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           <Grid item xs={12} sm={6}>
             <TextField
               value={lastName}
-              onChange={(e) => onLastNameChange(e.target.value)}
+              onChange={(e) => handleLastNameChange(e.target.value)}
               error={hasLastNameError && formTouched}
               helperText={lastNameErrorMessage}
               required
@@ -118,7 +119,7 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           <Grid item xs={12} sm={6}>
             <TextField
               value={email}
-              onChange={(e) => onEmailChange(e.target.value)}
+              onChange={(e) => handleEmailChange(e.target.value)}
               error={hasEmailError && formTouched}
               helperText={emailErrorMessage}
               required
@@ -135,7 +136,7 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 value={licenseType}
-                onChange={onLicenseTypeChange}
+                onChange={handleLicenseTypeChange}
                 label="License type"
               >
                 {licenseTypeOptionsJsx}
@@ -144,21 +145,24 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormLabel component="legend">Roles</FormLabel>
-            <MemberRolesFilter
-              roleCheckBoxesState={roleCheckBoxesState}
-              onRoleChange={onRoleChange}
-            />
+            <MemberRoles roles={selectedRoles} onRolesChange={handleRolesChange} />
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormControlLabel
-              control={<Switch checked={isActive} onChange={onIsActiveChange} name="isActive" color="primary" />}
+              control={
+                <Switch
+                  checked={isActive}
+                  onChange={handleIsActiveChange}
+                  name="isActive"
+                  color="primary"
+                />
+              }
               label="Active"
-
             />
           </Grid>
         </Grid>
         <FormSubmitButton
-          title="Save"
+          title={title === 'Edit' ? 'Save' : 'Create'}
           show={true}
           disabled={!submitButtonEnabled}
           className={classes.submit}

@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
 import LoadBackdrop from '../../../elements/backdrop.component';
-import { useBreadcrumbs } from '../../../hooks/core/breadcrumbs/breadcrumbs.hook';
+import { useBreadcrumbs } from '../../../hooks/layout/breadcrumbs/breadcrumbs.hook';
 import ClientForm from '../client-form/client-form.component';
 import { useClientFormValidation } from '../../../hooks/ui/client-form-validation/client-form-validation.hook';
 import { useGetClientQuery } from '../../../hooks/graphql/queries/get-client/get-client.query.hook';

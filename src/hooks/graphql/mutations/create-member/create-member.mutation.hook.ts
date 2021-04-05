@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
+import gql from 'graphql-tag';
 import { CreateMember, CreateMemberVariables } from '../../../../interfaces/generated/CreateMember';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
 
-const createMemberMutation = loader('./gql/create-member.mutation.graphql');
+const mutation = gql`
+    mutation CreateMember($input: CreateMemberInput!) {
+        createMember(createMemberInput: $input)
+        {
+            id
+        }
+    }
+`;
 
 export const useCreateMemberMutation = () => {
 
@@ -16,7 +23,7 @@ export const useCreateMemberMutation = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_createMemberAsync, { loading, data }] = useMutation<CreateMember, CreateMemberVariables>(createMemberMutation, {
+  const [_createMemberAsync, { loading, data }] = useMutation<CreateMember, CreateMemberVariables>(mutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -58,8 +65,8 @@ export const useCreateMemberMutation = () => {
 
   return {
     inProcessOfCreatingMember: loading,
-    createMemberAsync,
-    memberData: data,
+    handleCreateMember: createMemberAsync,
+    createMemberData: data,
     createMemberErrorMessage: errorMessage,
   };
 };

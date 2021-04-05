@@ -7,7 +7,7 @@ import { useEventFormValidation } from '../../../hooks/ui/event-form-validation/
 import { useGetEventQuery } from '../../../hooks/graphql/queries/get-event/get-event.query.hook';
 import { useUpdateEventMutation } from '../../../hooks/graphql/mutations/update-event/update-event.mutation.hook';
 import { useUsersList } from '../../../hooks/ui/users-list/users-list.hook';
-import { useBreadcrumbs } from '../../../hooks/core/breadcrumbs/breadcrumbs.hook';
+import { useBreadcrumbs } from '../../../hooks/layout/breadcrumbs/breadcrumbs.hook';
 
 interface PropTypes {
   id: string;

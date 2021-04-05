@@ -87,6 +87,7 @@
     "react/destructuring-assignment": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-closing-tag-location": "off",
+    "react/require-default-props": "off",
     "no-underscore-dangle": "off",
     "no-console": 0,
     "global-require": "off"

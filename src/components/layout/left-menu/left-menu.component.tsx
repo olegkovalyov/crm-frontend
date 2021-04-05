@@ -23,7 +23,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useStyles } from './left-menu.styles';
-import { useLeftMenu } from '../../../hooks/core/left-menu/left-menu.hook';
+import { useLeftMenu } from '../../../hooks/layout/left-menu/left-menu.hook';
 import {
   DASHBOARD_URL,
   EVENTS_URL,

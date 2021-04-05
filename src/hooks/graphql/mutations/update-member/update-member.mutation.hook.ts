@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
+import gql from 'graphql-tag';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { UpdateMember, UpdateMemberVariables } from '../../../../interfaces/generated/UpdateMember';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
 
-const updateMemberMutation = loader('./gql/update-member.mutation.graphql');
+const updateMemberMutation = gql`
+    mutation UpdateMember($input: UpdateMemberInput!) {
+        updateMember(updateMemberInput: $input){
+            id,
+        }
+    }
+`;
 
 export const useUpdateMemberMutation = () => {
 
@@ -16,7 +22,10 @@ export const useUpdateMemberMutation = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_updateMemberAsync, { loading, data }] = useMutation<UpdateMember, UpdateMemberVariables>(updateMemberMutation, {
+  const [_updateMemberAsync, {
+    loading,
+    data,
+  }] = useMutation<UpdateMember, UpdateMemberVariables>(updateMemberMutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -31,7 +40,6 @@ export const useUpdateMemberMutation = () => {
     firstName: string,
     lastName: string,
     email: string,
-    password: string | null,
     roles: MemberRole[],
     licenseType: LicenseType,
   ): Promise<void> => {
@@ -43,7 +51,6 @@ export const useUpdateMemberMutation = () => {
           firstName,
           lastName,
           email,
-          password,
           roles,
           licenseType,
         },
@@ -60,7 +67,7 @@ export const useUpdateMemberMutation = () => {
 
   return {
     inProcessOfUpdatingMember: loading,
-    updateMemberAsync,
+    handleUpdateMember: updateMemberAsync,
     updateMemberData: data,
     updateMemberErrorMessage: errorMessage,
   };

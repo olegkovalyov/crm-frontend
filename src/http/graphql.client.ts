@@ -1,15 +1,21 @@
 import { ApolloClient, InMemoryCache, HttpLink, NormalizedCacheObject } from '@apollo/client';
+import ApolloLinkTimeout from 'apollo-link-timeout';
 
 let apolloClient;
 
 export function createApolloClient() {
   const endpoint = typeof window === 'undefined' ? 'http://localhost:5000/graphql' : '/graphql';
+  const httpLink = new HttpLink({
+    uri: endpoint,
+    credentials: 'same-origin',
+  });
+  const timeoutLink = new ApolloLinkTimeout(10000); // 10 second timeout
+
+  const link = timeoutLink.concat(httpLink);
+
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
-    link: new HttpLink({
-      uri: endpoint,
-      credentials: 'same-origin',
-    }),
+    link,
     cache: new InMemoryCache(),
   });
 }

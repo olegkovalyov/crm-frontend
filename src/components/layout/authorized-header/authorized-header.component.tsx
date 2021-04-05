@@ -18,9 +18,9 @@ import { Backdrop, CircularProgress } from '@material-ui/core';
 import { useStyles } from './autrorized-header.styles';
 
 // Selectors
-import { isOpenedLeftMenuSelector, isOpenedTopMenuSelector } from '../../../redux/ui/ui.selector';
+import { isOpenedLeftMenuSelector, isOpenedTopMenuSelector } from '../../../redux/layout/layout.selector';
 import { RootStateInterface } from '../../../redux/root.reducer';
-import { closeTopMenuAction, openLeftMenuAction, openTopMenuAction } from '../../../redux/ui/ui.actions';
+import { closeTopMenuAction, openLeftMenuAction, openTopMenuAction } from '../../../redux/layout/layout.actions';
 import { SIGN_IN_URL, SETTINGS_URL } from '../../../constants/route.constants';
 import { UserInterface } from '../../../interfaces/auth.interface';
 import { useLogoutQuery } from '../../../hooks/graphql/queries/logout/logout.query.hook';
@@ -50,7 +50,6 @@ const AuthorizedHeader: FC<PropTypesInterface> = (props: PropTypesInterface): Re
   };
 
   const logoutHandler = (e: React.MouseEvent) => {
-    console.log('Logout now');
     handleLogout();
     setOpenGlobalBackdrop(true);
     setAnchorEl(null);
