@@ -1,5 +1,4 @@
 import { useLazyQuery } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { RootStateInterface } from '../../../../redux/root.reducer';
@@ -9,7 +8,7 @@ import { GetLoads, GetLoadsVariables } from '../../../../interfaces/generated/Ge
 import { LoadInterface } from '../../../../interfaces/load.interface';
 import { ClientInterface } from '../../../../interfaces/client.interface';
 import { MemberInterface } from '../../../../interfaces/member.interface';
-import { ClientStatus, MemberRole, MemberStatus, PaymentStatus } from '../../../../interfaces/generated/globalTypes';
+import { ClientStatus, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
 
 const getLoadsQuery = loader('./gql/get-loads.query.graphql');
 
@@ -34,53 +33,45 @@ export const useGetLoadsQuery = () => {
       onError: (e) => {
         const formattedErrorMessage = getFormattedErrorMessage(e);
         setErrorMessage(formattedErrorMessage);
-      }
+      },
     });
 
   if (data && data.getLoads) {
-    loads = data.getLoads.map(item => {
-      return { ...item };
-    });
+    loads = data.getLoads.map(item => ({ ...item }));
   }
 
   if (data && data.getClients) {
-    clients = data.getClients.map(item => {
-      return { ...item };
-    });
+    clients = data.getClients.map(item => ({ ...item }));
   }
 
   if (data && data.getMembers) {
-    members = data.getMembers.map(item => {
-      return { ...item };
-    });
+    members = data.getMembers.map(item => ({ ...item }));
   }
 
   const getLoadsAsync = async (
     eventId: number,
     memberStatuses: MemberStatus[] | null,
     memberRoles: MemberRole[] | null,
-    clientStatuses: ClientStatus[] | null,
-    clientPaymentStatuses: PaymentStatus[] | null,
+    clientStatusOptions: ClientStatus[] | null,
     isClientAssigned: boolean | null,
     clientCreatedAtMin: Date | null,
     clientCreatedAtMax: Date | null,
   ) => {
-      setErrorMessage(null);
-      const variables: GetLoadsVariables = {
-        eventId,
-        getMembersFilter: {
-          statuses: memberStatuses,
-          roles: memberRoles,
-        },
-        getClientsFilter: {
-          clientStatuses,
-          paymentStatuses: clientPaymentStatuses,
-          isAssigned: isClientAssigned,
-          createdAtMin: clientCreatedAtMin,
-          createdAtMax: clientCreatedAtMax,
-        },
-      };
-      await _getLoadsAsync({ variables });
+    setErrorMessage(null);
+    const variables: GetLoadsVariables = {
+      eventId,
+      getMembersFilter: {
+        statuses: memberStatuses,
+        roles: memberRoles,
+      },
+      getClientsFilter: {
+        clientStatusOptions,
+        isAssigned: isClientAssigned,
+        createdAtMin: clientCreatedAtMin,
+        createdAtMax: clientCreatedAtMax,
+      },
+    };
+    await _getLoadsAsync({ variables });
   };
 
 

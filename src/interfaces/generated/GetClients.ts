@@ -3,21 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GetClientsFilterInput, ClientRole, ClientStatus, Gender, PaymentStatus } from "./globalTypes";
+import { GetClientsFilterInput, ClientRole, ClientStatus, Gender } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetClients
 // ====================================================
-
-export interface GetClients_getClients_tm {
-  __typename: "UserModel";
-  id: number;
-}
-
-export interface GetClients_getClients_cameraman {
-  __typename: "UserModel";
-  id: number;
-}
 
 export interface GetClients_getClients {
   __typename: "ClientModel";
@@ -37,10 +27,8 @@ export interface GetClients_getClients {
   withCameraman: boolean;
   notes: string | null;
   certificate: string | null;
-  paymentStatus: PaymentStatus;
-  tm: GetClients_getClients_tm | null;
-  cameraman: GetClients_getClients_cameraman | null;
   createdAt: any;
+  updatedAt: any;
   processedAt: any | null;
 }
 

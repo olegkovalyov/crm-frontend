@@ -26,7 +26,7 @@ const ClientVideoOptions: FC<PropTypesInterface> = React.memo((props): ReactElem
 
   if (clientRole === ClientRole.TANDEM) {
     return (
-      <FormControl component="fieldset" className={className}>
+      <>
         <FormLabel component="legend">Type</FormLabel>
         <FormControlLabel
           control={
@@ -50,7 +50,7 @@ const ClientVideoOptions: FC<PropTypesInterface> = React.memo((props): ReactElem
           label='Hand video'
           labelPlacement="end"
         />
-      </FormControl>
+      </>
     );
   }
 

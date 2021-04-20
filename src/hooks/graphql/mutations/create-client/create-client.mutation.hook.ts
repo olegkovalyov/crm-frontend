@@ -1,18 +1,24 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
+import gql from 'graphql-tag';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import {
   ClientStatus,
   ClientRole, Gender,
-  PaymentStatus,
 } from '../../../../interfaces/generated/globalTypes';
 import { CreateClient, CreateClientVariables } from '../../../../interfaces/generated/CreateClient';
 
-const createClientMutation = loader('./gql/create-client.mutation.graphql');
+const mutation = gql`
+    mutation CreateClient($input: CreateClientInput!) {
+        createClient(createClientInput: $input)
+        {
+            id
+        }
+    }
+`;
 
 export const useCreateClientMutation = () => {
 
@@ -20,7 +26,7 @@ export const useCreateClientMutation = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_createClientAsync, { loading, data }] = useMutation<CreateClient, CreateClientVariables>(createClientMutation, {
+  const [_createClientAsync, { loading, data }] = useMutation<CreateClient, CreateClientVariables>(mutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -42,9 +48,6 @@ export const useCreateClientMutation = () => {
     address: string,
     withHandCameraVideo: boolean,
     withCameraman: boolean,
-    paymentStatus: PaymentStatus,
-    tmId: number | null,
-    cameramanId: number | null,
     notes: string | null,
     certificate: string | null,
   ): Promise<void> => {
@@ -63,9 +66,6 @@ export const useCreateClientMutation = () => {
           address,
           withHandCameraVideo,
           withCameraman,
-          paymentStatus,
-          tmId,
-          cameramanId,
           notes,
           certificate,
         },
@@ -82,8 +82,8 @@ export const useCreateClientMutation = () => {
 
   return {
     inProcessOfCreatingClient: loading,
-    createClientAsync,
-    clientData: data,
+    handleCreateClient: createClientAsync,
+    createClientData: data,
     createClientErrorMessage: errorMessage,
   };
 };

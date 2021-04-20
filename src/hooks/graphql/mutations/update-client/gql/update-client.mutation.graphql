@@ -1,5 +1,0 @@
-mutation UpdateClient($input: UpdateClientInput!) {
-    updateClient(updateClientInput: $input){
-        id,
-    }
-}

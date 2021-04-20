@@ -22,6 +22,7 @@ const ClientGenderOptions: FC<PropTypesInterface> = React.memo((props): ReactEle
     <FormControl component="fieldset" className={className}>
       <FormLabel component="legend">Gender</FormLabel>
       <RadioGroup
+        row
         aria-label="gender"
         name="gender"
         value={gender}

@@ -14,9 +14,8 @@ export enum ClientRole {
 }
 
 export enum ClientStatus {
-  ACTIVE = "ACTIVE",
+  PENDING = "PENDING",
   PROCESSED = "PROCESSED",
-  REFUSED = "REFUSED",
 }
 
 export enum Gender {
@@ -56,12 +55,6 @@ export enum MemberStatus {
   BLOCKED = "BLOCKED",
 }
 
-export enum PaymentStatus {
-  NOT_PAID = "NOT_PAID",
-  PAID = "PAID",
-  REFUNDED = "REFUNDED",
-}
-
 export enum UserRole {
   ADMIN = "ADMIN",
   AS_A_PASSENGER = "AS_A_PASSENGER",
@@ -90,9 +83,6 @@ export interface CreateClientInput {
   address: string;
   withHandCameraVideo: boolean;
   withCameraman: boolean;
-  paymentStatus: PaymentStatus;
-  tmId?: number | null;
-  cameramanId?: number | null;
   notes?: string | null;
   certificate?: string | null;
 }
@@ -137,8 +127,7 @@ export interface ForgotPasswordInput {
 }
 
 export interface GetClientsFilterInput {
-  clientStatuses?: ClientStatus[] | null;
-  paymentStatuses?: PaymentStatus[] | null;
+  clientStatusOptions?: ClientStatus[] | null;
   isAssigned?: boolean | null;
   createdAtMin?: any | null;
   createdAtMax?: any | null;
@@ -178,10 +167,6 @@ export interface UpdateClientInput {
   address?: string | null;
   withHandCameraVideo?: boolean | null;
   withCameraman?: boolean | null;
-  paymentStatus?: PaymentStatus | null;
-  tmId?: number | null;
-  cameramanId?: number | null;
-  processedAt?: any | null;
   notes?: string | null;
   certificate?: string | null;
 }
@@ -199,7 +184,6 @@ export interface UpdateMemberInput {
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
-  password?: string | null;
   roles?: MemberRole[] | null;
   licenseType?: LicenseType | null;
   id: number;

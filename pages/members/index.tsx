@@ -61,38 +61,16 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
   const {
     columns,
     selectedMemberId,
-    setSelectedMemberId,
     needOpenDialog,
-    setNeedOpenDialog,
-  } = useMembersTable();
+    handleConfirmDelete,
+    handleCancelDelete
+  } = useMembersTable(handleDeleteMember);
 
   const {
     isOpenedSnackbar,
     handleOpenSnackBar,
     handleCloseSnackBar,
   } = useSnackbar();
-
-
-  const handleDialogOpen = () => {
-    setNeedOpenDialog(true);
-  };
-
-  const handleDialogClose = () => {
-    setNeedOpenDialog(false);
-  };
-
-  const handleConfirmDelete = async () => {
-    setNeedOpenDialog(false);
-    await handleDeleteMember(selectedMemberId);
-  };
-
-  useEffect(() => {
-    if (needOpenDialog) {
-      handleDialogOpen();
-    } else {
-      handleDialogClose();
-    }
-  }, [needOpenDialog]);
 
   useEffect(() => {
     if (deletedMemberData) {
@@ -147,16 +125,15 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
           </Grid>
           <Grid item xs={12}>
             <XGrid
-              className={classes.tableContainer}
+              autoHeight={true}
               rows={tableData}
               columns={columns}
               disableColumnMenu={true}
               loading={inProcessOfDeletingMember}
             />
             <ResponsiveDialog
-              handleClose={handleDialogClose}
               handleConfirm={handleConfirmDelete}
-              handleCancel={handleDialogClose}
+              handleCancel={handleCancelDelete}
               confirmButtonText='Delete'
               cancelButtonText='Cancel'
               title='Are you sure you want to delete member'

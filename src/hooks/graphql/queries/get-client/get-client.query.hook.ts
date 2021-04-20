@@ -1,14 +1,38 @@
 import { useLazyQuery } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import gql from 'graphql-tag';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { GetClient, GetClientVariables } from '../../../../interfaces/generated/GetClient';
 import { ClientInterface } from '../../../../interfaces/client.interface';
 
-const getClientQuery = loader('./gql/get-client.query.graphql');
+export const getClientQuery = gql`
+    query GetClient($id: Int!) {
+        getClient(id: $id) {
+            id,
+            userId,
+            role,
+            status,
+            gender,
+            age,
+            firstName,
+            lastName,
+            email,
+            weight,
+            phone,
+            address,
+            withHandCameraVideo,
+            withCameraman,
+            notes,
+            certificate,
+            createdAt,
+            updatedAt,
+            processedAt
+        }
+    }
+`;
 
 export const useGetClientQuery = () => {
 

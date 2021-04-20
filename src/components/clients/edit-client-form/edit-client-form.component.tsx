@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import LoadBackdrop from '../../../elements/backdrop.component';
 import { useBreadcrumbs } from '../../../hooks/layout/breadcrumbs/breadcrumbs.hook';
 import ClientForm from '../client-form/client-form.component';
-import { useClientFormValidation } from '../../../hooks/ui/client-form-validation/client-form-validation.hook';
+import { useClientFormValidation } from '../../../hooks/clients/client-form-validation/client-form-validation.hook';
 import { useGetClientQuery } from '../../../hooks/graphql/queries/get-client/get-client.query.hook';
 import { useUpdateClientMutation } from '../../../hooks/graphql/mutations/update-client/update-client.mutation.hook';
 
@@ -42,8 +42,6 @@ const EditClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onClientRoleChange,
     clientStatus,
     onClientStatusChange,
-    paymentStatus,
-    onPaymentStatusChange,
     gender,
     onGenderChange,
     weight,

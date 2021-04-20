@@ -5,8 +5,7 @@ import { useStyles } from './client-form.styles';
 import FormSubmitButton from '../../../elements/form-submit-button.component';
 import FormSpinner from '../../../elements/form-spinner.component';
 import FormError from '../../../elements/form-error.component';
-import { ClientStatus, ClientRole, Gender, PaymentStatus } from '../../../interfaces/generated/globalTypes';
-import ClientPaymentOptions from '../../common/client-payment-options/client-payment-options.component';
+import { ClientStatus, ClientRole, Gender } from '../../../interfaces/generated/globalTypes';
 import ClientStatusOptions from '../../common/client-status-options/client-status-options.component';
 import ClientEventOptions from '../../common/client-event-options/client-event-options.component';
 import ClientVideoOptions from '../../common/client-video-options/client-video-options.component';
@@ -44,8 +43,6 @@ interface PropTypes {
   hasEmailError: boolean,
   emailErrorMessage: string,
   onEmailChange: (value: string) => void,
-  paymentStatus: PaymentStatus,
-  onPaymentStatusChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   gender: Gender,
   onGenderChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   weight: string,
@@ -101,8 +98,6 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
     onClientRoleChange,
     clientStatus,
     onClientStatusChange,
-    paymentStatus,
-    onPaymentStatusChange,
     gender,
     onGenderChange,
     weight,
@@ -142,7 +137,7 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       </Typography>
       <form className={classes.form} noValidate>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={3}>
             <Grid item xs={12}>
               <FirstName
                 firstName={firstName}
@@ -183,52 +178,52 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
               />
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={2}>
+            <Age
+              age={age}
+              onAgeChange={onAgeChange}
+              hasAgeError={hasAgeError}
+              ageErrorMessage={ageErrorMessage}
+              formTouched={formTouched}
+            />
+            <Weight
+              className={classes.inputMargin}
+              weight={weight}
+              onWeightChange={onWeightChange}
+              hasWeightError={hasWeightError}
+              weightErrorMessage={weightErrorMessage}
+              formTouched={formTouched}
+            />
+            <Certificate
+              className={classes.inputMargin}
+              certificate={certificate}
+              onCertificateChange={onCertificateChange}
+              certificateErrorMessage={certificateErrorMessage}
+              hasCertificateError={hasCertificateError}
+              formTouched={formTouched}
+            />
+          </Grid>
+          <Grid item xs={12} sm={5}>
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={3}>
-                <Age
-                  age={age}
-                  onAgeChange={onAgeChange}
-                  hasAgeError={hasAgeError}
-                  ageErrorMessage={ageErrorMessage}
-                  formTouched={formTouched}
-                />
-                <Weight
-                  className={classes.inputMargin}
-                  weight={weight}
-                  onWeightChange={onWeightChange}
-                  hasWeightError={hasWeightError}
-                  weightErrorMessage={weightErrorMessage}
-                  formTouched={formTouched}
-                />
-              </Grid>
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12}>
                 <ClientStatusOptions
                   clientStatus={clientStatus}
                   onClientStatusChange={onClientStatusChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={3}>
-                <ClientPaymentOptions
-                  paymentStatus={paymentStatus}
-                  onPaymentStatusChange={onPaymentStatusChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12}>
                 <ClientGenderOptions
                   gender={gender}
                   onGenderChange={onGenderChange}
                 />
               </Grid>
-            </Grid>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <ClientEventOptions
                   clientRole={clientRole}
                   onClientRoleChange={onClientRoleChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <ClientVideoOptions
                   clientRole={clientRole}
                   withCameraman={withCameraman}
@@ -256,18 +251,8 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Certificate
-              certificate={certificate}
-              onCertificateChange={onCertificateChange}
-              certificateErrorMessage={certificateErrorMessage}
-              hasCertificateError={hasCertificateError}
-              formTouched={formTouched}
-            />
-          </Grid>
-
-          <Grid item xs={12}>
             <FormSubmitButton
-              title="Save"
+              title={title === 'Edit' ? 'Save' : 'Create'}
               show={true}
               disabled={!submitButtonEnabled}
               className={classes.submit}
@@ -279,7 +264,6 @@ const ClientForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
             <FormSpinner show={loading} />
             <FormError className={classes.editUserErrorMessage} message={formErrorMessage} />
           </Grid>
-
         </Grid>
       </form>
     </>

@@ -7,10 +7,20 @@ import React, { useState } from 'react';
 import { MemberRole, MemberStatus } from '../../../interfaces/generated/globalTypes';
 import { EDIT_MEMBER_URL } from '../../../constants/route.constants';
 
-export const useMembersTable = () => {
+export const useMembersTable = (deleteMemberHandler) => {
 
   const [selectedMemberId, setSelectedMemberId] = useState<number | null>(null);
   const [needOpenDialog, setNeedOpenDialog] = useState(false);
+
+
+  const handleCancelDelete = () => {
+    setNeedOpenDialog(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    setNeedOpenDialog(false);
+    await deleteMemberHandler(selectedMemberId);
+  };
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Id', flex: 1 },
@@ -46,7 +56,7 @@ export const useMembersTable = () => {
     },
     {
       field: 'actions', headerName: 'Actions', width: 170, renderCell: (params: GridCellParams) => {
-        const url = EDIT_MEMBER_URL.replace(':id', String(params.value));
+        const url = EDIT_MEMBER_URL.replace('[memberId]', String(params.value));
         return <>
           <Button
             color='primary'
@@ -58,7 +68,6 @@ export const useMembersTable = () => {
           <Button
             color='secondary'
             onClick={(e) => {
-              console.log('SelectedMemberId:', params.value);
               setSelectedMemberId(params.value as number);
               setNeedOpenDialog(true);
             }}
@@ -76,5 +85,7 @@ export const useMembersTable = () => {
     setSelectedMemberId,
     needOpenDialog,
     setNeedOpenDialog,
+    handleConfirmDelete,
+    handleCancelDelete,
   };
 };

@@ -5,15 +5,15 @@ import { MemberInterface } from '../../../interfaces/member.interface';
 import { RootStateInterface } from '../../../redux/root.reducer';
 import {
   getMembers,
-  getSelectedMemberRolesForFilter,
-  getSelectedMemberStatusesForFilter,
+  getMemberRolesOptionsForFilter,
+  getMemberStatusOptionsForFilter,
 } from '../../../redux/members/members.selector';
 
 export const useMembersFilter = () => {
 
   const members = useSelector((state: RootStateInterface) => getMembers(state));
-  const selectedRoles = useSelector((state: RootStateInterface) => getSelectedMemberRolesForFilter(state));
-  const selectedStatuses = useSelector((state: RootStateInterface) => getSelectedMemberStatusesForFilter(state));
+  const selectedRolesOptions = useSelector((state: RootStateInterface) => getMemberRolesOptionsForFilter(state));
+  const selectedStatusOptions = useSelector((state: RootStateInterface) => getMemberStatusOptionsForFilter(state));
 
   const [tableData, setTableData] = useState<GridRowsProp>(members);
   const [searchFilterValue, setSearchFilterValue] = useState('');
@@ -33,16 +33,16 @@ export const useMembersFilter = () => {
       actions: member.id,
     }));
     setTableData(rows);
-  }, [selectedRoles, selectedStatuses, searchFilterValue, members]);
+  }, [selectedRolesOptions, selectedStatusOptions, searchFilterValue, members]);
 
   const handleSearchFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchFilterValue(e.target.value);
   };
 
   const applyFilter = (data: MemberInterface[]): MemberInterface[] => data.filter(member => {
-    if (selectedRoles.length) {
+    if (selectedRolesOptions.length) {
       let shouldPass = false;
-      selectedRoles.forEach(role => {
+      selectedRolesOptions.forEach(role => {
         if (member.roles.includes(role)) {
           shouldPass = true;
         }
@@ -51,9 +51,9 @@ export const useMembersFilter = () => {
     }
     return true;
   }).filter(member => {
-    if (selectedStatuses.length) {
+    if (selectedStatusOptions.length) {
       let shouldPass = false;
-      selectedStatuses.forEach(status => {
+      selectedStatusOptions.forEach(status => {
         if (member.status === status) {
           shouldPass = true;
         }
@@ -76,8 +76,8 @@ export const useMembersFilter = () => {
   });
 
   return {
-    selectedRoles,
-    selectedStatuses,
+    selectedRolesOptions,
+    selectedStatuses: selectedStatusOptions,
     applyFilter,
     searchFilterValue,
     handleSearchFilterChange,

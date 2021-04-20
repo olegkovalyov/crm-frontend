@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GetClientsFilterInput, GetMembersFilterInput, LoadStatus, UserRole, ClientRole, ClientStatus, Gender, PaymentStatus, MemberStatus, MemberRole, LicenseType } from "./globalTypes";
+import { GetClientsFilterInput, GetMembersFilterInput, LoadStatus, UserRole, ClientRole, ClientStatus, Gender, MemberStatus, MemberRole, LicenseType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetLoads
@@ -30,16 +30,6 @@ export interface GetLoads_getLoads {
   slots: GetLoads_getLoads_slots[];
 }
 
-export interface GetLoads_getClients_tm {
-  __typename: "UserModel";
-  id: number;
-}
-
-export interface GetLoads_getClients_cameraman {
-  __typename: "UserModel";
-  id: number;
-}
-
 export interface GetLoads_getClients {
   __typename: "ClientModel";
   id: number;
@@ -58,9 +48,6 @@ export interface GetLoads_getClients {
   withCameraman: boolean;
   notes: string | null;
   certificate: string | null;
-  paymentStatus: PaymentStatus;
-  tm: GetLoads_getClients_tm | null;
-  cameraman: GetLoads_getClients_cameraman | null;
   createdAt: any;
   processedAt: any | null;
 }

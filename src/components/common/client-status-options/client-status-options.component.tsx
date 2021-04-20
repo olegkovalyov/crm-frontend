@@ -19,31 +19,27 @@ const ClientStatusOptions: FC<PropTypesInterface> = React.memo((props): ReactEle
   const className = props.className ?? '';
 
   return (
-    <FormControl component="fieldset" className={className}>
+    <>
       <FormLabel component="legend">Status</FormLabel>
       <RadioGroup
+        row={true}
         aria-label="client-status"
         name="client-status"
         value={clientStatus}
         onChange={onClientStatusChange}
       >
         <FormControlLabel
-          value={ClientStatus.ACTIVE}
+          value={ClientStatus.PENDING}
           control={<Radio color='primary' />}
-          label="Active"
+          label="Pending"
         />
         <FormControlLabel
           value={ClientStatus.PROCESSED}
           control={<Radio color='primary' />}
           label="Processed"
         />
-        <FormControlLabel
-          value={ClientStatus.REFUSED}
-          control={<Radio color='secondary' />}
-          label="Refused"
-        />
       </RadioGroup>
-    </FormControl>
+    </>
   );
 });
 

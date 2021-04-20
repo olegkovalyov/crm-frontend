@@ -1,13 +1,6 @@
-import { ClientStatus, PaymentStatus } from '../interfaces/generated/globalTypes';
+import { ClientStatus } from '../interfaces/generated/globalTypes';
 
-export const clientStatuses = [
-  ClientStatus.ACTIVE,
+export const clientStatusOptions = [
+  ClientStatus.PENDING,
   ClientStatus.PROCESSED,
-  ClientStatus.REFUSED,
-];
-
-export const paymentStatuses = [
-  PaymentStatus.PAID,
-  PaymentStatus.NOT_PAID,
-  PaymentStatus.REFUNDED,
 ];

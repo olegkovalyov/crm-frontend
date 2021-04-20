@@ -5,7 +5,7 @@ import {
   lastNameConstrains,
   validateInput,
 } from '../../../common/inputValidator';
-import { LicenseType, MemberRole, MemberStatus } from '../../../interfaces/generated/globalTypes';
+import { LicenseType, MemberStatus } from '../../../interfaces/generated/globalTypes';
 import { useRolesEdit } from '../roles-edit/roles-edit.hook';
 import { MemberInterface } from '../../../interfaces/member.interface';
 
@@ -17,6 +17,7 @@ export const useMemberFormValidation = () => {
     setLastName(member.lastName);
     setEmail(member.email);
     setLicenseType(member.licenseType);
+    setSelectedRolesOptions(member.roles);
   };
 
 
@@ -41,7 +42,8 @@ export const useMemberFormValidation = () => {
   const [status, setStatus] = useState<MemberStatus>(MemberStatus.ACTIVE);
 
   const {
-    selectedRoles,
+    selectedRolesOptions,
+    setSelectedRolesOptions,
     handleRolesChange,
   } = useRolesEdit();
 
@@ -52,7 +54,7 @@ export const useMemberFormValidation = () => {
       && email.length
       && firstName.length
       && lastName.length
-      && selectedRoles.length
+      && selectedRolesOptions.length
     ) {
       enableSubmitButton(true);
     } else {
@@ -65,7 +67,7 @@ export const useMemberFormValidation = () => {
     email,
     firstName,
     lastName,
-    selectedRoles,
+    selectedRolesOptions,
   ]); // eslint-disable-line
 
   const handleFirstNameChange = (value: string): void => {
@@ -108,7 +110,7 @@ export const useMemberFormValidation = () => {
     licenseType,
     handleLicenceTypeChange,
     handleRolesChange,
-    selectedRoles,
+    selectedRolesOptions,
     status,
     handleIsActiveChange,
     formTouched,

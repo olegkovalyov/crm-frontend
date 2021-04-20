@@ -9,7 +9,7 @@ export const DASHBOARD_URL = '/dashboard';
 // Manage
 export const MEMBERS_URL = '/members';
 export const CREATE_MEMBER_URL = '/members/create';
-export const EDIT_MEMBER_URL = '/members/:id';
+export const EDIT_MEMBER_URL = '/members/[memberId]';
 export const MANAGE_INVENTORY_URL = '/inventory';
 
 // Events
@@ -22,7 +22,7 @@ export const LOADS_URL = '/events/:eventId/loads';
 // Clients
 export const CLIENTS_URL = '/clients';
 export const CREATE_CLIENT_URL = '/clients/create';
-export const EDIT_CLIENT_URL = '/clients/:id';
+export const EDIT_CLIENT_URL = '/clients/[clientId]';
 
 // Loads
 
@@ -32,19 +32,98 @@ export const SETTINGS_URL = '/settings';
 export const NO_MATCH_URL = '*';
 
 
-export const breadcrumbsMap: { [key: string]: string } = {
-  [DASHBOARD_URL]: 'Dashboard',
-  [MEMBERS_URL]: 'Members',
-  [CREATE_MEMBER_URL]: 'Create',
-  [MANAGE_INVENTORY_URL]: 'Inventory',
-  [SETTINGS_URL]: 'Settings',
-  [EVENTS_URL]: 'Events',
-  [CREATE_EVENT_URL]: 'Create',
-  [LOADS_URL]: 'Loads',
-  [HISTORY_URL]: 'History',
-  [CLIENTS_URL]: 'Clients',
-  [CREATE_CLIENT_URL]: 'Create',
-};
+export const breadcrumbs = [
+  {
+    path: DASHBOARD_URL,
+    parts: [
+      {
+        url: DASHBOARD_URL,
+        title: 'Dashboard',
+      },
+    ],
+  },
+  {
+    path: MEMBERS_URL,
+    parts: [
+      {
+        url: MEMBERS_URL,
+        title: 'Members',
+      },
+    ],
+  },
+  {
+    path: CREATE_MEMBER_URL,
+    parts: [
+      {
+        url: MEMBERS_URL,
+        title: 'Members',
+      },
+      {
+        url: CREATE_MEMBER_URL,
+        title: 'Create',
+      },
+    ],
+  },
+  {
+    path: EDIT_MEMBER_URL,
+    parts: [
+      {
+        url: MEMBERS_URL,
+        title: 'Members',
+      },
+      {
+        url: EDIT_MEMBER_URL,
+        title: '[memberId]',
+      },
+    ],
+  },
+  {
+    path: CLIENTS_URL,
+    parts: [
+      {
+        url: CLIENTS_URL,
+        title: 'Clients',
+      },
+    ],
+  },
+  {
+    path: CREATE_CLIENT_URL,
+    parts: [
+      {
+        url: CLIENTS_URL,
+        title: 'Clients',
+      },
+      {
+        url: CREATE_CLIENT_URL,
+        title: 'Create',
+      },
+    ],
+  },
+  {
+    path: EDIT_CLIENT_URL,
+    parts: [
+      {
+        url: CLIENTS_URL,
+        title: 'Clients',
+      },
+      {
+        url: EDIT_CLIENT_URL,
+        title: '[clientId]',
+      },
+    ],
+  },
+];
+
+// export const breadcrumbsMap: { [key: string]: string } = {
+//   [MANAGE_INVENTORY_URL]: 'Inventory',
+//   [SETTINGS_URL]: 'Settings',
+//   [EVENTS_URL]: 'Events',
+//   [CREATE_EVENT_URL]: 'Create',
+//   [LOADS_URL]: 'Loads',
+//   [HISTORY_URL]: 'History',
+//   [CLIENTS_URL]: 'Clients',
+//   [CREATE_CLIENT_URL]: 'Create',
+// };
 
 export const routePaths = [
   HOME_URL,

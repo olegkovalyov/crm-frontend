@@ -66,6 +66,7 @@ const LeftMenu: FC = (props): ReactElement => {
     </ListItem>
     : '';
 
+
   return (
     <>
       <Drawer

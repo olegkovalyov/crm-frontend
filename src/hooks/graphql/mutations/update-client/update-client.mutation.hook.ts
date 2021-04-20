@@ -1,26 +1,30 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
+import gql from 'graphql-tag';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import {
   ClientStatus,
   ClientRole, Gender,
-  PaymentStatus,
 } from '../../../../interfaces/generated/globalTypes';
 import { UpdateClient, UpdateClientVariables } from '../../../../interfaces/generated/UpdateClient';
 
-const updateClientMutation = loader('./gql/update-client.mutation.graphql');
-
+const mutation = gql`
+    mutation UpdateClient($input: UpdateClientInput!) {
+        updateClient(updateClientInput: $input){
+            id,
+        }
+    }
+`;
 export const useUpdateClientMutation = () => {
 
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [_updateClientAsync, { loading, data }] = useMutation<UpdateClient, UpdateClientVariables>(updateClientMutation, {
+  const [_updateClientAsync, { loading, data }] = useMutation<UpdateClient, UpdateClientVariables>(mutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -43,10 +47,6 @@ export const useUpdateClientMutation = () => {
     address: string,
     withHandCameraVideo: boolean,
     withCameraman: boolean,
-    paymentStatus: PaymentStatus,
-    tmId: number | null,
-    cameramanId: number | null,
-    processedAt: Date | null,
     notes: string | null,
     certificate: string | null,
   ): Promise<void> => {
@@ -66,10 +66,6 @@ export const useUpdateClientMutation = () => {
           address,
           withHandCameraVideo,
           withCameraman,
-          paymentStatus,
-          tmId,
-          cameramanId,
-          processedAt,
           notes,
           certificate,
         },
@@ -86,7 +82,7 @@ export const useUpdateClientMutation = () => {
 
   return {
     inProcessOfUpdatingClient: loading,
-    updateClientAsync,
+    handleClientUpdate:updateClientAsync,
     updateClientData: data,
     updateClientErrorMessage: errorMessage,
   };

@@ -10,14 +10,14 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
-import MemberSearchFilter from '../member-search-filter/member-search-filter.component';
-import { useRolesFiltering } from '../../../hooks/members/roles-filtering/roles-filtering.hook';
-import MemberRoles from '../member-roles/member-roles';
-import MemberStatuses from '../member-statuses/member-statuses.component';
-import { useStatusesFiltering } from '../../../hooks/members/statuses-filtering/statuses-filtering.hook';
 import { RootStateInterface } from '../../../redux/root.reducer';
 import { isExpandedMembersFilterSelector } from '../../../redux/layout/layout.selector';
 import { collapseMembersFilterAction, expandMembersFilterAction } from '../../../redux/layout/layout.actions';
+import { useRolesFilter } from '../../../hooks/members/roles-filter/roles-filter.hook';
+import { useStatusFilter } from '../../../hooks/members/status-filter/status-filter.hook';
+import MembersSearchFilter from '../members-search-filter/members-search-filter.component';
+import MemberRolesOptions from '../member-roles-options/member-roles-options.component';
+import MemberStatusOptions from '../member-status-options/member-status-options.component';
 
 interface PropTypesInterface {
   // Search
@@ -35,14 +35,14 @@ const MembersFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
   } = props;
 
   const {
-    selectedRoles,
-    handleRolesChange,
-  } = useRolesFiltering();
+    selectedRolesOptions,
+    handleRolesOptionsChange,
+  } = useRolesFilter();
 
   const {
-    selectedStatuses,
-    handleStatusesChange,
-  } = useStatusesFiltering();
+    selectedStatusOptions,
+    handleStatusOptionsChange,
+  } = useStatusFilter()
 
   const handleAccordionChange = (e: React.ChangeEvent<{}>, expanded: boolean): void => {
     expanded ? dispatch(expandMembersFilterAction()) : dispatch(collapseMembersFilterAction());
@@ -64,7 +64,7 @@ const MembersFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <FormLabel component="legend">Search:</FormLabel>
-            <MemberSearchFilter
+            <MembersSearchFilter
               searchFilterValue={searchFilterValue}
               onSearchFilterChange={handleSearchFilterChange}
             />
@@ -73,9 +73,9 @@ const MembersFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
             <FormControl component="fieldset">
               <FormLabel component="legend">Role:</FormLabel>
               <FormGroup row>
-                <MemberRoles
-                  roles={selectedRoles}
-                  onRolesChange={handleRolesChange}
+                <MemberRolesOptions
+                  roles={selectedRolesOptions}
+                  onRolesChange={handleRolesOptionsChange}
                 />
               </FormGroup>
             </FormControl>
@@ -84,9 +84,9 @@ const MembersFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
             <FormControl component="fieldset">
               <FormLabel component="legend">Status:</FormLabel>
               <FormGroup row>
-                <MemberStatuses
-                  statuses={selectedStatuses}
-                  onStatusesChange={handleStatusesChange}
+                <MemberStatusOptions
+                  statusOptions={selectedStatusOptions}
+                  onChange={handleStatusOptionsChange}
                 />
               </FormGroup>
             </FormControl>

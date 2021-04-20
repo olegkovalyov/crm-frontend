@@ -1,15 +1,39 @@
 import { useLazyQuery } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import gql from 'graphql-tag';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { GetClients, GetClientsVariables } from '../../../../interfaces/generated/GetClients';
 import { ClientInterface } from '../../../../interfaces/client.interface';
-import { ClientStatus, PaymentStatus } from '../../../../interfaces/generated/globalTypes';
+import { ClientStatus } from '../../../../interfaces/generated/globalTypes';
 
-const getClientsQuery = loader('./gql/get-clients.query.graphql');
+export const getClientsQuery = gql`
+    query GetClients($getClientsFilter: GetClientsFilterInput!) {
+        getClients(getClientsFilterInput: $getClientsFilter){
+            id,
+            userId,
+            role,
+            status,
+            gender,
+            age,
+            firstName,
+            lastName,
+            email,
+            weight,
+            phone,
+            address,
+            withHandCameraVideo,
+            withCameraman,
+            notes,
+            certificate,
+            createdAt,
+            updatedAt,
+            processedAt
+        }
+    }
+`;
 
 export const useGetClientsQuery = () => {
 
@@ -30,23 +54,19 @@ export const useGetClientsQuery = () => {
     });
 
   if (data && data.getClients) {
-    clients = data.getClients.map(item => {
-      return { ...item };
-    });
+    clients = data.getClients.map(item => ({ ...item }));
   }
 
   const getClientsAsync = async (
-    clientStatuses: ClientStatus[] | null,
-    paymentStatuses: PaymentStatus[] | null,
-    isAssigned: boolean| null,
+    clientStatusOptions: ClientStatus[] | null,
+    isAssigned: boolean | null,
     createdAtMin: Date | null,
     createdAtMax: Date | null,
   ) => {
     try {
       const variables: GetClientsVariables = {
         getClientsFilter: {
-          clientStatuses,
-          paymentStatuses,
+          clientStatusOptions,
           isAssigned,
           createdAtMin,
           createdAtMax,
@@ -64,6 +84,6 @@ export const useGetClientsQuery = () => {
     areClientsLoading: loading,
     getClientsErrorMessage: errorMessage,
     clients,
-    getClientsAsync,
+    handleGetClients: getClientsAsync,
   };
 };

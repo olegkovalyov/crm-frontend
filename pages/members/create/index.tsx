@@ -33,7 +33,7 @@ const CreateMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
     licenseType,
     handleLicenceTypeChange,
     handleRolesChange,
-    selectedRoles,
+    selectedRolesOptions,
     status,
     handleIsActiveChange,
     formTouched,
@@ -77,7 +77,7 @@ const CreateMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
           onEmailChange={handleEmailChange}
           licenseType={licenseType}
           onLicenseTypeChange={handleLicenceTypeChange}
-          selectedRoles={selectedRoles}
+          selectedRoles={selectedRolesOptions}
           onRolesChange={handleRolesChange}
           isActive={status === MemberStatus.ACTIVE}
           onIsActiveChange={handleIsActiveChange}
@@ -91,7 +91,7 @@ const CreateMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
             lastName,
             email,
             'password',
-            selectedRoles,
+            selectedRolesOptions,
             licenseType)}
         />
       </Content>

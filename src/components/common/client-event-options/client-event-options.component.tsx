@@ -22,6 +22,7 @@ const ClientEventOptions: FC<PropTypesInterface> = React.memo((props): ReactElem
     <FormControl component="fieldset" className={className}>
       <FormLabel component="legend">Type</FormLabel>
       <RadioGroup
+        row
         aria-label="client-type"
         name="client-type"
         value={clientRole}
@@ -40,7 +41,7 @@ const ClientEventOptions: FC<PropTypesInterface> = React.memo((props): ReactElem
         <FormControlLabel
           value={ClientRole.AS_A_PASSENGER}
           control={<Radio color='primary' />}
-          label="As a passenger"
+          label="Passenger"
         />
       </RadioGroup>
     </FormControl>

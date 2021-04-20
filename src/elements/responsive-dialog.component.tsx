@@ -7,7 +7,6 @@ import FormSpinner from './form-spinner.component';
 
 interface PropTypes {
   children?: never,
-  handleClose: () => void,
   handleConfirm: () => void,
   handleCancel: () => void,
   confirmButtonText: string,
@@ -21,7 +20,6 @@ interface PropTypes {
 const ResponsiveDialog: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
   const {
-    handleClose,
     handleConfirm,
     handleCancel,
     confirmButtonText,
@@ -48,7 +46,6 @@ const ResponsiveDialog: FC<PropTypes> = (props: PropTypes): ReactElement => {
       <Dialog
         fullScreen={isFullScreen}
         open={isOpen}
-        onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
         disableBackdropClick={true}
       >

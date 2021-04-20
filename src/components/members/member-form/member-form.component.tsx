@@ -16,7 +16,7 @@ import {
   licenseTypes,
 } from '../../../constants/member.constants';
 import { MemberRole } from '../../../interfaces/generated/globalTypes';
-import MemberRoles from '../member-roles/member-roles';
+import MemberRolesOptions from '../member-roles-options/member-roles-options.component';
 
 
 interface PropTypes {
@@ -145,7 +145,10 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormLabel component="legend">Roles</FormLabel>
-            <MemberRoles roles={selectedRoles} onRolesChange={handleRolesChange} />
+            <MemberRolesOptions
+              roles={selectedRoles}
+              onRolesChange={handleRolesChange}
+            />
           </Grid>
           <Grid item xs={12} sm={12}>
             <FormControlLabel

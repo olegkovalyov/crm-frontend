@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { ApolloQueryResult } from '@apollo/client';
 import Alert from '@material-ui/lab/Alert';
 import { useMemberFormValidation } from '../../../src/hooks/members/member-form-validation/member-form-validation.hook';
-import { useCreateMemberMutation } from '../../../src/hooks/graphql/mutations/create-member/create-member.mutation.hook';
 import MemberForm from '../../../src/components/members/member-form/member-form.component';
 import { MemberStatus } from '../../../src/interfaces/generated/globalTypes';
 import { Content } from '../../../src/components/layout/content/content.component';
@@ -47,7 +46,7 @@ const EditMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
     licenseType,
     handleLicenceTypeChange,
     handleRolesChange,
-    selectedRoles,
+    selectedRolesOptions,
     status,
     handleIsActiveChange,
     formTouched,
@@ -106,7 +105,7 @@ const EditMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
           onEmailChange={handleEmailChange}
           licenseType={licenseType}
           onLicenseTypeChange={handleLicenceTypeChange}
-          selectedRoles={selectedRoles}
+          selectedRoles={selectedRolesOptions}
           onRolesChange={handleRolesChange}
           isActive={status === MemberStatus.ACTIVE}
           onIsActiveChange={handleIsActiveChange}
@@ -120,7 +119,7 @@ const EditMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
             firstName,
             lastName,
             email,
-            selectedRoles,
+            selectedRolesOptions,
             licenseType)}
         />
       </Content>

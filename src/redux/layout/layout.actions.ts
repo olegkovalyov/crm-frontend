@@ -1,7 +1,7 @@
 import {
   CLOSE_LEFT_MENU,
-  CLOSE_TOP_MENU,
-  COLLAPSE_MEMBERS_FILTER,
+  CLOSE_TOP_MENU, COLLAPSE_CLIENTS_FILTER,
+  COLLAPSE_MEMBERS_FILTER, EXPAND_CLIENTS_FILTER,
   EXPAND_MEMBERS_FILTER,
   OPEN_LEFT_MENU,
   OPEN_TOP_MENU,
@@ -32,6 +32,14 @@ export interface CollapseMembersFilterActionInterface {
   type: typeof COLLAPSE_MEMBERS_FILTER
 }
 
+export interface ExpandClientsFilterActionInterface {
+  type: typeof EXPAND_CLIENTS_FILTER
+}
+
+export interface CollapseClientsFilterActionInterface {
+  type: typeof COLLAPSE_CLIENTS_FILTER
+}
+
 export const openLeftMenuAction = (): OpenLeftMenuActionInterface => ({
   type: OPEN_LEFT_MENU,
 });
@@ -56,9 +64,19 @@ export const collapseMembersFilterAction = (): CollapseMembersFilterActionInterf
   type: COLLAPSE_MEMBERS_FILTER,
 });
 
+export const expandClientsFilterAction = (): ExpandClientsFilterActionInterface => ({
+  type: EXPAND_CLIENTS_FILTER,
+});
+
+export const collapseClientsFilterAction = (): CollapseClientsFilterActionInterface => ({
+  type: COLLAPSE_CLIENTS_FILTER,
+});
+
 export type LayoutActionTypes = OpenLeftMenuActionInterface
   | CloseLeftMenuActionInterface
   | OpenTopMenuActionInterface
   | CloseTopMenuActionInterface
   | ExpandMembersFilterActionInterface
-  | CollapseMembersFilterActionInterface;
+  | CollapseMembersFilterActionInterface
+  | ExpandClientsFilterActionInterface
+  | CollapseClientsFilterActionInterface;
