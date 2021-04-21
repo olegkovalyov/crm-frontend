@@ -3,8 +3,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  FormControl,
-  FormGroup,
   FormLabel, Grid,
   Typography,
 } from '@material-ui/core';
@@ -12,6 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import TextField from '@material-ui/core/TextField';
 import { RootStateInterface } from '../../../redux/root.reducer';
 import {
   isExpandedClientsFilterSelector,
@@ -23,6 +22,7 @@ import {
 import { useStatusFilter } from '../../../hooks/clients/status-filter/status-filter.hook';
 import ClientStatusOptions from '../client-status-options/client-status-options.component';
 import { useDateFilter } from '../../../hooks/clients/date-filter/date-filter.hook';
+import SearchFilter from '../../common/search-filter/search-filter.component';
 
 interface PropTypesInterface {
   // Search
@@ -31,6 +31,11 @@ interface PropTypesInterface {
 }
 
 const ClientsFilterContainer: FC<PropTypesInterface> = (props): ReactElement => {
+  const {
+    onSearchFilterChange: handleSearchFilterChange,
+    searchFilterValue,
+  } = props;
+
   const dispatch = useDispatch();
   const isExpanded = useSelector((state: RootStateInterface) => isExpandedClientsFilterSelector(state));
 
@@ -64,8 +69,14 @@ const ClientsFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
         <Typography variant='button'>Filter</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Grid item container spacing={1} xs={12}>
-          <Grid item xs={12}>
+        <Grid item container spacing={3} xs={12}>
+          <Grid item xs={12} sm={6}>
+            <SearchFilter
+              searchFilterValue={searchFilterValue}
+              onSearchFilterChange={handleSearchFilterChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <FormLabel component="legend">Client Status:</FormLabel>
             <ClientStatusOptions
               statusOptions={selectedStatusOptions}
@@ -78,7 +89,7 @@ const ClientsFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
                 margin="normal"
                 id="date-picker-dialog"
                 format="dd.MM.yyyy"
-                label='Select min date'
+                label='Created date min:'
                 value={createdDateMin}
                 onChange={handleCreatedDateMinChange}
                 inputVariant='outlined'
@@ -92,7 +103,7 @@ const ClientsFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
                 margin="normal"
                 id="date-picker-dialog"
                 format="dd.MM.yyyy"
-                label='Select max date'
+                label='Created date max:'
                 value={createdDateMax}
                 onChange={handleCreatedDateMaxChange}
                 inputVariant='outlined'

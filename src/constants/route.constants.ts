@@ -9,7 +9,7 @@ export const DASHBOARD_URL = '/dashboard';
 // Manage
 export const MEMBERS_URL = '/members';
 export const CREATE_MEMBER_URL = '/members/create';
-export const EDIT_MEMBER_URL = '/members/[memberId]';
+export const EDIT_MEMBER_URL = '/members/[id]';
 export const MANAGE_INVENTORY_URL = '/inventory';
 
 // Events
@@ -22,7 +22,7 @@ export const LOADS_URL = '/events/:eventId/loads';
 // Clients
 export const CLIENTS_URL = '/clients';
 export const CREATE_CLIENT_URL = '/clients/create';
-export const EDIT_CLIENT_URL = '/clients/[clientId]';
+export const EDIT_CLIENT_URL = '/clients/[id]';
 
 // Loads
 
@@ -73,7 +73,7 @@ export const breadcrumbs = [
       },
       {
         url: EDIT_MEMBER_URL,
-        title: '[memberId]',
+        title: '[id]',
       },
     ],
   },
@@ -108,7 +108,7 @@ export const breadcrumbs = [
       },
       {
         url: EDIT_CLIENT_URL,
-        title: '[clientId]',
+        title: '[id]',
       },
     ],
   },

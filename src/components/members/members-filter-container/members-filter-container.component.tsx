@@ -3,7 +3,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  FormControl,
   FormGroup,
   FormLabel, Grid,
   Typography,
@@ -15,9 +14,9 @@ import { isExpandedMembersFilterSelector } from '../../../redux/layout/layout.se
 import { collapseMembersFilterAction, expandMembersFilterAction } from '../../../redux/layout/layout.actions';
 import { useRolesFilter } from '../../../hooks/members/roles-filter/roles-filter.hook';
 import { useStatusFilter } from '../../../hooks/members/status-filter/status-filter.hook';
-import MembersSearchFilter from '../members-search-filter/members-search-filter.component';
 import MemberRolesOptions from '../member-roles-options/member-roles-options.component';
 import MemberStatusOptions from '../member-status-options/member-status-options.component';
+import SearchFilter from '../../common/search-filter/search-filter.component';
 
 interface PropTypesInterface {
   // Search
@@ -42,7 +41,7 @@ const MembersFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
   const {
     selectedStatusOptions,
     handleStatusOptionsChange,
-  } = useStatusFilter()
+  } = useStatusFilter();
 
   const handleAccordionChange = (e: React.ChangeEvent<{}>, expanded: boolean): void => {
     expanded ? dispatch(expandMembersFilterAction()) : dispatch(collapseMembersFilterAction());
@@ -61,35 +60,31 @@ const MembersFilterContainer: FC<PropTypesInterface> = (props): ReactElement => 
         <Typography variant='button'>Filter</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
             <FormLabel component="legend">Search:</FormLabel>
-            <MembersSearchFilter
+            <SearchFilter
               searchFilterValue={searchFilterValue}
               onSearchFilterChange={handleSearchFilterChange}
             />
           </Grid>
-          <Grid item xs={12}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Role:</FormLabel>
-              <FormGroup row>
-                <MemberRolesOptions
-                  roles={selectedRolesOptions}
-                  onRolesChange={handleRolesOptionsChange}
-                />
-              </FormGroup>
-            </FormControl>
+          <Grid item xs={12} sm={6}>
+            <FormLabel component="legend">Status:</FormLabel>
+            <FormGroup row>
+              <MemberStatusOptions
+                statusOptions={selectedStatusOptions}
+                onChange={handleStatusOptionsChange}
+              />
+            </FormGroup>
           </Grid>
           <Grid item xs={12}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Status:</FormLabel>
-              <FormGroup row>
-                <MemberStatusOptions
-                  statusOptions={selectedStatusOptions}
-                  onChange={handleStatusOptionsChange}
-                />
-              </FormGroup>
-            </FormControl>
+            <FormLabel component="legend">Role:</FormLabel>
+            <FormGroup row>
+              <MemberRolesOptions
+                roles={selectedRolesOptions}
+                onRolesChange={handleRolesOptionsChange}
+              />
+            </FormGroup>
           </Grid>
         </Grid>
       </AccordionDetails>

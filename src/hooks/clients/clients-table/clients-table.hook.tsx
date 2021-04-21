@@ -101,7 +101,7 @@ export const useClientsTable = (deleteClientHandler) => {
     },
     {
       field: 'actions', headerName: 'Actions', width: 200, renderCell: (params: GridCellParams) => {
-        const url = EDIT_CLIENT_URL.replace('[clientId]', String(params.value));
+        const url = EDIT_CLIENT_URL.replace('[id]', String(params.value));
         return <>
           <Button
             color='primary'

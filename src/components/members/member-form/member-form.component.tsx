@@ -17,6 +17,9 @@ import {
 } from '../../../constants/member.constants';
 import { MemberRole } from '../../../interfaces/generated/globalTypes';
 import MemberRolesOptions from '../member-roles-options/member-roles-options.component';
+import FirstName from '../../common/first-name/first-name.component';
+import LastName from '../../common/last-name/last-name.component';
+import Email from '../../common/email/email.component';
 
 
 interface PropTypes {
@@ -91,42 +94,30 @@ const MemberForm: FC<PropTypes> = (props: PropTypes): ReactElement => {
       <form className={classes.form} noValidate>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <TextField
-              value={firstName}
-              onChange={(e) => handleFirstNameChange(e.target.value)}
-              error={hasFirstNameError && formTouched}
-              helperText={firstNameErrorMessage}
-              required
-              id="firstName"
-              name="firstName"
-              label="First name"
-              fullWidth
+            <FirstName
+              firstName={firstName}
+              onFirstNameChange={handleFirstNameChange}
+              hasFirstNameError={hasFirstNameError}
+              firstNameErrorMessage={firstNameErrorMessage}
+              formTouched={formTouched}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              value={lastName}
-              onChange={(e) => handleLastNameChange(e.target.value)}
-              error={hasLastNameError && formTouched}
-              helperText={lastNameErrorMessage}
-              required
-              id="lastName"
-              name="lastName"
-              label="Last name"
-              fullWidth
+            <LastName
+              lastName={lastName}
+              onLastNameChange={handleLastNameChange}
+              hasLastNameError={hasLastNameError}
+              lastNameErrorMessage={lastNameErrorMessage}
+              formTouched={formTouched}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              value={email}
-              onChange={(e) => handleEmailChange(e.target.value)}
-              error={hasEmailError && formTouched}
-              helperText={emailErrorMessage}
-              required
-              id="email"
-              name="email"
-              label="Email"
-              fullWidth
+            <Email
+              email={email}
+              onEmailChange={handleEmailChange}
+              hasEmailError={hasEmailError}
+              emailErrorMessage={emailErrorMessage}
+              formTouched={formTouched}
             />
           </Grid>
           <Grid item xs={12} sm={3}>

@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import { LicenseType, MemberRole, MemberStatus } from '../../src/interfaces/generated/globalTypes';
 import { useRegisterMutation } from '../../src/hooks/graphql/mutations/register/register.mutation.hook';
 import FormSubmitButton from '../../src/elements/form-submit-button.component';
-import { useRegisterFormValidation } from '../../src/hooks/ui/register-form-validation/register-form-validation.hook';
+import { useRegisterFormValidation } from '../../src/hooks/auth/register-form-validation/register-form-validation.hook';
 import { useStyles } from './index.styles';
 import FormSpinner from '../../src/elements/form-spinner.component';
 import { DASHBOARD_URL, SIGN_IN_URL } from '../../src/constants/route.constants';

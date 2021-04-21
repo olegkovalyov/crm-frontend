@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Typography, Breadcrumbs } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 import { breadcrumbs } from '../../../constants/route.constants';
 
 
@@ -22,7 +22,7 @@ export const AppBreadcrumbs = (): ReactElement => {
         }
 
         if ((index === route.parts.length - 1)
-          && route.parts.length !== 1
+          || route.parts.length === 1
         ) {
           return <Typography color="textPrimary">
             {title}
@@ -31,7 +31,6 @@ export const AppBreadcrumbs = (): ReactElement => {
 
         return <Link
           key={singlePart.url}
-          color="inherit"
           href={singlePart.url}
         >
           {title}

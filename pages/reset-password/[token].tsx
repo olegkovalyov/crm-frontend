@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { useResetPasswordFormValidation } from '../../src/hooks/ui/reset-password-form-validation/register-form-validation.hook';
+import { useResetPasswordFormValidation } from '../../src/hooks/auth/reset-password-form-validation/register-form-validation.hook';
 import { useResetPasswordMutation } from '../../src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook';
 import FormSubmitButton from '../../src/elements/form-submit-button.component';
 import FormSpinner from '../../src/elements/form-spinner.component';

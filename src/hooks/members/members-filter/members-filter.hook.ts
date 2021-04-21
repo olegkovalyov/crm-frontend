@@ -65,8 +65,9 @@ export const useMembersFilter = () => {
     const value = searchFilterValue.trim();
     if (value !== '') {
       let shouldPass = false;
-      if (member.firstName.includes(value)
-        || member.lastName.includes(value)
+      if (member.firstName.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        || member.lastName.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        || member.email.toLocaleLowerCase().includes(value.toLocaleLowerCase())
       ) {
         shouldPass = true;
       }

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootStateInterface } from '../../../redux/root.reducer';
 import {
   getClients,
-  getClientStatusOptionsForFilter,
+  getClientStatusOptionsForFilter, getCreatedAtMaxForFilter, getCreatedAtMinForFilter,
 } from '../../../redux/clients/clients.selector';
 import { ClientInterface } from '../../../interfaces/client.interface';
 
@@ -12,6 +12,9 @@ export const useClientsFilter = () => {
 
   const clients = useSelector((state: RootStateInterface) => getClients(state));
   const selectedStatusOptions = useSelector((state: RootStateInterface) => getClientStatusOptionsForFilter(state));
+  const createdMin = useSelector((state: RootStateInterface) => getCreatedAtMinForFilter(state));
+  const createdMax = useSelector((state: RootStateInterface) => getCreatedAtMaxForFilter(state));
+
 
   const [tableData, setTableData] = useState<GridRowsProp>(clients);
   const [searchFilterValue, setSearchFilterValue] = useState('');
@@ -42,6 +45,8 @@ export const useClientsFilter = () => {
     selectedStatusOptions,
     searchFilterValue,
     clients,
+    createdMin,
+    createdMax,
   ]);
 
   const handleSearchFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,14 +68,20 @@ export const useClientsFilter = () => {
     const value = searchFilterValue.trim();
     if (value !== '') {
       let shouldPass = false;
-      if (client.firstName.includes(value)
-        || client.lastName.includes(value)
+      if (client.firstName.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        || client.lastName.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        || client.email.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        || client.certificate.toLocaleLowerCase().includes(value.toLocaleLowerCase())
       ) {
         shouldPass = true;
       }
       return shouldPass;
     }
     return true;
+  }).filter(client => {
+    const date = new Date(client.createdAt).getTime();
+    return date >= new Date(createdMin).getTime()
+      && date <= new Date(createdMax).getTime();
   });
 
   return {

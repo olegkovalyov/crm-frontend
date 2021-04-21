@@ -18,7 +18,7 @@ import FormError from '../../src/elements/form-error.component';
 import { DASHBOARD_URL, FORGOT_PASSWORD_URL, SIGN_UP_URL } from '../../src/constants/route.constants';
 import { useStyles } from './index.styles';
 import { Copyright } from '../../src/elements/copyright.component';
-import { useLoginFormValidation } from '../../src/hooks/ui/login-form-validation/login-form-validation.hook';
+import { useLoginFormValidation } from '../../src/hooks/auth/login-form-validation/login-form-validation.hook';
 import { useLoginMutation } from '../../src/hooks/graphql/mutations/login/login.mutation.hook';
 import { AuthInterface } from '../../src/interfaces/auth.interface';
 import { setUserAction } from '../../src/redux/auth/auth.actions';
