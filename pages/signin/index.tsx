@@ -29,6 +29,9 @@ interface PropTypesInterface {
 }
 
 const SignIn: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElement => {
+
+  const { auth } = props;
+
   const classes = useStyles();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -49,6 +52,7 @@ const SignIn: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElement
   const {
     inProcessOfLogin,
     loginErrorMessage,
+    setLoginErrorMessage,
     handleLogin,
     loginData,
   } = useLoginMutation();
@@ -59,11 +63,18 @@ const SignIn: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElement
     }
   }, [loginData, dispatch]); // eslint-disable-line
 
-  const { auth } = props;
+
+  useEffect(() => {
+    if (auth.message) {
+      setLoginErrorMessage(auth.message);
+    }
+  }, [auth.message]);
+
   if (auth.user || loginData) {
     router.push(DASHBOARD_URL);
     return <></>;
   }
+
 
   return (
     <>

@@ -1,3 +1,0 @@
-mutation DeleteEvent($input: Int!) {
-    deleteEvent(id: $input)
-}

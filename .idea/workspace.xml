@@ -6,23 +6,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/common/notification/notification.compontent.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/events/events/events.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/events/events.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/events/events.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/events/events.selector.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/events/events.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clients/clients-filter-container/clients-filter-container.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clients/clients-filter-container/clients-filter-container.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/breadcrumbs/breadcrumbs.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/breadcrumbs/breadcrumbs.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/members/member-form/member-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/member-form/member-form.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/members/members-filter-container/members-filter-container.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/members/members-filter-container/members-filter-container.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/members/members-search-filter/members-search-filter.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/search-filter/search-filter.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/members/members-search-filter/members-search-filter.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/search-filter/search-filter.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/route.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/route.constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/clients/clients-filter/clients-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/clients/clients-filter/clients-filter.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/clients/clients-table/clients-table.hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/clients/clients-table/clients-table.hook.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/clients/date-filter/date-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/clients/date-filter/date-filter.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/members/members-filter/members-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/members/members-filter/members-filter.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/members/members-table/members-table.hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/members/members-table/members-table.hook.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/clients/clients.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/clients/clients.reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/clients/clients.selector.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/clients/clients.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/events/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/events/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/signin/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signin/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/error-modal/error-modal.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/error-modal/error-modal.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/create-event-form/create-event-form.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/edit-event-form/edit-event-form.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/event-details/event-details.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/event-details/event-details.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/event-form/event-form.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/event-form/event-form.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/events-table-container/events-table-container.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/events-table-container/events-table-container.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/events-table/events-table.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/members-list/members-list.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/members-list/members-list.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/staff/staff.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/events/staff/staff.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/clients-panel/clients-panel.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-container/loads-container.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-panels/loads-panels.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-tabs/loads-tabs.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/loads-tabs/loads-tabs.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/single-load/single-load.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/single-load/single-load.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loads/slots-list/slots-list.styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/gql/create-event.mutation.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/gql/delete-event.mutation.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/gql/updateEventMutation.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-event/get-event.query.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-event/gql/get-event.query.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/gql/get-events.query.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/error-modal/error-modal.hook.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/error-notify/error-notify.hook.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/event-form-validation/event-form-validation.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/loads/loads.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/snackbar/snackbar.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ui/users-list/users-list.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/event.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/event.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetEvent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetEvents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetEvents.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/UpdateEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/UpdateEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/root.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/root.reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,19 +85,27 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="React Component" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="kovalyovoleg &lt;kovalyovoleg@gmail.com&gt;" />
         <option value="Oleg Kovalyov &lt;kovalyovoleg@gmail.com&gt;" />
+        <option value="kovalyovoleg &lt;kovalyovoleg@gmail.com&gt;" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -64,7 +121,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/layout/notification" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -77,7 +134,7 @@
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
-    <property name="ts.rename.search.for.js.occurrences" value="false" />
+    <property name="ts.rename.search.for.dynamic.occurrences" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReadonlyStatusHandler">
@@ -85,18 +142,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/hooks/layout/notification" />
+      <recent name="$PROJECT_DIR$/src/hooks/events/events-sheduler" />
+      <recent name="$PROJECT_DIR$/src/redux" />
       <recent name="$PROJECT_DIR$/src/components/common" />
       <recent name="$PROJECT_DIR$/pages/clients" />
-      <recent name="$PROJECT_DIR$/src/hooks/clients" />
-      <recent name="$PROJECT_DIR$/src/components/clients" />
-      <recent name="$PROJECT_DIR$/src/redux" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/hooks/auth" />
       <recent name="$PROJECT_DIR$/src/hooks/clients" />
       <recent name="$PROJECT_DIR$/src/components/clients" />
       <recent name="$PROJECT_DIR$/src/hooks/members" />
       <recent name="$PROJECT_DIR$/src/hooks/layout" />
-      <recent name="$PROJECT_DIR$/src/components/members" />
     </key>
   </component>
   <component name="RunManager">
@@ -184,7 +241,7 @@
       <workItem from="1618555243179" duration="10030000" />
       <workItem from="1618646379645" duration="7249000" />
       <workItem from="1618821114512" duration="1174000" />
-      <workItem from="1618822303167" duration="13820000" />
+      <workItem from="1618822303167" duration="51335000" />
     </task>
     <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
       <created>1602324599948</created>
@@ -340,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618905237692</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="* fixed breadcrumbs,&#10;* added clients date filtering,&#10;* refactored common components usage,">
+      <created>1618997060621</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1618997060621</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,6 +501,7 @@
     <MESSAGE value="* Migrated SignIn/SignUp/ResetPassword/ForgotPassword fuinctionality,&#10;* fixed auth behaviour" />
     <MESSAGE value="* refactored members functionality(Edit/Create/Delete)" />
     <MESSAGE value="* Migrated Clients functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Migrated Clients functionality" />
+    <MESSAGE value="* fixed breadcrumbs,&#10;* added clients date filtering,&#10;* refactored common components usage," />
+    <option name="LAST_COMMIT_MESSAGE" value="* fixed breadcrumbs,&#10;* added clients date filtering,&#10;* refactored common components usage," />
   </component>
 </project>

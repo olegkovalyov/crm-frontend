@@ -1,14 +1,24 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
+import gql from 'graphql-tag';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { CreateEvent, CreateEventVariables } from '../../../../interfaces/generated/CreateEvent';
+import { EventInterface } from '../../../../interfaces/event.interface';
 
-const createEventMutation = loader('./gql/create-event.mutation.graphql');
-
+const createEventMutation = gql`
+    mutation CreateEvent($input: CreateEventInput!) {
+        createEvent(createEventInput: $input)
+        {
+            id,
+            title
+            startDate,
+            endDate
+        }
+    }
+`;
 export const useCreateEventMutation = () => {
 
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
@@ -25,18 +35,16 @@ export const useCreateEventMutation = () => {
 
 
   const createEventAsync = async (
-    name: string,
-    date: Date,
-    notes: string,
-    staffIds: number[],
+    title: string,
+    startDate: Date,
+    endDate: Date,
   ): Promise<void> => {
     try {
       const variables: CreateEventVariables = {
         input: {
-          name,
-          date,
-          notes,
-          staffIds,
+          title,
+          startDate,
+          endDate,
         },
       };
       setErrorMessage('');
@@ -51,8 +59,8 @@ export const useCreateEventMutation = () => {
 
   return {
     inProcessOfCreatingEvent: loading,
-    createEventAsync,
-    eventsData: data,
+    handleCreateEvent: createEventAsync,
+    createdEvent: data ? (data.createEvent as EventInterface) : null,
     createEventErrorMessage: errorMessage,
   };
 };

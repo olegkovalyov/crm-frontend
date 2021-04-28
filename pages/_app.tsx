@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { AppProps } from 'next/app';
 import { Router, useRouter } from 'next/router';
 import { AppContextType } from 'next/dist/next-server/lib/utils';
+import { GetServerSidePropsContext } from 'next';
 import { initializeApollo } from '../src/http/graphql.client';
 import { persistor, store } from '../src/redux/store';
 import { AuthInterface } from '../src/interfaces/auth.interface';
@@ -16,11 +17,6 @@ import LeftMenu from '../src/components/layout/left-menu/left-menu.component';
 import { handleAccessToken } from '../src/auth/access-token-handler';
 import { SIGN_IN_URL } from '../src/constants/route.constants';
 import { checkRouteAccess } from '../src/helpers/check-route-access';
-import { setUserAction } from '../src/redux/auth/auth.actions';
-import { GetServerSidePropsContext } from 'next';
-
-
-const Cookies = require('js-cookie');
 
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -88,10 +88,9 @@ export interface CreateClientInput {
 }
 
 export interface CreateEventInput {
-  name: string;
-  date: any;
-  staffIds?: number[] | null;
-  notes: string;
+  title: string;
+  startDate: any;
+  endDate: any;
 }
 
 export interface CreateLoadInput {
@@ -173,10 +172,9 @@ export interface UpdateClientInput {
 
 export interface UpdateEventInput {
   id: number;
-  name?: string | null;
-  date?: any | null;
-  staffIds?: number[] | null;
-  notes?: string | null;
+  title?: string | null;
+  startDate?: any | null;
+  endDate?: any | null;
 }
 
 export interface UpdateMemberInput {
