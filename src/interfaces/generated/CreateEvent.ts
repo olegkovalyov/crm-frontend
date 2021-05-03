@@ -15,6 +15,7 @@ export interface CreateEvent_createEvent {
   title: string;
   startDate: any;
   endDate: any;
+  notes: string;
 }
 
 export interface CreateEvent {

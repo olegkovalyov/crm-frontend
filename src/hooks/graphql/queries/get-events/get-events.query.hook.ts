@@ -15,7 +15,8 @@ export const getEventsQuery = gql`
             id,
             title,
             startDate,
-            endDate
+            endDate,
+            notes
         }
     }
 `;

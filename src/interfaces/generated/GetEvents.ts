@@ -15,6 +15,7 @@ export interface GetEvents_getEvents {
   title: string;
   startDate: any;
   endDate: any;
+  notes: string;
 }
 
 export interface GetEvents {

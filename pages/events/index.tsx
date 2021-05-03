@@ -11,11 +11,13 @@ import {
   AllDayPanel,
   AppointmentForm,
   AppointmentTooltip,
+  ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { ViewState, EditingState, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 import { ApolloQueryResult } from '@apollo/client';
-import { LinearProgress } from '@material-ui/core';
+import { Button, Grid, LinearProgress } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import { Content } from '../../src/components/layout/content/content.component';
 import { initializeApollo } from '../../src/http/graphql.client';
 import { EventInterface, InitialEventsPropTypesInterface } from '../../src/interfaces/event.interface';
@@ -25,6 +27,35 @@ import { useEvents } from '../../src/hooks/events/events/events.hook';
 import Notification from '../../src/components/common/notification/notification.compontent';
 
 const currentDate = new Date();
+
+const AppointmentTooltipContent: React.ComponentType<AppointmentTooltip.ContentProps> = (
+  {
+    children,
+    appointmentData,
+    ...restProps
+  }) => (
+  <AppointmentTooltip.Content
+    {...restProps}
+    appointmentData={appointmentData}
+  >
+    <Grid container>
+      <Grid item xs={12}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          startIcon={<FlightTakeoffIcon />}
+          onClick={(e: React.MouseEvent) => {
+            alert(appointmentData.id);
+          }}
+        >
+          Manage Loads
+        </Button>
+      </Grid>
+    </Grid>
+  </AppointmentTooltip.Content>
+);
+
 
 const Events: FC<InitialEventsPropTypesInterface> = (props): ReactElement => {
 
@@ -85,10 +116,12 @@ const Events: FC<InitialEventsPropTypesInterface> = (props): ReactElement => {
             <AppointmentTooltip
               showOpenButton
               showDeleteButton
+              contentComponent={AppointmentTooltipContent}
             />
             <AppointmentForm
               readOnly={isLoading}
             />
+            <ConfirmationDialog />
           </Scheduler>
         </>
       </Content>

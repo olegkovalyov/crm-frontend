@@ -91,6 +91,7 @@ export interface CreateEventInput {
   title: string;
   startDate: any;
   endDate: any;
+  notes: string;
 }
 
 export interface CreateLoadInput {
@@ -175,6 +176,7 @@ export interface UpdateEventInput {
   title?: string | null;
   startDate?: any | null;
   endDate?: any | null;
+  notes?: string | null;
 }
 
 export interface UpdateMemberInput {

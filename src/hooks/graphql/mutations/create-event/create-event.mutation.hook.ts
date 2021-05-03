@@ -15,7 +15,8 @@ const createEventMutation = gql`
             id,
             title
             startDate,
-            endDate
+            endDate,
+            notes
         }
     }
 `;
@@ -38,6 +39,7 @@ export const useCreateEventMutation = () => {
     title: string,
     startDate: Date,
     endDate: Date,
+    notes: string,
   ): Promise<void> => {
     try {
       const variables: CreateEventVariables = {
@@ -45,6 +47,7 @@ export const useCreateEventMutation = () => {
           title,
           startDate,
           endDate,
+          notes
         },
       };
       setErrorMessage('');

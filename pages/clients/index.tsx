@@ -13,7 +13,6 @@ import { Content } from '../../src/components/layout/content/content.component';
 import { useStyles } from './index.styles';
 import { initializeApollo } from '../../src/http/graphql.client';
 import ResponsiveDialog from '../../src/elements/responsive-dialog.component';
-import { useSnackbar } from '../../src/hooks/ui/snackbar/snackbar.hook';
 import { GetClients, GetClientsVariables } from '../../src/interfaces/generated/GetClients';
 import { getClientsQuery } from '../../src/hooks/graphql/queries/get-clients/get-clients.query.hook';
 import { ClientInterface } from '../../src/interfaces/client.interface';
@@ -64,21 +63,21 @@ const Clients: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
     handleCancelDelete,
   } = useClientsTable(handleDeleteClient);
 
-  const {
-    isOpenedSnackbar,
-    handleOpenSnackBar,
-    handleCloseSnackBar,
-  } = useSnackbar();
+  // const {
+  //   isOpenedSnackbar,
+  //   handleOpenSnackBar,
+  //   handleCloseSnackBar,
+  // } = useSnackbar();
 
   useEffect(() => {
     if (deletedClientData) {
       setSnackbarSeverity('success');
       setSnackbarMessage(`Client #${selectedClientId} was deleted successfully`);
-      handleOpenSnackBar();
+      // handleOpenSnackBar();
     } else if (deleteClientErrorMessage.length) {
       setSnackbarSeverity('warning');
       setSnackbarMessage(`Failed to delete #${selectedClientId} member: ${deleteClientErrorMessage}`);
-      handleOpenSnackBar();
+      // handleOpenSnackBar();
     }
   }, [deletedClientData, deleteClientErrorMessage]);
 
@@ -96,11 +95,11 @@ const Clients: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
     <>
       <Content>
         <Grid container spacing={3}>
-          <Snackbar open={isOpenedSnackbar} autoHideDuration={6000} onClose={handleCloseSnackBar}>
-            <Alert onClose={handleCloseSnackBar} severity={snackBarSeverity}>
-              {snackbarMessage}
-            </Alert>
-          </Snackbar>
+          {/* <Snackbar open={isOpenedSnackbar} autoHideDuration={6000} onClose={handleCloseSnackBar}> */}
+          {/*  <Alert onClose={handleCloseSnackBar} severity={snackBarSeverity}> */}
+          {/*    {snackbarMessage} */}
+          {/*  </Alert> */}
+          {/* </Snackbar> */}
           <Grid item xs={12}>
             <Button
               variant="contained"

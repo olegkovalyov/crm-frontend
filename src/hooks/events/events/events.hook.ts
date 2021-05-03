@@ -10,7 +10,7 @@ import {
   setEventsAction,
   updateEventAction,
 } from '../../../redux/events/events.actions';
-import { ChangedEventInterface, InitialEventsPropTypesInterface } from '../../../interfaces/event.interface';
+import { InitialEventsPropTypesInterface } from '../../../interfaces/event.interface';
 import { useDeleteEventMutation } from '../../graphql/mutations/delete-event/delete-event.mutation.hook';
 import { useUpdateEventMutation } from '../../graphql/mutations/update-event/update-event.mutation.hook';
 
@@ -133,7 +133,12 @@ export const useEvents = (props: InitialEventsPropTypesInterface) => {
     } = changes;
 
     if (addedEvent) {
-      await handleCreateEvent(addedEvent.title, addedEvent.startDate, addedEvent.endDate);
+      await handleCreateEvent(
+        addedEvent.title,
+        addedEvent.startDate,
+        addedEvent.endDate,
+        addedEvent.notes,
+      );
     }
 
     if (deletedEventId) {
@@ -148,7 +153,13 @@ export const useEvents = (props: InitialEventsPropTypesInterface) => {
         endDate: null,
         ...changedEvent[updatedEventId],
       };
-      await handleUpdateEvent(updatedEventId, updateData.title, updateData.startDate, updateData.endDate);
+      await handleUpdateEvent(
+        updatedEventId,
+        updateData.title,
+        updateData.startDate,
+        updateData.endDate,
+        updateData.notes,
+      );
     }
 
     console.log('Added:', addedEvent);
