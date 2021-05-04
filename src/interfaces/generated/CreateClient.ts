@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CreateClientInput } from "./globalTypes";
+import { CreateClientInput, Gender, ClientRole, ClientStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateClient
@@ -12,6 +12,24 @@ import { CreateClientInput } from "./globalTypes";
 export interface CreateClient_createClient {
   __typename: "ClientModel";
   id: number;
+  userId: number;
+  address: string;
+  age: number;
+  certificate: string | null;
+  createdAt: any;
+  email: string | null;
+  firstName: string;
+  gender: Gender;
+  lastName: string;
+  notes: string | null;
+  phone: string;
+  processedAt: any | null;
+  role: ClientRole;
+  status: ClientStatus;
+  updatedAt: any;
+  weight: number;
+  withCameraman: boolean;
+  withHandCameraVideo: boolean;
 }
 
 export interface CreateClient {

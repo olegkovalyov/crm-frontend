@@ -25,6 +25,8 @@ import { GetEvents, GetEventsVariables } from '../../src/interfaces/generated/Ge
 import { getEventsQuery } from '../../src/hooks/graphql/queries/get-events/get-events.query.hook';
 import { useEvents } from '../../src/hooks/events/events/events.hook';
 import Notification from '../../src/components/common/notification/notification.compontent';
+import { useStyles } from './index.styles';
+import { EDIT_CLIENT_URL, EDIT_EVENT_URL } from '../../src/constants/route.constants';
 
 const currentDate = new Date();
 
@@ -33,28 +35,33 @@ const AppointmentTooltipContent: React.ComponentType<AppointmentTooltip.ContentP
     children,
     appointmentData,
     ...restProps
-  }) => (
-  <AppointmentTooltip.Content
-    {...restProps}
-    appointmentData={appointmentData}
-  >
-    <Grid container>
-      <Grid item xs={12}>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          startIcon={<FlightTakeoffIcon />}
-          onClick={(e: React.MouseEvent) => {
-            alert(appointmentData.id);
-          }}
-        >
-          Manage Loads
-        </Button>
+  }) => {
+  const classes = useStyles();
+  const router = useRouter();
+  return (
+    <AppointmentTooltip.Content
+      {...restProps}
+      appointmentData={appointmentData}
+    >
+      <Grid container>
+        <Grid item xs={12}>
+          <Button
+            color="secondary"
+            className={classes.manageLoadButton}
+            size="large"
+            startIcon={<FlightTakeoffIcon />}
+            onClick={(e: React.MouseEvent) => {
+              const url = EDIT_EVENT_URL.replace('[id]', String(appointmentData.id));
+              router.push(url);
+            }}
+          >
+            Manage Loads
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
-  </AppointmentTooltip.Content>
-);
+    </AppointmentTooltip.Content>
+  );
+};
 
 
 const Events: FC<InitialEventsPropTypesInterface> = (props): ReactElement => {

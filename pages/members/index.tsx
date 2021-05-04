@@ -1,7 +1,7 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { Button, Grid, Snackbar } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useRouter } from 'next/router';
 import { XGrid } from '@material-ui/x-grid';
@@ -23,8 +23,8 @@ import MembersFilterContainer
 import { useDeleteMemberMutation } from '../../src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook';
 import ResponsiveDialog from '../../src/elements/responsive-dialog.component';
 import { useMembersTable } from '../../src/hooks/members/members-table/members-table.hook';
-import { useSnackbar } from '../../src/hooks/ui/snackbar/snackbar.hook';
 import { setMembersAction } from '../../src/redux/members/members.actions';
+import Notification from '../../src/components/common/notification/notification.compontent';
 
 interface PropTypesInterface {
   members: MemberInterface[],
@@ -36,9 +36,6 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
   const classes = useStyles();
   const router = useRouter();
   const { members, hasError, errorMessage } = props;
-
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackBarSeverity, setSnackbarSeverity] = useState<'success' | 'warning'>('success');
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -54,7 +51,7 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
   const {
     inProcessOfDeletingMember,
     deleteMemberErrorMessage,
-    deletedMemberData,
+    deletedMember,
     handleDeleteMember,
   } = useDeleteMemberMutation();
 
@@ -63,26 +60,8 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
     selectedMemberId,
     needOpenDialog,
     handleConfirmDelete,
-    handleCancelDelete
+    handleCancelDelete,
   } = useMembersTable(handleDeleteMember);
-
-  const {
-    isOpenedSnackbar,
-    handleOpenSnackBar,
-    handleCloseSnackBar,
-  } = useSnackbar();
-
-  useEffect(() => {
-    if (deletedMemberData) {
-      setSnackbarSeverity('success');
-      setSnackbarMessage(`Member #${selectedMemberId} was deleted successfully`);
-      handleOpenSnackBar();
-    } else if (deleteMemberErrorMessage.length) {
-      setSnackbarSeverity('warning');
-      setSnackbarMessage(`Failed to delete #${selectedMemberId} member: ${deleteMemberErrorMessage}`);
-      handleOpenSnackBar();
-    }
-  }, [deletedMemberData, deleteMemberErrorMessage]);
 
 
   if (hasError) {
@@ -97,52 +76,61 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
   return (
     <>
       <Content>
-        <Grid container spacing={3}>
-          <Snackbar open={isOpenedSnackbar} autoHideDuration={6000} onClose={handleCloseSnackBar}>
-            <Alert onClose={handleCloseSnackBar} severity={snackBarSeverity}>
-              {snackbarMessage}
-            </Alert>
-          </Snackbar>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.button}
-              startIcon={<PersonAddIcon />}
-              onClick={(e: React.MouseEvent) => {
-                router.push(CREATE_MEMBER_URL);
-              }}
-            >
-              Create
-            </Button>
+        <>
+          <Notification
+            hasNotification={deleteMemberErrorMessage !== null}
+            message={deleteMemberErrorMessage}
+            autoHide={true}
+            type='error'
+          />
+          <Notification
+            hasNotification={deletedMember !== null}
+            message={`Member #${selectedMemberId} was deleted successfully`}
+            autoHide={true}
+            type='success'
+          />
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                className={classes.button}
+                startIcon={<PersonAddIcon />}
+                onClick={(e: React.MouseEvent) => {
+                  router.push(CREATE_MEMBER_URL);
+                }}
+              >
+                Create
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <MembersFilterContainer
+                searchFilterValue={searchFilterValue}
+                onSearchFilterChange={handleSearchFilterChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <XGrid
+                autoHeight={true}
+                rows={tableData}
+                columns={columns}
+                disableColumnMenu={true}
+                loading={inProcessOfDeletingMember}
+              />
+              <ResponsiveDialog
+                handleConfirm={handleConfirmDelete}
+                handleCancel={handleCancelDelete}
+                confirmButtonText='Delete'
+                cancelButtonText='Cancel'
+                title='Are you sure you want to delete member'
+                isOpen={needOpenDialog}
+                isFullScreen={false}
+                inProcess={inProcessOfDeletingMember}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <MembersFilterContainer
-              searchFilterValue={searchFilterValue}
-              onSearchFilterChange={handleSearchFilterChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <XGrid
-              autoHeight={true}
-              rows={tableData}
-              columns={columns}
-              disableColumnMenu={true}
-              loading={inProcessOfDeletingMember}
-            />
-            <ResponsiveDialog
-              handleConfirm={handleConfirmDelete}
-              handleCancel={handleCancelDelete}
-              confirmButtonText='Delete'
-              cancelButtonText='Cancel'
-              title='Are you sure you want to delete member'
-              isOpen={needOpenDialog}
-              isFullScreen={false}
-              inProcess={inProcessOfDeletingMember}
-            />
-          </Grid>
-        </Grid>
+        </>
       </Content>
     </>
   );

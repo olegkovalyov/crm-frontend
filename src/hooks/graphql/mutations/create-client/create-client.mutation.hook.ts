@@ -10,12 +10,31 @@ import {
   ClientRole, Gender,
 } from '../../../../interfaces/generated/globalTypes';
 import { CreateClient, CreateClientVariables } from '../../../../interfaces/generated/CreateClient';
+import { ClientInterface } from '../../../../interfaces/client.interface';
 
 const mutation = gql`
     mutation CreateClient($input: CreateClientInput!) {
         createClient(createClientInput: $input)
         {
-            id
+            id,
+            userId,
+            address,
+            age,
+            certificate,
+            createdAt,
+            email,
+            firstName,
+            gender,
+            lastName,
+            notes,
+            phone,
+            processedAt,
+            role,
+            status,
+            updatedAt,
+            weight,
+            withCameraman,
+            withHandCameraVideo,
         }
     }
 `;
@@ -25,7 +44,7 @@ export const useCreateClientMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_createClientAsync, { loading, data }] = useMutation<CreateClient, CreateClientVariables>(mutation, {
     context: {
       headers: {
@@ -70,7 +89,7 @@ export const useCreateClientMutation = () => {
           certificate,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _createClientAsync({
         variables,
       });
@@ -83,7 +102,7 @@ export const useCreateClientMutation = () => {
   return {
     inProcessOfCreatingClient: loading,
     handleCreateClient: createClientAsync,
-    createClientData: data,
+    createdClient: data ? (data.createClient as ClientInterface) : null,
     createClientErrorMessage: errorMessage,
   };
 };

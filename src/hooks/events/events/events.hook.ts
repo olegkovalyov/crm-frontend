@@ -55,15 +55,15 @@ export const useEvents = (props: InitialEventsPropTypesInterface) => {
 
   // Handle error messages
   useEffect(() => {
-    if (createEventErrorMessage !== '') {
+    if (createEventErrorMessage) {
       setSchedulerErrorMessage(createEventErrorMessage);
       return;
     }
-    if (deleteEventErrorMessage !== '') {
+    if (deleteEventErrorMessage) {
       setSchedulerErrorMessage(deleteEventErrorMessage);
       return;
     }
-    if (updateEventErrorMessage !== '') {
+    if (updateEventErrorMessage) {
       setSchedulerErrorMessage(updateEventErrorMessage);
       return;
     }
@@ -151,6 +151,7 @@ export const useEvents = (props: InitialEventsPropTypesInterface) => {
         title: null,
         startDate: null,
         endDate: null,
+        notes: null,
         ...changedEvent[updatedEventId],
       };
       await handleUpdateEvent(

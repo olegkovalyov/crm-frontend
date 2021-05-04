@@ -7,11 +7,22 @@ import { UpdateMember, UpdateMemberVariables } from '../../../../interfaces/gene
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
+import { MemberInterface } from '../../../../interfaces/member.interface';
 
 const updateMemberMutation = gql`
     mutation UpdateMember($input: UpdateMemberInput!) {
-        updateMember(updateMemberInput: $input){
+        updateMember(updateMemberInput: $input)
+        {
             id,
+            userId,
+            status,
+            email,
+            firstName,
+            lastName,
+            roles,
+            licenseType,
+            createdAt,
+            updatedAt,
         }
     }
 `;
@@ -21,7 +32,7 @@ export const useUpdateMemberMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_updateMemberAsync, {
     loading,
     data,
@@ -55,7 +66,7 @@ export const useUpdateMemberMutation = () => {
           licenseType,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _updateMemberAsync({
         variables,
       });
@@ -68,7 +79,7 @@ export const useUpdateMemberMutation = () => {
   return {
     inProcessOfUpdatingMember: loading,
     handleUpdateMember: updateMemberAsync,
-    updateMemberData: data,
+    updatedMember: data ? (data.updateMember as MemberInterface) : null,
     updateMemberErrorMessage: errorMessage,
   };
 };

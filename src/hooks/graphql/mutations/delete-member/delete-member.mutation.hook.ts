@@ -8,10 +8,22 @@ import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { getMembers } from '../../../../redux/members/members.selector';
 import { setMembersAction } from '../../../../redux/members/members.actions';
+import { MemberInterface } from '../../../../interfaces/member.interface';
 
 export const deleteMemberMutation = gql`
     mutation DeleteMember($input: Int!) {
-        deleteMember(id: $input)
+        deleteMember(id: $input) {
+            id,
+            userId,
+            status,
+            email,
+            firstName,
+            lastName,
+            roles,
+            licenseType,
+            createdAt,
+            updatedAt,
+        }
     }
 `;
 
@@ -23,7 +35,7 @@ export const useDeleteMemberMutation = () => {
 
   const dispatch = useDispatch();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_deleteMemberAsync, {
     loading,
     data,
@@ -41,7 +53,7 @@ export const useDeleteMemberMutation = () => {
       const variables: DeleteMemberVariables = {
         input: id,
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _deleteMemberAsync({
         variables,
       });
@@ -56,7 +68,7 @@ export const useDeleteMemberMutation = () => {
   return {
     inProcessOfDeletingMember: loading,
     handleDeleteMember: deleteMemberAsync,
-    deletedMemberData: data,
+    deletedMember: data ? (data.deleteMember as MemberInterface) : null,
     deleteMemberErrorMessage: errorMessage,
   };
 };

@@ -24,7 +24,7 @@ export const useUpdateEventMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_updateEventAsync, { loading, data }] = useMutation<UpdateEvent, UpdateEventVariables>(updateEventMutation, {
     context: {
       headers: {
@@ -51,7 +51,7 @@ export const useUpdateEventMutation = () => {
           notes,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _updateEventAsync({
         variables,
       });

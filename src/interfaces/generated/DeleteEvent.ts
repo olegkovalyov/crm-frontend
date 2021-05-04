@@ -13,6 +13,7 @@ export interface DeleteEvent_deleteEvent {
   title: string;
   startDate: any;
   endDate: any;
+  notes: string;
 }
 
 export interface DeleteEvent {

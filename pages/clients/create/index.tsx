@@ -2,12 +2,8 @@ import React, { FC, ReactElement } from 'react';
 import { ParsedUrlQuery } from 'querystring';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
-import { useMemberFormValidation } from '../../../src/hooks/members/member-form-validation/member-form-validation.hook';
-import { useCreateMemberMutation } from '../../../src/hooks/graphql/mutations/create-member/create-member.mutation.hook';
-import MemberForm from '../../../src/components/members/member-form/member-form.component';
-import { MemberStatus } from '../../../src/interfaces/generated/globalTypes';
 import { Content } from '../../../src/components/layout/content/content.component';
-import { CLIENTS_URL, MEMBERS_URL } from '../../../src/constants/route.constants';
+import { CLIENTS_URL } from '../../../src/constants/route.constants';
 import LoadBackdrop from '../../../src/elements/backdrop.component';
 import { useClientFormValidation } from '../../../src/hooks/clients/client-form-validation/client-form-validation.hook';
 import { useCreateClientMutation } from '../../../src/hooks/graphql/mutations/create-client/create-client.mutation.hook';
@@ -72,13 +68,13 @@ const CreateClient: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const {
     inProcessOfCreatingClient,
     handleCreateClient,
-    createClientData,
+    createdClient,
     createClientErrorMessage,
   } = useCreateClientMutation();
 
   const router = useRouter();
 
-  if (createClientData) {
+  if (createdClient) {
     router.push(CLIENTS_URL);
     return (
       <LoadBackdrop
@@ -141,21 +137,21 @@ const CreateClient: FC<PropTypes> = (props: PropTypes): ReactElement => {
           formErrorMessage={createClientErrorMessage}
           loading={inProcessOfCreatingClient}
           submitFn={() => handleCreateClient(
-              clientRole,
-              status,
-              gender,
-              parseInt(age),
-              firstName,
-              lastName,
-              email,
-              parseInt(weight),
-              phone,
-              address,
-              withHandCameraVideo,
-              withCameraman,
-              notes,
-              certificate,
-            )}
+            clientRole,
+            status,
+            gender,
+            parseInt(age),
+            firstName,
+            lastName,
+            email,
+            parseInt(weight),
+            phone,
+            address,
+            withHandCameraVideo,
+            withCameraman,
+            notes,
+            certificate,
+          )}
         />
       </Content>
     </>

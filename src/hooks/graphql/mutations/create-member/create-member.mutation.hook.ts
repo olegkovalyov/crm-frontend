@@ -7,12 +7,22 @@ import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grah
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
+import { MemberInterface } from '../../../../interfaces/member.interface';
 
 const mutation = gql`
     mutation CreateMember($input: CreateMemberInput!) {
         createMember(createMemberInput: $input)
         {
-            id
+            id,
+            userId,
+            status,
+            email,
+            firstName,
+            lastName,
+            roles,
+            licenseType,
+            createdAt,
+            updatedAt,
         }
     }
 `;
@@ -22,7 +32,7 @@ export const useCreateMemberMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_createMemberAsync, { loading, data }] = useMutation<CreateMember, CreateMemberVariables>(mutation, {
     context: {
       headers: {
@@ -53,7 +63,7 @@ export const useCreateMemberMutation = () => {
           licenseType,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _createMemberAsync({
         variables,
       });
@@ -66,7 +76,7 @@ export const useCreateMemberMutation = () => {
   return {
     inProcessOfCreatingMember: loading,
     handleCreateMember: createMemberAsync,
-    createMemberData: data,
+    createdMember: data ? (data.createMember as MemberInterface) : null,
     createMemberErrorMessage: errorMessage,
   };
 };

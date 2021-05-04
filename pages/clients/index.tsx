@@ -1,7 +1,7 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { Button, Grid, Snackbar } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useRouter } from 'next/router';
 import { XGrid } from '@material-ui/x-grid';
@@ -16,12 +16,13 @@ import ResponsiveDialog from '../../src/elements/responsive-dialog.component';
 import { GetClients, GetClientsVariables } from '../../src/interfaces/generated/GetClients';
 import { getClientsQuery } from '../../src/hooks/graphql/queries/get-clients/get-clients.query.hook';
 import { ClientInterface } from '../../src/interfaces/client.interface';
-import { setClientsAction } from '../../src/redux/clients/clients.actions';
+import { deleteClientAction, setClientsAction } from '../../src/redux/clients/clients.actions';
 import { useClientsFilter } from '../../src/hooks/clients/clients-filter/clients-filter.hook';
 import { useClientsTable } from '../../src/hooks/clients/clients-table/clients-table.hook';
-import { useDeleteClientMutation } from '../../src/hooks/graphql/mutations/delete-client/delete-member.mutation.hook';
+import { useDeleteClientMutation } from '../../src/hooks/graphql/mutations/delete-client/delete-client.mutation.hook';
 import ClientsFilterContainer
   from '../../src/components/clients/clients-filter-container/clients-filter-container.component';
+import Notification from '../../src/components/common/notification/notification.compontent';
 
 interface PropTypesInterface {
   clients: ClientInterface[],
@@ -33,9 +34,6 @@ const Clients: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
   const classes = useStyles();
   const router = useRouter();
   const { clients, hasError, errorMessage } = props;
-
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackBarSeverity, setSnackbarSeverity] = useState<'success' | 'warning'>('success');
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -51,7 +49,7 @@ const Clients: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
   const {
     inProcessOfDeletingClient,
     deleteClientErrorMessage,
-    deletedClientData,
+    deletedClient,
     handleDeleteClient,
   } = useDeleteClientMutation();
 
@@ -63,86 +61,83 @@ const Clients: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
     handleCancelDelete,
   } = useClientsTable(handleDeleteClient);
 
-  // const {
-  //   isOpenedSnackbar,
-  //   handleOpenSnackBar,
-  //   handleCloseSnackBar,
-  // } = useSnackbar();
-
   useEffect(() => {
-    if (deletedClientData) {
-      setSnackbarSeverity('success');
-      setSnackbarMessage(`Client #${selectedClientId} was deleted successfully`);
-      // handleOpenSnackBar();
-    } else if (deleteClientErrorMessage.length) {
-      setSnackbarSeverity('warning');
-      setSnackbarMessage(`Failed to delete #${selectedClientId} member: ${deleteClientErrorMessage}`);
-      // handleOpenSnackBar();
+    if (deletedClient) {
+      dispatch(deleteClientAction(deletedClient.id));
     }
-  }, [deletedClientData, deleteClientErrorMessage]);
-
+  }, [deletedClient]);
 
   if (hasError) {
     return (
       <>
         <Content>
           <Alert severity="error">{errorMessage}</Alert>
-        </Content></>
+        </Content>
+      </>
     );
   }
 
   return (
     <>
       <Content>
-        <Grid container spacing={3}>
-          {/* <Snackbar open={isOpenedSnackbar} autoHideDuration={6000} onClose={handleCloseSnackBar}> */}
-          {/*  <Alert onClose={handleCloseSnackBar} severity={snackBarSeverity}> */}
-          {/*    {snackbarMessage} */}
-          {/*  </Alert> */}
-          {/* </Snackbar> */}
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.button}
-              startIcon={<PersonAddIcon />}
-              onClick={(e: React.MouseEvent) => {
-                router.push(CREATE_CLIENT_URL);
-              }}
-            >
-              Create
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <ClientsFilterContainer
-              onSearchFilterChange={handleSearchFilterChange}
-              searchFilterValue={searchFilterValue}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <div style={{ height: 520, width: '100%' }}>
-              <XGrid
-                columnBuffer={20}
-                autoHeight={true}
-                rows={tableData}
-                columns={columns}
-                disableColumnMenu={true}
-                loading={inProcessOfDeletingClient}
+        <>
+          <Notification
+            hasNotification={deleteClientErrorMessage !== null}
+            message={deleteClientErrorMessage}
+            autoHide={true}
+            type='error'
+          />
+          <Notification
+            hasNotification={deletedClient !== null}
+            message={`Client #${selectedClientId} was deleted successfully`}
+            autoHide={true}
+            type='success'
+          />
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                className={classes.button}
+                startIcon={<PersonAddIcon />}
+                onClick={(e: React.MouseEvent) => {
+                  router.push(CREATE_CLIENT_URL);
+                }}
+              >
+                Create
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <ClientsFilterContainer
+                onSearchFilterChange={handleSearchFilterChange}
+                searchFilterValue={searchFilterValue}
               />
-            </div>
-            <ResponsiveDialog
-              handleConfirm={handleConfirmDelete}
-              handleCancel={handleCancelDelete}
-              confirmButtonText='Delete'
-              cancelButtonText='Cancel'
-              title='Are you sure you want to delete member'
-              isOpen={needOpenDialog}
-              isFullScreen={false}
-              inProcess={inProcessOfDeletingClient}
-            />
+            </Grid>
+            <Grid item xs={12}>
+              <div style={{ height: 520, width: '100%' }}>
+                <XGrid
+                  columnBuffer={20}
+                  autoHeight={true}
+                  rows={tableData}
+                  columns={columns}
+                  disableColumnMenu={true}
+                  loading={inProcessOfDeletingClient}
+                />
+              </div>
+              <ResponsiveDialog
+                handleConfirm={handleConfirmDelete}
+                handleCancel={handleCancelDelete}
+                confirmButtonText='Delete'
+                cancelButtonText='Cancel'
+                title='Are you sure you want to delete member'
+                isOpen={needOpenDialog}
+                isFullScreen={false}
+                inProcess={inProcessOfDeletingClient}
+              />
+            </Grid>
           </Grid>
-        </Grid>
+        </>
       </Content>
     </>
   );

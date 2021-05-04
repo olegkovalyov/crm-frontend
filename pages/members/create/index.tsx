@@ -43,13 +43,13 @@ const CreateMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const {
     inProcessOfCreatingMember,
     handleCreateMember,
-    createMemberData,
+    createdMember,
     createMemberErrorMessage,
   } = useCreateMemberMutation();
 
   const router = useRouter();
 
-  if (createMemberData) {
+  if (createdMember) {
     router.push(MEMBERS_URL);
     return (
       <LoadBackdrop

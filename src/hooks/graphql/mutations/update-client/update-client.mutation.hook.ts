@@ -10,11 +10,30 @@ import {
   ClientRole, Gender,
 } from '../../../../interfaces/generated/globalTypes';
 import { UpdateClient, UpdateClientVariables } from '../../../../interfaces/generated/UpdateClient';
+import { ClientInterface } from '../../../../interfaces/client.interface';
 
 const mutation = gql`
     mutation UpdateClient($input: UpdateClientInput!) {
         updateClient(updateClientInput: $input){
             id,
+            userId,
+            address,
+            age,
+            certificate,
+            createdAt,
+            email,
+            firstName,
+            gender,
+            lastName,
+            notes,
+            phone,
+            processedAt,
+            role,
+            status,
+            updatedAt,
+            weight,
+            withCameraman,
+            withHandCameraVideo,
         }
     }
 `;
@@ -23,7 +42,7 @@ export const useUpdateClientMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_updateClientAsync, { loading, data }] = useMutation<UpdateClient, UpdateClientVariables>(mutation, {
     context: {
       headers: {
@@ -70,7 +89,7 @@ export const useUpdateClientMutation = () => {
           certificate,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _updateClientAsync({
         variables,
       });
@@ -82,8 +101,8 @@ export const useUpdateClientMutation = () => {
 
   return {
     inProcessOfUpdatingClient: loading,
-    handleClientUpdate:updateClientAsync,
-    updateClientData: data,
+    handleClientUpdate: updateClientAsync,
+    updatedClient: data ? (data.updateClient as ClientInterface) : null,
     updateClientErrorMessage: errorMessage,
   };
 };

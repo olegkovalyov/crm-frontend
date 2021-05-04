@@ -6,17 +6,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/events/[id]/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/clients/[id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/clients/[id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/clients/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/clients/create/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/clients/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/clients/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/events/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/index.styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/events/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/members/[id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/members/[id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/members/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/members/create/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/members/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/members/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/route.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/route.constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/events/events/events.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/events/events/events.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-member/create-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-member/create-member.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/delete-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/delete-client.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateEvent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetEvents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetEvents.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/UpdateEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/UpdateEvent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/update-member.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/update-member.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/CreateMember.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/CreateMember.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/DeleteMember.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/DeleteMember.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/UpdateClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/UpdateClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/UpdateMember.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/UpdateMember.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/clients/clients.actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/clients/clients.reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/clients/clients.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +87,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/layout/notification" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/events" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -88,11 +108,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/events" />
       <recent name="$PROJECT_DIR$/src/hooks/layout/notification" />
       <recent name="$PROJECT_DIR$/src/hooks/events/events-sheduler" />
       <recent name="$PROJECT_DIR$/src/redux" />
       <recent name="$PROJECT_DIR$/src/components/common" />
-      <recent name="$PROJECT_DIR$/pages/clients" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/hooks/auth" />
@@ -188,7 +208,7 @@
       <workItem from="1618646379645" duration="7249000" />
       <workItem from="1618821114512" duration="1174000" />
       <workItem from="1618822303167" duration="52099000" />
-      <workItem from="1619950544759" duration="2844000" />
+      <workItem from="1619950544759" duration="10456000" />
     </task>
     <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
       <created>1602324599948</created>
@@ -358,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619616052257</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="* added notes to event">
+      <created>1620056254425</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1620056254425</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,6 +484,7 @@
     <MESSAGE value="* Migrated Clients functionality" />
     <MESSAGE value="* fixed breadcrumbs,&#10;* added clients date filtering,&#10;* refactored common components usage," />
     <MESSAGE value="* added event functionality,&#10;* code cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="* added event functionality,&#10;* code cleanup" />
+    <MESSAGE value="* added notes to event" />
+    <option name="LAST_COMMIT_MESSAGE" value="* added notes to event" />
   </component>
 </project>

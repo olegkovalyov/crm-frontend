@@ -1,5 +1,6 @@
 import { ClientInterface } from '../../interfaces/client.interface';
 import {
+  DELETE_CLIENT,
   SET_CLIENT_STATUS_OPTIONS_FOR_FILTER,
   SET_CLIENTS,
   SET_CREATED_AT_MAX_FOR_FILTER,
@@ -49,6 +50,12 @@ export const clientsReducer = (state = clientsInitialState, action: ClientsActio
       return {
         ...state,
         createdAtMaxForFilter: action.payload,
+      };
+    }
+    case DELETE_CLIENT: {
+      return {
+        ...state,
+        clients: state.clients.filter((client) => client.id !== action.payload),
       };
     }
     default:

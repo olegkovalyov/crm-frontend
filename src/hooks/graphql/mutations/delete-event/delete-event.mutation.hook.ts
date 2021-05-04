@@ -6,6 +6,7 @@ import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grah
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { DeleteEvent, DeleteEventVariables } from '../../../../interfaces/generated/DeleteEvent';
+import { EventInterface } from '../../../../interfaces/event.interface';
 
 export const deleteEventMutation = gql`
     mutation DeleteEvent($input: Int!) {
@@ -14,6 +15,7 @@ export const deleteEventMutation = gql`
             title,
             startDate,
             endDate,
+            notes
         }
     }
 `;
@@ -22,7 +24,7 @@ export const useDeleteEventMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_deleteEventAsync, { loading, data }] = useMutation<DeleteEvent, DeleteEventVariables>(deleteEventMutation, {
     context: {
       headers: {
@@ -37,7 +39,7 @@ export const useDeleteEventMutation = () => {
       const variables: DeleteEventVariables = {
         input: id,
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _deleteEventAsync({
         variables,
       });
@@ -50,7 +52,7 @@ export const useDeleteEventMutation = () => {
   return {
     inProcessOfDeletingEvent: loading,
     handleDeleteEvent: deleteEventAsync,
-    deletedEvent: data ? data.deleteEvent : null,
+    deletedEvent: data ? (data.deleteEvent as EventInterface) : null,
     deleteEventErrorMessage: errorMessage,
   };
 };

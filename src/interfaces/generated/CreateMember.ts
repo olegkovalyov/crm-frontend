@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CreateMemberInput } from "./globalTypes";
+import { CreateMemberInput, MemberStatus, MemberRole, LicenseType } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateMember
@@ -12,6 +12,15 @@ import { CreateMemberInput } from "./globalTypes";
 export interface CreateMember_createMember {
   __typename: "MemberModel";
   id: number;
+  userId: number;
+  status: MemberStatus;
+  email: string;
+  firstName: string;
+  lastName: string;
+  roles: MemberRole[];
+  licenseType: LicenseType | null;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface CreateMember {

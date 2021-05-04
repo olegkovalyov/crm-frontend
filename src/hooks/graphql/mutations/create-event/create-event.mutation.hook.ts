@@ -25,7 +25,7 @@ export const useCreateEventMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_createEventAsync, { loading, data }] = useMutation<CreateEvent, CreateEventVariables>(createEventMutation, {
     context: {
       headers: {
@@ -47,10 +47,10 @@ export const useCreateEventMutation = () => {
           title,
           startDate,
           endDate,
-          notes
+          notes,
         },
       };
-      setErrorMessage('');
+      setErrorMessage(null);
       await _createEventAsync({
         variables,
       });

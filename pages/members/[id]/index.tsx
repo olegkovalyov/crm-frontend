@@ -57,7 +57,7 @@ const EditMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const {
     inProcessOfUpdatingMember,
     handleUpdateMember,
-    updateMemberData,
+    updatedMember,
     updateMemberErrorMessage,
   } = useUpdateMemberMutation();
 
@@ -69,7 +69,7 @@ const EditMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
     }
   }, []);
 
-  if (updateMemberData) {
+  if (updatedMember) {
     router.push(MEMBERS_URL);
     return (
       <LoadBackdrop

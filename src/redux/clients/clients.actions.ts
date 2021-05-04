@@ -1,7 +1,10 @@
 import { ClientInterface } from '../../interfaces/client.interface';
 import {
+  DELETE_CLIENT,
   SET_CLIENT_STATUS_OPTIONS_FOR_FILTER,
-  SET_CLIENTS, SET_CREATED_AT_MAX_FOR_FILTER, SET_CREATED_AT_MIN_FOR_FILTER,
+  SET_CLIENTS,
+  SET_CREATED_AT_MAX_FOR_FILTER,
+  SET_CREATED_AT_MIN_FOR_FILTER,
 } from './clients.types';
 import { ClientStatus } from '../../interfaces/generated/globalTypes';
 
@@ -13,6 +16,11 @@ export interface SetClientStatusOptionsForFilterActionInterface {
 export interface SetClientsActionInterface {
   type: typeof SET_CLIENTS,
   payload: ClientInterface[],
+}
+
+export interface DeleteClientActionInterface {
+  type: typeof DELETE_CLIENT
+  payload: number,
 }
 
 export interface SetCreatedAtMinForFilterActionInterface {
@@ -40,6 +48,11 @@ export const setClientStatusOptionsAction = (statuses: ClientStatus[]): SetClien
   payload: statuses,
 });
 
+export const deleteClientAction = (clientId: number): DeleteClientActionInterface => ({
+  type: DELETE_CLIENT,
+  payload: clientId,
+});
+
 export const setClientsAction = (clients: ClientInterface[]): SetClientsActionInterface => ({
   type: SET_CLIENTS,
   payload: clients,
@@ -48,4 +61,5 @@ export const setClientsAction = (clients: ClientInterface[]): SetClientsActionIn
 export type ClientsActionTypes = SetClientStatusOptionsForFilterActionInterface
   | SetClientsActionInterface
   | SetCreatedAtMinForFilterActionInterface
-  | SetCreatedAtMaxForFilterActionInterface;
+  | SetCreatedAtMaxForFilterActionInterface
+  | DeleteClientActionInterface;

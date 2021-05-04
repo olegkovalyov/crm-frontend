@@ -82,7 +82,7 @@ const EditClient: FC<PropTypes> = (props: PropTypes): ReactElement => {
   const {
     inProcessOfUpdatingClient,
     handleClientUpdate,
-    updateClientData,
+    updatedClient,
     updateClientErrorMessage,
   } = useUpdateClientMutation();
 
@@ -94,7 +94,7 @@ const EditClient: FC<PropTypes> = (props: PropTypes): ReactElement => {
     }
   }, []);
 
-  if (updateClientData) {
+  if (updatedClient) {
     router.push(CLIENTS_URL);
     return (
       <LoadBackdrop
