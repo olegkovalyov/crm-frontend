@@ -49,7 +49,7 @@
     "rewire": "^5.0.0",
     "save": "^2.4.0",
     "validate.js": "^0.13.1",
-    "validator": "^13.5.2"
+    "validator": "^13.7.0"
   },
   "scripts": {
     "dev": "next dev",
