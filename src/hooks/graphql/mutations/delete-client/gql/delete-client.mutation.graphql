@@ -1,0 +1,20 @@
+mutation DeleteClient($id: Int!){
+    deleteClient(id: $id) {
+        id,
+        personId,
+        role,
+        status,
+        paymentStatus,
+        gender,
+        dateOfBirth,
+        firstName,
+        lastName,
+        email,
+        weight,
+        phone,
+        certificate,
+        createdAt,
+        updatedAt,
+        processedAt
+    }
+}

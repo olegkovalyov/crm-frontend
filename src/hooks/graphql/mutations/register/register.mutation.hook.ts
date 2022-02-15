@@ -1,55 +1,44 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag';
-import { Register, RegisterVariables } from '../../../../interfaces/generated/Register';
+import { loader } from 'graphql.macro';
+import {
+  RegisterUser,
+  RegisterUserVariables,
+} from '../../../../interfaces/generated/RegisterUser';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-import { LicenseType, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
+import {
+  LicenseType,
+  UserRole,
+  UserStatus,
+} from '../../../../interfaces/generated/globalTypes';
 
-const mutation = gql`
-    mutation Register($input: CreateMemberInput!) {
-        register(registerInput: $input){
-            payload{
-                id,
-                userId,
-                status,
-                firstName,
-                lastName,
-                email,
-                roles,
-                licenseType,
-                createdAt,
-                updatedAt,
-            },
-            accessToken
-        }
-    }
-`;
+const registerMutation = loader('./gql/register.mutation.graphql');
 
 export const useRegisterMutation = () => {
   const [errorMessage, setErrorMessage] = useState('');
-  const [_registerAsync, { loading, data }] = useMutation<Register, RegisterVariables>(mutation);
+  const [_registerAsync, { loading, data }] = useMutation<RegisterUser, RegisterUserVariables>(registerMutation);
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
 
   const registerAsync = async (
-    status: MemberStatus,
     email: string,
     password: string,
+    status: UserStatus,
     firstName: string,
     lastName: string,
-    roles: MemberRole[],
+    role: UserRole[],
     licenseType: LicenseType,
   ): Promise<void> => {
     try {
-      const variables: RegisterVariables = {
-        input: {
-          status,
+      const variables: RegisterUserVariables = {
+        user: {
           email,
           password,
+          status,
           firstName,
           lastName,
-          roles,
+          role,
           licenseType,
         },
       };

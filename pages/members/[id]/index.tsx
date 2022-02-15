@@ -10,14 +10,14 @@ import { MemberStatus } from '../../../src/interfaces/generated/globalTypes';
 import { Content } from '../../../src/components/layout/content/content.component';
 import { MEMBERS_URL } from '../../../src/constants/route.constants';
 import LoadBackdrop from '../../../src/elements/backdrop.component';
-import { MemberInterface } from '../../../src/interfaces/member.interface';
+import { UserInterface } from '../../../src/interfaces/member.interface';
 import { initializeApollo } from '../../../src/http/graphql.client';
-import { getMemberQuery } from '../../../src/hooks/graphql/queries/get-member/get-member.query.hook';
+import { getMemberQuery } from '../../../src/hooks/graphql/queries/get-user/get-member.query.hook';
 import { GetMember, GetMemberVariables } from '../../../src/interfaces/generated/GetMember';
-import { useUpdateMemberMutation } from '../../../src/hooks/graphql/mutations/update-member/update-member.mutation.hook';
+import { useUpdateMemberMutation } from '../../../src/hooks/graphql/mutations/update-user/update-member.mutation.hook';
 
 interface PropTypes {
-  member: MemberInterface | null;
+  member: UserInterface | null;
   hasError: boolean;
   errorMessage: string;
 }
@@ -129,7 +129,7 @@ const EditMember: FC<PropTypes> = (props: PropTypes): ReactElement => {
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
   const memberId = parseInt(context.query.id as string);
-  let member: MemberInterface = null;
+  let member: UserInterface = null;
   let hasError = false;
   let errorMessage = '';
   const { accessToken } = context.req.cookies;

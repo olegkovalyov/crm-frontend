@@ -1,0 +1,10 @@
+mutation Login($input: LoginInput!) {
+    login(loginInput: $input) {
+        payload {
+            id,
+            firstName,
+            lastName,
+        },
+        accessToken
+    }
+}

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GetEventsFilterInput } from "./globalTypes";
+import { GetEventsInput } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetEvents
@@ -12,10 +12,12 @@ import { GetEventsFilterInput } from "./globalTypes";
 export interface GetEvents_getEvents {
   __typename: "EventModel";
   id: number;
-  title: string;
+  name: string;
   startDate: any;
   endDate: any;
-  notes: string;
+  info: string;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface GetEvents {
@@ -23,5 +25,5 @@ export interface GetEvents {
 }
 
 export interface GetEventsVariables {
-  getEventsFilter: GetEventsFilterInput;
+  getEvents: GetEventsInput;
 }

@@ -3,24 +3,17 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ResetPasswordInput, MemberStatus, MemberRole, LicenseType } from "./globalTypes";
+import { ResetPasswordInput } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ResetPassword
 // ====================================================
 
 export interface ResetPassword_resetPassword_payload {
-  __typename: "MemberModel";
+  __typename: "UserModel";
   id: number;
-  userId: number;
-  status: MemberStatus;
   firstName: string;
   lastName: string;
-  email: string;
-  roles: MemberRole[];
-  licenseType: LicenseType | null;
-  createdAt: any;
-  updatedAt: any;
 }
 
 export interface ResetPassword_resetPassword {

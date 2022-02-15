@@ -7,7 +7,7 @@ import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grah
 import { GetLoads, GetLoadsVariables } from '../../../../interfaces/generated/GetLoads';
 import { LoadInterface } from '../../../../interfaces/load.interface';
 import { ClientInterface } from '../../../../interfaces/client.interface';
-import { MemberInterface } from '../../../../interfaces/member.interface';
+import { UserInterface } from '../../../../interfaces/member.interface';
 import { ClientStatus, MemberRole, MemberStatus } from '../../../../interfaces/generated/globalTypes';
 
 const getLoadsQuery = loader('./gql/get-loads.query.graphql');
@@ -21,7 +21,7 @@ export const useGetLoadsQuery = () => {
 
   let loads: LoadInterface[] | null = null;
   let clients: ClientInterface[] | null = null;
-  let members: MemberInterface[] | null = null;
+  let members: UserInterface[] | null = null;
   const [_getLoadsAsync, { loading, data, called, error }] = useLazyQuery<GetLoads, GetLoadsVariables>(getLoadsQuery,
     {
       context: {

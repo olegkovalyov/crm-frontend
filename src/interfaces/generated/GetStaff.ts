@@ -3,21 +3,20 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { MemberStatus, MemberRole, LicenseType } from "./globalTypes";
+import { UserStatus, UserRole, LicenseType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetStaff
 // ====================================================
 
 export interface GetStaff_getStaff {
-  __typename: "MemberModel";
+  __typename: "UserModel";
   id: number;
-  userId: number;
-  status: MemberStatus;
+  status: UserStatus;
   firstName: string;
   lastName: string;
   email: string;
-  roles: MemberRole[];
+  role: UserRole[];
   licenseType: LicenseType | null;
   createdAt: any;
   updatedAt: any;

@@ -1,3 +1,14 @@
-mutation DeleteLoad($input: Int!) {
-    deleteLoad(id: $input)
+mutation DeleteLoad($id: Int!){
+    deleteLoad(id: $id) {
+        id,
+        status,
+        capacity,
+        order,
+        slots {
+            id
+        },
+        info,
+        createdAt,
+        updatedAt
+    }
 }

@@ -3,7 +3,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import { useMemberFormValidation } from '../../../src/hooks/members/member-form-validation/member-form-validation.hook';
-import { useCreateMemberMutation } from '../../../src/hooks/graphql/mutations/create-member/create-member.mutation.hook';
+import { useCreateMemberMutation } from '../../../src/hooks/graphql/mutations/create-user/create-member.mutation.hook';
 import MemberForm from '../../../src/components/members/member-form/member-form.component';
 import { MemberStatus } from '../../../src/interfaces/generated/globalTypes';
 import { Content } from '../../../src/components/layout/content/content.component';

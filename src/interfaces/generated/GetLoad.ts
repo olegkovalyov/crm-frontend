@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { LoadStatus, UserRole } from "./globalTypes";
+import { LoadStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetLoad
@@ -12,22 +12,18 @@ import { LoadStatus, UserRole } from "./globalTypes";
 export interface GetLoad_getLoad_slots {
   __typename: "SlotModel";
   id: number;
-  userId: number;
-  firstName: string;
-  lastName: string;
-  role: UserRole;
-  description: string;
 }
 
 export interface GetLoad_getLoad {
   __typename: "LoadModel";
   id: number;
   status: LoadStatus;
+  capacity: number;
   order: number;
-  date: any;
-  aircraft: string;
-  notes: string | null;
   slots: GetLoad_getLoad_slots[];
+  info: string;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface GetLoad {

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { Gender, ClientRole, ClientStatus } from "./globalTypes";
+import { ClientRole, ClientStatus, PaymentStatus, Gender } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: DeleteClient
@@ -12,24 +12,21 @@ import { Gender, ClientRole, ClientStatus } from "./globalTypes";
 export interface DeleteClient_deleteClient {
   __typename: "ClientModel";
   id: number;
-  userId: number;
-  address: string;
-  age: number;
-  certificate: string | null;
-  createdAt: any;
-  email: string | null;
-  firstName: string;
-  gender: Gender;
-  lastName: string;
-  notes: string | null;
-  phone: string;
-  processedAt: any | null;
+  personId: string;
   role: ClientRole;
   status: ClientStatus;
-  updatedAt: any;
+  paymentStatus: PaymentStatus;
+  gender: Gender;
+  dateOfBirth: any;
+  firstName: string;
+  lastName: string;
+  email: string | null;
   weight: number;
-  withCameraman: boolean;
-  withHandCameraVideo: boolean;
+  phone: string;
+  certificate: string | null;
+  createdAt: any;
+  updatedAt: any;
+  processedAt: any | null;
 }
 
 export interface DeleteClient {
@@ -37,5 +34,5 @@ export interface DeleteClient {
 }
 
 export interface DeleteClientVariables {
-  input: number;
+  id: number;
 }

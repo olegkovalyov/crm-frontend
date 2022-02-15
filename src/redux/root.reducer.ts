@@ -3,14 +3,14 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer, AuthStateInterface } from './auth/auth.reducer';
 import { layoutReducer, LayoutStateInterface } from './layout/layout.reducer';
-import { membersReducer, MembersStateInterface } from './members/members.reducer';
+import { usersReducer, UsersStateInterface } from './users/users.reducer';
 import { clientsReducer, ClientsStateInterface } from './clients/clients.reducer';
 import { eventsReducer, EventsStateInterface } from './events/events.reducer';
 
 export interface RootStateInterface {
   layout: LayoutStateInterface;
   auth: AuthStateInterface,
-  members: MembersStateInterface,
+  users: UsersStateInterface,
   clients: ClientsStateInterface,
   events: EventsStateInterface,
 }
@@ -27,10 +27,10 @@ const authPersistConfig = {
   whitelist: ['currentUser', 'refreshTokenExists'],
 };
 
-const membersPersistConfig = {
-  key: 'members',
+const usersPersistConfig = {
+  key: 'users',
   storage,
-  blacklist: ['members'],
+  blacklist: ['users'],
 };
 
 const clientsPersistConfig = {
@@ -48,7 +48,7 @@ const eventsPersistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   layout: layoutReducer,
-  members: persistReducer(membersPersistConfig, membersReducer),
+  users: persistReducer(usersPersistConfig, usersReducer),
   clients: persistReducer(clientsPersistConfig, clientsReducer),
   events: persistReducer(eventsPersistConfig, eventsReducer),
 });

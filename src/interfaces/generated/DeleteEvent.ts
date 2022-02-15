@@ -10,10 +10,12 @@
 export interface DeleteEvent_deleteEvent {
   __typename: "EventModel";
   id: number;
-  title: string;
+  name: string;
   startDate: any;
   endDate: any;
-  notes: string;
+  info: string;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface DeleteEvent {
@@ -21,5 +23,5 @@ export interface DeleteEvent {
 }
 
 export interface DeleteEventVariables {
-  input: number;
+  id: number;
 }

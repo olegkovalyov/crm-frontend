@@ -2,17 +2,13 @@ query GetLoad($id: Int!) {
     getLoad(id: $id) {
         id,
         status,
+        capacity,
         order,
-        date,
-        aircraft,
-        notes,
         slots {
-            id,
-            userId,
-            firstName,
-            lastName,
-            role,
-            description
-        }
+            id
+        },
+        info,
+        createdAt,
+        updatedAt
     }
 }

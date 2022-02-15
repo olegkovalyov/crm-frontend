@@ -10,23 +10,20 @@ import { ClientInterface } from '../../../../interfaces/client.interface';
 import { ClientStatus } from '../../../../interfaces/generated/globalTypes';
 
 export const getClientsQuery = gql`
-    query GetClients($getClientsFilter: GetClientsFilterInput!) {
-        getClients(getClientsFilterInput: $getClientsFilter){
+    query GetClients($getClientsInput: GetClientsInput!){
+        getClients(getClientsInput: $getClientsInput){
             id,
-            userId,
+            personId,
             role,
             status,
+            paymentStatus,
             gender,
-            age,
+            dateOfBirth,
             firstName,
             lastName,
             email,
             weight,
             phone,
-            address,
-            withHandCameraVideo,
-            withCameraman,
-            notes,
             certificate,
             createdAt,
             updatedAt,

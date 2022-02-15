@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { GridRowsProp } from '@material-ui/x-grid';
 import { useSelector } from 'react-redux';
-import { MemberInterface } from '../../../interfaces/member.interface';
+import { UserInterface } from '../../../interfaces/member.interface';
 import { RootStateInterface } from '../../../redux/root.reducer';
 import {
   getMembers,
   getMemberRolesOptionsForFilter,
   getMemberStatusOptionsForFilter,
-} from '../../../redux/members/members.selector';
+} from '../../../redux/users/members.selector';
 
 export const useMembersFilter = () => {
 
@@ -39,7 +39,7 @@ export const useMembersFilter = () => {
     setSearchFilterValue(e.target.value);
   };
 
-  const applyFilter = (data: MemberInterface[]): MemberInterface[] => data.filter(member => {
+  const applyFilter = (data: UserInterface[]): UserInterface[] => data.filter(member => {
     if (selectedRolesOptions.length) {
       let shouldPass = false;
       selectedRolesOptions.forEach(role => {

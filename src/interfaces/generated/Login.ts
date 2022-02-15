@@ -3,24 +3,17 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { LoginInput, MemberStatus, MemberRole, LicenseType } from "./globalTypes";
+import { LoginInput } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: Login
 // ====================================================
 
 export interface Login_login_payload {
-  __typename: "MemberModel";
+  __typename: "UserModel";
   id: number;
-  userId: number;
-  status: MemberStatus;
   firstName: string;
   lastName: string;
-  email: string;
-  roles: MemberRole[];
-  licenseType: LicenseType | null;
-  createdAt: any;
-  updatedAt: any;
 }
 
 export interface Login_login {

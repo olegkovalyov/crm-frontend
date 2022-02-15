@@ -1,0 +1,11 @@
+// Roles filtering
+export const SET_USER_ROLES_OPTIONS_FOR_FILTER = 'SET_USER_ROLES_OPTIONS_FOR_FILTER';
+
+// Status filtering
+export const SET_USER_STATUS_OPTIONS_FOR_FILTER = 'SET_USER_STATUS_OPTIONS_FOR_FILTER';
+
+// Set USERS
+export const SET_USERS = 'SET_USERS';
+
+
+

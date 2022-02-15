@@ -1,10 +1,8 @@
-mutation CreateSlot($input: CreateSlotInput!) {
-    createSlot(createSlotInput: $input){
+mutation CreateSlot($slot: CreateSlotInput!){
+    createSlot(createSlotInput: $slot){
         id,
-        userId,
-        firstName,
-        lastName,
-        role,
-        description
+        type,
+        personIds,
+        info
     }
 }

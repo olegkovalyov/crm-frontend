@@ -10,7 +10,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { useDispatch } from 'react-redux';
 import { CREATE_MEMBER_URL } from '../../src/constants/route.constants';
 import { Content } from '../../src/components/layout/content/content.component';
-import { MemberInterface } from '../../src/interfaces/member.interface';
+import { UserInterface } from '../../src/interfaces/member.interface';
 import {
   getMembersQuery,
 } from '../../src/hooks/graphql/queries/get-members/get-members.query.hook';
@@ -20,14 +20,14 @@ import { GetMembers, GetMembersVariables } from '../../src/interfaces/generated/
 import { useMembersFilter } from '../../src/hooks/members/members-filter/members-filter.hook';
 import MembersFilterContainer
   from '../../src/components/members/members-filter-container/members-filter-container.component';
-import { useDeleteMemberMutation } from '../../src/hooks/graphql/mutations/delete-member/delete-member.mutation.hook';
+import { useDeleteMemberMutation } from '../../src/hooks/graphql/mutations/delete-user/delete-member.mutation.hook';
 import ResponsiveDialog from '../../src/elements/responsive-dialog.component';
 import { useMembersTable } from '../../src/hooks/members/members-table/members-table.hook';
-import { setMembersAction } from '../../src/redux/members/members.actions';
+import { setMembersAction } from '../../src/redux/users/members.actions';
 import Notification from '../../src/components/common/notification/notification.compontent';
 
 interface PropTypesInterface {
-  members: MemberInterface[],
+  members: UserInterface[],
   hasError: boolean,
   errorMessage: string
 }
@@ -138,7 +138,7 @@ const Members: FC<PropTypesInterface> = (props: PropTypesInterface): ReactElemen
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
 
-  let members: MemberInterface[] = [];
+  let members: UserInterface[] = [];
   let hasError = false;
   let errorMessage = '';
   const { accessToken } = context.req.cookies;

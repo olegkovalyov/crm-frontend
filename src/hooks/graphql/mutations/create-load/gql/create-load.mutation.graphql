@@ -1,19 +1,14 @@
-mutation CreateLoad($input: CreateLoadInput!) {
-    createLoad(createLoadInput: $input)
-    {
+mutation CreateLoad($load: CreateLoadInput!){
+    createLoad(createLoadInput: $load){
         id,
         status,
+        capacity,
         order,
-        date,
-        aircraft,
-        notes,
         slots {
-            id,
-            userId,
-            firstName,
-            lastName,
-            role,
-            description
-        }
+            id
+        },
+        info,
+        createdAt,
+        updatedAt
     }
 }

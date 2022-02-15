@@ -12,10 +12,12 @@ import { UpdateEventInput } from "./globalTypes";
 export interface UpdateEvent_updateEvent {
   __typename: "EventModel";
   id: number;
-  title: string;
+  name: string;
   startDate: any;
   endDate: any;
-  notes: string;
+  info: string;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface UpdateEvent {

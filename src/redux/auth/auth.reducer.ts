@@ -1,10 +1,10 @@
 import { AuthActions } from './auth.actions';
 import { LOGOUT, SET_REDIRECT_URL, SET_USER } from './auth.types';
-import { MemberInterface } from '../../interfaces/member.interface';
+import { UserInterface } from '../../interfaces/member.interface';
 
 
 export interface AuthStateInterface {
-  currentUser: MemberInterface | null,
+  currentUser: UserInterface | null,
   accessToken: string | null,
   refreshTokenExists: boolean,
   redirectUrl: string | null,

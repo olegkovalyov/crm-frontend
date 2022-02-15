@@ -1,7 +1,7 @@
-import { GetMember_getMember } from './generated/GetMember';
 import { GetStaff_getStaff } from './generated/GetStaff';
+import { GetUser_getUser } from './generated/GetUser';
 
-export interface MemberInterface extends GetMember_getMember {
+export interface UserInterface extends GetUser_getUser {
 }
 
 export interface StaffInterface extends GetStaff_getStaff {

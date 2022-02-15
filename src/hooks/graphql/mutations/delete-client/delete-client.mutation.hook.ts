@@ -1,40 +1,19 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import gql from 'graphql-tag';
+import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { DeleteClient, DeleteClientVariables } from '../../../../interfaces/generated/DeleteClient';
+import {
+  DeleteClient,
+  DeleteClientVariables,
+} from '../../../../interfaces/generated/DeleteClient';
 import { ClientInterface } from '../../../../interfaces/client.interface';
 
-export const deleteClientMutation = gql`
-    mutation DeleteClient($input: Int!) {
-        deleteClient(id: $input) {
-            id,
-            userId,
-            address,
-            age,
-            certificate,
-            createdAt,
-            email,
-            firstName,
-            gender,
-            lastName,
-            notes,
-            phone,
-            processedAt,
-            role,
-            status,
-            updatedAt,
-            weight,
-            withCameraman,
-            withHandCameraVideo,
-        }
-    }
-`;
-export const useDeleteClientMutation = () => {
+const deleteClientMutation = loader('./gql/delete-client.mutation.graphql');
 
+export const useDeleteClientMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
@@ -50,11 +29,10 @@ export const useDeleteClientMutation = () => {
     },
   });
 
-
   const deleteClientAsync = async (id: number): Promise<void> => {
     try {
       const variables: DeleteClientVariables = {
-        input: id,
+        id,
       };
       setErrorMessage(null);
       await _deleteClientAsync({

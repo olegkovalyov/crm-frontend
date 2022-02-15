@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { GetStaff } from '../../../../interfaces/generated/GetStaff';
-import { MemberInterface, StaffInterface } from '../../../../interfaces/member.interface';
+import { UserInterface, StaffInterface } from '../../../../interfaces/member.interface';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 
 const queryGetStaff = loader('./gql/get-staff.query.graphql');
@@ -29,7 +29,7 @@ export const useGetStaffQuery = () => {
     });
 
   if (data && data.getStaff) {
-    staff = data.getStaff.filter(x => x != null) as MemberInterface[];
+    staff = data.getStaff.filter(x => x != null) as UserInterface[];
   }
 
   const getStaffAsync = async () => {

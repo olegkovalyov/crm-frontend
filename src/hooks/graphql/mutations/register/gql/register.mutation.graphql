@@ -1,0 +1,11 @@
+mutation RegisterUser($user: CreateUserInput!){
+    register(registerInput: $user) {
+        payload {
+            id,
+            email,
+            firstName,
+            lastName
+        },
+        accessToken
+    }
+}

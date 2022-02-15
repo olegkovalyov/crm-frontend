@@ -1,23 +1,16 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import gql from 'graphql-tag';
+import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { UpdateEvent, UpdateEventVariables } from '../../../../interfaces/generated/UpdateEvent';
+import {
+  UpdateEvent,
+  UpdateEventVariables,
+} from '../../../../interfaces/generated/UpdateEvent';
 
-const updateEventMutation = gql`
-    mutation UpdateEvent($event: UpdateEventInput!){
-        updateEvent(updateEventInput: $event){
-            id,
-            title,
-            startDate,
-            endDate,
-            notes
-        }
-    }
-`;
+const updateEventMutation = loader('./gql/update-event.mutation.graphql');
 
 export const useUpdateEventMutation = () => {
 
@@ -36,19 +29,19 @@ export const useUpdateEventMutation = () => {
 
   const updateEventAsync = async (
     id: number,
-    title: string,
-    startDate: Date,
-    endDate: Date,
-    notes: string,
+    name: string | null,
+    startDate: Date | null,
+    endDate: Date | null,
+    info: string | null,
   ): Promise<void> => {
     try {
       const variables: UpdateEventVariables = {
         event: {
           id,
-          title,
+          name,
           startDate,
           endDate,
-          notes,
+          info,
         },
       };
       setErrorMessage(null);

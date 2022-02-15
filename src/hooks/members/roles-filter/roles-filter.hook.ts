@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MemberRole } from '../../../interfaces/generated/globalTypes';
-import { setMemberRolesOptionsForFilterAction } from '../../../redux/members/members.actions';
+import { setMemberRolesOptionsForFilterAction } from '../../../redux/users/members.actions';
 import { RootStateInterface } from '../../../redux/root.reducer';
-import { getMemberRolesOptionsForFilter } from '../../../redux/members/members.selector';
+import { getMemberRolesOptionsForFilter } from '../../../redux/users/members.selector';
 
 export const useRolesFilter = () => {
   const dispatch = useDispatch();

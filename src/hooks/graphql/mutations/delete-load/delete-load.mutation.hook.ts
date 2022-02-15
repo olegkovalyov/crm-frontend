@@ -5,16 +5,18 @@ import { useSelector } from 'react-redux';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { DeleteLoad, DeleteLoadVariables } from '../../../../interfaces/generated/DeleteLoad';
+import {
+  DeleteLoad,
+  DeleteLoadVariables,
+} from '../../../../interfaces/generated/DeleteLoad';
 
 const deleteLoadMutation = loader('./gql/delete-load.mutation.graphql');
 
 export const useDeleteLoadMutation = () => {
-
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState<string|null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_deleteLoadAsync, { loading, data }] = useMutation<DeleteLoad, DeleteLoadVariables>(deleteLoadMutation, {
     context: {
       headers: {
@@ -23,11 +25,10 @@ export const useDeleteLoadMutation = () => {
     },
   });
 
-
   const deleteLoadAsync = async (id: number): Promise<void> => {
     try {
       const variables: DeleteLoadVariables = {
-        input: id,
+        id,
       };
       setErrorMessage(null);
       await _deleteLoadAsync({

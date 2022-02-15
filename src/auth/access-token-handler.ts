@@ -20,19 +20,12 @@ export const handleAccessToken = async (context: NextPageContext) => {
       const refreshTokenQuery = gql`
           query RefreshToken {
               refreshToken {
-                  payload {
+                  payload{
                       id,
-                      userId,
-                      status,
                       firstName,
                       lastName,
-                      email,
-                      roles,
-                      licenseType,
-                      createdAt,
-                      updatedAt,
                   },
-                  accessToken,
+                  accessToken
               }
           }
       `;

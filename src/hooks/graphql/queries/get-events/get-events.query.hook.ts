@@ -10,13 +10,15 @@ import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grah
 import { setEventsAction } from '../../../../redux/events/events.actions';
 
 export const getEventsQuery = gql`
-    query GetEvents($getEventsFilter: GetEventsFilterInput!) {
-        getEvents(getEventsFilterInput: $getEventsFilter){
+    query GetEvents($getEvents: GetEventsInput!) {
+        getEvents(getEventsInput: $getEvents){
             id,
-            title,
+            name,
             startDate,
             endDate,
-            notes
+            info,
+            createdAt,
+            updatedAt
         }
     }
 `;

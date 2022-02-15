@@ -7,11 +7,11 @@ import {
 } from '../../../common/inputValidator';
 import { LicenseType, MemberStatus } from '../../../interfaces/generated/globalTypes';
 import { useRolesEdit } from '../roles-edit/roles-edit.hook';
-import { MemberInterface } from '../../../interfaces/member.interface';
+import { UserInterface } from '../../../interfaces/member.interface';
 
 export const useMemberFormValidation = () => {
 
-  const setMember = (member: MemberInterface): void => {
+  const setMember = (member: UserInterface): void => {
     setStatus(member.status);
     setFirstName(member.firstName);
     setLastName(member.lastName);

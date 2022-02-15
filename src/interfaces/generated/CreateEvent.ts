@@ -12,10 +12,12 @@ import { CreateEventInput } from "./globalTypes";
 export interface CreateEvent_createEvent {
   __typename: "EventModel";
   id: number;
-  title: string;
+  name: string;
   startDate: any;
   endDate: any;
-  notes: string;
+  info: string;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface CreateEvent {
@@ -23,5 +25,5 @@ export interface CreateEvent {
 }
 
 export interface CreateEventVariables {
-  input: CreateEventInput;
+  event: CreateEventInput;
 }

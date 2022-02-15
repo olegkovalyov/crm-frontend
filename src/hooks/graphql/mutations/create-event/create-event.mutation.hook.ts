@@ -1,27 +1,19 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import gql from 'graphql-tag';
+import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { CreateEvent, CreateEventVariables } from '../../../../interfaces/generated/CreateEvent';
+import {
+  CreateEvent,
+  CreateEventVariables,
+} from '../../../../interfaces/generated/CreateEvent';
 import { EventInterface } from '../../../../interfaces/event.interface';
 
-const createEventMutation = gql`
-    mutation CreateEvent($input: CreateEventInput!) {
-        createEvent(createEventInput: $input)
-        {
-            id,
-            title
-            startDate,
-            endDate,
-            notes
-        }
-    }
-`;
-export const useCreateEventMutation = () => {
+const createEventMutation = loader('./gql/create-event.mutation.graphql');
 
+export const useCreateEventMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
@@ -34,20 +26,19 @@ export const useCreateEventMutation = () => {
     },
   });
 
-
   const createEventAsync = async (
-    title: string,
+    name: string,
     startDate: Date,
     endDate: Date,
-    notes: string,
+    info: string,
   ): Promise<void> => {
     try {
       const variables: CreateEventVariables = {
-        input: {
-          title,
+        event: {
+          name,
           startDate,
           endDate,
-          notes,
+          info,
         },
       };
       setErrorMessage(null);

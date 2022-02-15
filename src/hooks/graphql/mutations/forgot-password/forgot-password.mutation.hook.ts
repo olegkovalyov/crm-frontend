@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag';
-import { ForgotPassword, ForgotPasswordVariables } from '../../../../interfaces/generated/ForgotPassword';
+import { loader } from 'graphql.macro';
+import {
+  ForgotPassword,
+  ForgotPasswordVariables,
+} from '../../../../interfaces/generated/ForgotPassword';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 
-const mutation = gql`
-    mutation ForgotPassword($input: ForgotPasswordInput!) {
-        forgotPassword(forgotPasswordInput: $input)
-        {
-            wasSentEmail
-        }
-    }
-`;
+const forgotPasswordMutation = loader('./gql/forgot-password.mutation.graphql');
 
 export const useForgotPasswordMutation = () => {
   const [errorMessage, setErrorMessage] = useState('');
-  const [_forgotPasswordAsync, { loading, data }] = useMutation<ForgotPassword, ForgotPasswordVariables>(mutation);
+  const [_forgotPasswordAsync, {
+    loading,
+    data,
+  }] = useMutation<ForgotPassword, ForgotPasswordVariables>(forgotPasswordMutation);
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 

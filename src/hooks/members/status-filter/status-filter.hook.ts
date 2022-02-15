@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MemberStatus } from '../../../interfaces/generated/globalTypes';
-import { setMemberStatusOptionsForFilterAction } from '../../../redux/members/members.actions';
+import { setMemberStatusOptionsForFilterAction } from '../../../redux/users/members.actions';
 import { RootStateInterface } from '../../../redux/root.reducer';
-import { getMemberStatusOptionsForFilter } from '../../../redux/members/members.selector';
+import { getMemberStatusOptionsForFilter } from '../../../redux/users/members.selector';
 
 export const useStatusFilter = () => {
   const dispatch = useDispatch();

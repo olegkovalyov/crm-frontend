@@ -1,0 +1,11 @@
+mutation DeleteEvent($id: Int!){
+    deleteEvent(id: $id){
+        id,
+        name,
+        startDate,
+        endDate,
+        info,
+        createdAt,
+        updatedAt
+    }
+}

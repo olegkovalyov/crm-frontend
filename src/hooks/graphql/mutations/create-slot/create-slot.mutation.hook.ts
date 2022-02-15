@@ -5,19 +5,25 @@ import { useSelector } from 'react-redux';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { UserRole } from '../../../../interfaces/generated/globalTypes';
-import { CreateSlot, CreateSlotVariables } from '../../../../interfaces/generated/CreateSlot';
+import { SlotType } from '../../../../interfaces/generated/globalTypes';
+import {
+  CreateSlot,
+  CreateSlotVariables,
+} from '../../../../interfaces/generated/CreateSlot';
 import { SlotInterface } from '../../../../interfaces/load.interface';
 
 const createSlotMutation = loader('./gql/create-slot.mutation.graphql');
 
 export const useCreateSlotMutation = () => {
-
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState<string|null>(null);
-  const [_createSlotAsync, { loading, data, called }] = useMutation<CreateSlot, CreateSlotVariables>(createSlotMutation, {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [_createSlotAsync, {
+    loading,
+    data,
+    called,
+  }] = useMutation<CreateSlot, CreateSlotVariables>(createSlotMutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -30,24 +36,19 @@ export const useCreateSlotMutation = () => {
     slot = data.createSlot;
   }
 
-
   const createSlotAsync = async (
     loadId: number,
-    userId: number,
-    firstName: string,
-    lastName: string,
-    role: UserRole,
-    description: string,
+    type: SlotType,
+    personIds: string[],
+    info: string,
   ): Promise<void> => {
     try {
       const variables: CreateSlotVariables = {
-        input: {
+        slot: {
           loadId,
-          userId,
-          firstName,
-          lastName,
-          role,
-          description,
+          type,
+          personIds,
+          info,
         },
       };
       setErrorMessage(null);

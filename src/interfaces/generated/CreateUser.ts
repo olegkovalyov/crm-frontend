@@ -3,30 +3,29 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { MemberStatus, MemberRole, LicenseType } from "./globalTypes";
+import { CreateUserInput, UserStatus, UserRole, LicenseType } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: GetMember
+// GraphQL mutation operation: CreateUser
 // ====================================================
 
-export interface GetMember_getMember {
-  __typename: "MemberModel";
+export interface CreateUser_createUser {
+  __typename: "UserModel";
   id: number;
-  userId: number;
-  status: MemberStatus;
+  status: UserStatus;
   firstName: string;
   lastName: string;
   email: string;
-  roles: MemberRole[];
+  role: UserRole[];
   licenseType: LicenseType | null;
   createdAt: any;
   updatedAt: any;
 }
 
-export interface GetMember {
-  getMember: GetMember_getMember | null;
+export interface CreateUser {
+  createUser: CreateUser_createUser;
 }
 
-export interface GetMemberVariables {
-  id: number;
+export interface CreateUserVariables {
+  user: CreateUserInput;
 }

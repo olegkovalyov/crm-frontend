@@ -1,0 +1,20 @@
+mutation CreateClient($client: CreateClientInput!){
+    createClient(createClientInput: $client){
+        id,
+        personId,
+        role,
+        status,
+        paymentStatus,
+        gender,
+        dateOfBirth,
+        firstName,
+        lastName,
+        email,
+        weight,
+        phone,
+        certificate,
+        createdAt,
+        updatedAt,
+        processedAt
+    }
+}

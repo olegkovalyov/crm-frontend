@@ -3,24 +3,15 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { MemberStatus, MemberRole, LicenseType } from "./globalTypes";
-
 // ====================================================
 // GraphQL query operation: RefreshToken
 // ====================================================
 
 export interface RefreshToken_refreshToken_payload {
-  __typename: "MemberModel";
+  __typename: "UserModel";
   id: number;
-  userId: number;
-  status: MemberStatus;
   firstName: string;
   lastName: string;
-  email: string;
-  roles: MemberRole[];
-  licenseType: LicenseType | null;
-  createdAt: any;
-  updatedAt: any;
 }
 
 export interface RefreshToken_refreshToken {

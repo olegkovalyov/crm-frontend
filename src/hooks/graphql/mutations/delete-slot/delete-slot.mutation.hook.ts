@@ -5,7 +5,10 @@ import { useSelector } from 'react-redux';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { DeleteSlot, DeleteSlotVariables } from '../../../../interfaces/generated/DeleteSlot';
+import {
+  DeleteSlot,
+  DeleteSlotVariables,
+} from '../../../../interfaces/generated/DeleteSlot';
 
 const deleteSlotMutation = loader('./gql/delete-slot.mutation.graphql');
 

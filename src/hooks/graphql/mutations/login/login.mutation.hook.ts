@@ -1,32 +1,17 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag';
-import { Login, LoginVariables } from '../../../../interfaces/generated/Login';
+import { loader } from 'graphql.macro';
+import {
+  Login,
+  LoginVariables,
+} from '../../../../interfaces/generated/Login';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 
-const mutation = gql`
-    mutation Login($input: LoginInput!) {
-        login(loginInput: $input) {
-            payload {
-                id,
-                userId,
-                status,
-                firstName,
-                lastName,
-                email,
-                roles,
-                licenseType,
-                createdAt,
-                updatedAt,
-            },
-            accessToken,
-        }
-    }
-`;
+const loginMutation = loader('./gql/login.mutation.graphql');
 
 export const useLoginMutation = () => {
   const [errorMessage, setErrorMessage] = useState('');
-  const [runLoginMutation, { loading, data }] = useMutation<Login, LoginVariables>(mutation);
+  const [runLoginMutation, { loading, data }] = useMutation<Login, LoginVariables>(loginMutation);
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 

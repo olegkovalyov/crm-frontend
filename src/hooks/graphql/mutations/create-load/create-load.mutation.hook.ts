@@ -6,16 +6,18 @@ import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grah
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { LoadStatus } from '../../../../interfaces/generated/globalTypes';
-import { CreateLoad, CreateLoadVariables } from '../../../../interfaces/generated/CreateLoad';
+import {
+  CreateLoad,
+  CreateLoadVariables,
+} from '../../../../interfaces/generated/CreateLoad';
 
 const createLoadMutation = loader('./gql/create-load.mutation.graphql');
 
 export const useCreateLoadMutation = () => {
-
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
-  const [errorMessage, setErrorMessage] = useState<string|null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [_createLoadAsync, { loading, data }] = useMutation<CreateLoad, CreateLoadVariables>(createLoadMutation, {
     context: {
       headers: {
@@ -24,24 +26,23 @@ export const useCreateLoadMutation = () => {
     },
   });
 
-
   const createLoadAsync = async (
     eventId: number,
+    capacity: number,
     status: LoadStatus,
-    date: Date,
-    aircraft: string,
-    notes: string | null,
-    order: number,
+    takeOffTime: Date | null,
+    landingTime: Date | null,
+    info: string | null,
   ): Promise<void> => {
     try {
       const variables: CreateLoadVariables = {
-        input: {
+        load: {
           eventId,
+          capacity,
           status,
-          date,
-          aircraft,
-          notes,
-          order,
+          takeOffTime,
+          landingTime,
+          info,
         },
       };
       setErrorMessage(null);

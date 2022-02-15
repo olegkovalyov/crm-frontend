@@ -6,18 +6,17 @@ import { GetMember, GetMemberVariables } from '../../../../interfaces/generated/
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-import { MemberInterface } from '../../../../interfaces/member.interface';
+import { UserInterface } from '../../../../interfaces/member.interface';
 
-export const getMemberQuery = gql`
-    query GetMember($id: Int!) {
-        getMember(id: $id) {
+export const getUserQuery = gql`
+    query GetUser($id: Int!) {
+        getUser(id: $id) {
             id,
-            userId,
             status,
             firstName,
             lastName,
             email,
-            roles,
+            role,
             licenseType,
             createdAt,
             updatedAt
@@ -25,14 +24,14 @@ export const getMemberQuery = gql`
     }
 `;
 
-export const useGetMemberQuery = () => {
+export const useGetUserQuery = () => {
 
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [_getMemberAsync, { loading, data, called }] = useLazyQuery<GetMember, GetMemberVariables>(getMemberQuery,
+  const [_getUserAsync, { loading, data, called }] = useLazyQuery<GetMember, GetMemberVariables>(getUserQuery,
     {
       context: {
         headers: {
@@ -42,14 +41,14 @@ export const useGetMemberQuery = () => {
       fetchPolicy: 'network-only',
     });
 
-  let member: MemberInterface | null = null;
+  let member: UserInterface | null = null;
 
   const getMemberAsync = async (id: number) => {
     const variables: GetMemberVariables = {
       id,
     };
     try {
-      await _getMemberAsync({
+      await _getUserAsync({
         variables,
       });
     } catch (e) {

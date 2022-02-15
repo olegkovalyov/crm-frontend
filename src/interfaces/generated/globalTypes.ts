@@ -8,12 +8,13 @@
 //==============================================================
 
 export enum ClientRole {
-  AS_A_PASSENGER = "AS_A_PASSENGER",
+  PASSENGER = "PASSENGER",
   STATIC_LINE = "STATIC_LINE",
   TANDEM = "TANDEM",
 }
 
 export enum ClientStatus {
+  ARCHIVED = "ARCHIVED",
   PENDING = "PENDING",
   PROCESSED = "PROCESSED",
 }
@@ -38,109 +39,125 @@ export enum LoadStatus {
   PROCESSED = "PROCESSED",
 }
 
-export enum MemberRole {
-  ADMIN = "ADMIN",
-  CAMERAMAN = "CAMERAMAN",
-  COACH = "COACH",
-  MANIFEST = "MANIFEST",
-  PACKER = "PACKER",
-  RIGGER = "RIGGER",
-  SKYDIVER = "SKYDIVER",
-  STUDENT = "STUDENT",
-  TM = "TM",
+export enum PaymentStatus {
+  NOT_PAID = "NOT_PAID",
+  PAID = "PAID",
+  REFUNDED = "REFUNDED",
 }
 
-export enum MemberStatus {
-  ACTIVE = "ACTIVE",
-  BLOCKED = "BLOCKED",
+export enum SlotType {
+  AFF_ONE_INSTRUCTOR = "AFF_ONE_INSTRUCTOR",
+  AFF_TWO_INSTRUCTORS = "AFF_TWO_INSTRUCTORS",
+  COACHED_JUMP = "COACHED_JUMP",
+  HOP_ON_HOP_OFF = "HOP_ON_HOP_OFF",
+  PASSENGER = "PASSENGER",
+  SPORT = "SPORT",
+  STATIC_LINE = "STATIC_LINE",
+  TM_WITHOUT_CAMERAMAN = "TM_WITHOUT_CAMERAMAN",
+  TM_WITH_CAMERAMAN = "TM_WITH_CAMERAMAN",
 }
 
 export enum UserRole {
   ADMIN = "ADMIN",
-  AS_A_PASSENGER = "AS_A_PASSENGER",
   CAMERAMAN = "CAMERAMAN",
   COACH = "COACH",
   MANIFEST = "MANIFEST",
   PACKER = "PACKER",
   RIGGER = "RIGGER",
   SKYDIVER = "SKYDIVER",
-  STATIC_LINE = "STATIC_LINE",
   STUDENT = "STUDENT",
-  TANDEM = "TANDEM",
   TM = "TM",
 }
 
+export enum UserStatus {
+  ACTIVE = "ACTIVE",
+  BLOCKED = "BLOCKED",
+}
+
 export interface CreateClientInput {
-  role: ClientRole;
-  status: ClientStatus;
-  gender: Gender;
-  age: number;
-  firstName: string;
-  lastName: string;
+  role?: ClientRole | null;
+  status?: ClientStatus | null;
+  paymentStatus?: PaymentStatus | null;
+  gender?: Gender | null;
+  dateOfBirth?: any | null;
+  firstName?: string | null;
+  lastName?: string | null;
   email?: string | null;
-  weight: number;
-  phone: string;
-  address: string;
-  withHandCameraVideo: boolean;
-  withCameraman: boolean;
-  notes?: string | null;
+  weight?: number | null;
+  phone?: string | null;
+  additionalInfo?: string | null;
   certificate?: string | null;
 }
 
 export interface CreateEventInput {
-  title: string;
+  name: string;
   startDate: any;
   endDate: any;
-  notes: string;
+  info: string;
 }
 
 export interface CreateLoadInput {
   eventId: number;
+  capacity: number;
   status: LoadStatus;
-  order: number;
-  date: any;
-  aircraft: string;
-  notes?: string | null;
-}
-
-export interface CreateMemberInput {
-  status: MemberStatus;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  roles: MemberRole[];
-  licenseType: LicenseType;
+  takeOffTime?: any | null;
+  landingTime?: any | null;
+  info?: string | null;
 }
 
 export interface CreateSlotInput {
   loadId: number;
-  userId: number;
+  type: SlotType;
+  personIds: string[];
+  info: string;
+}
+
+export interface CreateUserInput {
+  email: string;
+  password: string;
+  status: UserStatus;
   firstName: string;
   lastName: string;
-  role: UserRole;
-  description: string;
+  role: UserRole[];
+  licenseType: LicenseType;
 }
 
 export interface ForgotPasswordInput {
   email: string;
 }
 
-export interface GetClientsFilterInput {
-  clientStatusOptions?: ClientStatus[] | null;
-  isAssigned?: boolean | null;
-  createdAtMin?: any | null;
-  createdAtMax?: any | null;
+export interface GetClientsInput {
+  role?: ClientRole[] | null;
+  status?: ClientStatus[] | null;
+  paymentStatus?: PaymentStatus[] | null;
+  gender?: Gender[] | null;
+  minDateOfBirth?: any | null;
+  maxDateOfBirth?: any | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  certificate?: string | null;
+  minCreatedAt?: any | null;
+  maxCreatedAt?: any | null;
+  minProcessedAt?: any | null;
+  maxProcessedAt?: any | null;
 }
 
-export interface GetEventsFilterInput {
-  dateMin?: any | null;
-  dateMax?: any | null;
+export interface GetEventsInput {
+  name?: string | null;
+  startDateMin?: any | null;
+  startDateMax?: any | null;
+  endDateMin?: any | null;
+  endDateMax?: any | null;
 }
 
-export interface GetMembersFilterInput {
-  statuses?: MemberStatus[] | null;
-  roles?: MemberRole[] | null;
+export interface GetUsersInput {
+  status?: UserStatus[] | null;
+  role?: UserRole[] | null;
+  licenseType?: LicenseType[] | null;
+  firstName?: string | null;
+  lastName?: string | null;
 }
 
 export interface LoginInput {
@@ -155,36 +172,35 @@ export interface ResetPasswordInput {
 
 export interface UpdateClientInput {
   id: number;
-  role?: ClientRole | null;
-  status?: ClientStatus | null;
-  gender?: Gender | null;
-  age?: number | null;
-  firstName?: string | null;
-  lastName?: string | null;
+  role: ClientRole;
+  status: ClientStatus;
+  paymentStatus: PaymentStatus;
+  gender: Gender;
+  dateOfBirth: any;
+  firstName: string;
+  lastName: string;
   email?: string | null;
-  weight?: number | null;
-  phone?: string | null;
-  address?: string | null;
-  withHandCameraVideo?: boolean | null;
-  withCameraman?: boolean | null;
-  notes?: string | null;
+  weight: number;
+  phone: string;
+  additionalInfo?: string | null;
   certificate?: string | null;
+  processedAt?: any | null;
 }
 
 export interface UpdateEventInput {
   id: number;
-  title?: string | null;
+  name?: string | null;
   startDate?: any | null;
   endDate?: any | null;
-  notes?: string | null;
+  info?: string | null;
 }
 
-export interface UpdateMemberInput {
-  status?: MemberStatus | null;
+export interface UpdateUserInput {
+  email?: string | null;
+  status?: UserStatus | null;
   firstName?: string | null;
   lastName?: string | null;
-  email?: string | null;
-  roles?: MemberRole[] | null;
+  role?: UserRole[] | null;
   licenseType?: LicenseType | null;
   id: number;
 }

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ClientRole, ClientStatus, Gender } from "./globalTypes";
+import { ClientRole, ClientStatus, PaymentStatus, Gender } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetClient
@@ -12,20 +12,17 @@ import { ClientRole, ClientStatus, Gender } from "./globalTypes";
 export interface GetClient_getClient {
   __typename: "ClientModel";
   id: number;
-  userId: number;
+  personId: string;
   role: ClientRole;
   status: ClientStatus;
+  paymentStatus: PaymentStatus;
   gender: Gender;
-  age: number;
+  dateOfBirth: any;
   firstName: string;
   lastName: string;
   email: string | null;
   weight: number;
   phone: string;
-  address: string;
-  withHandCameraVideo: boolean;
-  withCameraman: boolean;
-  notes: string | null;
   certificate: string | null;
   createdAt: any;
   updatedAt: any;
@@ -33,7 +30,7 @@ export interface GetClient_getClient {
 }
 
 export interface GetClient {
-  getClient: GetClient_getClient | null;
+  getClient: GetClient_getClient;
 }
 
 export interface GetClientVariables {

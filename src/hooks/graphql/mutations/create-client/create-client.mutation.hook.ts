@@ -1,51 +1,33 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import gql from 'graphql-tag';
+import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import {
   ClientStatus,
-  ClientRole, Gender,
+  ClientRole,
+  Gender,
+  PaymentStatus,
 } from '../../../../interfaces/generated/globalTypes';
-import { CreateClient, CreateClientVariables } from '../../../../interfaces/generated/CreateClient';
+import {
+  CreateClient,
+  CreateClientVariables,
+} from '../../../../interfaces/generated/CreateClient';
 import { ClientInterface } from '../../../../interfaces/client.interface';
 
-const mutation = gql`
-    mutation CreateClient($input: CreateClientInput!) {
-        createClient(createClientInput: $input)
-        {
-            id,
-            userId,
-            address,
-            age,
-            certificate,
-            createdAt,
-            email,
-            firstName,
-            gender,
-            lastName,
-            notes,
-            phone,
-            processedAt,
-            role,
-            status,
-            updatedAt,
-            weight,
-            withCameraman,
-            withHandCameraVideo,
-        }
-    }
-`;
+const createClientMutation = loader('./gql/create-client.mutation.graphql');
 
 export const useCreateClientMutation = () => {
-
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [_createClientAsync, { loading, data }] = useMutation<CreateClient, CreateClientVariables>(mutation, {
+  const [_createClientAsync, {
+    loading,
+    data,
+  }] = useMutation<CreateClient, CreateClientVariables>(createClientMutation, {
     context: {
       headers: {
         authorization: `Bearer ${accessToken} `,
@@ -53,39 +35,34 @@ export const useCreateClientMutation = () => {
     },
   });
 
-
   const createClientAsync = async (
-    role: ClientRole,
-    status: ClientStatus,
-    gender: Gender,
-    age: number,
-    firstName: string,
-    lastName: string,
+    role: ClientRole | null,
+    status: ClientStatus | null,
+    paymentStatus: PaymentStatus | null,
+    gender: Gender | null,
+    dateOfBirth: Date | null,
+    firstName: string | null,
+    lastName: string | null,
     email: string | null,
-    weight: number,
-    phone: string,
-    address: string,
-    withHandCameraVideo: boolean,
-    withCameraman: boolean,
-    notes: string | null,
+    weight: number | null,
+    phone: string | null,
+    additionalInfo: string | null,
     certificate: string | null,
   ): Promise<void> => {
     try {
       const variables: CreateClientVariables = {
-        input: {
+        client: {
           role,
           status,
+          paymentStatus,
           gender,
-          age,
+          dateOfBirth,
           firstName,
           lastName,
           email,
           weight,
           phone,
-          address,
-          withHandCameraVideo,
-          withCameraman,
-          notes,
+          additionalInfo,
           certificate,
         },
       };
