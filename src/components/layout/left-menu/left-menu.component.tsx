@@ -34,7 +34,7 @@ import {
 } from '../../../constants/route.constants';
 import { RootStateInterface } from '../../../redux/root.reducer';
 import { getCurrentUser } from '../../../redux/auth/auth.selector';
-import { MemberRole } from '../../../interfaces/generated/globalTypes';
+import { UserRole } from '../../../interfaces/generated/globalTypes';
 
 
 const LeftMenu: FC = (props): ReactElement => {
@@ -50,8 +50,8 @@ const LeftMenu: FC = (props): ReactElement => {
   } = useLeftMenu();
 
   const usersMenuJsx = (currentUser
-    && (currentUser.roles.includes(MemberRole.ADMIN)
-      || currentUser.roles.includes(MemberRole.MANIFEST)
+    && (currentUser.roles.includes(UserRole.ADMIN)
+      || currentUser.roles.includes(UserRole.MANIFEST)
     )
   ) ?
     <ListItem

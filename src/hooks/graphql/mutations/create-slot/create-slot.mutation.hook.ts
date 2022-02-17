@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
@@ -12,7 +11,7 @@ import {
 } from '../../../../interfaces/generated/CreateSlot';
 import { SlotInterface } from '../../../../interfaces/load.interface';
 
-const createSlotMutation = loader('./gql/create-slot.mutation.graphql');
+import createSlotMutation from './gql/create-slot.mutation.graphql';
 
 export const useCreateSlotMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));

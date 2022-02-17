@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import {
   UpdateUser,
@@ -15,8 +14,7 @@ import {
   UserStatus,
 } from '../../../../interfaces/generated/globalTypes';
 import { UserInterface } from '../../../../interfaces/user.interface';
-
-const updateUserMutation = loader('./gql/update-user.mutation.graphql');
+import updateUserMutation from './gql/update-user.mutation.graphql';
 
 export const useUpdateUserMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));

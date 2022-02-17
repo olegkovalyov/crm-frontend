@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import {
   ResetPassword,
   ResetPasswordVariables,
 } from '../../../../interfaces/generated/ResetPassword';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-
-const resetPasswordMutation = loader('./gql/reset-password.mutation.graphql');
+import resetPasswordMutation from './gql/reset-password.mutation.graphql';
 
 export const useResetPasswordMutation = () => {
   const [errorMessage, setErrorMessage] = useState('');

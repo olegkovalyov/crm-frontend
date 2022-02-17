@@ -145,9 +145,11 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
     const apolloClient = initializeApollo();
     try {
       const variables: GetEventsVariables = {
-        getEventsFilter: {
-          dateMin: null,
-          dateMax: null,
+        getEvents: {
+          startDateMin: null,
+          startDateMax: null,
+          endDateMin: null,
+          endDateMax: null,
         },
       };
 

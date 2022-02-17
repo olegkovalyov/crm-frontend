@@ -1,14 +1,12 @@
 import { useLazyQuery } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { GetStaff } from '../../../../interfaces/generated/GetStaff';
-import { UserInterface, StaffInterface } from '../../../../interfaces/member.interface';
+import { UserInterface, StaffInterface } from '../../../../interfaces/user.interface';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-
-const queryGetStaff = loader('./gql/get-staff.query.graphql');
+import queryGetStaff from './gql/get-staff.query.graphql';
 
 export const useGetStaffQuery = () => {
 

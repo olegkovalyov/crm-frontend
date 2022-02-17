@@ -1,15 +1,12 @@
 import { useLazyQuery } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { GetMemberVariables } from '../../../../interfaces/generated/GetMember';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { GetLoad, GetLoadVariables } from '../../../../interfaces/generated/GetLoad';
 import { LoadInterface } from '../../../../interfaces/load.interface';
-
-const getLoadQuery = loader('./gql/get-load.query.graphql');
+import getLoadQuery from './gql/get-load.query.graphql';
 
 export const useGetLoadQuery = () => {
 
@@ -31,7 +28,7 @@ export const useGetLoadQuery = () => {
   let load: LoadInterface | null = null;
 
   const getLoadAsync = async (id: number) => {
-    const variables: GetMemberVariables = {
+    const variables: GetLoadVariables = {
       id,
     };
     try {

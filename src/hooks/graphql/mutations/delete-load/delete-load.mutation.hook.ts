@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
@@ -9,8 +8,7 @@ import {
   DeleteLoad,
   DeleteLoadVariables,
 } from '../../../../interfaces/generated/DeleteLoad';
-
-const deleteLoadMutation = loader('./gql/delete-load.mutation.graphql');
+import deleteLoadMutation from './gql/delete-load.mutation.graphql';
 
 export const useDeleteLoadMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));

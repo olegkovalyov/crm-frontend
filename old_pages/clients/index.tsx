@@ -153,12 +153,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
     const client = initializeApollo();
     try {
       const variables: GetClientsVariables = {
-        getClientsFilter: {
-          clientStatusOptions: null,
-          isAssigned: null,
-          createdAtMin: null,
-          createdAtMax: null,
-        },
+        getClientsInput: {},
       };
 
       const result: ApolloQueryResult<GetClients> = await client.query({

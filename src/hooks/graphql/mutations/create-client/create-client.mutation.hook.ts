@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
@@ -16,8 +15,7 @@ import {
   CreateClientVariables,
 } from '../../../../interfaces/generated/CreateClient';
 import { ClientInterface } from '../../../../interfaces/client.interface';
-
-const createClientMutation = loader('./gql/create-client.mutation.graphql');
+import createClientMutation from './gql/create-client.mutation.graphql';
 
 export const useCreateClientMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));

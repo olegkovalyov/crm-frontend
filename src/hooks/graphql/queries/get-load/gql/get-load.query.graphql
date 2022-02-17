@@ -8,6 +8,8 @@ query GetLoad($id: Int!) {
             id
         },
         info,
+        takeOffTime,
+        landingTime,
         createdAt,
         updatedAt
     }

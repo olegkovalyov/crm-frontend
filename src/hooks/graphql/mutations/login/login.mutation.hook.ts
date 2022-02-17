@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import {
   Login,
   LoginVariables,
 } from '../../../../interfaces/generated/Login';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-
-const loginMutation = loader('./gql/login.mutation.graphql');
+import loginMutation from './gql/login.mutation.graphql';
 
 export const useLoginMutation = () => {
   const [errorMessage, setErrorMessage] = useState('');

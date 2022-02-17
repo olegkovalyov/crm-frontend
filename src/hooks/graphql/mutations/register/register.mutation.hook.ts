@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import {
   RegisterUser,
   RegisterUserVariables,
@@ -11,8 +10,7 @@ import {
   UserRole,
   UserStatus,
 } from '../../../../interfaces/generated/globalTypes';
-
-const registerMutation = loader('./gql/register.mutation.graphql');
+import registerMutation from './gql/register.mutation.graphql';
 
 export const useRegisterMutation = () => {
   const [errorMessage, setErrorMessage] = useState('');

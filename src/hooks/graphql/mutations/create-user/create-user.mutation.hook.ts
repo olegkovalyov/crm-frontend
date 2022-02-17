@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import { loader } from 'graphql.macro';
 import {
   CreateUser,
   CreateUserVariables,
@@ -15,8 +14,7 @@ import {
   UserStatus,
 } from '../../../../interfaces/generated/globalTypes';
 import { UserInterface } from '../../../../interfaces/user.interface';
-
-const createUserMutation = loader('./gql/create-user.mutation.graphql');
+import createUserMutation from './gql/create-user.mutation.graphql';
 
 export const useCreateUserMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));

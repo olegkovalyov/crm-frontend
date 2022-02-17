@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
@@ -10,8 +9,7 @@ import {
   CreateLoad,
   CreateLoadVariables,
 } from '../../../../interfaces/generated/CreateLoad';
-
-const createLoadMutation = loader('./gql/create-load.mutation.graphql');
+import createLoadMutation from './gql/create-load.mutation.graphql';
 
 export const useCreateLoadMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));

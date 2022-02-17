@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
@@ -9,8 +8,7 @@ import {
   UpdateEvent,
   UpdateEventVariables,
 } from '../../../../interfaces/generated/UpdateEvent';
-
-const updateEventMutation = loader('./gql/update-event.mutation.graphql');
+import updateEventMutation from './gql/update-event.mutation.graphql';
 
 export const useUpdateEventMutation = () => {
 

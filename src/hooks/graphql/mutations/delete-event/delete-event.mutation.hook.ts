@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
-import { loader } from 'graphql.macro';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import {
   DeleteEvent,
-  DeleteEventVariables,
-} from '../../../../interfaces/generated/DeleteEvent';
+  DeleteEventVariables } from '../../../../interfaces/generated/DeleteEvent';
 import { EventInterface } from '../../../../interfaces/event.interface';
-
-const deleteEventMutation = loader('./gql/delete-event.mutation.graphql');
+import deleteEventMutation from './gql/delete-event.mutation.graphql';
 
 export const useDeleteEventMutation = () => {
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));

@@ -22,6 +22,8 @@ export interface GetLoad_getLoad {
   order: number;
   slots: GetLoad_getLoad_slots[];
   info: string;
+  takeOffTime: any | null;
+  landingTime: any | null;
   createdAt: any;
   updatedAt: any;
 }

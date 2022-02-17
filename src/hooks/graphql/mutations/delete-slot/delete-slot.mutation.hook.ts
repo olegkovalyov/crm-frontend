@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { loader } from 'graphql.macro';
 import { useSelector } from 'react-redux';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { RootStateInterface } from '../../../../redux/root.reducer';
@@ -9,8 +8,7 @@ import {
   DeleteSlot,
   DeleteSlotVariables,
 } from '../../../../interfaces/generated/DeleteSlot';
-
-const deleteSlotMutation = loader('./gql/delete-slot.mutation.graphql');
+import deleteSlotMutation from './gql/delete-slot.mutation.graphql';
 
 export const useDeleteSlotMutation = () => {
 
