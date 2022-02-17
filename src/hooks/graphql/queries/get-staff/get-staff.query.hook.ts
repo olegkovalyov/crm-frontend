@@ -6,7 +6,7 @@ import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { GetStaff } from '../../../../interfaces/generated/GetStaff';
 import { UserInterface, StaffInterface } from '../../../../interfaces/user.interface';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-import queryGetStaff from './gql/get-staff.query.graphql';
+import getStaffQuery from './gql/get-staff.query.graphql';
 
 export const useGetStaffQuery = () => {
 
@@ -16,7 +16,7 @@ export const useGetStaffQuery = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   let staff: StaffInterface[] = [];
-  const [_getStaffAsync, { loading, data }] = useLazyQuery<GetStaff, null>(queryGetStaff,
+  const [_getStaffAsync, { loading, data }] = useLazyQuery<GetStaff, null>(getStaffQuery,
     {
       context: {
         headers: {

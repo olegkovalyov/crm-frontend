@@ -1,0 +1,20 @@
+query GetClients($getClientsInput: GetClientsInput!){
+    getClients(getClientsInput: $getClientsInput){
+        id,
+        personId,
+        role,
+        status,
+        paymentStatus,
+        gender,
+        dateOfBirth,
+        firstName,
+        lastName,
+        email,
+        weight,
+        phone,
+        certificate,
+        createdAt,
+        updatedAt,
+        processedAt
+    }
+}

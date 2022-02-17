@@ -1,39 +1,15 @@
 import { useLazyQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import gql from 'graphql-tag';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { GetClients, GetClientsVariables } from '../../../../interfaces/generated/GetClients';
 import { ClientInterface } from '../../../../interfaces/client.interface';
-import { ClientStatus } from '../../../../interfaces/generated/globalTypes';
-
-export const getClientsQuery = gql`
-    query GetClients($getClientsInput: GetClientsInput!){
-        getClients(getClientsInput: $getClientsInput){
-            id,
-            personId,
-            role,
-            status,
-            paymentStatus,
-            gender,
-            dateOfBirth,
-            firstName,
-            lastName,
-            email,
-            weight,
-            phone,
-            certificate,
-            createdAt,
-            updatedAt,
-            processedAt
-        }
-    }
-`;
+import { ClientRole, ClientStatus, Gender, PaymentStatus } from '../../../../interfaces/generated/globalTypes';
+import getClientsQuery from './gql/get-clients.graphql';
 
 export const useGetClientsQuery = () => {
-
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
 
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
@@ -55,18 +31,40 @@ export const useGetClientsQuery = () => {
   }
 
   const getClientsAsync = async (
-    clientStatusOptions: ClientStatus[] | null,
-    isAssigned: boolean | null,
-    createdAtMin: Date | null,
-    createdAtMax: Date | null,
+    role: ClientRole[] | null,
+    status: ClientStatus[] | null,
+    paymentStatus: PaymentStatus[] | null,
+    gender: Gender[] | null,
+    minDateOfBirth: Date | null,
+    maxDateOfBirth: Date | null,
+    firstName: string | null,
+    lastName: string | null,
+    email: string | null,
+    phone: string | null,
+    certificate: string | null,
+    minCreatedAt: Date | null,
+    maxCreatedAt: Date | null,
+    minProcessedAt: Date | null,
+    maxProcessedAt: Date | null,
   ) => {
     try {
       const variables: GetClientsVariables = {
-        getClientsFilter: {
-          clientStatusOptions,
-          isAssigned,
-          createdAtMin,
-          createdAtMax,
+        getClientsInput: {
+          role,
+          status,
+          paymentStatus,
+          gender,
+          minDateOfBirth,
+          maxDateOfBirth,
+          firstName,
+          lastName,
+          email,
+          phone,
+          certificate,
+          minCreatedAt,
+          maxCreatedAt,
+          minProcessedAt,
+          maxProcessedAt,
         },
       };
       await _getClientsAsync({ variables });

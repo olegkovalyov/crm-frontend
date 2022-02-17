@@ -13,7 +13,7 @@ import { Content } from '../../src/components/layout/content/content.component';
 import { UserInterface } from '../../src/interfaces/member.interface';
 import {
   getMembersQuery,
-} from '../../src/hooks/graphql/queries/get-members/get-members.query.hook';
+} from '../../src/hooks/graphql/queries/get-users/get-members.query.hook';
 import { useStyles } from './index.styles';
 import { initializeApollo } from '../../src/http/graphql.client';
 import { GetMembers, GetMembersVariables } from '../../src/interfaces/generated/GetMembers';

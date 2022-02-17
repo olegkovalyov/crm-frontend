@@ -1,0 +1,15 @@
+query GetUsers($getUsersInput: GetUsersInput!)
+{
+    getUsers(getUsersInput: $getUsersInput){
+        id,
+        personId,
+        status,
+        firstName,
+        lastName,
+        email,
+        role,
+        licenseType,
+        createdAt,
+        updatedAt
+    }
+}

@@ -1,28 +1,12 @@
 import { useLazyQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import gql from 'graphql-tag';
-import { GetMember, GetMemberVariables } from '../../../../interfaces/generated/GetMember';
+import { GetUser, GetUserVariables } from '../../../../interfaces/generated/GetUser';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-import { UserInterface } from '../../../../interfaces/member.interface';
-
-export const getUserQuery = gql`
-    query GetUser($id: Int!) {
-        getUser(id: $id) {
-            id,
-            status,
-            firstName,
-            lastName,
-            email,
-            role,
-            licenseType,
-            createdAt,
-            updatedAt
-        }
-    }
-`;
+import { UserInterface } from '../../../../interfaces/user.interface';
+import getUserQuery from './gql/get-user.query.graphql';
 
 export const useGetUserQuery = () => {
 
@@ -31,7 +15,7 @@ export const useGetUserQuery = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [_getUserAsync, { loading, data, called }] = useLazyQuery<GetMember, GetMemberVariables>(getUserQuery,
+  const [_getUserAsync, { loading, data, called }] = useLazyQuery<GetUser, GetUserVariables>(getUserQuery,
     {
       context: {
         headers: {
@@ -41,10 +25,10 @@ export const useGetUserQuery = () => {
       fetchPolicy: 'network-only',
     });
 
-  let member: UserInterface | null = null;
+  let user: UserInterface | null = null;
 
-  const getMemberAsync = async (id: number) => {
-    const variables: GetMemberVariables = {
+  const getUserAsync = async (id: number) => {
+    const variables: GetUserVariables = {
       id,
     };
     try {
@@ -57,8 +41,8 @@ export const useGetUserQuery = () => {
     }
   };
 
-  if (data && data.getMember) {
-    member = data.getMember;
+  if (data && data.getUser) {
+    user = data.getUser;
   }
 
   return {
@@ -66,7 +50,7 @@ export const useGetUserQuery = () => {
     getMemberErrorMessage: errorMessage,
     setMemberErrorMessage: setErrorMessage,
     wasMemberLoadCalled: called,
-    member,
-    handleGetMember: getMemberAsync,
+    member: user,
+    handleGetMember: getUserAsync,
   };
 };

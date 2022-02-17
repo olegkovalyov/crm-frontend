@@ -6,57 +6,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/@types/graphql.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_pages/clients/[id]/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_pages/clients/create/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_pages/clients/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_pages/events/[id]/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_pages/events/index.styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_pages/events/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old_pages/users/index.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/gql/get-client.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/gql/get-events.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/gql/get-user.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-users/gql/get-users.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/gql/logout.query.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old_pages/users/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/clients/[id]/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/clients/create/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/clients/index.styles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/clients/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/events/[id]/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/events/index.styles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/events/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/members/[id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old_pages/users/[id]/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/members/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old_pages/users/create/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/members/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old_pages/clients/index.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/members/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old_pages/users/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/signup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/create-load.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/create-load.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-user/create-user.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-user/create-user.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/delete-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/delete-client.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/delete-load.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/delete-load.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-user/delete-user.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-user/delete-user.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/register.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/register.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-user/update-user.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-user/update-user.mutation.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/get-load.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/get-load.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/gql/get-load.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/gql/get-load.query.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/get-client.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/get-client.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/get-members.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-users/get-users.query.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/get-staff.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/get-staff.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/gql/get-staff.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/gql/get-staff.query.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/GetLoad.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/GetLoad.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/get-user.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/get-user.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +72,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/gql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/graphql/queries/logout" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -127,11 +93,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/mutations/update-member/gql" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/gql" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/gql" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/gql" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/mutations/register/gql" />
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/logout" />
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-user" />
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-users" />
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-events" />
+      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/hooks/auth" />
@@ -242,7 +208,8 @@
       <workItem from="1641660603622" duration="3776000" />
       <workItem from="1642787602752" duration="3989000" />
       <workItem from="1642943352484" duration="1414000" />
-      <workItem from="1644934490850" duration="14642000" />
+      <workItem from="1644934490850" duration="15529000" />
+      <workItem from="1645115590348" duration="1674000" />
     </task>
     <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
       <created>1602324599948</created>
@@ -433,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644955108465</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="* updated NextJs to 12, first success launch">
+      <created>1645111317716</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1645111317716</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,7 +482,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="* added Role filtering" />
     <MESSAGE value="* added Status filtering" />
     <MESSAGE value="* added admin/manifest role permissions for user editing" />
     <MESSAGE value="* implemeted CRUD for events" />
@@ -533,6 +506,7 @@
     <MESSAGE value="* added notes to event" />
     <MESSAGE value="* fixed crud event/client/member functionality,&#10;* refactored error notifications" />
     <MESSAGE value="* refactored graphql mutations" />
-    <option name="LAST_COMMIT_MESSAGE" value="* refactored graphql mutations" />
+    <MESSAGE value="* updated NextJs to 12, first success launch" />
+    <option name="LAST_COMMIT_MESSAGE" value="* updated NextJs to 12, first success launch" />
   </component>
 </project>

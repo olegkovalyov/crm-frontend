@@ -1,32 +1,13 @@
 import { useLazyQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import gql from 'graphql-tag';
-import { GetMembers, GetMembersVariables } from '../../../../interfaces/generated/GetMembers';
+import { GetUsers, GetUsersVariables } from '../../../../interfaces/generated/GetUsers';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
-import { UserInterface } from '../../../../interfaces/member.interface';
-import { UserRole, UserStatus } from '../../../../interfaces/generated/globalTypes';
+import { UserInterface } from '../../../../interfaces/user.interface';
+import { LicenseType, UserRole, UserStatus } from '../../../../interfaces/generated/globalTypes';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
-
-export const getMembersQuery = gql`
-    query GetUsers($getUsersInput: GetUsersInput!)
-    {
-        getUsers(getUsersInput: $getUsersInput){
-            id,
-            personId,
-            status,
-            firstName,
-            lastName,
-            email,
-            role,
-            licenseType,
-            createdAt,
-            updatedAt
-        }
-    }
-`;
-
+import getUsersQuery from './gql/get-users.query.graphql';
 
 export const useGetMembersQuery = () => {
 
@@ -35,8 +16,8 @@ export const useGetMembersQuery = () => {
   const { getFormattedErrorMessage } = useGraphQlErrorHandler();
   const [errorMessage, setErrorMessage] = useState('');
 
-  let members: UserInterface[] = [];
-  const [_getMembersAsync, { loading, data, called }] = useLazyQuery<GetMembers, GetMembersVariables>(getMembersQuery,
+  let users: UserInterface[] = [];
+  const [_getMembersAsync, { loading, data, called }] = useLazyQuery<GetUsers, GetUsersVariables>(getUsersQuery,
     {
       context: {
         headers: {
@@ -46,18 +27,24 @@ export const useGetMembersQuery = () => {
       fetchPolicy: 'network-only',
     });
 
-  if (data && data.getMembers) {
-    members = data.getMembers.map(item => ({ ...item }));
+  if (data && data.getUsers) {
+    users = data.getUsers.map(item => ({ ...item }));
   }
 
   const getMembersAsync = async (
-    statuses: UserStatus[] | null,
-    roles: UserRole[] | null,
+    status: UserStatus[] | null,
+    role: UserRole[] | null,
+    licenseType: LicenseType[] | null,
+    firstName: string | null,
+    lastName: string | null,
   ): Promise<void> => {
-    const variables: GetMembersVariables = {
-      getMembersFilter: {
-        statuses,
-        roles,
+    const variables: GetUsersVariables = {
+      getUsersInput: {
+        status,
+        role,
+        licenseType,
+        firstName,
+        lastName,
       },
     };
     try {
@@ -71,7 +58,7 @@ export const useGetMembersQuery = () => {
 
   return {
     areMembersLoading: loading,
-    members,
+    members: users,
     getMembersErrorMessage: errorMessage,
     handleGetMembers: getMembersAsync,
     wasCalledGetMembers: called,

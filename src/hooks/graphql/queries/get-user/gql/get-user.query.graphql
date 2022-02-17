@@ -1,0 +1,13 @@
+query GetUser($id: Int!) {
+    getUser(id: $id) {
+        id,
+        status,
+        firstName,
+        lastName,
+        email,
+        role,
+        licenseType,
+        createdAt,
+        updatedAt
+    }
+}

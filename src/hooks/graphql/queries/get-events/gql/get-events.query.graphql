@@ -1,0 +1,11 @@
+query GetEvents($getEvents: GetEventsInput!) {
+    getEvents(getEventsInput: $getEvents){
+        id,
+        name,
+        startDate,
+        endDate,
+        info,
+        createdAt,
+        updatedAt
+    }
+}

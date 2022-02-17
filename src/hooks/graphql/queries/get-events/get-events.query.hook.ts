@@ -1,30 +1,15 @@
 import { useLazyQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import gql from 'graphql-tag';
 import { RootStateInterface } from '../../../../redux/root.reducer';
 import { getAccessToken } from '../../../../redux/auth/auth.selector';
 import { GetEvents, GetEventsVariables } from '../../../../interfaces/generated/GetEvents';
 import { EventInterface } from '../../../../interfaces/event.interface';
 import { useGraphQlErrorHandler } from '../../helpers/grahhql-error-handler/grahpql-error-handler.hook';
 import { setEventsAction } from '../../../../redux/events/events.actions';
-
-export const getEventsQuery = gql`
-    query GetEvents($getEvents: GetEventsInput!) {
-        getEvents(getEventsInput: $getEvents){
-            id,
-            name,
-            startDate,
-            endDate,
-            info,
-            createdAt,
-            updatedAt
-        }
-    }
-`;
+import getEventsQuery from './gql/get-events.query.graphql';
 
 export const useGetEventsQuery = () => {
-
   const accessToken = useSelector((state: RootStateInterface) => getAccessToken(state));
   const dispatch = useDispatch();
 
@@ -54,11 +39,20 @@ export const useGetEventsQuery = () => {
     events = data.getEvents.map(item => ({ ...item }));
   }
 
-  const getEventsAsync = async (dateMin: Date | null, dateMax: Date | null) => {
+  const getEventsAsync = async (
+    name: string | null,
+    startDateMin: Date | null,
+    startDateMax: Date | null,
+    endDateMin: Date | null,
+    endDateMax: Date | null,
+  ) => {
     const variables: GetEventsVariables = {
-      getEventsFilter: {
-        dateMin,
-        dateMax,
+      getEvents: {
+        name,
+        startDateMin,
+        startDateMax,
+        endDateMin,
+        endDateMax,
       },
     };
     try {
