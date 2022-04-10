@@ -1,17 +1,17 @@
-export const SIGN_IN_URL = '/signin';
-export const SIGN_UP_URL = '/signup';
+export const ROUTE_LOG_IN = '/login';
+export const ROUTE_REGISTER = '/register';
 export const FORGOT_PASSWORD_URL = '/forgot-password';
 export const RESET_PASSWORD_URL = '/reset-password';
 
 export const HOME_URL = '/';
 
 // Dashboard
-export const DASHBOARD_URL = '/dashboard';
+export const ROUTE_DASHBOARD = '/dashboard';
 
 // Members
-export const MEMBERS_URL = '/members';
-export const CREATE_MEMBER_URL = '/members/create';
-export const EDIT_MEMBER_URL = '/members/[id]';
+export const USERS_URL = '/users';
+export const CREATE_MEMBER_URL = '/users/create';
+export const EDIT_MEMBER_URL = '/users/[id]';
 
 // Clients
 export const CLIENTS_URL = '/clients';
@@ -24,30 +24,30 @@ export const EDIT_EVENT_URL = '/events/[id]';
 
 
 export const MANAGE_INVENTORY_URL = '/inventory';
-export const HISTORY_URL = '/history';
+export const ROUTE_HISTORY = '/history';
 export const LOADS_URL = '/events/:eventId/loads';
 
 // Loads
 
 // Settings
-export const SETTINGS_URL = '/settings';
+export const ROUTE_SETTINGS = '/settings';
 
 
 export const breadcrumbs = [
   {
-    path: DASHBOARD_URL,
+    path: ROUTE_DASHBOARD,
     parts: [
       {
-        url: DASHBOARD_URL,
+        url: ROUTE_DASHBOARD,
         title: 'Dashboard',
       },
     ],
   },
   {
-    path: MEMBERS_URL,
+    path: USERS_URL,
     parts: [
       {
-        url: MEMBERS_URL,
+        url: USERS_URL,
         title: 'Members',
       },
     ],
@@ -56,7 +56,7 @@ export const breadcrumbs = [
     path: CREATE_MEMBER_URL,
     parts: [
       {
-        url: MEMBERS_URL,
+        url: USERS_URL,
         title: 'Members',
       },
       {
@@ -69,7 +69,7 @@ export const breadcrumbs = [
     path: EDIT_MEMBER_URL,
     parts: [
       {
-        url: MEMBERS_URL,
+        url: USERS_URL,
         title: 'Members',
       },
       {
@@ -136,5 +136,17 @@ export const breadcrumbs = [
     ],
   },
 ];
+
+export const AUTH_ROUTES = [
+  ROUTE_LOG_IN,
+  ROUTE_REGISTER,
+];
+
+export const PROTECTED_ROUTES = [
+  ROUTE_DASHBOARD,
+  ROUTE_HISTORY,
+  ROUTE_SETTINGS
+]
+
 
 

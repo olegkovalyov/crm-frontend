@@ -1,27 +1,23 @@
 import React, { FC, ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { Content } from '../../src/components/layout/content/content.component';
+import { ADMIN_LAYOUT } from '../../src/constants/layout.constant';
 
 
 const Dashboard: FC = (props): ReactElement => {
 
-  const dispatch = useDispatch();
-
   return (
     <>
-      <Content>
-        Dashboard
-      </Content>
+      Dashboard
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
-  // Pass data to the page via props
   return {
-    props: {},
+    props: {
+      layout: ADMIN_LAYOUT,
+    },
   };
 };
 

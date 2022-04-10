@@ -6,23 +6,232 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c77d5103-774a-469e-8629-cc998d288d92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/gql/get-client.query.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/gql/get-events.query.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/gql/get-user.query.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-users/gql/get-users.query.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/gql/logout.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/old/hooks/graphql/helpers/grahhql-error-handler/grahpql-error-handler.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/_middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/admin/container/container.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/auth/container/container.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/auth/container/container.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/root/root.styles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/root/root.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/auth.constant.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/layout.constant.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/graphql/query/access-token.query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/server/auth.helper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/auth/access-token-handler/access-token-handler.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/auth/auth-init-handler/auth-init.hook..ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/auth/current-user/current-user.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/layout/admin/left-menu-handler/left-menu-handler.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/layout/admin/top-menu-handler/top-menu-handler.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/layout/root/ssr-styles-cleaner/ssr-styles-cleaner.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/pages/login/login-form-handler/login-form-handler.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/pages/login/login-form-validator/login-form-validator.hook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/generated/AccessToken.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/layout.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/redux/state.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/redux/thunk.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/validator.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/auth/reducer/auth.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/auth/thunk/access-token.thunk.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/auth/thunk/login.thunk.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/auth/thunk/logout.thunk.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/layout/admin-layout/reducer/admin-layout.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/pages/login/reducer/login-page.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/base/input.validator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/address.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/age.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/certificate.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/email.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/first-name.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/last-name.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/password-equality.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/password.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/phone.constraint.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validators/constraints/weight.constraint.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/old_pages/users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old_pages/users/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/clients/[id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/clients/[id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/clients/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/clients/create/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/clients/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/clients/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/clients/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/clients/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/events/[id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/events/[id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/events/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/events/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/events/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/events/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/users/[id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/users/[id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/users/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/users/create/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/users/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/users/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/old_pages/users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/users/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/get-client.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/get-client.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-members/get-members.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-users/get-users.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/get-staff.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/get-staff.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/get-user.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/get-user.query.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/404.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/404.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/forgot-password/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/forgot-password/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/forgot-password/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/forgot-password/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/history/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/history/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/inventory/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/inventory/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/inventory/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/inventory/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logout/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reset-password/[token].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/reset-password/[token].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/reset-password/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/reset-password/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/settings/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/settings/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/signin/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/signin/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/signup/index.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/signup/index.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/signup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/pages/signup/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/access-token-handler.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/inputValidator.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/passwordsEqualValidator.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/client-form/client-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/clients/client-form/client-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/client-form/client-form.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/clients/client-form/client-form.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/client-status-options/client-status-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/clients/client-status-options/client-status-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/clients-filter-container/clients-filter-container.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/clients/clients-filter-container/clients-filter-container.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clients/edit-client-form/edit-client-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/clients/edit-client-form/edit-client-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/address/address.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/address/address.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/age/age.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/age/age.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/certificate/certificate.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/certificate/certificate.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/client-event-options/client-event-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/client-event-options/client-event-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/client-gender-options/client-gender-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/client-gender-options/client-gender-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/client-status-options/client-status-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/client-status-options/client-status-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/client-video-options/client-video-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/client-video-options/client-video-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/email/email.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/email/email.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/first-name/first-name.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/first-name/first-name.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/last-name/last-name.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/last-name/last-name.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/notes/notes.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/notes/notes.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/notification/notification.compontent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/notification/notification.compontent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/phone/phone.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/phone/phone.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/search-filter/search-filter.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/search-filter/search-filter.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/search-filter/search-filter.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/search-filter/search-filter.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/tab-panel/tab-panel.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/tab-panel/tab-panel.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/weight/weight.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/common/weight/weight.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/anonymous-header/anonymous-header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/auth/header/header.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/anonymous-header/anonymous-header.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/auth/header/header.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/authorized-header/authorized-header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/admin/header/header.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/authorized-header/autrorized-header.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/admin/header/header.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/breadcrumbs/breadcrumbs.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/admin/breadcrumbs/breadcrumbs.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/breadcrumbs/breadcrumbs.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/admin/breadcrumbs/breadcrumbs.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/content/content.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/content/content.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/admin/container/container.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/admin/left-menu/left-menu.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/left-menu/left-menu.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/admin/left-menu/left-menu.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/member-form/member-form.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/members/member-form/member-form.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/member-form/member-form.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/members/member-form/member-form.styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/member-roles-options/member-roles-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/members/member-roles-options/member-roles-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/member-status-options/member-status-options.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/members/member-status-options/member-status-options.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/members/members-filter-container/members-filter-container.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/components/members/members-filter-container/members-filter-container.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/member.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/user.constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/route.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/route.constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/backdrop.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/backdrop.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/form-error.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/form-error.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/form-spinner.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/form-spinner.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/form-submit-button.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/loading.component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/check-route-access.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/auth/forgot-password-form-validation/forgot-password-form-validation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/pages/forgot-password/forgot-password-form-validator/forgot-password-form-validator.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/auth/login-form-validation/login-form-validation.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/auth/register-form-validation/register-form-validation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/pages/register/register-form-validator/register-form-validator.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/auth/reset-password-form-validation/register-form-validation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/pages/reset-password/reset-password-form-validator/register-form-validator.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/clients/client-form-validation/client-form-validation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/clients/client-form-validation/client-form-validation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/clients/clients-filter/clients-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/clients/clients-filter/clients-filter.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/clients/clients-table/clients-table.hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/clients/clients-table/clients-table.hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/clients/date-filter/date-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/clients/date-filter/date-filter.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/clients/status-filter/status-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/clients/status-filter/status-filter.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/events/events/events.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/events/events/events.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/helpers/grahhql-error-handler/grahpql-error-handler.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-client/create-client.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-client/gql/create-client.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-client/gql/create-client.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-event/create-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-event/gql/create-event.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-event/gql/create-event.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/create-load.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-load/create-load.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-load/gql/create-load.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-load/gql/create-load.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-slot/create-slot.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-slot/gql/create-slot.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-slot/gql/create-slot.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-user/create-user.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-user/create-user.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/create-user/gql/create-user.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/create-user/gql/create-user.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/delete-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-client/delete-client.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-client/gql/delete-client.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-client/gql/delete-client.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-event/delete-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-event/gql/delete-event.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-event/gql/delete-event.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/delete-load.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-load/delete-load.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-load/gql/delete-load.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-load/gql/delete-load.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-slot/delete-slot.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-slot/gql/delete-slot.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-slot/gql/delete-slot.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-user/delete-user.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-user/delete-user.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/delete-user/gql/delete-user.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/delete-user/gql/delete-user.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/forgot-password/forgot-password.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/forgot-password/gql/forgot-password.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/forgot-password/gql/forgot-password.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/gql/login.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutation/login.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/login/login.mutation.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/gql/register.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/register/gql/register.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/register/register.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/register/register.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/gql/reset-password.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/reset-password/gql/reset-password.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/reset-password/reset-password.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/reset-password/reset-password.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/gql/update-client.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/update-client/gql/update-client.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/update-client/update-client.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/gql/update-event.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/update-event/gql/update-event.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/update-event/update-event.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-user/gql/update-user.mutation.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/update-user/gql/update-user.mutation.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/mutations/update-user/update-user.mutation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/mutations/update-user/update-user.mutation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/get-client.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-client/get-client.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-client/gql/get-client.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-client/gql/get-client.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-clients/get-clients.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-clients/gql/get-clients.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/get-events.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-events/get-events.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-events/gql/get-events.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-events/gql/get-events.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/get-load.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-load/get-load.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-load/gql/get-load.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-load/gql/get-load.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-loads/get-loads.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-loads/gql/get-loads.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-loads/gql/get-loads.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/get-staff.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-staff/get-staff.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-staff/gql/get-staff.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-staff/gql/get-staff.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/get-user.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-user/get-user.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-user/gql/get-user.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-user/gql/get-user.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-users/get-users.query.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-users/get-users.query.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/get-users/gql/get-users.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/graphql/queries/get-users/gql/get-users.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/gql/logout.query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/query/logout.query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/graphql/queries/logout/logout.query.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/layout/breadcrumbs/breadcrumbs.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/layout/admin/breadcrumbs/breadcrumbs.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/layout/left-menu/left-menu.hook.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/members/member-form-validation/member-form-validation.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/members/member-form-validation/member-form-validation.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/members/members-filter/members-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/members/members-filter/members-filter.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/members/members-table/members-table.hook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/members/members-table/members-table.hook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/members/roles-edit/roles-edit.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/members/roles-edit/roles-edit.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/members/roles-filter/roles-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/members/roles-filter/roles-filter.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/members/status-filter/status-filter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/old/hooks/members/status-filter/status-filter.hook.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/graphql.client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/client/graphql.client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/auth.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/auth.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/Login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/Login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/RefreshToken.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/generated/globalTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/user.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/user.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth/auth.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth/auth.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth/auth.selector.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth/auth.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.selector.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/clients/clients.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/events/events.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/events/events.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/events/events.selector.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/events/events.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/layout/layout.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/layout/layout.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/layout/layout.selector.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/layout/layout.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/root.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/users/users.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/users/users.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/users/users.selector.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/users/users.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/animations.styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/signin.styles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +245,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="React Component" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -72,7 +281,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/graphql/queries/logout" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/hooks/auth/admin-guard" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -83,7 +292,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="ts.rename.search.for.dynamic.occurrences" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -93,18 +302,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/logout" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-user" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-users" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-events" />
-      <recent name="$PROJECT_DIR$/src/hooks/graphql/queries/get-clients" />
+      <recent name="$PROJECT_DIR$/src/hooks/auth/admin-guard" />
+      <recent name="$PROJECT_DIR$/src/redux/pages/login/reducer" />
+      <recent name="$PROJECT_DIR$/src/redux/common/auth/thunk" />
+      <recent name="$PROJECT_DIR$/src/redux/common/auth" />
+      <recent name="$PROJECT_DIR$/src/hooks/layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/hooks/auth" />
-      <recent name="$PROJECT_DIR$/src/hooks/clients" />
-      <recent name="$PROJECT_DIR$/src/components/clients" />
-      <recent name="$PROJECT_DIR$/src/hooks/members" />
-      <recent name="$PROJECT_DIR$/src/hooks/layout" />
+      <recent name="$PROJECT_DIR$/src/redux" />
+      <recent name="$PROJECT_DIR$/src/helpers/server" />
+      <recent name="$PROJECT_DIR$/src/hooks/layout/root" />
+      <recent name="$PROJECT_DIR$/src/hooks/layout/admin" />
+      <recent name="$PROJECT_DIR$/src/components/layout/authenticated" />
     </key>
   </component>
   <component name="RunManager">
@@ -209,7 +418,9 @@
       <workItem from="1642787602752" duration="3989000" />
       <workItem from="1642943352484" duration="1414000" />
       <workItem from="1644934490850" duration="15529000" />
-      <workItem from="1645115590348" duration="1674000" />
+      <workItem from="1645115590348" duration="14600000" />
+      <workItem from="1646899927478" duration="135453000" />
+      <workItem from="1649313508359" duration="48538000" />
     </task>
     <task id="LOCAL-00001" summary="* refactored Roles functionality &#10;* added 404 page">
       <created>1602324599948</created>
@@ -407,7 +618,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645111317716</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="* adjusted graphql queries">
+      <created>1645117322129</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1645117322130</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +700,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="* added Status filtering" />
     <MESSAGE value="* added admin/manifest role permissions for user editing" />
     <MESSAGE value="* implemeted CRUD for events" />
     <MESSAGE value="* get rid from local types,&#10;* generate types on server" />
@@ -507,6 +724,11 @@
     <MESSAGE value="* fixed crud event/client/member functionality,&#10;* refactored error notifications" />
     <MESSAGE value="* refactored graphql mutations" />
     <MESSAGE value="* updated NextJs to 12, first success launch" />
-    <option name="LAST_COMMIT_MESSAGE" value="* updated NextJs to 12, first success launch" />
+    <MESSAGE value="* adjusted graphql queries" />
+    <option name="LAST_COMMIT_MESSAGE" value="* adjusted graphql queries" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

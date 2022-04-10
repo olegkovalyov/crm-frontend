@@ -3,15 +3,15 @@ import React, { FC, ReactElement } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
-interface IPropTypes {
+interface PropTypesInterface {
   show: boolean,
   children?: never,
 }
 
-const FormSpinner: FC<IPropTypes> = ({ show }): ReactElement => {
+const FormSpinner: FC<PropTypesInterface> = ({ show }): ReactElement => {
   if (show) {
     return (
-      <Grid item xs justify='center' container>
+      <Grid item xs justifyContent='center' container>
         <CircularProgress />
       </Grid>
     );

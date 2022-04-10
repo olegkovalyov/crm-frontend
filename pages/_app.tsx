@@ -1,104 +1,53 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../styles/globals.css';
-import { ApolloProvider } from '@apollo/client';
-import { makeStyles } from '@material-ui/core/styles';
-import { Provider, useDispatch } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
-import { Router, useRouter } from 'next/router';
-import { GetServerSidePropsContext } from 'next';
+import { Router } from 'next/router';
 import { AppContextType } from 'next/dist/shared/lib/utils';
-import { initializeApollo } from '../src/http/graphql.client';
-import { persistor, store } from '../src/redux/store';
+import { store } from '../src/redux/store';
+import Root from '../src/components/layout/root/root';
+import { useSsrStylesCleaner } from '../src/hooks/layout/root/ssr-styles-cleaner/ssr-styles-cleaner.hook';
+import {
+  getAuthByRefreshToken,
+  getRefreshToken,
+  hasRefreshToken, protectAdminRoutes, protectAuthRoutes,
+  removeRefreshToken,
+} from '../src/helpers/server/auth.helper';
 import { AuthInterface } from '../src/interfaces/auth.interface';
-import AnonymousHeader from '../src/components/layout/anonymous-header/anonymous-header.component';
-import AuthorizedHeader from '../src/components/layout/authorized-header/authorized-header.component';
-import LeftMenu from '../src/components/layout/left-menu/left-menu.component';
-import { handleAccessToken } from '../src/auth/access-token-handler';
-import { SIGN_IN_URL } from '../src/constants/route.constants';
-import { checkRouteAccess } from '../src/helpers/check-route-access';
-
 
 function MyApp({ Component, pageProps }: AppProps) {
-
-  const { auth }: { auth: AuthInterface } = pageProps;
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!checkRouteAccess(auth, router)) {
-      router.push(SIGN_IN_URL);
-    }
-  }, []);
-
-
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
-
-
-  const useStyles = makeStyles(theme => {
-    const styles = {
-      root: null,
-      menuButton: null,
-      title: null,
-    };
-    if (auth.user) {
-      styles.root = {
-        display: 'flex',
-      };
-    } else {
-      styles.root = {
-        flexGrow: 1,
-      };
-      styles.menuButton = {
-        marginRight: theme.spacing(2),
-      };
-      styles.title = {
-        flexGrow: 1,
-      };
-    }
-    return styles;
-  });
-  const classes = useStyles();
-
-  const client = initializeApollo();
-
-  if (!checkRouteAccess(auth, router)) {
-    return (<></>);
-  }
-
-  const headerJsx = auth.user ? <AuthorizedHeader user={auth.user} /> : <AnonymousHeader />;
-  const leftMenuJsx = auth.user ? <LeftMenu /> : '';
+  useSsrStylesCleaner();
 
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor} loading={null}>
-        <ApolloProvider client={client}>
-          <div className={classes.root}>
-            {headerJsx}
-            {leftMenuJsx}
-            <Component {...pageProps} />
-          </div>
-        </ApolloProvider>
-      </PersistGate>
+      <Root>
+        <Component {...pageProps} />
+      </Root>
     </Provider>
   );
 }
 
 
 MyApp.getInitialProps = async (context: AppContextType<Router>) => {
-  const auth = await handleAccessToken(context.ctx);
-  (context.ctx as unknown as GetServerSidePropsContext).req.cookies.accessToken = auth.accessToken;
-  // Pass data to the page via props
+  const { req: request, res: response } = context.ctx;
+  const { router } = context;
+  let initialAuth: AuthInterface | null = null;
+
+  if (hasRefreshToken(request)) {
+    const refreshToken = getRefreshToken(request);
+    initialAuth = (refreshToken !== null) ? await getAuthByRefreshToken(refreshToken) : null;
+    initialAuth ? protectAuthRoutes(router.pathname, response) : removeRefreshToken(request, response);
+  }
+
+  if (!initialAuth) {
+    protectAdminRoutes(router.pathname, response);
+  }
+
+  console.log('Initial auth: ', initialAuth);
+
   return {
     pageProps: {
-      auth,
-      url: context.ctx.req.url,
+      initialAuth,
     },
   };
 };

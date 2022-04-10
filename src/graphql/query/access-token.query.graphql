@@ -1,0 +1,17 @@
+query AccessToken {
+    accessToken {
+        currentUser {
+            id,
+            personId,
+            status,
+            email,
+            firstName,
+            lastName,
+            role,
+            licenseType,
+            createdAt,
+            updatedAt,
+        },
+        accessToken
+    }
+}

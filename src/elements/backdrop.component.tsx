@@ -20,11 +20,11 @@ const LoadBackdrop: FC<IPropTypes> = (props: IPropTypes): ReactElement => {
   const classes = useStyles();
 
   return (
-    <div>
+    <>
       <Backdrop className={classes.backdrop} open={props.isOpen}>
         <CircularProgress color="inherit" />
       </Backdrop>
-    </div>
+    </>
   );
 };
 

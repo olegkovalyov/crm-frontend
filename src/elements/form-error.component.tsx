@@ -2,17 +2,21 @@
 import React, { FC, ReactElement } from 'react';
 
 interface IPropTypes {
-  message: string|null,
+  messages: string[],
   className: string,
   children?: never,
 }
 
-const FormError: FC<IPropTypes> = ({ message, className }): ReactElement => {
+const FormError: FC<IPropTypes> = ({ messages, className }): ReactElement => {
 
-  if (message) {
+  if (messages.length) {
+    let key = 0;
     return (
       <>
-        <div className={className}>{message}</div>
+        {messages.map((message) => {
+          key = key + 1;
+          return <div key={key} className={className}>{message}</div>;
+        })}
       </>
     );
   }

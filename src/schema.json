@@ -353,7 +353,7 @@
         "specifiedByUrl": null,
         "fields": [
           {
-            "name": "payload",
+            "name": "currentUser",
             "description": null,
             "args": [],
             "type": {
@@ -1381,7 +1381,7 @@
             "deprecationReason": null
           },
           {
-            "name": "refreshToken",
+            "name": "accessToken",
             "description": null,
             "args": [],
             "type": {

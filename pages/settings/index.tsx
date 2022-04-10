@@ -1,18 +1,12 @@
 import React, { FC, ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { Content } from '../../src/components/layout/content/content.component';
+import { ADMIN_LAYOUT } from '../../src/constants/layout.constant';
 
 const Settings: FC = (props): ReactElement => {
-
-  const dispatch = useDispatch();
-
   return (
     <>
-      <Content>
-        Settings
-      </Content>
+      Settings
     </>
   );
 };
@@ -21,7 +15,9 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
   // Pass data to the page via props
   return {
-    props: {},
+    props: {
+      layout: ADMIN_LAYOUT,
+    },
   };
 };
 
